@@ -9,7 +9,7 @@ public class InitialScene : MonoBehaviour
 
     void Start()
     {
-        textGame.text = "Моя игра";
+        textGame.text = "Моя игра 2";
     }
 
     // Update is called once per frame
