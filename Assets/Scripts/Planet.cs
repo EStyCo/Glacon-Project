@@ -1,13 +1,22 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Planet : MonoBehaviour
 {
+    public enum Size
+    { 
+        little = 1,
+        small = 2,
+        medium = 3, 
+        large = 4
+    }
     public GameObject unitPrefab;
     private SpriteRenderer planetRenderer;
     public TextMeshProUGUI unitCountText;
 
     private Color originalColor;
+    public Size selectedSize = Size.medium;
 
     private const int startingUnitCount = 50;
     private const float spawnDistance = 0.55f;
@@ -29,6 +38,7 @@ public class Planet : MonoBehaviour
         planetRenderer = GetComponent<SpriteRenderer>();
         StartUnitCount();
         CheckTagPlanet();
+        CheckSize((int)selectedSize);
     }
     private void StartUnitCount()
     {
@@ -48,7 +58,15 @@ public class Planet : MonoBehaviour
             StartCoroutine(SpawnUnitsWithDelay(targetPlanet, unitsToSend));
         }
     }
+    public void CheckSize(int value)
+    {
+        Size selectedSize = (Size)value;
 
+        if (selectedSize == Size.little) transform.localScale = new Vector3(0.15f, 0.15f);
+        if (selectedSize == Size.small) transform.localScale = new Vector3(0.175f, 0.175f);
+        if (selectedSize == Size.medium) transform.localScale = new Vector3(0.20f, 0.20f);
+        if (selectedSize == Size.large) transform.localScale = new Vector3(0.23f, 0.23f);
+    }
     private System.Collections.IEnumerator SpawnUnitsWithDelay(Planet targetPlanet, int unitsToSend)
     {
         for (int i = 0; i < unitsToSend; i++)
@@ -159,6 +177,13 @@ public class Planet : MonoBehaviour
     }
     private System.Collections.IEnumerator IncreaseUnitsOverTime()
     {
+        float timerFromSize = 0.1f;
+
+        if (selectedSize == Size.little) timerFromSize = 1.2f;
+        else if (selectedSize == Size.small) timerFromSize = 1f;
+        else if (selectedSize == Size.medium) timerFromSize = 0.8f;
+        else if (selectedSize == Size.large) timerFromSize = 0.6f;
+
         while (true)
         {
             IncreaseUnits();
@@ -166,7 +191,7 @@ public class Planet : MonoBehaviour
             if (gameObject.CompareTag("PlayerPlanet")) BalancePower.Instance.ChangePlayerPower(true);
             if (gameObject.CompareTag("EnemyPlanet")) BalancePower.Instance.ChangeEnemyPower(true);
 
-            yield return new WaitForSeconds(1f); 
+            yield return new WaitForSeconds(timerFromSize); 
         }
     }
     public void SelectPlanet()

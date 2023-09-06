@@ -37,7 +37,9 @@ private List<Vector2> spawnPoints = new List<Vector2>();
         for (int i = 0; i < numberOfPlanets; i++)
         {
             Vector2 neutralSpawnPoint = GetRandomSpawnPoint(bounds);
-            Instantiate(neutralPlanetPrefab, neutralSpawnPoint, Quaternion.identity);
+            GameObject newPlanet = Instantiate(neutralPlanetPrefab, neutralSpawnPoint, Quaternion.identity);
+            Planet planetScript = newPlanet.GetComponent<Planet>();
+            planetScript.selectedSize = (Planet.Size)Random.Range(1, 5);
             spawnPoints.Add(neutralSpawnPoint);
         }
     }
