@@ -313,4 +313,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 6084103165548847765, guid: ca3b77a17bb12704680312b65e52eafe, type: 3}
   unitCountText: {fileID: 6810088037120266366}
+  selectedSize: 3
   currentUnitCount: 0
