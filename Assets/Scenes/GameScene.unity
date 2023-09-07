@@ -1827,7 +1827,6 @@ GameObject:
   - component: {fileID: 1089749262}
   - component: {fileID: 1089749270}
   - component: {fileID: 1089749269}
-  - component: {fileID: 1089749271}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1850,9 +1849,8 @@ MonoBehaviour:
   playerPlanetPrefab: {fileID: 3353950651158609308, guid: a04e9a1b1a25e5d4ba355479f5d36c4b, type: 3}
   enemyPlanetPrefab: {fileID: 7364757729158189150, guid: 893f7cff32ebebd4eac654509a738131, type: 3}
   neutralPlanetPrefab: {fileID: 3353950651158609308, guid: a4d8a2929b52e6348b0fd0f8fbe7064d, type: 3}
-  spawnArea: {fileID: 1089749271}
-  numberOfPlanets: 13
   canvas: {fileID: 1089749266}
+  numberOfPlanets: 13
 --- !u!114 &1089749264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1977,51 +1975,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089749261}
   m_CullTransparentMesh: 1
---- !u!61 &1089749271
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1089749261}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.1596069, y: -7.9383087}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1753.3331, y: 876.6648}
-  m_EdgeRadius: 0
 --- !u!1 &1250103371
 GameObject:
   m_ObjectHideFlags: 0

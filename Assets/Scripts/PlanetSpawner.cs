@@ -3,22 +3,18 @@ using UnityEngine;
 
 public class PlanetSpawner : MonoBehaviour
 {
+    private List<Vector2> spawnPoints = new List<Vector2>();
+
     public GameObject playerPlanetPrefab;
-
     public GameObject enemyPlanetPrefab;
-
     public GameObject neutralPlanetPrefab;
+    public Canvas canvas;
 
-    public BoxCollider2D spawnArea;
     public int numberOfPlanets = 13;
     private float minDistanceBetweenPlanets = 0.9f;
 
-    public Canvas canvas;
-
     private float canvasX;
     private float canvasY;
-
-    private List<Vector2> spawnPoints = new List<Vector2>();
 
     void Start()
     {
@@ -38,19 +34,17 @@ public class PlanetSpawner : MonoBehaviour
     {
         int numberOfPlanets = GameManager.Instance.planetCount;
 
-        Bounds bounds = spawnArea.bounds;
-
-        Vector3 playerSpawnPoint = GetRandomSpawnPoint(bounds);
+        Vector3 playerSpawnPoint = GetRandomSpawnPoint();
         Instantiate(playerPlanetPrefab, playerSpawnPoint, Quaternion.identity);
         spawnPoints.Add(playerSpawnPoint);
 
-        Vector3 enemySpawnPoint = GetRandomSpawnPoint(bounds);
+        Vector3 enemySpawnPoint = GetRandomSpawnPoint();
         Instantiate(enemyPlanetPrefab, enemySpawnPoint, Quaternion.identity);
         spawnPoints.Add(enemySpawnPoint);
 
         for (int i = 0; i < numberOfPlanets; i++)
         {
-            Vector3 neutralSpawnPoint = GetRandomSpawnPoint(bounds);
+            Vector3 neutralSpawnPoint = GetRandomSpawnPoint();
             GameObject newPlanet = Instantiate(neutralPlanetPrefab, neutralSpawnPoint, Quaternion.identity);
             Planet planetScript = newPlanet.GetComponent<Planet>();
             planetScript.selectedSize = (Planet.Size)Random.Range(1, 5);
@@ -58,7 +52,7 @@ public class PlanetSpawner : MonoBehaviour
         }
     }
 
-    Vector3 GetRandomSpawnPoint(Bounds bounds)
+    Vector3 GetRandomSpawnPoint()
     {
         Vector3 randomPoint;
 
