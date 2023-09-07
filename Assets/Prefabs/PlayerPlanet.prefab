@@ -94,8 +94,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 200
-  m_fontSizeBase: 200
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -188,7 +188,7 @@ RectTransform:
   m_GameObject: {fileID: 3353950651158609308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1318886620534070689}
@@ -241,7 +241,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 034053d6b1ddf384f90c457e6aa87c2e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba14de81ed316ad4ba2e129135b924a4, type: 3}
   m_Color: {r: 0.2312788, g: 0.4528302, b: 0.17728728, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -296,9 +296,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.020573234, y: 0.018872071}
+  m_Offset: {x: 0.0032043457, y: 0.018872023}
   serializedVersion: 2
-  m_Radius: 2.1408691
+  m_Radius: 0.49639893
 --- !u!114 &9086127514482652243
 MonoBehaviour:
   m_ObjectHideFlags: 0

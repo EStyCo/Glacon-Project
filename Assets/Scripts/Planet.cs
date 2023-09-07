@@ -39,7 +39,7 @@ public class Planet : MonoBehaviour
         planetRenderer = GetComponent<SpriteRenderer>();
         StartUnitCount();
         CheckTagPlanet();
-        CheckSize((int)selectedSize);
+        //CheckSize((int)selectedSize);
     }
     private void StartUnitCount() 
     {
@@ -59,7 +59,7 @@ public class Planet : MonoBehaviour
             StartCoroutine(SpawnUnitsWithDelay(targetPlanet, unitsToSend));
         }
     } // Отправка юнитов с планеты на планету.
-    public void CheckSize(int value)
+    /*public void CheckSize(int value)
     {
         Size selectedSize = (Size)value;
 
@@ -67,7 +67,7 @@ public class Planet : MonoBehaviour
         if (selectedSize == Size.small) transform.localScale = new Vector3(0.175f, 0.175f);
         if (selectedSize == Size.medium) transform.localScale = new Vector3(0.20f, 0.20f);
         if (selectedSize == Size.large) transform.localScale = new Vector3(0.23f, 0.23f);
-    } // Проверка планеты на размер для старта корутины генерации юнитов.
+    } // Проверка планеты на размер для старта корутины генерации юнитов.*/
     private System.Collections.IEnumerator SpawnUnitsWithDelay(Planet targetPlanet, int unitsToSend)
     {
         for (int i = 0; i < unitsToSend; i++)
