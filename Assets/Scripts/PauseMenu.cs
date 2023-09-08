@@ -10,7 +10,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameManager.Instance.isPaused)
+            if (SelectManager.Instance.isPaused)
             {
                 ResumeGame();
             }
@@ -25,19 +25,19 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f; 
         pauseMenu.SetActive(false); 
-        GameManager.Instance.isPaused = false;
+        SelectManager.Instance.isPaused = false;
     }
 
     public void PauseGame()
     {
         Time.timeScale = 0f; 
-        pauseMenu.SetActive(true); 
-        GameManager.Instance.isPaused = true;
+        pauseMenu.SetActive(true);
+        SelectManager.Instance.isPaused = true;
     }
     public void ExitGame()
     {
         SceneManager.LoadScene(0);
-        GameManager.Instance.isPaused = false;
+        SelectManager.Instance.isPaused = false;
         Time.timeScale = 1f;
     }
 

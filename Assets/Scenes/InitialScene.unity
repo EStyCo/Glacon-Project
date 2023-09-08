@@ -390,7 +390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 559543963}
   - component: {fileID: 559543962}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,12 +409,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d88e6a48b98754d823790bc6881bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0
   planetCount: 15
   skinUnits: 3
   colorUnits: {r: 0, g: 0, b: 0, a: 0}
-  planetLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
   skinUnitsPrefab: {fileID: 8652140101578721170, guid: ca3b77a17bb12704680312b65e52eafe, type: 3}
   unitPrefab: {fileID: 204023473032581664, guid: ca3b77a17bb12704680312b65e52eafe, type: 3}
   enemyPrefab: {fileID: 7364757729158189150, guid: 893f7cff32ebebd4eac654509a738131, type: 3}
@@ -446,7 +444,6 @@ GameObject:
   - component: {fileID: 627492874}
   - component: {fileID: 627492873}
   - component: {fileID: 627492877}
-  - component: {fileID: 627492878}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -551,18 +548,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca6330841ca18d649bb282a53cc34f9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &627492878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 627492872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b24be3d039e79cb43844d191b7485dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &666511295

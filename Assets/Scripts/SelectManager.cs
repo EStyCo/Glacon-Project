@@ -1,66 +1,47 @@
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
-using UnityEngine.U2D.Animation;
+using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class SelectManager : MonoBehaviour
 {
-    public enum Difficulty
-    {
-        Easy = 1,
-        Medium = 2,
-        Hard = 3
-    }
+    public static SelectManager Instance { get; private set; }
 
-    public static GameManager Instance { get; private set; }
+    private Planet targetPlanet;
+    public LayerMask planetLayer;
 
     public bool isPaused = false;
-    public int planetCount;
-    public int skinUnits = 3;
-    public Color colorUnits;
-    //public LayerMask planetLayer;
+    public bool isSelecting = false;
+    private bool isDrawing = false;
 
-    //private List<Planet> selectedPlanets = new List<Planet>();
+    private float delayDraw = 0.1f;
 
-    //private Planet targetPlanet;
-    public SpriteResolver skinUnitsPrefab;
-    public SpriteRenderer unitPrefab;
-    public GameObject enemyPrefab;
+    private Vector2 selectionStartPoint;
 
-/*    public bool isSelecting = false;
-    public Vector2 selectionStartPoint;
-    private List<Planet> selectedPlanetsRect = new List<Planet>();*/
+    private List<Planet> selectedPlanets = new List<Planet>();
 
-    private void Start()
-    {
-        Color startingColor = new Color(1f, 1f, 1f, 1f);
-        ChangeSkinUnits();
-        ChangeColornUnits(startingColor);
-    }
+
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
-/*    private void Update()
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isPaused)
+        if (Input.GetMouseButtonDown(0) && !isPaused && !isDrawing)
         {
+            StartCoroutine(DelayDrawing());
             selectionStartPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            isSelecting = true;
-        }
 
-        if (Input.GetMouseButtonUp(0))
+        }
+        if (Input.GetMouseButtonUp(0) && !isPaused)
         {
+            isDrawing = false;
             isSelecting = false;
             SelectPlanetsInRect();
+
+            LineRenderer lineRenderer = GetComponent<LineRenderer>();
+            lineRenderer.positionCount = 0;
         }
 
         if (isSelecting)
@@ -68,7 +49,8 @@ public class GameManager : MonoBehaviour
             Vector2 currentMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             DrawSelectionRectangle(selectionStartPoint, currentMousePos);
         }
-        if (Input.GetMouseButtonDown(0) && !isPaused)
+
+        if (Input.GetMouseButtonDown(0) && !isPaused && !isSelecting)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, planetLayer);
@@ -94,11 +76,6 @@ public class GameManager : MonoBehaviour
                         SendUnits();
                         targetPlanet = null;
                     }
-                    *//*else if (planet.tag != "NeutralPlanet" && planet.tag != "EnemyPlanet" && isRightButton && selectedPlanets.Contains(planet))
-                    {
-                        TogleListPlanet(planet);
-                        planet = null;
-                    }*//*
                     else if ((planet.tag == "NeutralPlanet" || planet.tag == "EnemyPlanet") && selectedPlanets != null && targetPlanet == null)
                     {
                         targetPlanet = planet;
@@ -128,6 +105,12 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    private IEnumerator DelayDrawing()
+    {
+        isDrawing = true;
+        yield return new WaitForSeconds(delayDraw); // Задержка в 0.3 секунды
+        if (isDrawing) isSelecting = true;
+    }
     private void SelectPlanetsInRect()
     {
         Planet[] playerPlanets = GameObject.FindGameObjectsWithTag("PlayerPlanet")
@@ -154,11 +137,11 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
     private void DrawSelectionRectangle(Vector2 startPoint, Vector2 endPoint)
     {
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
 
-        // Убедитесь, что LineRenderer имеет как минимум 5 точек.
         lineRenderer.positionCount = 5;
 
         lineRenderer.SetPosition(0, startPoint);
@@ -167,14 +150,7 @@ public class GameManager : MonoBehaviour
         lineRenderer.SetPosition(3, new Vector3(endPoint.x, startPoint.y, 0));
         lineRenderer.SetPosition(4, startPoint);
     }
-    private void ClearSelectedPlanetsRect()
-    {
-        foreach (Planet planet in selectedPlanetsRect)
-        {
-            planet.DeselectPlanet();
-        }
-        selectedPlanetsRect.Clear();
-    }
+
     private void TogleListPlanet(Planet planet)
     {
         if (selectedPlanets.Contains(planet))
@@ -195,62 +171,13 @@ public class GameManager : MonoBehaviour
         {
             foreach (Planet planet in selectedPlanets)
             {
-                planet.SendUnitsToPlanet(targetPlanet);
+                if (planet != targetPlanet)
+                { 
+                    planet.SendUnitsToPlanet(targetPlanet);
+                }
+                    planet.DeselectPlanet();
             }
         }
-        ClearSelectedPlanets();
-    }
-    private void ClearSelectedPlanets()
-    {
-        foreach (Planet planet in selectedPlanets)
-        {
-            planet.DeselectPlanet();
-        }
         selectedPlanets.Clear();
-    }*/
-    public void ChangeSkinUnits()
-    {
-        if (skinUnits == 1)
-        {
-            skinUnitsPrefab.SetCategoryAndLabel("Ships", "Ship1");
-        }
-        if (skinUnits == 2)
-        {
-            skinUnitsPrefab.SetCategoryAndLabel("Ships", "Ship2");
-        }
-        if (skinUnits == 3)
-        {
-            skinUnitsPrefab.SetCategoryAndLabel("Ships", "Ship3");
-        }
-        if (skinUnits == 4)
-        {
-            skinUnitsPrefab.SetCategoryAndLabel("Ships", "Ship4");
-        }
-        if (skinUnits == 5)
-        {
-            skinUnitsPrefab.SetCategoryAndLabel("Ships", "Ship5");
-        }
     }
-    public void ChangeColornUnits(Color color)
-    {
-        unitPrefab.color = color;
-        colorUnits = color;
-    }
-    public void ChangeRank(int value)
-    {
-        Difficulty selectedDifficulty = (Difficulty)value;
-
-        AIEasyController easy = enemyPrefab.GetComponent<AIEasyController>();
-        AIMediumController medium = enemyPrefab.GetComponent<AIMediumController>();
-        AIHardController hard = enemyPrefab.GetComponent<AIHardController>();
-
-        easy.enabled = false;
-        medium.enabled = false;
-        hard.enabled = false;
-
-        if (selectedDifficulty == Difficulty.Easy) easy.enabled = true;
-        else if (selectedDifficulty == Difficulty.Medium) medium.enabled = true;
-        else if (selectedDifficulty == Difficulty.Hard) hard.enabled = true;
-    }
-
 }
