@@ -169,6 +169,8 @@ GameObject:
   m_Component:
   - component: {fileID: 831982490804310784}
   - component: {fileID: 7105492088093150213}
+  - component: {fileID: 1182563262275464399}
+  - component: {fileID: -921612066035046327}
   - component: {fileID: 9086127514482652243}
   - component: {fileID: 835248054219327462}
   - component: {fileID: -5394227088121961755}
@@ -241,7 +243,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: ba14de81ed316ad4ba2e129135b924a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e7ad801e03d527a45858f383835ed3f9, type: 3}
   m_Color: {r: 0.6689658, g: 0.6698113, b: 0.5908241, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -252,6 +254,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1182563262275464399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3353950651158609308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CategoryHash: 0
+  m_labelHash: 0
+  m_SpriteKey: 0
+  m_SpriteHash: 23985552
+--- !u!114 &-921612066035046327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3353950651158609308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 1abe821abe4bfee40b8063986a40f8f1, type: 3}
 --- !u!114 &9086127514482652243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,7 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 6084103165548847765, guid: ca3b77a17bb12704680312b65e52eafe, type: 3}
   unitCountText: {fileID: 6810088037120266366}
-  selectedSize: 0
+  selectedSize: 2
   currentUnitCount: 0
 --- !u!58 &835248054219327462
 CircleCollider2D:

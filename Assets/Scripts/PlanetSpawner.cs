@@ -47,7 +47,7 @@ public class PlanetSpawner : MonoBehaviour
             Vector3 neutralSpawnPoint = GetRandomSpawnPoint();
             GameObject newPlanet = Instantiate(neutralPlanetPrefab, neutralSpawnPoint, Quaternion.identity);
             Planet planetScript = newPlanet.GetComponent<Planet>();
-            planetScript.selectedSize = (Planet.Size)Random.Range(1, 5);
+            planetScript.selectedSize = (Planet.Size)Random.Range(1, 4);
             spawnPoints.Add(neutralSpawnPoint);
         }
     }

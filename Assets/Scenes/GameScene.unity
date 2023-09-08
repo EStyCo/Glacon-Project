@@ -2452,9 +2452,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPlanetPrefab: {fileID: 3353950651158609308, guid: a04e9a1b1a25e5d4ba355479f5d36c4b, type: 3}
-  enemyPlanetPrefab: {fileID: 3353950651158609308, guid: 893f7cff32ebebd4eac654509a738131, type: 3}
+  enemyPlanetPrefab: {fileID: 7364757729158189150, guid: 893f7cff32ebebd4eac654509a738131, type: 3}
   neutralPlanetPrefab: {fileID: 3353950651158609308, guid: a4d8a2929b52e6348b0fd0f8fbe7064d, type: 3}
-  spawnArea: {fileID: 1089749271}
+  canvas: {fileID: 1089749266}
   numberOfPlanets: 13
 --- !u!114 &1089749264
 MonoBehaviour:

@@ -1,19 +1,21 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 
 public class Planet : MonoBehaviour
 {
     public enum Size
     { 
-        little = 1,
-        small = 2,
-        medium = 3, 
-        large = 4
+        small = 1,
+        medium = 2, 
+        large = 3
     } // Размеры планет
 
     public GameObject unitPrefab;
     private SpriteRenderer planetRenderer;
+    private SpriteResolver spriteResolver;
+    private CircleCollider2D circleCollider;
     public TextMeshProUGUI unitCountText;
 
     private Color originalColor;
@@ -37,9 +39,12 @@ public class Planet : MonoBehaviour
     {
         originalColor = GameManager.Instance.colorUnits;
         planetRenderer = GetComponent<SpriteRenderer>();
+        spriteResolver = GetComponent<SpriteResolver>();
+        circleCollider = GetComponent<CircleCollider2D>();
+
         StartUnitCount();
         CheckTagPlanet();
-        //CheckSize((int)selectedSize);
+        CheckSize((int)selectedSize);
     }
     private void StartUnitCount() 
     {
@@ -59,15 +64,26 @@ public class Planet : MonoBehaviour
             StartCoroutine(SpawnUnitsWithDelay(targetPlanet, unitsToSend));
         }
     } // Отправка юнитов с планеты на планету.
-    /*public void CheckSize(int value)
+    public void CheckSize(int value)
     {
         Size selectedSize = (Size)value;
 
-        if (selectedSize == Size.little) transform.localScale = new Vector3(0.15f, 0.15f);
-        if (selectedSize == Size.small) transform.localScale = new Vector3(0.175f, 0.175f);
-        if (selectedSize == Size.medium) transform.localScale = new Vector3(0.20f, 0.20f);
-        if (selectedSize == Size.large) transform.localScale = new Vector3(0.23f, 0.23f);
-    } // Проверка планеты на размер для старта корутины генерации юнитов.*/
+        if (selectedSize == Size.small)
+        { 
+            spriteResolver.SetCategoryAndLabel("Small", "Small"+Random.Range(1,3).ToString());
+            circleCollider.radius = 0.5f;
+        }
+        if (selectedSize == Size.medium)
+        { 
+            spriteResolver.SetCategoryAndLabel("Medium", "Medium" + Random.Range(1, 3).ToString());
+            circleCollider.radius = 0.6f;
+        }
+        if (selectedSize == Size.large)
+        {
+            spriteResolver.SetCategoryAndLabel("Large", "Large" + Random.Range(1, 3).ToString());
+            circleCollider.radius = 0.7f;
+        }
+    } // Проверка планеты на размер для старта корутины генерации юнитов.
     private System.Collections.IEnumerator SpawnUnitsWithDelay(Planet targetPlanet, int unitsToSend)
     {
         for (int i = 0; i < unitsToSend; i++)
@@ -177,10 +193,9 @@ public class Planet : MonoBehaviour
     {
         float timerFromSize = 0.1f;
 
-        if (selectedSize == Size.little) timerFromSize = 1.2f;
-        else if (selectedSize == Size.small) timerFromSize = 1f;
-        else if (selectedSize == Size.medium) timerFromSize = 0.8f;
-        else if (selectedSize == Size.large) timerFromSize = 0.6f;
+        if (selectedSize == Size.small) timerFromSize = 1.05f;
+        else if (selectedSize == Size.medium) timerFromSize = 0.75f;
+        else if (selectedSize == Size.large) timerFromSize = 0.55f;
 
         while (true)
         {

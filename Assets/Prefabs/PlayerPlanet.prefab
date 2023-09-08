@@ -169,9 +169,11 @@ GameObject:
   m_Component:
   - component: {fileID: 831982490804310784}
   - component: {fileID: 7105492088093150213}
-  - component: {fileID: 5647404926975510212}
+  - component: {fileID: 1644525406726243176}
   - component: {fileID: 835248054219327462}
+  - component: {fileID: 5647404926975510212}
   - component: {fileID: 9086127514482652243}
+  - component: {fileID: 4339352354272212610}
   m_Layer: 6
   m_Name: PlayerPlanet
   m_TagString: PlayerPlanet
@@ -241,7 +243,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: ba14de81ed316ad4ba2e129135b924a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e7ad801e03d527a45858f383835ed3f9, type: 3}
   m_Color: {r: 0.2312788, g: 0.4528302, b: 0.17728728, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -252,7 +254,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5647404926975510212
+--- !u!114 &1644525406726243176
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,9 +263,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3353950651158609308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4ae28c7e8d1e9445963c9b413c7224c, type: 3}
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CategoryHash: 0
+  m_labelHash: 0
+  m_SpriteKey: 0
+  m_SpriteHash: 23985552
 --- !u!58 &835248054219327462
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -299,6 +305,18 @@ CircleCollider2D:
   m_Offset: {x: 0.0032043457, y: 0.018872023}
   serializedVersion: 2
   m_Radius: 0.49639893
+--- !u!114 &5647404926975510212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3353950651158609308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ae28c7e8d1e9445963c9b413c7224c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9086127514482652243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,5 +331,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 6084103165548847765, guid: ca3b77a17bb12704680312b65e52eafe, type: 3}
   unitCountText: {fileID: 6810088037120266366}
-  selectedSize: 3
+  selectedSize: 2
   currentUnitCount: 0
+--- !u!114 &4339352354272212610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3353950651158609308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 1abe821abe4bfee40b8063986a40f8f1, type: 3}
