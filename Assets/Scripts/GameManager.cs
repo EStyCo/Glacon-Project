@@ -12,11 +12,13 @@ public class GameManager : MonoBehaviour
     }
 
     public static GameManager Instance { get; private set; }
+
+    public bool isPaused = false;
     public int planetCount;
     public int skinUnits = 3;
     public Color colorUnits;
-
     public LayerMask planetLayer;
+
     private List<Planet> selectedPlanets = new List<Planet>();
     private Planet targetPlanet;
     public SpriteResolver skinUnitsPrefab;
@@ -44,7 +46,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isPaused)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, planetLayer);
