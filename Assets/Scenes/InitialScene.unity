@@ -417,7 +417,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   skinUnitsPrefab: {fileID: 8652140101578721170, guid: ca3b77a17bb12704680312b65e52eafe, type: 3}
   unitPrefab: {fileID: 204023473032581664, guid: ca3b77a17bb12704680312b65e52eafe, type: 3}
-  enemyPrefab: {fileID: 3353950651158609308, guid: 893f7cff32ebebd4eac654509a738131, type: 3}
+  enemyPrefab: {fileID: 7364757729158189150, guid: 893f7cff32ebebd4eac654509a738131, type: 3}
 --- !u!4 &559543963
 Transform:
   m_ObjectHideFlags: 0
@@ -565,7 +565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24be3d039e79cb43844d191b7485dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textGame: {fileID: 0}
 --- !u!1 &666511295
 GameObject:
   m_ObjectHideFlags: 0

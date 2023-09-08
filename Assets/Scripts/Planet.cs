@@ -10,7 +10,8 @@ public class Planet : MonoBehaviour
         small = 2,
         medium = 3, 
         large = 4
-    }
+    } // Размеры планет
+
     public GameObject unitPrefab;
     private SpriteRenderer planetRenderer;
     public TextMeshProUGUI unitCountText;
@@ -38,17 +39,17 @@ public class Planet : MonoBehaviour
         planetRenderer = GetComponent<SpriteRenderer>();
         StartUnitCount();
         CheckTagPlanet();
-        CheckSize((int)selectedSize);
+        //CheckSize((int)selectedSize);
     }
-    private void StartUnitCount()
+    private void StartUnitCount() 
     {
         if (gameObject.tag == "PlayerPlanet" || gameObject.tag == "EnemyPlanet")
         { 
             currentUnitCount = 50;
             StartCoroutine(IncreaseUnitsOverTime());
         }
-        else currentUnitCount = Random.Range(15, 51);
-    }
+        else currentUnitCount = Random.Range(15, 41);
+    } // Генерация юнитов на планетах игрока и противника.
     public void SendUnitsToPlanet(Planet targetPlanet)
     {
         int unitsToSend = currentUnitCount / 2;
@@ -57,8 +58,8 @@ public class Planet : MonoBehaviour
         {
             StartCoroutine(SpawnUnitsWithDelay(targetPlanet, unitsToSend));
         }
-    }
-    public void CheckSize(int value)
+    } // Отправка юнитов с планеты на планету.
+    /*public void CheckSize(int value)
     {
         Size selectedSize = (Size)value;
 
@@ -66,7 +67,7 @@ public class Planet : MonoBehaviour
         if (selectedSize == Size.small) transform.localScale = new Vector3(0.175f, 0.175f);
         if (selectedSize == Size.medium) transform.localScale = new Vector3(0.20f, 0.20f);
         if (selectedSize == Size.large) transform.localScale = new Vector3(0.23f, 0.23f);
-    }
+    } // Проверка планеты на размер для старта корутины генерации юнитов.*/
     private System.Collections.IEnumerator SpawnUnitsWithDelay(Planet targetPlanet, int unitsToSend)
     {
         for (int i = 0; i < unitsToSend; i++)
@@ -125,11 +126,8 @@ public class Planet : MonoBehaviour
     }
     public void IncreaseUnits()
     {
-        if (currentUnitCount < maxUnitCurrent)
-        {
-            currentUnitCount++;
-        } 
-    }
+        if (currentUnitCount < maxUnitCurrent) currentUnitCount++;
+    } // Увеличение юнитов
     public void DecreaseUnits()
     {
         if (currentUnitCount > 0) currentUnitCount--;
@@ -139,7 +137,7 @@ public class Planet : MonoBehaviour
             CheckTagPlanet();
             CheckMakeUnits();
         }
-    }
+    } // Уменьшение юнитов и смена тэга планеты.
     public void IncreaseUnitsFromEnemy()
     {
         if (currentUnitCount < maxUnitCurrent) currentUnitCount++;

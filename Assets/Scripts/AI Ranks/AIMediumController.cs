@@ -9,7 +9,6 @@ public class AIMediumController : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Активен Медиум");
         StartCoroutine(SendUnitsPeriodically());
     }
 
@@ -18,7 +17,7 @@ public class AIMediumController : MonoBehaviour
         CheckStartBattle();
         if (!HasEnemyPlanets())
         {
-            SceneManager.LoadScene(3); // Замените "Scene3" на имя сцены 3
+            SceneManager.LoadScene(3);
         }
     }
 
