@@ -3,7 +3,7 @@ using UnityEngine;
 public class UnitMovement : MonoBehaviour
 {
     private Transform target;
-    private float movementSpeed = 2f;
+    private float movementSpeed = 1.15f;
 
     private Planet targetPlanet;
 

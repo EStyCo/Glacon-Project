@@ -1,3 +1,4 @@
+using Game;
 using TMPro;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
@@ -28,6 +29,7 @@ public class PreGameSettings : MonoBehaviour
     {
         CheckSkinUnits();
         CheckColorUnits();
+        CheckRank();
     }
     public void UpdateRankValueText()
     {
@@ -35,6 +37,11 @@ public class PreGameSettings : MonoBehaviour
         if (sliderRank.value == 2) textRank.text = "Капитан";
         if (sliderRank.value == 3) textRank.text = "Адмирал";
         GameManager.Instance.ChangeRank((int)sliderRank.value);
+    }
+    private void CheckRank()
+    {
+        int indexRank = (int)GameManager.Instance.selectedDifficulty;
+        sliderRank.value = indexRank;
     }
     public void OnSliderRankValueChanged()
     {

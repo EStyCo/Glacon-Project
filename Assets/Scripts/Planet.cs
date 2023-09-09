@@ -2,6 +2,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
+using Game;
 
 public class Planet : MonoBehaviour
 {

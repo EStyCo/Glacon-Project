@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Game;
 
 public class PlanetSpawner : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PlanetSpawner : MonoBehaviour
     public Canvas canvas;
 
     public int numberOfPlanets = 13;
-    private float minDistanceBetweenPlanets = 0.9f;
+    private float minDistanceBetweenPlanets = 1.1f;
 
     private float canvasX;
     private float canvasY;
@@ -58,8 +59,8 @@ public class PlanetSpawner : MonoBehaviour
 
         do
         {
-            float randomX = Random.Range((-canvasX+1)/2, (canvasX-1)/2);
-            float randomY = Random.Range((-canvasY+1.2f)/2, (canvasY-1.2f)/2);
+            float randomX = Random.Range((-canvasX+1.2f)/2, (canvasX-1f)/2);
+            float randomY = Random.Range((-canvasY+1.2f)/2, (canvasY-3.5f)/2);
             randomPoint = new Vector3(randomX, randomY, 1);
         }
         while (!IsValidSpawnPoint(randomPoint));
