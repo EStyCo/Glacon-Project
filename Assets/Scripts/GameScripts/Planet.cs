@@ -1,15 +1,14 @@
+using Game;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
-using Game;
 
 public class Planet : MonoBehaviour
 {
     public enum Size
-    { 
+    {
         small = 1,
-        medium = 2, 
+        medium = 2,
         large = 3
     } // Размеры планет
 
@@ -47,10 +46,10 @@ public class Planet : MonoBehaviour
         CheckTagPlanet();
         CheckSize((int)selectedSize);
     }
-    private void StartUnitCount() 
+    private void StartUnitCount()
     {
         if (gameObject.tag == "PlayerPlanet" || gameObject.tag == "EnemyPlanet")
-        { 
+        {
             currentUnitCount = 50;
             StartCoroutine(IncreaseUnitsOverTime());
         }
@@ -58,24 +57,38 @@ public class Planet : MonoBehaviour
     } // Генерация юнитов на планетах игрока и противника.
     public void SendUnitsToPlanet(Planet targetPlanet)
     {
-        int unitsToSend = currentUnitCount / 2;
-
-        if (unitsToSend > 0)
+        if (gameObject.CompareTag("PlayerPlanet"))
         {
-            StartCoroutine(SpawnUnitsWithDelay(targetPlanet, unitsToSend));
+            float percentToSend = Speedometer.Instance.countSpeedometer / 100f;
+            int unitsToSend = Mathf.CeilToInt(currentUnitCount * percentToSend);
+
+            if (unitsToSend > 0)
+            {
+                StartCoroutine(SpawnUnitsWithDelay(targetPlanet, unitsToSend));
+            }
         }
+        else 
+        {
+            int unitsToSend = currentUnitCount / 2;
+
+            if (unitsToSend > 0)
+            {
+                StartCoroutine(SpawnUnitsWithDelay(targetPlanet, unitsToSend));
+            }
+        }
+
     } // Отправка юнитов с планеты на планету.
     public void CheckSize(int value)
     {
         Size selectedSize = (Size)value;
 
         if (selectedSize == Size.small)
-        { 
-            spriteResolver.SetCategoryAndLabel("Small", "Small"+Random.Range(1,3).ToString());
+        {
+            spriteResolver.SetCategoryAndLabel("Small", "Small" + Random.Range(1, 3).ToString());
             circleCollider.radius = 0.5f;
         }
         if (selectedSize == Size.medium)
-        { 
+        {
             spriteResolver.SetCategoryAndLabel("Medium", "Medium" + Random.Range(1, 3).ToString());
             circleCollider.radius = 0.6f;
         }
@@ -87,12 +100,12 @@ public class Planet : MonoBehaviour
     } // Проверка планеты на размер для старта корутины генерации юнитов.
     private System.Collections.IEnumerator SpawnUnitsWithDelay(Planet targetPlanet, int unitsToSend)
     {
-        for (int i = 0; i < unitsToSend; i++)
+        for (int i = 0; i < unitsToSend-1; i++)
         {
             if (currentUnitCount > 1)
-            { 
+            {
                 SendUnits(targetPlanet);
-                yield return new WaitForSeconds(0.08f); 
+                yield return new WaitForSeconds(0.08f);
             }
         }
     }
@@ -101,7 +114,6 @@ public class Planet : MonoBehaviour
     {
         Vector3 directionToTarget = (targetPlanet.transform.position - transform.position).normalized;
         Vector3 spawnPosition = CalculateSpawnPosition(directionToTarget);
-        Quaternion spawnRotation = CalculateSpawnRotation(directionToTarget);
 
         SpawnUnitAtPosition(spawnPosition, targetPlanet);
 
@@ -112,12 +124,6 @@ public class Planet : MonoBehaviour
     {
         return transform.position + directionToTarget * spawnDistance;
     }
-
-    private Quaternion CalculateSpawnRotation(Vector3 directionToTarget)
-    {
-        return Quaternion.LookRotation(Vector3.forward, directionToTarget);
-    }
-
     private void SpawnUnitAtPosition(Vector3 spawnPosition, Planet targetPlanet)
     {
         Vector3 directionToTarget = (targetPlanet.transform.position - spawnPosition).normalized;
@@ -130,7 +136,7 @@ public class Planet : MonoBehaviour
             if (gameObject.tag == "PlayerPlanet")
             {
                 unitInstance.tag = "PlayerUnit";
-                unitInstance.GetComponent<SpriteRenderer>().color = originalColor; 
+                unitInstance.GetComponent<SpriteRenderer>().color = originalColor;
             }
             else if (gameObject.tag == "EnemyPlanet")
             {
@@ -163,7 +169,7 @@ public class Planet : MonoBehaviour
     {
         if (currentUnitCount > 0) currentUnitCount--;
         if (currentUnitCount < 1 && gameObject.tag != "EnemyPlanet")
-        { 
+        {
             gameObject.tag = "EnemyPlanet";
             CheckTagPlanet();
             CheckMakeUnits();
@@ -185,7 +191,7 @@ public class Planet : MonoBehaviour
     private void CheckMakeUnits()
     {
         if (!isIncreaseCoroutineRunning)
-        { 
+        {
             StartCoroutine(IncreaseUnitsOverTime());
             isIncreaseCoroutineRunning = true;
         }
@@ -205,13 +211,13 @@ public class Planet : MonoBehaviour
             if (gameObject.CompareTag("PlayerPlanet")) BalancePower.Instance.ChangePlayerPower(true);
             if (gameObject.CompareTag("EnemyPlanet")) BalancePower.Instance.ChangeEnemyPower(true);
 
-            yield return new WaitForSeconds(timerFromSize); 
+            yield return new WaitForSeconds(timerFromSize);
         }
     }
     public void SelectPlanet()
 
     {
-        planetRenderer.color = Color.Lerp(planetRenderer.color, Color.black, 0.4f); 
+        planetRenderer.color = Color.Lerp(planetRenderer.color, Color.black, 0.4f);
     }
 
     public void DeselectPlanet()
