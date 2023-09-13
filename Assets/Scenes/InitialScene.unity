@@ -899,7 +899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb85b2eeca71de4c993a7c5abceea75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyNoise: {fileID: 8300000, guid: f9610f6529dd72c4aa0c62fad6ab76b3, type: 3}
+  destroyNoise: {fileID: 8300000, guid: ff4b36c2d388b6f418f21cf9dad364d7, type: 3}
   goNoise: {fileID: 8300000, guid: ba1c550d3e1e1854899f8b7e15a83ca6, type: 3}
 --- !u!82 &1094414473
 AudioSource:
@@ -922,7 +922,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 270.2018
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1320,7 +1320,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6e1cafcf4a9a4724085b13320c979eb0, type: 3}
   - {fileID: 8300000, guid: 71ce6dd8521f58e47a49323a1fb939f1, type: 3}
   audioSource: {fileID: 1419487515}
-  volume: 0
 --- !u!82 &1419487515
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1342,7 +1341,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 263.00043
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1790,6 +1789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
   volumeSlider: {fileID: 2129526733}
+  tempVolume: 0
 --- !u!1 &2010397772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1923,10 +1923,14 @@ PrefabInstance:
     - target: {fileID: 872591161609538397, guid: fbf2bd5a42492a24d8e8c5945cac832f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1959418003}
+      objectReference: {fileID: 1419487514}
     - target: {fileID: 872591161609538397, guid: fbf2bd5a42492a24d8e8c5945cac832f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: NextSong
+      objectReference: {fileID: 0}
+    - target: {fileID: 872591161609538397, guid: fbf2bd5a42492a24d8e8c5945cac832f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MusicManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1262950920532001722, guid: fbf2bd5a42492a24d8e8c5945cac832f, type: 3}
       propertyPath: m_LocalScale.x

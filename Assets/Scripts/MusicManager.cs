@@ -1,12 +1,19 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance { get; private set; }
 
-    public AudioClip[] musicClips; // Массив с вашими композициями
+    public AudioClip[] musicClips; // Массив с исходными треками.
+    List<AudioClip> recordClips = new List<AudioClip>(); 
+    
     public AudioSource audioSource;
-    public float volume;
+
+    private float currentClipDuration;
 
     private void Awake()
     {
@@ -23,31 +30,50 @@ public class MusicManager : MonoBehaviour
 
     private void Start()
     {
-        StartMusic();
+        SmashClips();
     }
-    public void StartMusic()
+    private void SmashClips()
+    {
+        recordClips = new List<AudioClip>(musicClips);
+        recordClips = recordClips.OrderBy(x => Guid.NewGuid()).ToList();
+
+        PlayMusic();
+    } // Преобразование из массива в список с перемешиванием.
+    public void PlayMusic()
     {
         audioSource = GetComponent<AudioSource>();
 
-        int randomIndex = Random.Range(0, musicClips.Length);
-        audioSource.clip = musicClips[randomIndex];
+        audioSource.clip = recordClips.Last();
 
-        if ( audioSource.isPlaying && musicClips[randomIndex])
-        {
-            audioSource.Stop();
-            StartMusic();
-        }
+        currentClipDuration = audioSource.clip.length;
 
-        volume = audioSource.volume;
         audioSource.Play();
-    }
-    public void SetVolume(float newVolume)
+        StartCoroutine(DelayMusic());
+    } // Проигрывание трека.
+
+    IEnumerator DelayMusic()
+    { 
+        yield return new WaitForSeconds(currentClipDuration);
+        NextSong();
+    } // Таймер переключения трека.
+
+    public void SetVolume(float volume)
     {
-        volume = newVolume;
         audioSource.volume = volume;
+
+        SoundManager.Instance.SetVolume(volume);
     }
     public void NextSong()
-    { 
+    {
+        StopAllCoroutines();
 
+        audioSource.Stop();
+
+        if (recordClips.Count > 1)
+        {
+            recordClips.Remove(recordClips.Last());
+            PlayMusic();
+        }
+        else SmashClips();
     }
 }

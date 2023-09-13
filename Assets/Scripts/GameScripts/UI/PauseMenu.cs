@@ -8,9 +8,11 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenu;
     public UnityEngine.UI.Slider volumeSlider;
 
+    public float tempVolume;
+
     private void Start()
     {
-        volumeSlider.value = MusicManager.Instance.volume;
+        volumeSlider.value = MusicManager.Instance.audioSource.volume;
     }
     void Update()
     {
@@ -37,7 +39,7 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        volumeSlider.value = MusicManager.Instance.volume;
+        volumeSlider.value = MusicManager.Instance.audioSource.volume;
 
         Time.timeScale = 0f; 
         pauseMenu.SetActive(true);
@@ -50,7 +52,6 @@ public class PauseMenu : MonoBehaviour
         SelectManager.Instance.isPaused = false;
         Time.timeScale = 1f;
         SoundManager.Instance.GoNoise();
-        UpdateVolume();
     }
 
     public void RestartGame()
@@ -71,16 +72,17 @@ public class PauseMenu : MonoBehaviour
     {
         if (MusicManager.Instance.audioSource.volume != 0)
         {
+            tempVolume = MusicManager.Instance.audioSource.volume;
             MusicManager.Instance.audioSource.volume = 0;
         }
         else
         {
-            MusicManager.Instance.audioSource.volume = MusicManager.Instance.volume;
-            volumeSlider.value = MusicManager.Instance.volume;
+            MusicManager.Instance.audioSource.volume = tempVolume;
+            volumeSlider.value = MusicManager.Instance.audioSource.volume;
         }
     }
     public void NextSong()
     {
-        MusicManager.Instance.StartMusic();
+        MusicManager.Instance.NextSong();
     }
 }

@@ -26,6 +26,11 @@ public class SoundManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
     }
+    public void SetVolume(float newVolume)
+    {
+        audioSource.volume = newVolume;
+    }
+
     public void PlayNoise()
     {
         if (audioSource.isPlaying)
