@@ -27,6 +27,7 @@ namespace Game
         public SpriteResolver skinUnitsPrefab;
         public SpriteRenderer unitPrefab;
         public GameObject enemyPrefab;
+
         private void Awake()
         {
             if (Instance == null)
@@ -89,6 +90,5 @@ namespace Game
             else if (selectedDifficulty == Difficulty.Medium) medium.enabled = true;
             else if (selectedDifficulty == Difficulty.Hard) hard.enabled = true;
         }
-
     }
 }

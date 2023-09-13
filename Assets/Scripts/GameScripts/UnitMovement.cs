@@ -1,3 +1,4 @@
+using Game;
 using UnityEngine;
 
 public class UnitMovement : MonoBehaviour
@@ -21,7 +22,11 @@ public class UnitMovement : MonoBehaviour
             transform.rotation = targetRotation;
             transform.position += directionToTarget * movementSpeed * Time.deltaTime;
 
-            if (Vector3.Distance(transform.position, target.position) < 0.6f) Destroy(gameObject);
+            if (Vector3.Distance(transform.position, target.position) < 0.6f)
+            { 
+                Destroy(gameObject);
+                SoundManager.Instance.PlayNoise();
+            }
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -80,4 +85,5 @@ public class UnitMovement : MonoBehaviour
     {
         target = newTarget;
     }
+
 }
