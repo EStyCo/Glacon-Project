@@ -77,10 +77,15 @@ public class PlanetSpawner : MonoBehaviour
 
     bool IsValidSpawnPoint(Vector2 point)
     {
+        if (point.x >= 6.05f && point.x <= 9f &&
+            point.y >= 1.75f && point.y <= 5.5f)
+        {
+            return false; // Точка находится внутри меню паузы
+        }
         if (point.x >= -9f && point.x <= -4f &&
             point.y >= -5f && point.y <= -1f)
         {
-            return false; // Точка находится внутри канваса speedometer
+            return false; // Точка находится внутри спидометра
         }
 
         foreach (Vector2 spawnPoint in spawnPoints)
@@ -90,19 +95,6 @@ public class PlanetSpawner : MonoBehaviour
                 return false; // Точка слишком близко к другой точке спавна
             }
         }
-
-        /*// Проверьте, находится ли точка внутри границ канваса speedometer
-        RectTransform speedometerRectTransform = speedometer.GetComponent<RectTransform>();
-        RectTransform canvasRectTransform = canvas.GetComponent<RectTransform>();
-
-        Vector2 speedometerSize = speedometerRectTransform.rect.size;
-
-        //float speedometerX = speedometerSize.x * speedometerRectTransform.localScale.x;
-        //float speedometerY = speedometerSize.y * speedometerRectTransform.localScale.y;
-
-        float speedometerX = speedometerRectTransform.rect.x * canvasRectTransform.localScale.x;
-        float speedometerY = speedometerRectTransform.rect.y * canvasRectTransform.localScale.y;*/
-
 
         return true; // Точка допустима
     }
