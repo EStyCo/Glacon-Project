@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Game;
+using UnityEngine.UI;
 
 public class PlanetSpawner : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class PlanetSpawner : MonoBehaviour
     public GameObject playerPlanetPrefab;
     public GameObject enemyPlanetPrefab;
     public GameObject neutralPlanetPrefab;
+
+    public Canvas speedometer;
+
     public Canvas canvas;
 
     public int numberOfPlanets = 13;
@@ -28,8 +32,11 @@ public class PlanetSpawner : MonoBehaviour
 
         Vector2 canvasSize = canvasRectTransform.rect.size;
 
-        canvasX = canvasSize.x *= canvasRectTransform.localScale.x;
-        canvasY = canvasSize.y *= canvasRectTransform.localScale.y;
+        canvasX = canvasSize.x * canvasRectTransform.localScale.x;
+        canvasY = canvasSize.y * canvasRectTransform.localScale.y;
+        Debug.Log(canvasX);
+        Debug.Log(canvasY);
+
     }
     void GenerateSpawnPoints()
     {
@@ -70,14 +77,40 @@ public class PlanetSpawner : MonoBehaviour
 
     bool IsValidSpawnPoint(Vector2 point)
     {
+        if (point.x >= -9f && point.x <= -4f &&
+            point.y >= -5f && point.y <= -1f)
+        {
+            return false; // Точка находится внутри канваса speedometer
+        }
+
         foreach (Vector2 spawnPoint in spawnPoints)
         {
             if (Vector2.Distance(point, spawnPoint) < minDistanceBetweenPlanets)
             {
-                return false;
+                return false; // Точка слишком близко к другой точке спавна
             }
         }
-        return true;
+
+        /*// Проверьте, находится ли точка внутри границ канваса speedometer
+        RectTransform speedometerRectTransform = speedometer.GetComponent<RectTransform>();
+        RectTransform canvasRectTransform = canvas.GetComponent<RectTransform>();
+
+        Vector2 speedometerSize = speedometerRectTransform.rect.size;
+
+        //float speedometerX = speedometerSize.x * speedometerRectTransform.localScale.x;
+        //float speedometerY = speedometerSize.y * speedometerRectTransform.localScale.y;
+
+        float speedometerX = speedometerRectTransform.rect.x * canvasRectTransform.localScale.x;
+        float speedometerY = speedometerRectTransform.rect.y * canvasRectTransform.localScale.y;*/
+
+
+        return true; // Точка допустима
     }
+
+
+
+
+
+
 
 }
