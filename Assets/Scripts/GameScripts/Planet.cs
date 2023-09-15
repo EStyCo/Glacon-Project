@@ -21,7 +21,6 @@ public class Planet : MonoBehaviour
     private Color originalColor;
     public Size selectedSize = Size.medium;
 
-    private const int startingUnitCount = 50;
     private const float spawnDistance = 0.55f;
     private const float unitSpacing = 0.25f;
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SelectManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class SelectManager : MonoBehaviour
     public bool isSelecting = false;
     private bool isDrawing = false;
 
-    private float delayDraw = 0.1f;
+    private float delayDraw = 0.125f;
 
     private UnityEngine.Vector2 selectionStartPoint;
 
@@ -28,7 +29,7 @@ public class SelectManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isPaused && !isDrawing)
+        if (Input.GetMouseButtonDown(0) && !isPaused && !isDrawing && !EventSystem.current.IsPointerOverGameObject())
         {
             StartCoroutine(DelayDrawing());
             selectionStartPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
