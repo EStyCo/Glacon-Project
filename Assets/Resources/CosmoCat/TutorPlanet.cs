@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
-public class Planet : MonoBehaviour
+public class TutorPlanet : MonoBehaviour
 {
     public enum Size
     {
@@ -25,35 +25,45 @@ public class Planet : MonoBehaviour
     private const float unitSpacing = 0.25f;
 
     private bool canIncreaseUnits = false;
+    private bool isTryDesant = false;
 
-    private int maxUnitCurrent = 200;
+    private int maxUnitCurrent = 50;
     public int currentUnitCount;
 
     private void Update()
     {
+        CheckTryDesant();
         unitCountText.text = currentUnitCount.ToString();
     }
     private void Start()
     {
-        originalColor = GameManager.Instance.colorUnits;
         planetRenderer = GetComponent<SpriteRenderer>();
         spriteResolver = GetComponent<SpriteResolver>();
         circleCollider = GetComponent<CircleCollider2D>();
+        originalColor = planetRenderer.color;
 
         StartUnitCount();
-        CheckTagPlanet();
+        //CheckTagPlanet();
         CheckSize((int)selectedSize);
+    }
+    private void CheckTryDesant()
+    {
+        if (gameObject.CompareTag("EnemyPlanet") && currentUnitCount < 15 && !isTryDesant)
+        { 
+            isTryDesant = true;
+            Tutorial.Instance.NextDialog();
+        }
     }
     private void StartUnitCount()
     {
-        if (gameObject.tag == "PlayerPlanet" || gameObject.tag == "EnemyPlanet")
+        if (gameObject.tag == "PlayerPlanet")
         {
-            currentUnitCount = 50;
+            currentUnitCount = 15;
             StartCoroutine(IncreaseUnitsOverTime());
         }
-        else currentUnitCount = Random.Range(15, 41);
+        else currentUnitCount = 30;
     } // Генерация юнитов на планетах игрока и противника.
-    public void SendUnitsToPlanet(Planet targetPlanet)
+    public void SendUnitsToPlanet(TutorPlanet targetPlanet)
     {
         if (gameObject.CompareTag("PlayerPlanet") && Speedometer.Instance != null)
         {
@@ -96,7 +106,7 @@ public class Planet : MonoBehaviour
             circleCollider.radius = 0.7f;
         }
     } // Проверка планеты на размер для старта корутины генерации юнитов.
-    private System.Collections.IEnumerator SpawnUnitsWithDelay(Planet targetPlanet, int unitsToSend)
+    private System.Collections.IEnumerator SpawnUnitsWithDelay(TutorPlanet targetPlanet, int unitsToSend)
     {
         for (int i = 0; i < unitsToSend - 1; i++)
         {
@@ -108,7 +118,7 @@ public class Planet : MonoBehaviour
         }
     }
 
-    private void SendUnits(Planet targetPlanet)
+    private void SendUnits(TutorPlanet targetPlanet)
     {
         Vector3 directionToTarget = (targetPlanet.transform.position - transform.position).normalized;
         Vector3 spawnPosition = CalculateSpawnPosition(directionToTarget);
@@ -122,12 +132,12 @@ public class Planet : MonoBehaviour
     {
         return transform.position + directionToTarget * spawnDistance;
     }
-    private void SpawnUnitAtPosition(Vector3 spawnPosition, Planet targetPlanet)
+    private void SpawnUnitAtPosition(Vector3 spawnPosition, TutorPlanet targetPlanet)
     {
         Vector3 directionToTarget = (targetPlanet.transform.position - spawnPosition).normalized;
         Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, directionToTarget);
         GameObject unitInstance = Instantiate(unitPrefab, spawnPosition, spawnRotation);
-        UnitMovement unitMovement = unitInstance.GetComponent<UnitMovement>();
+        TutorUnitMovement unitMovement = unitInstance.GetComponent<TutorUnitMovement>();
 
         if (unitMovement != null)
         {
@@ -154,6 +164,7 @@ public class Planet : MonoBehaviour
         if (currentUnitCount > 0) currentUnitCount--;
         if (currentUnitCount < 1 && gameObject.tag != "PlayerPlanet")
         {
+            Tutorial.Instance.Invoke("NextDialog", 2);
             gameObject.tag = "PlayerPlanet";
             canIncreaseUnits = true;
             CheckTagPlanet();
@@ -179,14 +190,14 @@ public class Planet : MonoBehaviour
     {
         if (gameObject.tag == "PlayerPlanet")
         {
-            planetRenderer.color = GameManager.Instance.colorUnits;
+            planetRenderer.color = new Color(59f / 255f, 115f / 255f, 45f / 255f);
             originalColor = planetRenderer.color;
         }
-        if (gameObject.tag == "EnemyPlanet")
+/*        if (gameObject.tag == "EnemyPlanet")
         {
-            planetRenderer.color = new Color(217f / 255f, 77f / 255f, 77f / 255f);
+            planetRenderer.color = new Color(217f / 255f, 77f / 255f, 77f / 255f, 0f / 255f);
             originalColor = planetRenderer.color;
-        }
+        }*/
     }
     public void CheckMakeUnits()
     {

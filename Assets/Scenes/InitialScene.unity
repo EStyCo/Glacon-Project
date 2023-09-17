@@ -1461,7 +1461,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
+  m_text: "\u041E\u0431\u0443\u0447\u0435\u043D\u0438\u0435"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ab5bf40aefb99945b2300172dc28ca7, type: 2}
   m_sharedMaterial: {fileID: -7688498053308411893, guid: 0ab5bf40aefb99945b2300172dc28ca7, type: 2}
@@ -2151,8 +2151,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0414\u043E\u0441\u043A\u0430 \u043F\u043E\u0447\u0451\u0442\u0430"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 05b5f57ebfc50694b90fa5c9b21f0f39, type: 2}
-  m_sharedMaterial: {fileID: 3610381228687411236, guid: 05b5f57ebfc50694b90fa5c9b21f0f39, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2597,7 +2597,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414890138256c1f4a9dd70dd5ac721cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
+  menuAnimator: {fileID: 0}
+  buttonPause: {fileID: 0}
   volumeSlider: {fileID: 2129526733}
   tempVolume: 0
 --- !u!1 &2010397772
@@ -2683,7 +2684,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2010397775}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 627492877}
+        m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
+        m_MethodName: SwitchToScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2010397775
 MonoBehaviour:
   m_ObjectHideFlags: 0

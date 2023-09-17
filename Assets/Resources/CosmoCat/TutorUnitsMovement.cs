@@ -1,15 +1,14 @@
 using Game;
 using UnityEngine;
 
-public class UnitMovement : MonoBehaviour
+public class TutorUnitMovement : MonoBehaviour
 {
     private Transform target;
     private float movementSpeed = 1.15f;
 
-    private Planet targetPlanet;
-    private TutorPlanet targetTutorPlanet;
+    private TutorPlanet targetPlanet;
 
-    public void SetTargetPlanet(Planet planet)
+    public void SetTargetPlanet(TutorPlanet planet)
     {
         targetPlanet = planet;
     }
@@ -23,7 +22,7 @@ public class UnitMovement : MonoBehaviour
             transform.position += directionToTarget * movementSpeed * Time.deltaTime;
 
             if (Vector3.Distance(transform.position, target.position) < 0.6f)
-            { 
+            {
                 Destroy(gameObject);
                 SoundManager.Instance.PlayNoise();
             }
@@ -35,16 +34,14 @@ public class UnitMovement : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("EnemyUnit"))
             {
-                Destroy(gameObject);
-                BalancePower.Instance.ChangePlayerPower(false);
+                Destroy(gameObject);;
             }
         }
         else if (gameObject.CompareTag("EnemyUnit"))
-        { 
+        {
             if (collision.gameObject.CompareTag("PlayerUnit"))
             {
                 Destroy(gameObject);
-                BalancePower.Instance.ChangeEnemyPower(false);
             }
         }
     }
@@ -60,17 +57,6 @@ public class UnitMovement : MonoBehaviour
             {
                 targetPlanet.DecreaseUnits();
 
-                if (targetPlanet.tag == "EnemyPlanet")
-                {
-                    if (BalancePower.Instance != null)
-                    {
-                       BalancePower.Instance.ChangeEnemyPower(false);
-                    }
-                }
-                if (BalancePower.Instance != null)
-                {
-                    BalancePower.Instance.ChangePlayerPower(false);
-                }
             }
         }
         else if (targetPlanet != null && gameObject.CompareTag("EnemyUnit"))
@@ -82,10 +68,6 @@ public class UnitMovement : MonoBehaviour
             else if (targetPlanet != null && Vector3.Distance(transform.position, target.position) < 0.7f && (targetPlanet.tag == "NeutralPlanet" || targetPlanet.tag == "PlayerPlanet"))
             {
                 targetPlanet.DecreaseUnitsFromEnemy();
-
-                if (targetPlanet.tag == "PlayerPlanet") BalancePower.Instance.ChangePlayerPower(false);
-
-                BalancePower.Instance.ChangeEnemyPower(false);
             }
         }
     }

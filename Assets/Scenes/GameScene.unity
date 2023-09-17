@@ -1839,7 +1839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.43618724, g: 0.50489074, b: 0.5471698, a: 1}
+  m_Color: {r: 0.35599858, g: 0.42573977, b: 0.6037736, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -3396,9 +3396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0944042f537873840833e5d3432375c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuAnimator: {fileID: 932823988}
-  UiMenu: {fileID: 0}
-  buttonPause: {fileID: 0}
 --- !u!1 &2075749362
 GameObject:
   m_ObjectHideFlags: 0

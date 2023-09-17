@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: -3116191816039017539}
   - component: {fileID: -6150852987884613554}
   - component: {fileID: 4566191488660993412}
-  - component: {fileID: -4171758919881457686}
+  - component: {fileID: 3278413424838190880}
   m_Layer: 0
-  m_Name: Unit
+  m_Name: TutorUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 6.321469e-16
-  m_labelHash: 3.522143e-30
+  m_labelHash: 9.2477986e-29
   m_SpriteKey: 0
   m_SpriteHash: 585832974
 --- !u!114 &-3116191816039017539
@@ -181,7 +181,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.25, y: 0.34}
   m_Direction: 0
---- !u!114 &-4171758919881457686
+--- !u!114 &3278413424838190880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,6 +190,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6084103165548847765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57043401ba635624db137983761c5f74, type: 3}
+  m_Script: {fileID: 11500000, guid: ba5611f5c03f86441b74e07d54140faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
