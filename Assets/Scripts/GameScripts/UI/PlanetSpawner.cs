@@ -1,33 +1,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Game;
-using UnityEngine.UI;
+using Unity.VisualScripting;
 
-public class PlanetSpawner : MonoBehaviour
+public abstract class PlanetSpawner : MonoBehaviour
 {
-    private List<Vector2> spawnPoints = new List<Vector2>();
+    protected List<Vector2> spawnPoints = new List<Vector2>();
 
     public GameObject playerPlanetPrefab;
-    public GameObject enemyPlanetPrefab;
+    //public GameObject enemyPlanetPrefab;
     public GameObject neutralPlanetPrefab;
 
-    public Canvas speedometer;
-
-    public Canvas canvas;
-
-    public int numberOfPlanets = 13;
     private float minDistanceBetweenPlanets = 1.1f;
 
     private float canvasX;
     private float canvasY;
 
+    private void Awake()
+    {
+        GetGM();
+    }
     void Start()
     {
         CalculationSpawnArea();
-        GenerateSpawnPoints();
+        GeneratePlanets();
     }
+    protected abstract void GetGM();
     private void CalculationSpawnArea()
     { 
+        Canvas canvas = GetComponentInParent<Canvas>();
         RectTransform canvasRectTransform = canvas.GetComponent<RectTransform>();
 
         Vector2 canvasSize = canvasRectTransform.rect.size;
@@ -38,29 +39,9 @@ public class PlanetSpawner : MonoBehaviour
         Debug.Log(canvasY);
 
     }
-    void GenerateSpawnPoints()
-    {
-        int numberOfPlanets = GameManager.Instance.planetCount;
+    protected abstract void GeneratePlanets();
 
-        Vector3 playerSpawnPoint = GetRandomSpawnPoint();
-        Instantiate(playerPlanetPrefab, playerSpawnPoint, Quaternion.identity);
-        spawnPoints.Add(playerSpawnPoint);
-
-        Vector3 enemySpawnPoint = GetRandomSpawnPoint();
-        Instantiate(enemyPlanetPrefab, enemySpawnPoint, Quaternion.identity);
-        spawnPoints.Add(enemySpawnPoint);
-
-        for (int i = 0; i < numberOfPlanets; i++)
-        {
-            Vector3 neutralSpawnPoint = GetRandomSpawnPoint();
-            GameObject newPlanet = Instantiate(neutralPlanetPrefab, neutralSpawnPoint, Quaternion.identity);
-            Planet planetScript = newPlanet.GetComponent<Planet>();
-            planetScript.selectedSize = (Planet.Size)Random.Range(1, 4);
-            spawnPoints.Add(neutralSpawnPoint);
-        }
-    }
-
-    Vector3 GetRandomSpawnPoint()
+    protected Vector3 GetRandomSpawnPoint()
     {
         Vector3 randomPoint;
 
@@ -98,11 +79,4 @@ public class PlanetSpawner : MonoBehaviour
 
         return true; // Точка допустима
     }
-
-
-
-
-
-
-
 }
