@@ -4,14 +4,15 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SelectManager : MonoBehaviour
+public class TutorSelectManager : MonoBehaviour
 {
-    public static SelectManager Instance { get; private set; }
+    public static TutorSelectManager Instance { get; private set; }
 
-    private Planet targetPlanet;
+    private TutorPlanet targetPlanet;
     public LayerMask planetLayer;
 
-    public bool isPaused = false;
+    public bool canSendUnits = false;
+    public bool isPaused = true;
     public bool isSelecting = false;
     private bool isDrawing = false;
 
@@ -19,7 +20,7 @@ public class SelectManager : MonoBehaviour
 
     private UnityEngine.Vector2 selectionStartPoint;
 
-    private List<Planet> selectedPlanets = new List<Planet>();
+    private List<TutorPlanet> selectedPlanets = new List<TutorPlanet>();
 
 
     private void Awake()
@@ -39,7 +40,6 @@ public class SelectManager : MonoBehaviour
         {
             isDrawing = false;
             isSelecting = false;
-            //SelectPlanetsInRect();
 
             LineRenderer lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.positionCount = 0;
@@ -50,7 +50,7 @@ public class SelectManager : MonoBehaviour
             UnityEngine.Vector2 currentMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             DrawSelectionRectangle(selectionStartPoint, currentMousePos);
 
-            foreach (Planet planet in GetAllPlanets())
+            foreach (TutorPlanet planet in GetAllPlanets())
             {
                 if (IsInsideSelectionRect(planet.transform.position, selectionStartPoint, currentMousePos))
                 {
@@ -67,7 +67,7 @@ public class SelectManager : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Planet planet = hit.collider.GetComponent<Planet>();
+                TutorPlanet planet = hit.collider.GetComponent<TutorPlanet>();
                 if (planet != null)
                 {
                     if (planet.tag != "NeutralPlanet" && planet.tag != "EnemyPlanet" && !selectedPlanets.Contains(planet))
@@ -91,7 +91,7 @@ public class SelectManager : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Planet planet = hit.collider.GetComponent<Planet>();
+                TutorPlanet planet = hit.collider.GetComponent<TutorPlanet>();
                 if (planet != null)
                 {
                     if (planet.tag == "PlayerPlanet" && selectedPlanets != null && targetPlanet == null)
@@ -138,14 +138,14 @@ public class SelectManager : MonoBehaviour
 
         return (point.x >= minX && point.x <= maxX && point.y >= minY && point.y <= maxY);
     } // Метод проверки нахождения планет в прямоугольнике.
-    private Planet[] GetAllPlanets()
+    private TutorPlanet[] GetAllPlanets()
     {
         return GameObject.FindGameObjectsWithTag("PlayerPlanet")
-                         .Select(go => go.GetComponent<Planet>())
+                         .Select(go => go.GetComponent<TutorPlanet>())
                          .Where(planet => planet != null)
                          .ToArray();
     }
-    private void TogleListPlanet(Planet planet)
+    private void TogleListPlanet(TutorPlanet planet)
     {
         if (selectedPlanets.Contains(planet))
         {
@@ -154,6 +154,11 @@ public class SelectManager : MonoBehaviour
         }
         else
         {
+            if (Tutorial.Instance.index == 1)
+            { 
+                Tutorial.Instance.NextDialog();
+                Tutorial.Instance.RisePlanet();
+            }
             selectedPlanets.Add(planet);
             planet.SelectPlanet();
         }
@@ -161,8 +166,8 @@ public class SelectManager : MonoBehaviour
 
     private void SendUnits()
     {
-        if (selectedPlanets.Count > 0)
-            foreach (Planet planet in selectedPlanets)
+        if (selectedPlanets.Count > 0 && canSendUnits)
+            foreach (TutorPlanet planet in selectedPlanets)
                 if (planet != targetPlanet)
                     planet.SendUnitsToPlanet(targetPlanet);
 
@@ -170,7 +175,7 @@ public class SelectManager : MonoBehaviour
     } // Отправка юнитов.
     private void ClearSelectionListPlanet()
     {
-        foreach (Planet planet in selectedPlanets)
+        foreach (TutorPlanet planet in selectedPlanets)
             planet.DeselectPlanet();
 
         selectedPlanets.Clear();

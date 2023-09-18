@@ -1,11 +1,13 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenu;
+    public Animator menuAnimator;
+
+    public UnityEngine.UI.Button buttonPause;
+
     public UnityEngine.UI.Slider volumeSlider;
 
     public float tempVolume;
@@ -13,6 +15,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         volumeSlider.value = MusicManager.Instance.audioSource.volume;
+        tempVolume = volumeSlider.value;
     }
     void Update()
     {
@@ -28,24 +31,40 @@ public class PauseMenu : MonoBehaviour
             }
         }
     }
+    public void ShowPauseMenu()
+    {
 
+    }
     public void ResumeGame()
     {
-        Time.timeScale = 1f; 
-        pauseMenu.SetActive(false); 
+        menuAnimator.Play("UnShowPM");
+
+        Time.timeScale = 1f;
         SelectManager.Instance.isPaused = false;
         SoundManager.Instance.GoNoise();
+        buttonPause.enabled = true;
     }
 
     public void PauseGame()
     {
+        menuAnimator.Play("ShowPM");
+
         volumeSlider.value = MusicManager.Instance.audioSource.volume;
 
-        Time.timeScale = 0f; 
-        pauseMenu.SetActive(true);
+        StartCoroutine(SetTimeScale());
+
         SelectManager.Instance.isPaused = true;
         SoundManager.Instance.GoNoise();
+        buttonPause.enabled = false;
+
     }
+    IEnumerator SetTimeScale()
+    {
+        yield return new WaitForSeconds(1.05f);
+
+        Time.timeScale = 0f;
+    }
+
     public void ExitGame()
     {
         SceneManager.LoadScene(0);
@@ -61,6 +80,7 @@ public class PauseMenu : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
         SoundManager.Instance.GoNoise();
+        buttonPause.enabled = true;
     }
 
     public void UpdateVolume()
@@ -74,15 +94,15 @@ public class PauseMenu : MonoBehaviour
         {
             tempVolume = MusicManager.Instance.audioSource.volume;
             MusicManager.Instance.audioSource.volume = 0;
+            volumeSlider.value = 0;
         }
-        else
-        {
-            MusicManager.Instance.audioSource.volume = tempVolume;
-            volumeSlider.value = MusicManager.Instance.audioSource.volume;
-        }
+
     }
-    public void NextSong()
+    public void ResetVolume()
     {
-        MusicManager.Instance.NextSong();
+
+        MusicManager.Instance.audioSource.volume = tempVolume;
+        volumeSlider.value = MusicManager.Instance.audioSource.volume;
+
     }
 }
