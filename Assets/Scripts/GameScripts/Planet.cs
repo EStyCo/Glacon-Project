@@ -28,6 +28,7 @@ public class Planet : MonoBehaviour
 
     private int maxUnitCurrent = 200;
     public int currentUnitCount;
+    public float timerFromSize = 1f;
 
     private void Update()
     {
@@ -197,7 +198,6 @@ public class Planet : MonoBehaviour
     }
     private System.Collections.IEnumerator IncreaseUnitsOverTime()
     {
-        float timerFromSize = 0.1f;
 
         if (selectedSize == Size.small) timerFromSize = 1.05f;
         else if (selectedSize == Size.medium) timerFromSize = 0.75f;
