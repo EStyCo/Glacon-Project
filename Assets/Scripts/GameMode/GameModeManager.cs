@@ -13,6 +13,8 @@ public class GameModeManager : MonoBehaviour
     }
     public static GameModeManager Instance { get; private set; }
 
+    public int countEnemyPlanets = 1; 
+
     public GameMode currentGameMode = GameMode.Classic;
 
     private void Awake()

@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Game;
-using Unity.VisualScripting;
+using UnityEngine;
 
 public class Classic : PlanetSpawner
 {
     public GameObject enemyPlanetPrefab;
+    public GameObject enemyPlanetPrefab2;
+    public GameObject enemyPlanetPrefab3;
+
 
     protected override void GetGM()
     {
         this.enabled = false;
         if (GameModeManager.Instance.currentGameMode == GameModeManager.GameMode.Classic)
-        { 
+        {
             this.enabled = true;
         }
     }
@@ -25,9 +25,7 @@ public class Classic : PlanetSpawner
         Instantiate(playerPlanetPrefab, playerSpawnPoint, Quaternion.identity);
         spawnPoints.Add(playerSpawnPoint);
 
-        Vector3 enemySpawnPoint = GetRandomSpawnPoint();
-        Instantiate(enemyPlanetPrefab, enemySpawnPoint, Quaternion.identity);
-        spawnPoints.Add(enemySpawnPoint);
+        SpawnEnemyPlanets();
 
         for (int i = 0; i < numberOfPlanets; i++)
         {
@@ -37,5 +35,20 @@ public class Classic : PlanetSpawner
             planetScript.selectedSize = (Planet.Size)Random.Range(1, 4);
             spawnPoints.Add(neutralSpawnPoint);
         }
+    }
+    private void SpawnEnemyPlanets()
+    {
+        int count = GameModeManager.Instance.countEnemyPlanets;
+        
+        if (count > 3) count = 3;
+
+        for (int i = 0; i < count; i++)
+        { 
+            
+        }
+
+        Vector3 enemySpawnPoint = GetRandomSpawnPoint();
+        Instantiate(enemyPlanetPrefab, enemySpawnPoint, Quaternion.identity);
+        spawnPoints.Add(enemySpawnPoint);
     }
 }

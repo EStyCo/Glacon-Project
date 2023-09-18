@@ -105,7 +105,7 @@ ScriptedImporter:
       y: 3820
       width: 67
       height: 181
-    spriteID: 1215eb6d14765d44c89945053988faa1
+    spriteID: 7b0ea773823f1f94da7f10a8ef307226
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -126,7 +126,7 @@ ScriptedImporter:
       y: 1772
       width: 1597
       height: 895
-    spriteID: 3cafeb3ba8001654ba1743bdffc8644b
+    spriteID: 2de4c90c84898364a8609ec20b0816a3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,7 +147,7 @@ ScriptedImporter:
       y: 2675
       width: 895
       height: 583
-    spriteID: 55571300b28b6014a9eaac1c1e2bb829
+    spriteID: 49d71b8a73538d949be6a88d90c8a34c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -168,7 +168,7 @@ ScriptedImporter:
       y: 3266
       width: 170
       height: 546
-    spriteID: eaf6f72828094fd41b1a5b1b6c718743
+    spriteID: 69be56c4eedd3744c8264da9020cb2eb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -189,7 +189,7 @@ ScriptedImporter:
       y: 3266
       width: 315
       height: 818
-    spriteID: c65d3769e1f68664aae25ade14288241
+    spriteID: 0175e0bb02822e249936c99c51cae004
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -210,7 +210,7 @@ ScriptedImporter:
       y: 4
       width: 1865
       height: 1760
-    spriteID: 464b382d07f99af44afd08c131a5289f
+    spriteID: a12c2f1ec749cb548af686bc5518fe72
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -231,7 +231,7 @@ ScriptedImporter:
       y: 3266
       width: 317
       height: 320
-    spriteID: 5fc1703eea6e395438fffdc6f0cb40e4
+    spriteID: 63c015410d1c14f4daf762da7ff7a812
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -252,7 +252,7 @@ ScriptedImporter:
       y: 2675
       width: 950
       height: 1126
-    spriteID: c54e14f2adf3c7a4db8f6202717b0845
+    spriteID: aa435dd20925b474e9cb7c20666b2109
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -273,7 +273,7 @@ ScriptedImporter:
       y: 816
       width: 1019
       height: 678
-    spriteID: 01c9b9739cc2e7c4b9a6989ab3727105
+    spriteID: 5b4b0d5ca3fc7524eb3d9e731058e070
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -294,7 +294,7 @@ ScriptedImporter:
       y: 4
       width: 1155
       height: 804
-    spriteID: bd58952bc82363b44bee87b4df1619f0
+    spriteID: 9d6ca06e5732278489a8806c73a72659
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -581,11 +581,35 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
+  - name: Android
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   mosaicLayers: 1
   characterMode: 1
   documentPivot: {x: 0.5, y: 0}
   documentAlignment: 7
-  importHiddenLayers: 0
+  importHiddenLayers: 1
   layerMappingOption: 2
   generatePhysicsShape: 0
   paperDollMode: 0
@@ -603,7 +627,7 @@ ScriptedImporter:
     spriteName: Folder 8 Copy
     isGroup: 0
     parentIndex: -1
-    spriteID: 1215eb6d14765d44c89945053988faa1
+    spriteID: 7b0ea773823f1f94da7f10a8ef307226
     layerID: 11
     mosaicPosition: {x: 1610, y: 3820}
     flatten: 0
@@ -613,7 +637,7 @@ ScriptedImporter:
     spriteName: Layer 82 Copy
     isGroup: 0
     parentIndex: -1
-    spriteID: 3cafeb3ba8001654ba1743bdffc8644b
+    spriteID: 2de4c90c84898364a8609ec20b0816a3
     layerID: 10
     mosaicPosition: {x: 4, y: 1772}
     flatten: 0
@@ -623,7 +647,7 @@ ScriptedImporter:
     spriteName: "\u0421\u043B\u043E\u0439 1"
     isGroup: 0
     parentIndex: -1
-    spriteID: 55571300b28b6014a9eaac1c1e2bb829
+    spriteID: 49d71b8a73538d949be6a88d90c8a34c
     layerID: 12
     mosaicPosition: {x: 962, y: 2675}
     flatten: 0
@@ -633,7 +657,7 @@ ScriptedImporter:
     spriteName: Layer 82 Copy 2
     isGroup: 0
     parentIndex: -1
-    spriteID: eaf6f72828094fd41b1a5b1b6c718743
+    spriteID: 69be56c4eedd3744c8264da9020cb2eb
     layerID: 9
     mosaicPosition: {x: 1610, y: 3266}
     flatten: 0
@@ -643,7 +667,7 @@ ScriptedImporter:
     spriteName: Folder 12 Copy 2
     isGroup: 0
     parentIndex: -1
-    spriteID: c65d3769e1f68664aae25ade14288241
+    spriteID: 0175e0bb02822e249936c99c51cae004
     layerID: 8
     mosaicPosition: {x: 962, y: 3266}
     flatten: 0
@@ -653,7 +677,7 @@ ScriptedImporter:
     spriteName: Layer 87 Copy
     isGroup: 0
     parentIndex: -1
-    spriteID: 464b382d07f99af44afd08c131a5289f
+    spriteID: a12c2f1ec749cb548af686bc5518fe72
     layerID: 7
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
@@ -663,7 +687,7 @@ ScriptedImporter:
     spriteName: Layer 89 Copy
     isGroup: 0
     parentIndex: -1
-    spriteID: 5fc1703eea6e395438fffdc6f0cb40e4
+    spriteID: 63c015410d1c14f4daf762da7ff7a812
     layerID: 6
     mosaicPosition: {x: 1285, y: 3266}
     flatten: 0
@@ -673,7 +697,7 @@ ScriptedImporter:
     spriteName: Layer 90 Copy
     isGroup: 0
     parentIndex: -1
-    spriteID: c54e14f2adf3c7a4db8f6202717b0845
+    spriteID: aa435dd20925b474e9cb7c20666b2109
     layerID: 5
     mosaicPosition: {x: 4, y: 2675}
     flatten: 0
@@ -683,7 +707,7 @@ ScriptedImporter:
     spriteName: Layer 88 Copy
     isGroup: 0
     parentIndex: -1
-    spriteID: 01c9b9739cc2e7c4b9a6989ab3727105
+    spriteID: 5b4b0d5ca3fc7524eb3d9e731058e070
     layerID: 4
     mosaicPosition: {x: 1877, y: 816}
     flatten: 0
@@ -693,24 +717,120 @@ ScriptedImporter:
     spriteName: Layer 88 Copy 2
     isGroup: 0
     parentIndex: -1
-    spriteID: bd58952bc82363b44bee87b4df1619f0
+    spriteID: 9d6ca06e5732278489a8806c73a72659
     layerID: 3
     mosaicPosition: {x: 1877, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
   - name: Paper
-    spriteName: 
+    spriteName: Paper
     isGroup: 0
     parentIndex: -1
-    spriteID: af8f8d808dcb93746876a3620f4cb44e
+    spriteID: 94a4d1feb88b69441a7924cc0e93ec51
     layerID: 2
-    mosaicPosition: {x: 0, y: 0}
+    mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 0
     isVisible: 0
   sharedRigPSDLayers: []
-  pSDLayerImportSetting: []
+  pSDLayerImportSetting:
+  - spriteId: 
+    name: 
+    layerId: 0
+    flatten: 0
+    isGroup: 0
+    importLayer: 0
+  - spriteId: 
+    name: 
+    layerId: 0
+    flatten: 0
+    isGroup: 0
+    importLayer: 0
+  - spriteId: 
+    name: 
+    layerId: 0
+    flatten: 0
+    isGroup: 0
+    importLayer: 0
+  - spriteId: 
+    name: 
+    layerId: 0
+    flatten: 0
+    isGroup: 0
+    importLayer: 0
+  - spriteId: 
+    name: 
+    layerId: 0
+    flatten: 0
+    isGroup: 0
+    importLayer: 0
+  - spriteId: 
+    name: 
+    layerId: 0
+    flatten: 0
+    isGroup: 0
+    importLayer: 0
+  - spriteId: 9d6ca06e5732278489a8806c73a72659
+    name: Layer 88 Copy 2
+    layerId: 3
+    flatten: 0
+    isGroup: 0
+    importLayer: 1
+  - spriteId: 49d71b8a73538d949be6a88d90c8a34c
+    name: "\u0421\u043B\u043E\u0439 1"
+    layerId: 12
+    flatten: 0
+    isGroup: 0
+    importLayer: 1
+  - spriteId: 2de4c90c84898364a8609ec20b0816a3
+    name: Layer 82 Copy
+    layerId: 10
+    flatten: 0
+    isGroup: 0
+    importLayer: 1
+  - spriteId: 5b4b0d5ca3fc7524eb3d9e731058e070
+    name: Layer 88 Copy
+    layerId: 4
+    flatten: 0
+    isGroup: 0
+    importLayer: 1
+  - spriteId: aa435dd20925b474e9cb7c20666b2109
+    name: Layer 90 Copy
+    layerId: 5
+    flatten: 0
+    isGroup: 0
+    importLayer: 1
+  - spriteId: 63c015410d1c14f4daf762da7ff7a812
+    name: Layer 89 Copy
+    layerId: 6
+    flatten: 0
+    isGroup: 0
+    importLayer: 1
+  - spriteId: 0175e0bb02822e249936c99c51cae004
+    name: Folder 12 Copy 2
+    layerId: 8
+    flatten: 0
+    isGroup: 0
+    importLayer: 1
+  - spriteId: 69be56c4eedd3744c8264da9020cb2eb
+    name: Layer 82 Copy 2
+    layerId: 9
+    flatten: 0
+    isGroup: 0
+    importLayer: 1
+  - spriteId: 7b0ea773823f1f94da7f10a8ef307226
+    name: Folder 8 Copy
+    layerId: 11
+    flatten: 0
+    isGroup: 0
+    importLayer: 1
+  - spriteId: 94a4d1feb88b69441a7924cc0e93ec51
+    name: Paper
+    layerId: 2
+    flatten: 0
+    isGroup: 0
+    importLayer: 0
   importFileNodeState: 1
   platformSettingsDirtyTick: 638302465891883469
   spriteSizeExpandChanged: 0
