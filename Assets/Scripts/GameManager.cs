@@ -40,8 +40,17 @@ namespace Game
 				Destroy(gameObject);
 			}
 		}
-		private void Start()
+       /* private void Update()
+        {
+            if (Screen.width != 1920 || Screen.height != 1080) 
+			{
+				Screen.SetResolution(1920, 1080, false);
+			}
+        }*/
+        private void Start()
 		{
+			/*Screen.SetResolution(1920, 1080, false);*/
+
 			Color startingColor = new Color(1f, 1f, 1f, 1f);
 			ChangeSkinUnits();
 			ChangeColornUnits(startingColor);

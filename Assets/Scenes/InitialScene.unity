@@ -1171,6 +1171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerPlanets: {fileID: 0}
+  countEnemyPlanets: 3
   currentGameMode: 0
 --- !u!1 &1036255392
 GameObject:

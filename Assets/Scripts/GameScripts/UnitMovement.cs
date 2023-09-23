@@ -1,97 +1,108 @@
-using Game;
+using System.Collections;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class UnitMovement : MonoBehaviour
 {
-    private Transform target;
+    public Transform target;
+    private Planet targetPlanet;
+    private Rigidbody2D rb;
+    private SpriteRenderer sprite;
+
+    public string tagUnit;
     private float movementSpeed = 1.15f;
 
-    private Planet targetPlanet;
-    private TutorPlanet targetTutorPlanet;
-
-    public void SetTargetPlanet(Planet planet)
+    private void Start()
     {
-        targetPlanet = planet;
+        sprite = GetComponent<SpriteRenderer>();
+
+        tagUnit = gameObject.tag;
+        StartCoroutine(CorrectAngleTracking());
+    }
+    public void SetTarget(Planet tagetP)
+    {
+        targetPlanet = tagetP;
     }
     private void Update()
     {
-        if (target != null)
-        {
-            Vector3 directionToTarget = (target.position - transform.position).normalized;
-            Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, directionToTarget);
-            transform.rotation = targetRotation;
-            transform.position += directionToTarget * movementSpeed * Time.deltaTime;
+        Vector3 direction = (target.position - transform.position).normalized;
+        transform.position += direction * movementSpeed * Time.deltaTime;
+    }
+    private void StartTracking()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        Vector2 direction = (target.position - transform.position).normalized;
+        rb.velocity = direction * movementSpeed;
+    }
+    IEnumerator CorrectAngleTracking()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        Vector3 direction = (target.position - transform.position).normalized;
 
-            if (Vector3.Distance(transform.position, target.position) < 0.6f)
-            { 
-                Destroy(gameObject);
-                SoundManager.Instance.PlayNoise();
+        while (true)
+        {
+            if (target != null)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, direction);
+                transform.rotation = targetRotation;
+                //rb.velocity = direction * movementSpeed;
+                //rb.AddForce(direction * movementSpeed);
+                //transform.Translate(Vector3.forward.);
+
+                if (Vector3.Distance(transform.position, target.position) < 0.6f)
+                {
+                    ChangeTagPlanet();
+                    Destroy(gameObject);
+                    SoundManager.Instance.PlayNoise();
+                }
             }
+            yield return new WaitForSeconds(0.01f);
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (gameObject.CompareTag("PlayerUnit"))
+        if (collision.gameObject.tag != gameObject.tag)
         {
-            if (collision.gameObject.CompareTag("EnemyUnit"))
-            {
-                Destroy(gameObject);
-                BalancePower.Instance.ChangePlayerPower(false);
-            }
-        }
-        else if (gameObject.CompareTag("EnemyUnit"))
-        { 
-            if (collision.gameObject.CompareTag("PlayerUnit"))
-            {
-                Destroy(gameObject);
-                BalancePower.Instance.ChangeEnemyPower(false);
-            }
+            Destroy(gameObject);
         }
     }
     private void OnDestroy()
     {
-        if (targetPlanet != null && gameObject.CompareTag("PlayerUnit"))
-        {
-            if (targetPlanet != null && targetPlanet.tag == "PlayerPlanet" && Vector3.Distance(transform.position, target.position) < 0.7f)
-            {
-                targetPlanet.IncreaseUnits();
-            }
-            else if (targetPlanet != null && Vector3.Distance(transform.position, target.position) < 0.7f && (targetPlanet.tag == "NeutralPlanet" || targetPlanet.tag == "EnemyPlanet"))
-            {
-                targetPlanet.DecreaseUnits();
-
-                if (targetPlanet.tag == "EnemyPlanet")
-                {
-                    if (BalancePower.Instance != null)
-                    {
-                       BalancePower.Instance.ChangeEnemyPower(false);
-                    }
-                }
-                if (BalancePower.Instance != null)
-                {
-                    BalancePower.Instance.ChangePlayerPower(false);
-                }
-            }
+        if (targetPlanet != null && Vector3.Distance(transform.position, target.position) < 0.7f && gameObject.tag != targetPlanet.tag)
+        { 
+            targetPlanet.DecreaseUnits();
         }
-        else if (targetPlanet != null && gameObject.CompareTag("EnemyUnit"))
+        else if (targetPlanet != null && Vector3.Distance(transform.position, target.position) < 0.7f && gameObject.tag == targetPlanet.tag)
         {
-            if (targetPlanet != null && targetPlanet.tag == "EnemyPlanet" && Vector3.Distance(transform.position, target.position) < 0.7f)
-            {
-                targetPlanet.IncreaseUnitsFromEnemy();
-            }
-            else if (targetPlanet != null && Vector3.Distance(transform.position, target.position) < 0.7f && (targetPlanet.tag == "NeutralPlanet" || targetPlanet.tag == "PlayerPlanet"))
-            {
-                targetPlanet.DecreaseUnitsFromEnemy();
+            targetPlanet.IncreaseUnits();
 
-                if (targetPlanet.tag == "PlayerPlanet") BalancePower.Instance.ChangePlayerPower(false);
-
-                BalancePower.Instance.ChangeEnemyPower(false);
+            SpriteRenderer targetSprite = targetPlanet.GetComponent<SpriteRenderer>();
+            if (sprite.color != targetSprite.color)
+            { 
+                sprite.color = targetSprite.color;
+                targetPlanet.originalColor = sprite.color; 
             }
         }
     }
-    public void SetTarget(Transform newTarget)
+    private void ChangeTagPlanet()
     {
-        target = newTarget;
+        if (targetPlanet.currentUnitCount < 1)
+        {
+            targetPlanet.tag = tagUnit;
+            targetPlanet.planetRenderer.color = sprite.color;
+            targetPlanet.CheckMakeUnits();
+        }
     }
-
+    private bool CheckDistance()
+    {
+        if (Vector3.Distance(transform.position, target.position) < 0.8f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

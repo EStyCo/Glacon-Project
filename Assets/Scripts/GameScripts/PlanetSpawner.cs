@@ -7,8 +7,9 @@ public abstract class PlanetSpawner : MonoBehaviour
 {
     protected List<Vector2> spawnPoints = new List<Vector2>();
 
+    [SerializeField] protected GameObject canvasParent;
+
     public GameObject playerPlanetPrefab;
-    //public GameObject enemyPlanetPrefab;
     public GameObject neutralPlanetPrefab;
 
     private float minDistanceBetweenPlanets = 1.1f;
@@ -41,15 +42,15 @@ public abstract class PlanetSpawner : MonoBehaviour
     }
     protected abstract void GeneratePlanets();
 
-    protected Vector3 GetRandomSpawnPoint()
+    protected Vector2 GetRandomSpawnPoint()
     {
-        Vector3 randomPoint;
+        Vector2 randomPoint;
 
         do
         {
             float randomX = Random.Range((-canvasX+1.2f)/2, (canvasX-1f)/2);
             float randomY = Random.Range((-canvasY+1.2f)/2, (canvasY-3.5f)/2);
-            randomPoint = new Vector3(randomX, randomY, 1);
+            randomPoint = new Vector2(randomX, randomY);
         }
         while (!IsValidSpawnPoint(randomPoint));
 

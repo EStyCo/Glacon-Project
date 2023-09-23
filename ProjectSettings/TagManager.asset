@@ -10,6 +10,9 @@ TagManager:
   - EnemyUnit
   - PlayerUnit
   - OrbitPlanet
+  - Enemy1
+  - Enemy2
+  - Emeny3
   layers:
   - Default
   - TransparentFX

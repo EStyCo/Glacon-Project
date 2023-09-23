@@ -1076,6 +1076,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1157,6 +1158,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d83ae24cbe3a1e40b21b068fbb5b59b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultResolution: {x: 1920, y: 1080}
+  WidthOrHeight: 0.304
 --- !u!1 &542575785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,7 +1920,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 258850fb0d99fea42934cd1f611fe663, type: 2}
+  - {fileID: 2100000, guid: e217ad85e361f724c98a3d39229bad81, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3435,9 +3450,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPlanetPrefab: {fileID: 3353950651158609308, guid: a04e9a1b1a25e5d4ba355479f5d36c4b, type: 3}
   neutralPlanetPrefab: {fileID: 3353950651158609308, guid: a4d8a2929b52e6348b0fd0f8fbe7064d, type: 3}
-  enemyPlanetPrefab: {fileID: 7364757729158189150, guid: 893f7cff32ebebd4eac654509a738131, type: 3}
-  enemyPlanetPrefab2: {fileID: 0}
-  enemyPlanetPrefab3: {fileID: 0}
+  enemyPlanets:
+  - {fileID: 7364757729158189150, guid: 893f7cff32ebebd4eac654509a738131, type: 3}
+  - {fileID: 7364757729158189150, guid: b4c653ef92bdb3f449776394728394c6, type: 3}
+  - {fileID: 7364757729158189150, guid: 3073722ee9ffcf14ea7ddd27dcc820e1, type: 3}
 --- !u!1 &2075749362
 GameObject:
   m_ObjectHideFlags: 0

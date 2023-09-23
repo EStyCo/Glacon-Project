@@ -6,24 +6,26 @@ public class AIMediumController : MonoBehaviour
 {
     public LayerMask planetLayer;
     private bool isStartBattle = true;
+    private string tagPlanet;
 
     void Start()
     {
+        tagPlanet = gameObject.tag;
         StartCoroutine(SendUnitsPeriodically());
     }
 
     private void Update()
     {
         CheckStartBattle();
-        if (!HasEnemyPlanets())
+/*        if (!HasEnemyPlanets())
         {
             SceneManager.LoadScene(3);
-        }
+        }*/
     }
 
     private bool HasEnemyPlanets()
     {
-        Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag("EnemyPlanet")
+        Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag(tagPlanet)
                                  .Select(go => go.GetComponent<Planet>())
                                  .Where(planet => planet != null)
                                  .ToArray();
@@ -31,7 +33,7 @@ public class AIMediumController : MonoBehaviour
     }
     private void CheckStartBattle()
     {
-        Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag("EnemyPlanet")
+        Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag(tagPlanet)
                              .Select(go => go.GetComponent<Planet>())
                              .Where(planet => planet != null)
                              .ToArray();
@@ -44,7 +46,7 @@ public class AIMediumController : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(3,9));
 
-            Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag("EnemyPlanet")
+            Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag(tagPlanet)
                                      .Select(go => go.GetComponent<Planet>())
                                      .Where(planet => planet != null)
                                      .ToArray();
@@ -62,14 +64,14 @@ public class AIMediumController : MonoBehaviour
 
     private Planet ChooseTargetPlanet(Planet sourcePlanet)
     {
-        Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag("EnemyPlanet")
+        Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag(tagPlanet)
                                      .Select(go => go.GetComponent<Planet>())
                                      .Where(planet => planet != null)
                                      .ToArray();
 
         Planet[] allPlanets = FindObjectsOfType<Planet>();
 
-        Planet[] targetPlanets = allPlanets.Where(planet => planet.tag == "NeutralPlanet" || planet.tag == "PlayerPlanet").ToArray();
+        Planet[] targetPlanets = allPlanets.Where(planet => planet.tag != tagPlanet).ToArray();
 
         Planet[] targetNeutralPlanets = allPlanets.Where(planet => planet.tag == "NeutralPlanet").ToArray();
 

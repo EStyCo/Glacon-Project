@@ -1,5 +1,6 @@
 using Game;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
@@ -12,23 +13,28 @@ public class Planet : MonoBehaviour
         large = 3
     } // Размеры планет
 
+    private GameObject canvasParent;
     public GameObject unitPrefab;
-    private SpriteRenderer planetRenderer;
+    public SpriteRenderer planetRenderer;
+    public SpriteRenderer framePlanet;
     private SpriteResolver spriteResolver;
     private CircleCollider2D circleCollider;
     public TextMeshProUGUI unitCountText;
 
-    private Color originalColor;
+    public Color originalColor;
     public Size selectedSize = Size.medium;
 
     private const float spawnDistance = 0.55f;
     private const float unitSpacing = 0.25f;
 
-    private bool canIncreaseUnits = false;
+    private bool isIncreaseCoroutineRunning = false;
+    private string tagPlanet;
 
-    private int maxUnitCurrent = 200;
+    private int maxUnitCurrent = 75;
     public int currentUnitCount;
     public float timerFromSize = 1f;
+
+    public int tempCoroutin = 0;
 
     private void Update()
     {
@@ -36,21 +42,23 @@ public class Planet : MonoBehaviour
     }
     private void Start()
     {
+        canvasParent = GameObject.FindGameObjectWithTag("CanvasParent");
+        if (canvasParent == null) Debug.LogWarning("Не найден родитель канвас для планет!");
+        tagPlanet = gameObject.tag.ToString();
         originalColor = GameManager.Instance.colorUnits;
         planetRenderer = GetComponent<SpriteRenderer>();
         spriteResolver = GetComponent<SpriteResolver>();
         circleCollider = GetComponent<CircleCollider2D>();
 
         StartUnitCount();
-        CheckTagPlanet();
         CheckSize((int)selectedSize);
     }
     private void StartUnitCount()
     {
-        if (gameObject.tag == "PlayerPlanet" || gameObject.tag == "EnemyPlanet")
+        if (gameObject.tag != "NeutralPlanet")
         {
             currentUnitCount = 50;
-            StartCoroutine(IncreaseUnitsOverTime());
+            CheckMakeUnits();
         }
         else currentUnitCount = Random.Range(15, 41);
     } // Генерация юнитов на планетах игрока и противника.
@@ -128,72 +136,54 @@ public class Planet : MonoBehaviour
         Vector3 directionToTarget = (targetPlanet.transform.position - spawnPosition).normalized;
         Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, directionToTarget);
         GameObject unitInstance = Instantiate(unitPrefab, spawnPosition, spawnRotation);
+        unitInstance.transform.parent = canvasParent.transform;
         UnitMovement unitMovement = unitInstance.GetComponent<UnitMovement>();
 
         if (unitMovement != null)
         {
-            if (gameObject.tag == "PlayerPlanet")
-            {
-                unitInstance.tag = "PlayerUnit";
-                unitInstance.GetComponent<SpriteRenderer>().color = originalColor;
-            }
-            else if (gameObject.tag == "EnemyPlanet")
-            {
-                unitInstance.tag = "EnemyUnit";
-                unitInstance.GetComponent<SpriteRenderer>().color = new Color(217f / 255f, 77f / 255f, 77f / 255f);
-            }
-            unitMovement.SetTarget(targetPlanet.transform);
-            unitMovement.SetTargetPlanet(targetPlanet);
+            unitInstance.tag = gameObject.tag;
+            unitMovement.tagUnit = unitInstance.tag.ToString();
+            unitInstance.GetComponent<SpriteRenderer>().color = planetRenderer.color;
+
+            unitMovement.target = targetPlanet.transform;
+            unitMovement.SetTarget(targetPlanet);
         }
     }
+/*    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.tag != tagPlanet && collision.gameObject.IsDestroyed())
+        {
+            if (currentUnitCount >= 0) currentUnitCount--;
+
+        }
+        else if (collision.gameObject.tag == tagPlanet && collision.gameObject.IsDestroyed())
+        {
+            if (currentUnitCount <= maxUnitCurrent)
+            { 
+                currentUnitCount++;
+            }
+        }
+    }*/
     public void IncreaseUnits()
     {
-        if (currentUnitCount < maxUnitCurrent) currentUnitCount++;
+        if (currentUnitCount < maxUnitCurrent) 
+            currentUnitCount++;
     } // Увеличение юнитов
     public void DecreaseUnits()
     {
-        if (currentUnitCount > 0) currentUnitCount--;
-        if (currentUnitCount < 1 && gameObject.tag != "PlayerPlanet")
-        {
-            gameObject.tag = "PlayerPlanet";
-            canIncreaseUnits = true;
-            CheckTagPlanet();
-            CheckMakeUnits();
-        }
+        if (currentUnitCount > 0) 
+            currentUnitCount--;
     } // Уменьшение юнитов и смена тэга планеты.
-    public void IncreaseUnitsFromEnemy()
-    {
-        if (currentUnitCount < maxUnitCurrent) currentUnitCount++;
-    }
-    public void DecreaseUnitsFromEnemy()
-    {
-        if (currentUnitCount > 0) currentUnitCount--;
-        if (currentUnitCount < 1 && gameObject.tag != "EnemyPlanet")
-        {
-            gameObject.tag = "EnemyPlanet";
-            canIncreaseUnits = true;
-            CheckTagPlanet();
-            CheckMakeUnits();
-        }
-    }
-    private void CheckTagPlanet()
-    {
-        if (gameObject.tag == "PlayerPlanet")
-        {
-            planetRenderer.color = GameManager.Instance.colorUnits;
-            originalColor = planetRenderer.color;
-        }
-        if (gameObject.tag == "EnemyPlanet")
-        {
-            planetRenderer.color = new Color(217f / 255f, 77f / 255f, 77f / 255f);
-            originalColor = planetRenderer.color;
-        }
-    }
     public void CheckMakeUnits()
     {
-        if (canIncreaseUnits)
+        if (!isIncreaseCoroutineRunning)
         {
+
+            tempCoroutin++; // считаем сколько раз запусталсь корутина.
+
             StartCoroutine(IncreaseUnitsOverTime());
+            isIncreaseCoroutineRunning = true;
         }
     }
     private System.Collections.IEnumerator IncreaseUnitsOverTime()
@@ -219,12 +209,12 @@ public class Planet : MonoBehaviour
     public void SelectPlanet()
 
     {
-        planetRenderer.color = Color.Lerp(planetRenderer.color, Color.black, 0.4f);
+        framePlanet.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
     }
 
     public void DeselectPlanet()
     {
-        planetRenderer.color = originalColor;
+        framePlanet.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f / 255f);
     }
 
 }

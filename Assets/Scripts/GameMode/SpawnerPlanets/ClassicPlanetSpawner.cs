@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class Classic : PlanetSpawner
 {
-    public GameObject enemyPlanetPrefab;
-    public GameObject enemyPlanetPrefab2;
-    public GameObject enemyPlanetPrefab3;
+    public GameObject[] enemyPlanets = new GameObject[3];
 
 
     protected override void GetGM()
@@ -20,17 +18,19 @@ public class Classic : PlanetSpawner
     protected override void GeneratePlanets()
     {
         int numberOfPlanets = GameManager.Instance.planetCount;
+        Vector2 playerSpawnPoint = GetRandomSpawnPoint();
+        GameObject playerPlanet = Instantiate(playerPlanetPrefab, playerSpawnPoint, Quaternion.identity); 
+        playerPlanet.transform.parent = canvasParent.transform;
 
-        Vector3 playerSpawnPoint = GetRandomSpawnPoint();
-        Instantiate(playerPlanetPrefab, playerSpawnPoint, Quaternion.identity);
         spawnPoints.Add(playerSpawnPoint);
 
         SpawnEnemyPlanets();
 
         for (int i = 0; i < numberOfPlanets; i++)
         {
-            Vector3 neutralSpawnPoint = GetRandomSpawnPoint();
+            Vector2 neutralSpawnPoint = GetRandomSpawnPoint();
             GameObject newPlanet = Instantiate(neutralPlanetPrefab, neutralSpawnPoint, Quaternion.identity);
+            newPlanet.transform.parent = canvasParent.transform;
             Planet planetScript = newPlanet.GetComponent<Planet>();
             planetScript.selectedSize = (Planet.Size)Random.Range(1, 4);
             spawnPoints.Add(neutralSpawnPoint);
@@ -43,12 +43,11 @@ public class Classic : PlanetSpawner
         if (count > 3) count = 3;
 
         for (int i = 0; i < count; i++)
-        { 
-            
+        {
+            Vector2 enemySpawnPoint = GetRandomSpawnPoint();
+            GameObject newPlanet = Instantiate(enemyPlanets[i], enemySpawnPoint, Quaternion.identity);
+            newPlanet.transform.parent = canvasParent.transform;
+            spawnPoints.Add(enemySpawnPoint);
         }
-
-        Vector3 enemySpawnPoint = GetRandomSpawnPoint();
-        Instantiate(enemyPlanetPrefab, enemySpawnPoint, Quaternion.identity);
-        spawnPoints.Add(enemySpawnPoint);
     }
 }

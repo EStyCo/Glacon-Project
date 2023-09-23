@@ -29,37 +29,9 @@ public class SelectManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isPaused && !isDrawing && !EventSystem.current.IsPointerOverGameObject())
-        {
-            StartCoroutine(DelayDrawing());
-            selectionStartPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        } // Начало рисование прямоугольника с задержкой.
-
-        if (Input.GetMouseButtonUp(0) && !isPaused)
-        {
-            isDrawing = false;
-            isSelecting = false;
-            //SelectPlanetsInRect();
-
-            LineRenderer lineRenderer = GetComponent<LineRenderer>();
-            lineRenderer.positionCount = 0;
-        } // Отпускание лкм, конец рисования прямоугольника.
-
-        if (isSelecting)
-        {
-            UnityEngine.Vector2 currentMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            DrawSelectionRectangle(selectionStartPoint, currentMousePos);
-
-            foreach (Planet planet in GetAllPlanets())
-            {
-                if (IsInsideSelectionRect(planet.transform.position, selectionStartPoint, currentMousePos))
-                {
-                    if (!selectedPlanets.Contains(planet)) TogleListPlanet(planet);
-                }
-                else if (selectedPlanets.Contains(planet)) TogleListPlanet(planet);
-            } //Проверка планеты, попадает ли она в прямоугольник.
-        } // Рисование прямоугольника.
-
+        IsDelayDrawing();
+        IsDrawing();
+        IsCancelDrawing();
         if (Input.GetMouseButtonDown(0) && !isPaused && !isSelecting)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -70,12 +42,12 @@ public class SelectManager : MonoBehaviour
                 Planet planet = hit.collider.GetComponent<Planet>();
                 if (planet != null)
                 {
-                    if (planet.tag != "NeutralPlanet" && planet.tag != "EnemyPlanet" && !selectedPlanets.Contains(planet))
+                    if (planet.CompareTag("PlayerPlanet") && !selectedPlanets.Contains(planet))
                     {
                         TogleListPlanet(planet);
                         planet = null;
                     }
-                    else if (planet.tag != "NeutralPlanet" && planet.tag != "EnemyPlanet" && selectedPlanets.Contains(planet))
+                    else if (planet.CompareTag("PlayerPlanet") && selectedPlanets.Contains(planet))
                     {
                         TogleListPlanet(planet);
                         planet = null;
@@ -100,7 +72,7 @@ public class SelectManager : MonoBehaviour
                         SendUnits();
                         targetPlanet = null;
                     }
-                    else if ((planet.tag == "NeutralPlanet" || planet.tag == "EnemyPlanet") && selectedPlanets != null && targetPlanet == null)
+                    else if (selectedPlanets != null && targetPlanet == null)
                     {
                         targetPlanet = planet;
                         SendUnits();
@@ -110,13 +82,51 @@ public class SelectManager : MonoBehaviour
             }
         } // ПКМ, отправка юнитов.
     }
+    #region Drawing 
+    private void IsDelayDrawing()
+    {
+        if (Input.GetMouseButtonDown(0) && !isPaused && !isDrawing && !EventSystem.current.IsPointerOverGameObject())
+        {
+            StartCoroutine(DelayDrawing());
+            selectionStartPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        } 
+    }// Начало рисование прямоугольника с задержкой.
     private IEnumerator DelayDrawing()
     {
         isDrawing = true;
         yield return new WaitForSeconds(delayDraw);
         if (isDrawing) isSelecting = true;
     } // Задержка перед рисованием.
+    private void IsDrawing()
+    {
+        if (isSelecting)
+        {
+            UnityEngine.Vector2 currentMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            DrawSelectionRectangle(selectionStartPoint, currentMousePos);
 
+            foreach (Planet planet in GetAllPlanets())
+            {
+                if (IsInsideSelectionRect(planet.transform.position, selectionStartPoint, currentMousePos))
+                {
+                    if (!selectedPlanets.Contains(planet)) TogleListPlanet(planet);
+                }
+                else if (selectedPlanets.Contains(planet)) TogleListPlanet(planet);
+            } //Проверка планеты, попадает ли она в прямоугольник.
+        }
+    }// Рисование прямоугольника.
+    private void IsCancelDrawing()
+    {
+        if (Input.GetMouseButtonUp(0) && !isPaused)
+        {
+            isDrawing = false;
+            isSelecting = false;
+            //SelectPlanetsInRect();
+
+            LineRenderer lineRenderer = GetComponent<LineRenderer>();
+            lineRenderer.positionCount = 0;
+        } 
+    }// Отпускание лкм, конец рисования прямоугольника.
+    // Методы рисования.
     private void DrawSelectionRectangle(UnityEngine.Vector2 startPoint, UnityEngine.Vector2 endPoint)
     {
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
@@ -138,6 +148,8 @@ public class SelectManager : MonoBehaviour
 
         return (point.x >= minX && point.x <= maxX && point.y >= minY && point.y <= maxY);
     } // Метод проверки нахождения планет в прямоугольнике.
+    #endregion
+    // Методы рисования.
     private Planet[] GetAllPlanets()
     {
         return GameObject.FindGameObjectsWithTag("PlayerPlanet")
@@ -157,7 +169,7 @@ public class SelectManager : MonoBehaviour
             selectedPlanets.Add(planet);
             planet.SelectPlanet();
         }
-    } // Метод выделения планет и добавления в Лист.  
+    } // Метод выделения планет и добавления в Лист.
 
     private void SendUnits()
     {
@@ -171,7 +183,10 @@ public class SelectManager : MonoBehaviour
     private void ClearSelectionListPlanet()
     {
         foreach (Planet planet in selectedPlanets)
-            planet.DeselectPlanet();
+            if (planet.tag == "PlayerPlanet")
+            { 
+                planet.DeselectPlanet();  
+            }
 
         selectedPlanets.Clear();
     } // Очистка списка выделенных планет.

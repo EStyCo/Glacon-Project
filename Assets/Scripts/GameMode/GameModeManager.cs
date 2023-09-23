@@ -35,10 +35,16 @@ public class GameModeManager : MonoBehaviour
     }
     public void ChangeMode()
     {
-
         Classic classic = spawnerPlanets.GetComponent<Classic>();
+        if (classic == null)
+        {
+            Debug.Log("Классический режим не найден!");   
+        }
         SpeedTime speedTime = spawnerPlanets.GetComponent<SpeedTime>();
-
+        if (classic == null)
+        {
+            Debug.Log("Спидран режим не найден!");
+        }
 
         classic.enabled = false;
         speedTime.enabled = false;
