@@ -1127,7 +1127,7 @@ Camera:
   far clip plane: 1000
   field of view: 2.6443112
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1165,7 +1165,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d83ae24cbe3a1e40b21b068fbb5b59b, type: 3}
   m_Name: 
@@ -1565,7 +1565,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.87039673}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -194.99994, y: -558}
+  m_AnchoredPosition: {x: -194.99988, y: -558}
   m_SizeDelta: {x: -1563, y: -62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &947383512
@@ -1738,7 +1738,7 @@ GameObject:
   - component: {fileID: 1089749276}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: CanvasParent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3434,6 +3434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d83cfb198b4f9489fcbf7e15a13ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasParent: {fileID: 1089749261}
   playerPlanetPrefab: {fileID: 3353950651158609308, guid: a04e9a1b1a25e5d4ba355479f5d36c4b, type: 3}
   neutralPlanetPrefab: {fileID: 3353950651158609308, guid: a4d8a2929b52e6348b0fd0f8fbe7064d, type: 3}
 --- !u!114 &2064100469
@@ -3448,6 +3449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a1dc3f7deb9d743baa083903e29a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasParent: {fileID: 1089749261}
   playerPlanetPrefab: {fileID: 3353950651158609308, guid: a04e9a1b1a25e5d4ba355479f5d36c4b, type: 3}
   neutralPlanetPrefab: {fileID: 3353950651158609308, guid: a4d8a2929b52e6348b0fd0f8fbe7064d, type: 3}
   enemyPlanets:

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UnitMovement : MonoBehaviour
 {
+    private GameObject canvasParent;
     public Transform target;
     private Planet targetPlanet;
     private Rigidbody2D rb;
@@ -14,6 +15,11 @@ public class UnitMovement : MonoBehaviour
 
     private void Start()
     {
+        canvasParent = GameObject.FindGameObjectWithTag("CanvasParent");
+        if (canvasParent == null) Debug.LogWarning("Не найден родитель канвас для планет! Юнит");
+
+        StartCoroutine(CorrectScale());
+
         sprite = GetComponent<SpriteRenderer>();
 
         tagUnit = gameObject.tag;
@@ -28,11 +34,13 @@ public class UnitMovement : MonoBehaviour
         Vector3 direction = (target.position - transform.position).normalized;
         transform.position += direction * movementSpeed * Time.deltaTime;
     }
-    private void StartTracking()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        Vector2 direction = (target.position - transform.position).normalized;
-        rb.velocity = direction * movementSpeed;
+    IEnumerator CorrectScale()
+    { 
+        while (true)
+        {
+            gameObject.transform.localScale = targetPlanet.transform.localScale;
+            yield return new WaitForSeconds(1f);
+        }
     }
     IEnumerator CorrectAngleTracking()
     {

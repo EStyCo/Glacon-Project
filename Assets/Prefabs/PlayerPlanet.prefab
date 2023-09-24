@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874f60dd6c6f81940a8259fff0aa1735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitPrefab: {fileID: 6084103165548847765, guid: ca3b77a17bb12704680312b65e52eafe, type: 3}
+  unitPrefab: {fileID: 6312795829811529286, guid: ca3b77a17bb12704680312b65e52eafe, type: 3}
   planetRenderer: {fileID: 0}
   framePlanet: {fileID: 2447183185951433419}
   unitCountText: {fileID: 6810088037120266366}
