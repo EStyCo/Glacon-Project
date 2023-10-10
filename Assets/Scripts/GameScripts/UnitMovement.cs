@@ -1,15 +1,19 @@
 using System.Collections;
-using System.Runtime.Serialization;
 using UnityEngine;
 
 public class UnitMovement : MonoBehaviour
 {
     private GameObject canvasParent;
     public Transform target;
+    public GameObject unitPrefab;
     private Planet targetPlanet;
-    private Rigidbody2D rb;
     private SpriteRenderer sprite;
+    private Animator animator;
+    private CapsuleCollider2D colliderUnit;
 
+    private bool isMoving = true;
+    private bool isDestruction = false;
+    private bool isRotation = true;
     public string tagUnit;
     private float movementSpeed = 1.15f;
 
@@ -18,79 +22,100 @@ public class UnitMovement : MonoBehaviour
         canvasParent = GameObject.FindGameObjectWithTag("CanvasParent");
         if (canvasParent == null) Debug.LogWarning("Не найден родитель канвас для планет! Юнит");
 
-        StartCoroutine(CorrectScale());
-
+        colliderUnit = GetComponent<CapsuleCollider2D>();
+        animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
 
         tagUnit = gameObject.tag;
         StartCoroutine(CorrectAngleTracking());
     }
+    private void Update()
+    {
+        Moving();
+    }
     public void SetTarget(Planet tagetP)
     {
         targetPlanet = tagetP;
     }
-    private void Update()
+    private void Moving()
     {
-        Vector3 direction = (target.position - transform.position).normalized;
-        transform.position += direction * movementSpeed * Time.deltaTime;
-    }
-    IEnumerator CorrectScale()
-    { 
-        while (true)
+        if (isMoving)
         {
-            gameObject.transform.localScale = targetPlanet.transform.localScale;
-            yield return new WaitForSeconds(1f);
+            Vector3 newPosition = Vector2.MoveTowards(transform.position, target.position, movementSpeed * Time.deltaTime);
+            transform.position = newPosition;
         }
     }
     IEnumerator CorrectAngleTracking()
     {
-        rb = GetComponent<Rigidbody2D>();
-        Vector3 direction = (target.position - transform.position).normalized;
-
-        while (true)
+        while (isRotation)
         {
             if (target != null)
             {
+                Vector3 direction = (target.position - transform.position).normalized;
                 Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, direction);
                 transform.rotation = targetRotation;
-                //rb.velocity = direction * movementSpeed;
-                //rb.AddForce(direction * movementSpeed);
-                //transform.Translate(Vector3.forward.);
-
-                if (Vector3.Distance(transform.position, target.position) < 0.6f)
-                {
-                    ChangeTagPlanet();
-                    Destroy(gameObject);
-                    SoundManager.Instance.PlayNoise();
-                }
             }
-            yield return new WaitForSeconds(0.01f);
+
+            yield return new WaitForSeconds(0.025f);
         }
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag != gameObject.tag)
         {
+            StartCoroutine(Destruction());
+        }
+    }
+    IEnumerator Destruction()
+    {
+        Vector2 initialPosition = transform.position;
+
+        if (!isDestruction)
+        {
+            isRotation = false;
+            isMoving = false;
+
+            float randomAngle = Random.Range(0f, 360f);
+            Quaternion newRotation = Quaternion.Euler(0f, 0f, randomAngle);
+            transform.rotation = newRotation;
+
+            Vector2 randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+            Vector2 newPosition = initialPosition + randomDirection * Random.Range(-0.5f, 0.5f);
+            transform.position = newPosition;
+
+
+            colliderUnit.enabled = false;
+            isDestruction = true;
+            animator.Play("Bang");
+
+            yield return new WaitForSeconds(0.4f);
+
             Destroy(gameObject);
         }
     }
-    private void OnDestroy()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (targetPlanet != null && Vector3.Distance(transform.position, target.position) < 0.7f && gameObject.tag != targetPlanet.tag)
-        { 
+        if (targetPlanet != null &&
+            collision.gameObject == targetPlanet.gameObject &&
+            gameObject.tag != collision.gameObject.tag)
+        {
             targetPlanet.DecreaseUnits();
+            ChangeTagPlanet();
+            StartCoroutine(Destruction());
         }
-        else if (targetPlanet != null && Vector3.Distance(transform.position, target.position) < 0.7f && gameObject.tag == targetPlanet.tag)
+        else if (targetPlanet != null &&
+                 collision.gameObject == targetPlanet.gameObject &&
+                 gameObject.tag == collision.gameObject.tag)
         {
             targetPlanet.IncreaseUnits();
 
             SpriteRenderer targetSprite = targetPlanet.GetComponent<SpriteRenderer>();
             if (sprite.color != targetSprite.color)
-            { 
+            {
                 sprite.color = targetSprite.color;
-                targetPlanet.originalColor = sprite.color; 
+                targetPlanet.originalColor = sprite.color;
             }
+            Destroy(gameObject);
         }
     }
     private void ChangeTagPlanet()
@@ -100,17 +125,9 @@ public class UnitMovement : MonoBehaviour
             targetPlanet.tag = tagUnit;
             targetPlanet.planetRenderer.color = sprite.color;
             targetPlanet.CheckMakeUnits();
-        }
-    }
-    private bool CheckDistance()
-    {
-        if (Vector3.Distance(transform.position, target.position) < 0.8f)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
+
+            targetPlanet.unitPrefab = unitPrefab;
+            targetPlanet.GetComponent<UnitDesign>().unitPrefab = unitPrefab;
         }
     }
 }

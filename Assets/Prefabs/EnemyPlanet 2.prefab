@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 20f0706a581a98c4693963dd92f036c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 353823541081986635}
   - component: {fileID: 4304331047583969705}
   - component: {fileID: 115783368239130698}
+  - component: {fileID: 2786752199732204983}
   m_Layer: 6
   m_Name: EnemyPlanet 2
   m_TagString: Enemy2
@@ -171,7 +172,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: e7ad801e03d527a45858f383835ed3f9, type: 3}
   m_Color: {r: 0.7830189, g: 0.76337093, b: 0.29178533, a: 1}
   m_FlipX: 0
@@ -302,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874f60dd6c6f81940a8259fff0aa1735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitPrefab: {fileID: 6312795829811529286, guid: ca3b77a17bb12704680312b65e52eafe, type: 3}
+  unitPrefab: {fileID: 6312795829811529286, guid: 962525dc4e7647b41bd7b04162fb7706, type: 3}
   planetRenderer: {fileID: 0}
   framePlanet: {fileID: 2176909740431468555}
   unitCountText: {fileID: 916695834753472008}
@@ -323,6 +324,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ae28c7e8d1e9445963c9b413c7224c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2786752199732204983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7364757729158189150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25742a508480141429e7bd4031b6b172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinUnits: 0
+  unitPrefab: {fileID: 6312795829811529286, guid: 962525dc4e7647b41bd7b04162fb7706, type: 3}
 --- !u!1 &8759132691015676711
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,5 +495,5 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_TargetDisplay: 0

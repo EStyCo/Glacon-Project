@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour
@@ -10,8 +9,8 @@ public class MusicManager : MonoBehaviour
     public static MusicManager Instance { get; private set; }
 
     public AudioClip[] musicClips; // Массив с исходными треками.
-    List<AudioClip> recordClips = new List<AudioClip>(); 
-    
+    List<AudioClip> recordClips = new List<AudioClip>();
+
     public AudioSource audioSource;
 
     private float currentClipDuration;
@@ -40,7 +39,7 @@ public class MusicManager : MonoBehaviour
 
         PlayMusic();
     } // Преобразование из массива в список с перемешиванием.
-    public async void PlayMusic()
+    public void PlayMusic()
     {
         audioSource = GetComponent<AudioSource>();
 
@@ -48,15 +47,13 @@ public class MusicManager : MonoBehaviour
 
         currentClipDuration = audioSource.clip.length;
 
-        await Task.Run(() =>
-        {
-            audioSource.Play();
-        });
+
+        audioSource.Play();
         StartCoroutine(DelayMusic());
     } // Проигрывание трека.
 
     IEnumerator DelayMusic()
-    { 
+    {
         yield return new WaitForSeconds(currentClipDuration);
         NextSong();
     } // Таймер переключения трека.

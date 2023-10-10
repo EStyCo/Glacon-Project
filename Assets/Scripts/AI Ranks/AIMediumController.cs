@@ -17,10 +17,6 @@ public class AIMediumController : MonoBehaviour
     private void Update()
     {
         CheckStartBattle();
-/*        if (!HasEnemyPlanets())
-        {
-            SceneManager.LoadScene(3);
-        }*/
     }
 
     private bool HasEnemyPlanets()

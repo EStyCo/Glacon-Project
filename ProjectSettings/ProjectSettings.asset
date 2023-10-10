@@ -44,8 +44,8 @@ PlayerSettings:
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
-  defaultScreenWidthWeb: 960
-  defaultScreenHeightWeb: 600
+  defaultScreenWidthWeb: 1280
+  defaultScreenHeightWeb: 720
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 1
   m_SpriteBatchVertexThreshold: 300
@@ -133,7 +133,7 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
-  bundleVersion: 1.0
+  bundleVersion: 0.0.0.1
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -410,7 +410,25 @@ PlayerSettings:
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
   openGLRequireES32: 0
-  m_TemplateCustomTags: {}
+  m_TemplateCustomTags:
+    BANNER_DYNAMIC_1: 
+    BANNER_DYNAMIC_2: 
+    BANNER_STATIC_1: 
+    BANNER_STATIC_2: 
+    CHANGE_BAR_COLOR: 
+    CHANGE_LOADING_SCREEN_BACKGROUND: 
+    CHANGE_LOGO_IMAGE: 
+    CONFIGURE_SHADOWS: 
+    CONNECT_WEB_AUDIO_PLUGIN_FILES: 
+    CONNECT_YANDEX_SDK: 
+    DEVICE_PIXEL_RATIO: 
+    ENABLE_CONSOLE: 
+    LOCK_ASPECT_RATIO_ON_DESKTOP: 
+    LOCK_ASPECT_RATIO_ON_MOBILE: 
+    PRODUCT_DESCRIPTION: 
+    SET_ASPECT_RATIO_ON_DESKTOP: 
+    SET_ASPECT_RATIO_ON_MOBILE: 
+    YASDK_SHOW_PRELOADER_AD: 
   mobileMTRendering:
     Android: 1
     iPhone: 1
@@ -666,7 +684,7 @@ PlayerSettings:
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
-  webGLTemplate: APPLICATION:Default
+  webGLTemplate: PROJECT:ATP_YG1.5
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 0
@@ -681,7 +699,8 @@ PlayerSettings:
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    WebGL: YG_PLUGIN_YANDEX_GAME
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

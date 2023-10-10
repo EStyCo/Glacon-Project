@@ -59,7 +59,7 @@ public class PreGameSettings : MonoBehaviour
     }
     private void CheckColorUnits()
     {
-        colorSendShips.color = GameManager.Instance.colorUnits;
+        colorSendShips.color = GameManager.Instance.colorPlanet;
     }
     public void OnImage1Click()
     {
@@ -90,55 +90,55 @@ public class PreGameSettings : MonoBehaviour
     private void ChangeSprite(string category, string label)
     {
         sendShip.SetCategoryAndLabel(category, label);
-        GameManager.Instance.ChangeSkinUnits();
+        //GameManager.Instance.ChangeSkinUnits();
 
     }
     public void SetColorUnits1()
     {
         Color buttonColor = showColor1.color;
-        GameManager.Instance.ChangeColornUnits(buttonColor);
+        GameManager.Instance.ChangeColorUnits(buttonColor);
         CheckColorUnits();
     }
     public void SetColorUnits2()
     {
         Color buttonColor = showColor2.color;
-        GameManager.Instance.ChangeColornUnits(buttonColor);
+        GameManager.Instance.ChangeColorUnits(buttonColor);
         CheckColorUnits();
     }
     public void SetColorUnits3()
     {
         Color buttonColor = showColor3.color;
-        GameManager.Instance.ChangeColornUnits(buttonColor);
+        GameManager.Instance.ChangeColorUnits(buttonColor);
         CheckColorUnits();
     }
     public void SetColorUnits4()
     {
         Color buttonColor = showColor4.color;
-        GameManager.Instance.ChangeColornUnits(buttonColor);
+        GameManager.Instance.ChangeColorUnits(buttonColor);
         CheckColorUnits();
     }
     public void SetColorUnits5()
     {
         Color buttonColor = showColor5.color;
-        GameManager.Instance.ChangeColornUnits(buttonColor);
+        GameManager.Instance.ChangeColorUnits(buttonColor);
         CheckColorUnits();
     }
     public void SetColorUnits6()
     {
         Color buttonColor = showColor6.color;
-        GameManager.Instance.ChangeColornUnits(buttonColor);
+        GameManager.Instance.ChangeColorUnits(buttonColor);
         CheckColorUnits();
     }
     public void SetColorUnits7()
     {
         Color buttonColor = showColor7.color;
-        GameManager.Instance.ChangeColornUnits(buttonColor);
+        GameManager.Instance.ChangeColorUnits(buttonColor);
         CheckColorUnits();
     }
     public void SetColorUnits8()
     {
         Color buttonColor = showColor8.color;
-        GameManager.Instance.ChangeColornUnits(buttonColor);
+        GameManager.Instance.ChangeColorUnits(buttonColor);
         CheckColorUnits();
     }
 }

@@ -6,9 +6,9 @@ public class StarSpawner : MonoBehaviour
 {
     private List<Vector2> spawnPoints = new List<Vector2>();
 
-    public GameObject starPrefab;
-
-    public Canvas canvas;
+    [SerializeField] private Canvas canvas;
+    [SerializeField] private Transform starsParent;
+    [SerializeField] private GameObject starPrefab;
 
     private int numberOfStars;
     private float minDistanceBetweenPlanets = 0.2f;
@@ -18,7 +18,7 @@ public class StarSpawner : MonoBehaviour
 
     private void Awake()
     {
-        numberOfStars = Random.Range(60, 91);
+        numberOfStars = Random.Range(60, 121);
     }
     void Start()
     {
@@ -36,14 +36,13 @@ public class StarSpawner : MonoBehaviour
     }
     void GenerateSpawnPoints()
     {
-
-
         for (int i = 0; i < numberOfStars; i++)
         {
-            Vector3 neutralSpawnPoint = GetRandomSpawnPoint();
-            GameObject newStar = Instantiate(starPrefab, neutralSpawnPoint, Quaternion.identity);
+            Vector3 SpawnPoint = GetRandomSpawnPoint();
+            GameObject newStar = Instantiate(starPrefab, SpawnPoint, Quaternion.identity);
+            newStar.transform.SetParent(starsParent);
             
-            spawnPoints.Add(neutralSpawnPoint);
+            spawnPoints.Add(SpawnPoint);
         }
     }
 

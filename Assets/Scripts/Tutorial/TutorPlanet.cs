@@ -65,9 +65,9 @@ public class TutorPlanet : MonoBehaviour
     } // Генерация юнитов на планетах игрока и противника.
     public void SendUnitsToPlanet(TutorPlanet targetPlanet)
     {
-        if (gameObject.CompareTag("PlayerPlanet") && Speedometer.Instance != null)
+        if (gameObject.CompareTag("PlayerPlanet") && Selector.Instance != null)
         {
-            float percentToSend = Speedometer.Instance.countSpeedometer / 100f;
+            float percentToSend = (float)Selector.Instance.selectedPercent / 100f;
             int unitsToSend = Mathf.CeilToInt(currentUnitCount * percentToSend);
 
             if (unitsToSend > 0)
@@ -218,11 +218,6 @@ public class TutorPlanet : MonoBehaviour
         {
             IncreaseUnits();
 
-            if (BalancePower.Instance != null)
-            {
-                if (gameObject.CompareTag("PlayerPlanet")) BalancePower.Instance.ChangePlayerPower(true);
-                if (gameObject.CompareTag("EnemyPlanet")) BalancePower.Instance.ChangeEnemyPower(true);
-            }
 
             yield return new WaitForSeconds(timerFromSize);
         }

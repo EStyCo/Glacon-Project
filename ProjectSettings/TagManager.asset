@@ -6,14 +6,15 @@ TagManager:
   tags:
   - NeutralPlanet
   - PlayerPlanet
-  - EnemyPlanet
   - EnemyUnit
   - PlayerUnit
   - OrbitPlanet
   - Enemy1
   - Enemy2
-  - Emeny3
   - CanvasParent
+  - UnitsParent
+  - Enemy3
+  - MainPlanet
   layers:
   - Default
   - TransparentFX

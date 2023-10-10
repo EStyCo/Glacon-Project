@@ -2,6 +2,7 @@ using Game;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.U2D.Animation;
 
 public class Planet : MonoBehaviour
@@ -14,6 +15,7 @@ public class Planet : MonoBehaviour
     } // Размеры планет
 
     private GameObject canvasParent;
+    private GameObject unitsParent;
     public GameObject unitPrefab;
     public SpriteRenderer planetRenderer;
     public SpriteRenderer framePlanet;
@@ -24,7 +26,7 @@ public class Planet : MonoBehaviour
     public Color originalColor;
     public Size selectedSize = Size.medium;
 
-    private const float spawnDistance = 0.55f;
+    private const float spawnDistance = 0.25f;
     private const float unitSpacing = 0.25f;
 
     private bool isIncreaseCoroutineRunning = false;
@@ -44,8 +46,10 @@ public class Planet : MonoBehaviour
     {
         canvasParent = GameObject.FindGameObjectWithTag("CanvasParent");
         if (canvasParent == null) Debug.LogWarning("Не найден родитель канвас для планет!");
+        unitsParent = GameObject.FindGameObjectWithTag("UnitsParent");
+        if (unitsParent == null) Debug.LogWarning("Не найден родитель для юнитов!");
         tagPlanet = gameObject.tag.ToString();
-        originalColor = GameManager.Instance.colorUnits;
+        originalColor = GameManager.Instance.colorPlanet;
         planetRenderer = GetComponent<SpriteRenderer>();
         spriteResolver = GetComponent<SpriteResolver>();
         circleCollider = GetComponent<CircleCollider2D>();
@@ -57,16 +61,20 @@ public class Planet : MonoBehaviour
     {
         if (gameObject.tag != "NeutralPlanet")
         {
-            currentUnitCount = 50;
+            currentUnitCount = 65;
+            if (gameObject.tag == "PlayerPlanet")
+            {
+                currentUnitCount = 40;
+            }
             CheckMakeUnits();
         }
         else currentUnitCount = Random.Range(15, 41);
     } // Генерация юнитов на планетах игрока и противника.
     public void SendUnitsToPlanet(Planet targetPlanet)
     {
-        if (gameObject.CompareTag("PlayerPlanet") && Speedometer.Instance != null)
+        if (gameObject.CompareTag("PlayerPlanet") && Selector.Instance != null)
         {
-            float percentToSend = Speedometer.Instance.countSpeedometer / 100f;
+            float percentToSend = (float)Selector.Instance.selectedPercent / 100f;
             int unitsToSend = Mathf.CeilToInt(currentUnitCount * percentToSend);
 
             if (unitsToSend > 0)
@@ -119,7 +127,7 @@ public class Planet : MonoBehaviour
 
     private void SendUnits(Planet targetPlanet)
     {
-        Vector3 directionToTarget = (targetPlanet.transform.position - transform.position).normalized;
+        Vector3 directionToTarget = (targetPlanet.transform.position - transform.position) * transform.localScale.normalized.y;
         Vector3 spawnPosition = CalculateSpawnPosition(directionToTarget);
 
         SpawnUnitAtPosition(spawnPosition, targetPlanet);
@@ -129,14 +137,16 @@ public class Planet : MonoBehaviour
 
     private Vector3 CalculateSpawnPosition(Vector3 directionToTarget)
     {
-        return transform.position + directionToTarget * spawnDistance;
+        return transform.position + directionToTarget.normalized * spawnDistance;
     }
     private void SpawnUnitAtPosition(Vector3 spawnPosition, Planet targetPlanet)
     {
+
         Vector3 directionToTarget = (targetPlanet.transform.position - spawnPosition).normalized;
         Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, directionToTarget);
         GameObject unitInstance = Instantiate(unitPrefab, spawnPosition, spawnRotation);
-        unitInstance.transform.parent = canvasParent.transform;
+        unitInstance.GetComponent<UnitMovement>().unitPrefab = unitPrefab;
+        unitInstance.transform.SetParent(unitsParent.transform, false);
         UnitMovement unitMovement = unitInstance.GetComponent<UnitMovement>();
 
         if (unitMovement != null)
@@ -196,12 +206,6 @@ public class Planet : MonoBehaviour
         while (true)
         {
             IncreaseUnits();
-
-            if (BalancePower.Instance != null)
-            {
-                if (gameObject.CompareTag("PlayerPlanet")) BalancePower.Instance.ChangePlayerPower(true);
-                if (gameObject.CompareTag("EnemyPlanet")) BalancePower.Instance.ChangeEnemyPower(true);
-            }
 
             yield return new WaitForSeconds(timerFromSize);
         }

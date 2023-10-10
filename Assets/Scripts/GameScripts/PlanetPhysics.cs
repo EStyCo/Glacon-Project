@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlanetPhysics : MonoBehaviour
 {
-    private float bounceHeight = 0.15f;
-    private float bounceDuration = 4.8f;
+    private float bounceHeight = 0.25f;
+    private float bounceDuration = 10.8f;
 
     private Vector3 originalPosition;
 

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 62bd3c17a8fb366458586858ba778d4b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerPlanetPrefab: {fileID: 3353950651158609308, guid: a04e9a1b1a25e5d4ba355479f5d36c4b, type: 3}
+  - neutralPlanetPrefab: {fileID: 3353950651158609308, guid: a4d8a2929b52e6348b0fd0f8fbe7064d, type: 3}
+  - enemyPlanetPrefab: {fileID: 7364757729158189150, guid: 893f7cff32ebebd4eac654509a738131, type: 3}
+  - enemyPlanetPrefab2: {fileID: 7364757729158189150, guid: b4c653ef92bdb3f449776394728394c6, type: 3}
+  - enemyPlanetPrefab3: {fileID: 7364757729158189150, guid: 3073722ee9ffcf14ea7ddd27dcc820e1, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
