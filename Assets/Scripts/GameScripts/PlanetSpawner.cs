@@ -43,16 +43,13 @@ public abstract class PlanetSpawner : MonoBehaviour
     protected Vector2 GetRandomSpawnPoint()
     {
         Vector2 randomPoint;
-        /*Vector3 newVector = canvasParent.transform;
-        Debug.Log(newVector);*/
-        //newVector = canvasParent.transform.InverseTransformPoint(leftTopCanvas.GetPosition()) * canvasParent.transform.lossyScale.x;
-        //Vector3 bottomRight = canvasParent.transform.InverseTransformPoint(rightBottomCanvas.GetPosition()) * canvasParent.transform.lossyScale.x;
-        Vector2 newVector = canvasParent.transform.InverseTransformPoint(rightBottomCanvas.transform.position) * canvasParent.transform.lossyScale.x;
+        Vector2 newVectorX = canvasParent.transform.InverseTransformPoint(rightBottomCanvas.transform.localPosition) * canvasParent.transform.lossyScale.x;
+        Vector2 newVectorY = canvasParent.transform.InverseTransformPoint(leftTopCanvas.transform.localPosition) * canvasParent.transform.lossyScale.x;
 
         do
         {
-            float randomX = UnityEngine.Random.Range(newVector.x, newVector.x);
-            float randomY = UnityEngine.Random.Range(newVector.y, newVector.y);
+            float randomX = UnityEngine.Random.Range(newVectorX.x, newVectorY.x);
+            float randomY = UnityEngine.Random.Range(newVectorY.y, newVectorX.y);
             randomPoint = new Vector2(randomX, randomY);
         }
         while (!IsValidSpawnPoint(randomPoint));
