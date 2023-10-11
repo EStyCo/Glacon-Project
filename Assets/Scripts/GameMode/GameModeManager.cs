@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameModeManager : MonoBehaviour
 {
+    public bool blackHoleIsOn = false;
     public enum GameMode
     {
         Classic = 0,

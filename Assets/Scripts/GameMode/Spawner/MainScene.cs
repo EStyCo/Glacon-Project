@@ -1,24 +1,22 @@
-/*using Game;
+using Game;
 using UnityEngine;
 
-public class MainSceneSpawner : PlanetSpawner
+public class MainSceneSpawner : Spawner
 {
     private string[] tags = new string[5] { "Enemy1", "Enemy2", "Enemy3", "NeutralPlanet", "PlayerPlanet", };
 
+    [SerializeField] private GameObject mainPlanetPrefab;
     [SerializeField] private GameObject blackHole;
     [SerializeField] private GameObject parentBlackHole;
 
-    protected override void GetGM()
-    { }
-
-    protected override void GeneratePlanets()
+    protected override void GenerateObjects()
     {
         int numberOfPlanets = Random.Range(6, 10);
 
         for (int i = 0; i < numberOfPlanets; i++)
         {
             Vector2 neutralSpawnPoint = GetRandomSpawnPoint();
-            GameObject newPlanet = Instantiate(neutralPlanetPrefab, neutralSpawnPoint, Quaternion.identity);
+            GameObject newPlanet = Instantiate(mainPlanetPrefab, neutralSpawnPoint, Quaternion.identity);
 
             int randomIndex = Random.Range(0, tags.Length);
             newPlanet.tag = tags[randomIndex];
@@ -44,19 +42,4 @@ public class MainSceneSpawner : PlanetSpawner
             spawnPoints.Add(SpawnPoint);
         }
     }
-
-    protected override bool IsValidSpawnPoint(Vector2 point)
-    {
-        foreach (Vector2 spawnPoint in spawnPoints)
-        {
-
-            if (Vector2.Distance(point, spawnPoint) < minDistanceBetweenPlanets)
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
 }
-*/

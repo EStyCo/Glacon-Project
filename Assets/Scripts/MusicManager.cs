@@ -41,12 +41,8 @@ public class MusicManager : MonoBehaviour
     } // Преобразование из массива в список с перемешиванием.
     public void PlayMusic()
     {
-        audioSource = GetComponent<AudioSource>();
-
         audioSource.clip = recordClips.Last();
-
         currentClipDuration = audioSource.clip.length;
-
 
         audioSource.Play();
         StartCoroutine(DelayMusic());

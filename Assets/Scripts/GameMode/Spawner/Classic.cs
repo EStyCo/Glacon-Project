@@ -3,17 +3,9 @@ using System.ComponentModel;
 using UnityEngine;
 using Zenject;
 
-public class Classic : PlanetSpawner
+public class Classic : Spawner
 {
-    protected override void GetGM()
-    {
-        /*if (gameModeManager.currentGameMode != GameModeManager.GameMode.Classic)
-        { 
-            gameObject.GetComponent<Classic>().enabled = false;
-        }*/
-    }
-
-    protected override void GeneratePlanets()
+    protected override void GenerateObjects()
     {
         int numberOfPlanets = GameManager.Instance.planetCount;
 
@@ -29,10 +21,9 @@ public class Classic : PlanetSpawner
         {
             Vector2 neutralSpawnPoint = GetRandomSpawnPoint();
             GameObject neutralPlanet = Instantiate(neutralPlanetPrefab, neutralSpawnPoint, Quaternion.identity);
+            
             neutralPlanet.transform.SetParent(canvasParent.transform, true);
             neutralPlanet.GetComponent<Planet>().selectedSize = (Planet.Size)Random.Range(1, 4);
-            //Planet planetScript = newPlanet.GetComponent<Planet>();
-            //planetScript.selectedSize = (Planet.Size)Random.Range(1, 4);
             spawnPoints.Add(neutralSpawnPoint);
         }
     }
@@ -49,31 +40,5 @@ public class Classic : PlanetSpawner
             newPlanet.transform.SetParent(canvasParent.transform, true);
             spawnPoints.Add(enemySpawnPoint);
         }
-    }
-    protected override bool IsValidSpawnPoint(Vector2 point)
-    {
-        Vector2 PM = leftBottomPM.transform.position;
-        Vector2 selector = rightTopSM.transform.position;
-
-        if (point.x >= PM.x && point.x <= PM.x + 10f &&
-            point.y >= PM.y && point.y <= PM.y + 10f)
-        {
-            return false; // Точка находится внутри запрещенной зоны, Меню Паузы
-        }
-        if (point.x <= selector.x && point.x >= selector.x - 10f &&
-            point.y <= selector.y && point.y >= selector.y - 10f)
-        {
-            return false; // Точка находится внутри запрещенной зоны, Селектора
-        }
-        foreach (Vector2 spawnPoint in spawnPoints)
-        {
-
-            if (Vector2.Distance(point, spawnPoint) < minDistanceBetweenPlanets)
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
 }

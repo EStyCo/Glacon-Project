@@ -10,7 +10,7 @@ public class GameModeInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<GameObject>().WithId("PlayerPlanet").FromInstance(playerPlanetPrefab).AsSingle();
+        Container.Bind<GameObject>().WithId("PlayerPlanet").FromInstance(playerPlanetPrefab);
         Container.Bind<GameObject>().WithId("NeutralPlanet").FromInstance(neutralPlanetPrefab);
         Container.Bind<GameObject>().WithId("Enemy1Planet").FromInstance(enemy1PlanetPrefab);
         Container.Bind<GameObject>().WithId("Enemy2Planet").FromInstance(enemy2PlanetPrefab);
