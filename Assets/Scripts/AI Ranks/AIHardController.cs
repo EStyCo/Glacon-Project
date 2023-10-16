@@ -5,26 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class AIHardController : MonoBehaviour
 {
-    public LayerMask planetLayer;
+    private string tagPlanet;
+    
     private bool isStartBattle = true;
 
     void Start()
     {
+        tagPlanet = gameObject.tag;
         StartCoroutine(SendUnitsPeriodically());
     }
 
     private void Update()
     {
         CheckStartBattle();
-        if (!HasEnemyPlanets())
-        {
-            SceneManager.LoadScene(3);
-        }
     }
 
     private bool HasEnemyPlanets()
     {
-        Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag("EnemyPlanet")
+        Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag(tagPlanet)
                                  .Select(go => go.GetComponent<Planet>())
                                  .Where(planet => planet != null)
                                  .ToArray();
@@ -32,11 +30,11 @@ public class AIHardController : MonoBehaviour
     }
     private void CheckStartBattle()
     {
-        Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag("EnemyPlanet")
+        Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag(tagPlanet)
                              .Select(go => go.GetComponent<Planet>())
                              .Where(planet => planet != null)
                              .ToArray();
-        if (enemyPlanets.Length >= 3) isStartBattle = false;
+        if (enemyPlanets.Length >= 2) isStartBattle = false;
     } //Проверка на "Начальную" стадию битвы.
     private System.Collections.IEnumerator SendUnitsPeriodically()
     {
@@ -44,7 +42,7 @@ public class AIHardController : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(2, 7));
 
-            Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag("EnemyPlanet")
+            Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag(tagPlanet)
                                      .Select(go => go.GetComponent<Planet>())
                                      .Where(planet => planet != null)
                                      .OrderByDescending(planet => planet.currentUnitCount)
@@ -66,7 +64,7 @@ public class AIHardController : MonoBehaviour
             }
             foreach (Planet enemyPlanet in enemyListPlanets)
             {
-                if (targetPlanet != null) enemyPlanet.SendUnitsToPlanet(targetPlanet);
+                if (targetPlanet != null) enemyPlanet.SendShipsToPlanet(targetPlanet);
             }
 
             enemyListPlanets.Clear();
@@ -74,14 +72,14 @@ public class AIHardController : MonoBehaviour
     }
     private Planet ChooseTargetPlanet()
     {
-        Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag("EnemyPlanet")
+        Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag(tagPlanet)
                                      .Select(go => go.GetComponent<Planet>())
                                      .Where(planet => planet != null)
                                      .ToArray();
 
         Planet[] allPlanets = FindObjectsOfType<Planet>();
 
-        Planet[] targetPlanets = allPlanets.Where(planet => planet.tag == "NeutralPlanet" || planet.tag == "PlayerPlanet").ToArray();
+        Planet[] targetPlanets = allPlanets.Where(planet => planet.tag != tagPlanet).ToArray();
 
         Planet[] targetNeutralPlanets = allPlanets.Where(planet => planet.tag == "NeutralPlanet").ToArray();
 

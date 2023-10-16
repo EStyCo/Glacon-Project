@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class AIMediumController : MonoBehaviour
 {
-    public LayerMask planetLayer;
+    public string tagPlanet;
+
     private bool isStartBattle = true;
-    private string tagPlanet;
 
     void Start()
     {
@@ -52,7 +52,7 @@ public class AIMediumController : MonoBehaviour
                 Planet targetPlanet = ChooseTargetPlanet(enemyPlanet);
                 if (targetPlanet != null)
                 {
-                    enemyPlanet.SendUnitsToPlanet(targetPlanet);
+                    enemyPlanet.SendShipsToPlanet(targetPlanet);
                 }
             }
         }

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class AIEasyController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private string tagPlanet;
+
+    private bool isStartBattle = true;
+
     void Start()
     {
-        Debug.Log("Easy access");
+        tagPlanet = gameObject.tag;
     }
 
     // Update is called once per frame

@@ -121,5 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackHoleIsOn: 0
-  countEnemyPlanets: 1
+  portalIsOn: 0
+  countEnemyPlanets: 3
+  currentDifficulty: 2
   currentGameMode: 0

@@ -2,10 +2,11 @@ using Game;
 using TMPro;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
-
+using Zenject;
 
 public class PreGameSettings : MonoBehaviour
 {
+    [Inject] private GameModeManager gameModeManager;
     public TextMeshProUGUI textRank;
     public SpriteResolver sendShip;
     public SpriteRenderer colorSendShips;
@@ -36,11 +37,11 @@ public class PreGameSettings : MonoBehaviour
         if (sliderRank.value == 1) textRank.text = "Мичман";
         if (sliderRank.value == 2) textRank.text = "Капитан";
         if (sliderRank.value == 3) textRank.text = "Адмирал";
-        GameManager.Instance.ChangeRank((int)sliderRank.value);
+        gameModeManager.ChangeDifficulty((int)sliderRank.value);
     }
     private void CheckRank()
     {
-        int indexRank = (int)GameManager.Instance.selectedDifficulty;
+        int indexRank = (int)gameModeManager.currentDifficulty;
         sliderRank.value = indexRank;
     }
     public void OnSliderRankValueChanged()

@@ -15,6 +15,7 @@ TagManager:
   - UnitsParent
   - Enemy3
   - MainPlanet
+  - BlackHole
   layers:
   - Default
   - TransparentFX
@@ -24,13 +25,13 @@ TagManager:
   - UI
   - Planet
   - Unit
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Unit1
+  - Unit2
+  - Unit3
+  - Cruiser
+  - Cruiser1
+  - Cruiser2
+  - Cruiser3
   - 
   - 
   - 

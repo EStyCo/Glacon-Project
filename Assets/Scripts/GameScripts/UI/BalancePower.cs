@@ -107,8 +107,8 @@ public class BalancePower : MonoBehaviour
     {
         int count = 0;
 
-        UnitMovement[] unitMovements = FindObjectsOfType<UnitMovement>();
-        foreach (UnitMovement unitMovementComponent in unitMovements)
+        Unit[] unitMovements = FindObjectsOfType<Unit>();
+        foreach (Unit unitMovementComponent in unitMovements)
         {
             count++;
         }
@@ -123,9 +123,9 @@ public class BalancePower : MonoBehaviour
 
         foreach (GameObject objectUnit in objectUnits)
         {
-            UnitMovement unitMovementComponent = objectUnit.GetComponent<UnitMovement>();
+            Unit unitComponent = objectUnit.GetComponent<Unit>();
 
-            if (unitMovementComponent != null)
+            if (unitComponent != null)
             {
                 count++;
             }

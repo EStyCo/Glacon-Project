@@ -1,21 +1,22 @@
 using TMPro;
 using UnityEngine;
 using Game;
+using Zenject;
 
 public class PlanetCount : MonoBehaviour
 {
+    [Inject] GameModeManager gameModeManager;   
     public TextMeshProUGUI textPlanets;
     public UnityEngine.UI.Slider sliderPlanets;
     public UnityEngine.UI.Toggle randomPlanets;
 
-    public int initialPlanetsValue = 15;
-    public int count = 15;
+    public int count;
     private bool isRandom = false;
 
     private void Start()
     {
-        sliderPlanets.value = initialPlanetsValue;
-        UpdatePlanetsValueText(initialPlanetsValue);
+        sliderPlanets.value = gameModeManager.planetCount;
+        UpdatePlanetsValueText(gameModeManager.planetCount);
         ToggleRandomPlanets();
 
     }
@@ -29,7 +30,7 @@ public class PlanetCount : MonoBehaviour
         else textPlanets.text = "Планеты: " + value.ToString();
 
         count = (int)value;
-        GameManager.Instance.planetCount = count;
+        gameModeManager.planetCount = count;
     }
     public void ToggleRandomPlanets()
     {

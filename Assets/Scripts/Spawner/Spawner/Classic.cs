@@ -1,0 +1,123 @@
+using Game;
+using System;
+using UnityEngine;
+using Zenject;
+
+public class Classic : Spawner
+{
+    [Inject(Id = "Enemy1Unit")] private GameObject enemy1UnitPrefab;
+    [Inject(Id = "Enemy2Unit")] private GameObject enemy2UnitPrefab;
+    [Inject(Id = "Enemy3Unit")] private GameObject enemy3UnitPrefab;
+    [Inject(Id = "Enemy1Cruiser")] private GameObject enemy1CruiserPrefab;
+    [Inject(Id = "Enemy2Cruiser")] private GameObject enemy2CruiserPrefab;
+    [Inject(Id = "Enemy3Cruiser")] private GameObject enemy3CruiserPrefab;
+
+    private Color[] enemyColors = new Color[4];
+
+    protected override void GenerateObjects()
+    {
+        Vector2 playerSpawnPoint = GetRandomSpawnPoint();
+
+        GameObject playerPlanet = Instantiate(planetPrefab, playerSpawnPoint, Quaternion.identity);
+        playerPlanet.transform.SetParent(canvasParent.transform, true);
+
+        ShipDesign.ChangePlayerSkin(playerPlanet, playerUnitPrefab, playerCruiserPrefab);
+
+        spawnPoints.Add(playerSpawnPoint);
+
+        SpawnEnemyPlanets();
+        SpawnNeutralPlanets();
+
+    }
+    private void SpawnEnemyPlanets()
+    {
+        enemyColors[1] = new Color(1.0f, 0.0f, 0.0f); 
+        enemyColors[2] = new Color(0.0f, 1.0f, 0.0f); 
+        enemyColors[3] = new Color(0.0f, 0.0f, 1.0f);
+
+        int count = gameModeManager.countEnemyPlanets;
+
+        if (count > 3) count = 3;
+
+        for (int i = 1; i <= count; i++)
+        {
+            Vector2 enemySpawnPoint = GetRandomSpawnPoint();
+            GameObject newPlanet = Instantiate(planetPrefab, enemySpawnPoint, Quaternion.identity);
+            newPlanet.tag = "Enemy" + i.ToString();
+            newPlanet.transform.SetParent(canvasParent.transform, true);
+            newPlanet.GetComponent<SpriteRenderer>().color = enemyColors[i];
+
+            GameObject unitPrefab = GetEnemyPrefabUnit(i);
+            GameObject cruiserPrefab = GetEnemyPrefabCruiser(i);
+
+            ShipDesign.ChangeEnemySkin(newPlanet, unitPrefab, cruiserPrefab);
+
+            Type scriptToAdd = GetDifficulty();
+
+            if (scriptToAdd != null)
+            {
+                GameObject newObject = new GameObject("Enemy" + i.ToString());
+                newObject.AddComponent(scriptToAdd);
+                newObject.transform.SetParent(gameObject.transform);
+
+                newObject.tag = "Enemy" + i.ToString();
+            }
+
+            spawnPoints.Add(enemySpawnPoint);
+        }
+    }
+
+    private GameObject GetEnemyPrefabUnit(int index)
+    {
+        switch (index)
+        {
+            case 1:
+                return enemy1UnitPrefab;
+
+            case 2:
+                return enemy2UnitPrefab;
+
+            case 3:
+                return enemy3UnitPrefab;
+
+            default:
+                return null;
+        }
+    }
+
+    private GameObject GetEnemyPrefabCruiser(int index)
+    {
+        switch (index)
+        {
+            case 1:
+                return enemy1CruiserPrefab;
+
+            case 2:
+                return enemy2CruiserPrefab;
+
+            case 3:
+                return enemy3CruiserPrefab;
+
+            default:
+                return null;
+        }
+    }
+
+    private Type GetDifficulty()
+    {
+        switch (gameModeManager.currentDifficulty)
+        {
+            case GameModeManager.Difficulty.Easy:
+                return typeof(AIEasyController);
+
+            case GameModeManager.Difficulty.Medium:
+                return typeof(AIMediumController);
+
+            case GameModeManager.Difficulty.Hard:
+                return typeof(AIHardController);
+
+            default:
+                return null;
+        }
+    }
+}
