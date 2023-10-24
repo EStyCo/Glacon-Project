@@ -20,14 +20,6 @@ public class AIHardController : MonoBehaviour
         CheckStartBattle();
     }
 
-    private bool HasEnemyPlanets()
-    {
-        Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag(tagPlanet)
-                                 .Select(go => go.GetComponent<Planet>())
-                                 .Where(planet => planet != null)
-                                 .ToArray();
-        return enemyPlanets.Length > 0;
-    }
     private void CheckStartBattle()
     {
         Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag(tagPlanet)

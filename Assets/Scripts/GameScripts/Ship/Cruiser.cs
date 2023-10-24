@@ -4,7 +4,8 @@ using UnityEngine.U2D.Animation;
 
 public class Cruiser : Ship
 {
-    [SerializeField] public float movementSpeed = 0.55f;
+    [Header("Difference")] 
+    public float movementSpeed = 0.55f;
     public int health = 20;
 
     [Header("Skin Settings")]

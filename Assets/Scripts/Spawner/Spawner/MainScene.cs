@@ -15,7 +15,7 @@ public class MainSceneSpawner : Spawner
 
         for (int i = 0; i < numberOfPlanets; i++)
         {
-            Vector2 neutralSpawnPoint = GetRandomSpawnPoint();
+            Vector2 neutralSpawnPoint = GetRandomSpawnPoint(false);
             GameObject newPlanet = Instantiate(mainPlanetPrefab, neutralSpawnPoint, Quaternion.identity);
 
             int randomIndex = Random.Range(0, tags.Length);
@@ -34,7 +34,7 @@ public class MainSceneSpawner : Spawner
 
         for (int i = 0; i < countOfBlachHoles; i++)
         {
-            Vector2 SpawnPoint = GetRandomSpawnPoint();
+            Vector2 SpawnPoint = GetRandomSpawnPoint(false);
             GameObject newBlackHole = Instantiate(blackHole, SpawnPoint, Quaternion.identity);
 
 

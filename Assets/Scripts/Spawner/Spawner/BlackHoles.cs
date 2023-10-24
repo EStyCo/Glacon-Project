@@ -11,7 +11,7 @@ public class BlackHoles : Spawner
 
         for (int i = 0; i <= numbersOfBlackHoles; i++)
         {
-            Vector2 newSpawnPoint = GetRandomSpawnPoint();
+            Vector2 newSpawnPoint = GetRandomSpawnPoint(false);
 
             GameObject blackHole = Instantiate(blackHolePrefab, newSpawnPoint, Quaternion.identity);
             blackHole.transform.SetParent(canvasParent.transform, true);

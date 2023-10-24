@@ -14,7 +14,7 @@ public class Portals : Spawner
 
         for (int i = 0; i < numbersOfPortals; i++)
         {
-            Vector2 newSpawnPoint = GetRandomSpawnPoint();
+            Vector2 newSpawnPoint = GetRandomSpawnPoint(false);
 
             GameObject portal = Instantiate(portalPrefab, newSpawnPoint, Quaternion.identity);
             portal.transform.SetParent(canvasParent.transform, true);
@@ -42,7 +42,7 @@ public class Portals : Spawner
 
             for (int i = 0; i < randomIndex; i++)
             {
-                Vector2 newSpawnPoint = GetRandomSpawnPoint();
+                Vector2 newSpawnPoint = GetRandomSpawnPoint(false);
 
                 GameObject portal = Instantiate(portalPrefab, newSpawnPoint, Quaternion.identity);
                 portal.transform.SetParent(canvasParent.transform, true);

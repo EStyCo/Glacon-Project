@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.U2D.Animation;
 using Zenject;
 
@@ -21,8 +22,8 @@ public abstract class Spawner : MonoBehaviour
     [SerializeField] protected GameObject leftBottomPM;
     [SerializeField] protected GameObject rightTopSM;
 
-
-    protected float minDistance = 1.1f;
+    private float minDistance = 1.1f;
+    private float minDistanceToEnemy = 5f;
 
     private void Awake()
     {
@@ -36,8 +37,12 @@ public abstract class Spawner : MonoBehaviour
 
     protected abstract void GenerateObjects();
 
-    protected Vector2 GetRandomSpawnPoint()
+    protected Vector2 GetRandomSpawnPoint(bool isEnemy)
     {
+        bool isSucces = true;
+        int index = 0;
+        Vector2 defaultVector = new Vector2(0f, 0f);
+
         Vector2 randomPoint;
         Vector2 newVectorX = canvasParent.transform.InverseTransformPoint(rightBottomCanvas.transform.position) * canvasParent.transform.lossyScale.x;
         Vector2 newVectorY = canvasParent.transform.InverseTransformPoint(leftTopCanvas.transform.position) * canvasParent.transform.lossyScale.x;
@@ -47,10 +52,21 @@ public abstract class Spawner : MonoBehaviour
             float randomX = UnityEngine.Random.Range(newVectorX.x, newVectorY.x);
             float randomY = UnityEngine.Random.Range(newVectorY.y, newVectorX.y);
             randomPoint = new Vector2(randomX, randomY);
-        }
-        while (!IsValidSpawnPoint(randomPoint));
 
-        return randomPoint;
+            index++;
+            if (index > 250)
+            {
+                isSucces = false;
+                SceneManager.LoadScene(2);
+                break;
+            }
+        }
+        while (!IsValidSpawnPoint(randomPoint, isEnemy));
+
+        if (isSucces)
+            return randomPoint;
+        else
+            return defaultVector;
     }
 
     protected void SpawnNeutralPlanets()
@@ -61,7 +77,7 @@ public abstract class Spawner : MonoBehaviour
         {
             int randomSize = UnityEngine.Random.Range(1, 4);
 
-            Vector2 neutralSpawnPoint = GetRandomSpawnPoint();
+            Vector2 neutralSpawnPoint = GetRandomSpawnPoint(false);
             GameObject neutralPlanet = diContainer.InstantiatePrefab(planetPrefab, neutralSpawnPoint, Quaternion.identity, t);
 
             Planet planetScript = neutralPlanet.GetComponent<Planet>();
@@ -74,7 +90,7 @@ public abstract class Spawner : MonoBehaviour
         }
     }
 
-    protected bool IsValidSpawnPoint(Vector2 point)
+    protected bool IsValidSpawnPoint(Vector2 point, bool isEnemy)
     {
         if (leftBottomPM != null)
         {
@@ -98,9 +114,16 @@ public abstract class Spawner : MonoBehaviour
             }
         }
 
+        float distance;
+
+        if (isEnemy)
+            distance = minDistanceToEnemy;
+        else
+            distance = minDistance;
+
         foreach (Vector2 spawnPoint in spawnPoints)
         {
-            if (Vector2.Distance(point, spawnPoint) < minDistance)
+            if (Vector2.Distance(point, spawnPoint) < distance)
             {
                 return false;
             }

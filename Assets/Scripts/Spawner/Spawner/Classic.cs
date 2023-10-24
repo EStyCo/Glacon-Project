@@ -18,7 +18,7 @@ public class Classic : Spawner
 
     protected override void GenerateObjects()
     {
-        Vector2 playerSpawnPoint = GetRandomSpawnPoint();
+        Vector2 playerSpawnPoint = GetRandomSpawnPoint(true);
 
         GameObject playerPlanet = diContainer.InstantiatePrefab(planetPrefab, playerSpawnPoint, Quaternion.identity, t);
         ShipDesign.ChangePlayerSkin(playerPlanet, playerUnitPrefab, playerCruiserPrefab);
@@ -43,7 +43,7 @@ public class Classic : Spawner
 
         for (int i = 1; i <= count; i++)
         {
-            Vector2 enemySpawnPoint = GetRandomSpawnPoint();
+            Vector2 enemySpawnPoint = GetRandomSpawnPoint(true);
             GameObject newPlanet = diContainer.InstantiatePrefab(planetPrefab, enemySpawnPoint, Quaternion.identity, t);
             newPlanet.tag = "Enemy" + i.ToString();
             newPlanet.GetComponent<SpriteRenderer>().color = enemyColors[i];

@@ -8,7 +8,7 @@ public class SpeedTime : Spawner
 {
     protected override void GenerateObjects()
     {
-        Vector3 playerSpawnPoint = GetRandomSpawnPoint();
+        Vector3 playerSpawnPoint = GetRandomSpawnPoint(false);
         Instantiate(planetPrefab, playerSpawnPoint, Quaternion.identity);
         spawnPoints.Add(playerSpawnPoint);
 

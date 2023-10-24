@@ -4,24 +4,33 @@ using UnityEngine;
 
 public abstract class Ship : MonoBehaviour
 {
+    [HideInInspector] public Transform target;
+    [HideInInspector] public GameObject unitPrefab;
+    [HideInInspector] public GameObject cruiserPrefab;
+    [HideInInspector] public bool isImmuneToTP = false;
+    [HideInInspector] public string tagUnit;
+
     protected GameObject canvasParent;
-    public Transform target;
-    public GameObject unitPrefab;
-    public GameObject cruiserPrefab;
     protected Planet targetPlanet;
     protected SpriteRenderer sprite;
     protected Animator animator;
     protected CapsuleCollider2D colliderUnit;
     protected Rigidbody2D rb;
 
-    public bool isImmuneToTP = false;
     protected bool isMoving = true;
     protected bool isDestruction = false;
     protected bool isRotation = true;
     protected bool isAbsorb = false;
-    public string tagUnit;
 
     protected float suctionForce = 0.55f;
+
+    protected abstract void OnCollisionEnter2D(Collision2D collision);
+
+    protected abstract void OnTriggerStay2D(Collider2D collision);
+
+    protected abstract IEnumerator Destruction();
+
+    abstract protected void Moving();
 
     protected void Start()
     {
@@ -34,15 +43,12 @@ public abstract class Ship : MonoBehaviour
         tagUnit = gameObject.tag;
         StartCoroutine(CorrectAngleTracking());
     }
-    protected void Update()
-    {
-        Moving();
-    }
-    public void SetTarget(Planet tagetP)
-    {
-        targetPlanet = tagetP;
-    }
-    abstract protected void Moving();
+
+    protected void Update() => Moving();
+
+    public void SetTarget(Planet tagetP) => targetPlanet = tagetP;
+
+    public void ImmuneToTP() => StartCoroutine(StartImmune());
 
     protected IEnumerator CorrectAngleTracking()
     {
@@ -59,11 +65,6 @@ public abstract class Ship : MonoBehaviour
         }
     }
 
-    public void ImmuneToTP()
-    {
-        StartCoroutine(StartImmune());
-    }
-
     protected IEnumerator StartImmune()
     {
         isImmuneToTP = true;
@@ -74,12 +75,6 @@ public abstract class Ship : MonoBehaviour
             isImmuneToTP = false;
         }
     }
-
-    protected abstract void OnCollisionEnter2D(Collision2D collision);
-
-    protected abstract void OnTriggerStay2D(Collider2D collision);
-
-    protected abstract IEnumerator Destruction();
 
 
     protected IEnumerator Absorb(Collider2D collision)
@@ -102,8 +97,6 @@ public abstract class Ship : MonoBehaviour
         }
         isMoving = true;
     }
-
-
 
     protected void OnTriggerExit2D(Collider2D collision)
     {
