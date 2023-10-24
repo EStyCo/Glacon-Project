@@ -20,8 +20,11 @@ public static class ShipDesign
         skinUnitsResolver.SetCategoryAndLabel("Ships", "Ship" + skinUnits.ToString());
 
         GameObject tempCruiserPrefab = instance.GetComponent<Planet>().cruiserPrefab = cruiserPrefab;
-        SpriteResolver skinCruisersResolver = tempCruiserPrefab?.GetComponent<SpriteResolver>();
-        skinCruisersResolver.SetCategoryAndLabel("Ships", "Ship" + skinUnits.ToString());
+        SpriteResolver skinCruisers = tempCruiserPrefab?.GetComponent<Cruiser>().skinCruiser;
+        skinCruisers.SetCategoryAndLabel("Cruiser", "Cruiser" + skinUnits.ToString());
+
+        SpriteResolver skinShieldCruisers = tempCruiserPrefab?.GetComponent<Cruiser>().skinShield;
+        skinShieldCruisers.SetCategoryAndLabel("CruiserShield", "Shield" + skinUnits.ToString());
     }
 
     /// <summary>
@@ -32,14 +35,18 @@ public static class ShipDesign
     /// <param name="cruiserPrefab"> "Префаб Крейсера" </param>
     public static void ChangeEnemySkin(GameObject planetPrefab, GameObject unitPrefab, GameObject cruiserPrefab)
     {
+        int randomIndex = Random.Range(1, 6);
         GameObject instance = planetPrefab;
 
         GameObject tempUnitPrefab = instance.GetComponent<Planet>().unitPrefab = unitPrefab;
         SpriteResolver skinUnitsResolver = tempUnitPrefab?.GetComponent<SpriteResolver>();
-        skinUnitsResolver.SetCategoryAndLabel("Ships", "Ship" + Random.Range(1, 7).ToString());
+        skinUnitsResolver.SetCategoryAndLabel("Ships", "Ship" + randomIndex.ToString());
 
         GameObject tempCruiserPrefab = instance.GetComponent<Planet>().cruiserPrefab = cruiserPrefab;
-        SpriteResolver skinCruisersResolver = tempCruiserPrefab?.GetComponent<SpriteResolver>();
-        skinCruisersResolver.SetCategoryAndLabel("Ships", "Ship" + Random.Range(1, 7).ToString());
+        SpriteResolver skinCruisers = tempCruiserPrefab?.GetComponent<Cruiser>().skinCruiser;
+        skinCruisers.SetCategoryAndLabel("Cruiser", "Cruiser" + randomIndex.ToString());
+
+        SpriteResolver skinShieldCruisers = tempCruiserPrefab?.GetComponent<Cruiser>().skinShield;
+        skinShieldCruisers.SetCategoryAndLabel("CruiserShield", "Shield" + randomIndex.ToString());
     }
 }

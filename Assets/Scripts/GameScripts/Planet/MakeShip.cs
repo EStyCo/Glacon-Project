@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class MakeShip : MonoBehaviour
 {
+    [Inject] private DiContainer diContainer;
+    [Inject] private ProgressPlayer player;
+    [Inject] private ProgressEnemy1 enemy1;
+    [Inject] private ProgressEnemy2 enemy2;
+    [Inject] private ProgressEnemy3 enemy3;
+
     private Planet planet;
     public GameObject unitPrefab;
     public GameObject cruiserPrefab;
@@ -19,15 +26,15 @@ public class MakeShip : MonoBehaviour
         unitPrefab = planet.unitPrefab;
         cruiserPrefab = planet.cruiserPrefab;
 
-        int cruisers = unitsToSend / 10;
-        int units = unitsToSend % 10;
+        int cruisers = unitsToSend / 20;
+        int units = unitsToSend % 20;
 
         for (int i = 0; i < cruisers; i++)
         {
-            if (planet.currentUnitCount > 10)
+            if (planet.currentUnitCount > 20)
             {
                 SendCruisers(targetPlanet);
-                planet.currentUnitCount -= 10;
+                planet.currentUnitCount -= 20;
                 yield return new WaitForSeconds(0.08f);
             }
         }
@@ -68,10 +75,12 @@ public class MakeShip : MonoBehaviour
     {
         Vector3 directionToTarget = (targetPlanet.transform.position - spawnPosition).normalized;
         Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, directionToTarget);
-        GameObject unitInstance = Instantiate(prefab, spawnPosition, spawnRotation);
+        GameObject unitInstance = diContainer.InstantiatePrefab(prefab, spawnPosition, spawnRotation, planet.unitsParent.transform);
+
+        UnitConstructor.Instance.ChangeUnit(unitInstance);
+
         unitInstance.GetComponent<Unit>().unitPrefab = unitPrefab;
         unitInstance.GetComponent<Unit>().cruiserPrefab = cruiserPrefab;
-        unitInstance.transform.SetParent(planet.unitsParent.transform, false);
         Unit unitMovement = unitInstance.GetComponent<Unit>();
 
         if (unitMovement != null)
@@ -89,20 +98,27 @@ public class MakeShip : MonoBehaviour
     {
         Vector3 directionToTarget = (targetPlanet.transform.position - spawnPosition).normalized;
         Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, directionToTarget);
-        GameObject unitInstance = Instantiate(prefab, spawnPosition, spawnRotation);
-        unitInstance.GetComponent<Cruiser>().unitPrefab = unitPrefab;
-        unitInstance.GetComponent<Cruiser>().cruiserPrefab = cruiserPrefab;
-        unitInstance.transform.SetParent(planet.unitsParent.transform, false);
-        Cruiser unitMovement = unitInstance.GetComponent<Cruiser>();
+        GameObject cruiserInstance = diContainer.InstantiatePrefab(prefab, spawnPosition, spawnRotation, planet.unitsParent.transform);
 
-        if (unitMovement != null)
+        UnitConstructor.Instance.ChangeCruiser(cruiserInstance);
+
+        cruiserInstance.GetComponent<Cruiser>().unitPrefab = unitPrefab;
+        cruiserInstance.GetComponent<Cruiser>().cruiserPrefab = cruiserPrefab;
+        Cruiser cruiser = cruiserInstance.GetComponent<Cruiser>();
+
+        if (cruiser != null)
         {
-            unitInstance.tag = gameObject.tag;
-            unitMovement.tagUnit = unitInstance.tag.ToString();
-            unitInstance.GetComponent<SpriteRenderer>().color = planet.planetRenderer.color;
+            cruiser.tag = gameObject.tag;
+            cruiser.tagUnit = cruiserInstance.tag.ToString();
+            cruiser.GetComponent<SpriteRenderer>().color = planet.planetRenderer.color;
 
-            unitMovement.target = targetPlanet.transform;
-            unitMovement.SetTarget(targetPlanet);
+            cruiser.target = targetPlanet.transform;
+            cruiser.SetTarget(targetPlanet);
         }
+    }
+
+    private void CheckArmor(string tag)
+    { 
+        
     }
 }

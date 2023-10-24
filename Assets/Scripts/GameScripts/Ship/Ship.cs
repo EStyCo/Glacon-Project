@@ -79,33 +79,8 @@ public abstract class Ship : MonoBehaviour
 
     protected abstract void OnTriggerStay2D(Collider2D collision);
 
-    protected IEnumerator Destruction()
-    {
-        Vector2 initialPosition = transform.position;
+    protected abstract IEnumerator Destruction();
 
-        if (!isDestruction)
-        {
-            isRotation = false;
-            isMoving = false;
-
-            float randomAngle = Random.Range(0f, 360f);
-            Quaternion newRotation = Quaternion.Euler(0f, 0f, randomAngle);
-            transform.rotation = newRotation;
-
-            Vector2 randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-            Vector2 newPosition = initialPosition + randomDirection * Random.Range(-0.5f, 0.5f);
-            transform.position = newPosition;
-
-
-            colliderUnit.enabled = false;
-            isDestruction = true;
-            animator.Play("Bang");
-
-            yield return new WaitForSeconds(0.4f);
-
-            Destroy(gameObject);
-        }
-    }
 
     protected IEnumerator Absorb(Collider2D collision)
     {
@@ -145,6 +120,7 @@ public abstract class Ship : MonoBehaviour
             targetPlanet.tag = tagUnit;
             targetPlanet.planetRenderer.color = sprite.color;
             targetPlanet.CheckMakeUnits();
+            targetPlanet.CheckProgress();
 
             targetPlanet.unitPrefab = unitPrefab;
             targetPlanet.cruiserPrefab = cruiserPrefab;

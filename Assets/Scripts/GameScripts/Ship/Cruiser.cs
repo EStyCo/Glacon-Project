@@ -1,9 +1,18 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 
 public class Cruiser : Ship
 {
     [SerializeField] public float movementSpeed = 0.55f;
-    public int health = 10;
+    public int health = 20;
+
+    [Header("Skin Settings")]
+    [SerializeField] GameObject gun;
+    [SerializeField] GameObject shield;
+    public SpriteResolver skinCruiser;
+    public SpriteResolver skinShield;
+
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
@@ -91,5 +100,41 @@ public class Cruiser : Ship
             }
             Destroy(gameObject);
         }
+    }
+
+    protected override IEnumerator Destruction()
+    {
+        Vector2 initialPosition = transform.position;
+
+        if (!isDestruction)
+        {
+            isRotation = false;
+            isMoving = false;
+
+            float randomAngle = Random.Range(0f, 360f);
+            transform.rotation = Quaternion.Euler(0f, 0f, randomAngle);
+
+            Vector2 randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+            transform.position = initialPosition + randomDirection * Random.Range(-0.5f, 0.5f);
+
+            colliderUnit.enabled = false;
+            gun.SetActive(false);
+            shield.SetActive(false);
+
+            isDestruction = true;
+            animator.Play("Bang");
+
+            yield return new WaitForSeconds(0.4f);
+
+            Destroy(gameObject);
+        }
+    }
+
+    public void ShowShield(bool isEnabled)
+    {
+        if (isEnabled)
+            shield.GetComponent<SpriteRenderer>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+        else
+            shield.GetComponent<SpriteRenderer>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f / 255f);
     }
 }

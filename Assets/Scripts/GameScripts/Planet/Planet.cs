@@ -2,6 +2,7 @@ using Game;
 using TMPro;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
+using Zenject;
 
 public class Planet : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class Planet : MonoBehaviour
         large = 3
     } // Размеры планет
 
+    [Inject] Growth growth;
+
+    public int armor;
+    public float growthLevel;
     public GameObject unitPrefab;
     public GameObject cruiserPrefab;
     public SpriteRenderer planetRenderer;
@@ -34,6 +39,7 @@ public class Planet : MonoBehaviour
     private int maxUnitCurrent = 75;
     public int currentUnitCount;
     public float timerFromSize = 1f;
+    public float timerFinal = 0;
 
     public int tempCoroutin = 0;
 
@@ -51,9 +57,10 @@ public class Planet : MonoBehaviour
         spriteResolver = GetComponent<SpriteResolver>();
         circleCollider = GetComponent<CircleCollider2D>();
 
-        StartUnitCount();
         CheckSize((int)selectedSize);
+        StartUnitCount();
         SetColor();
+        growth.GetPlanet(gameObject);
     }
 
     private void SetColor()
@@ -135,9 +142,16 @@ public class Planet : MonoBehaviour
 
     public void CheckMakeUnits()
     {
-        if (!isIncreaseCoroutineRunning)
+        CheckProgress();
+        if (isIncreaseCoroutineRunning)
         {
-
+            tempCoroutin--;
+            StopAllCoroutines();
+            isIncreaseCoroutineRunning = false;
+            CheckMakeUnits();
+        }
+        else
+        {
             tempCoroutin++; // считаем сколько раз запусталсь корутина.
 
             StartCoroutine(IncreaseUnitsOverTime());
@@ -147,17 +161,35 @@ public class Planet : MonoBehaviour
 
     private System.Collections.IEnumerator IncreaseUnitsOverTime()
     {
-
-        if (selectedSize == Size.small) timerFromSize = 1.05f;
-        else if (selectedSize == Size.medium) timerFromSize = 0.75f;
-        else if (selectedSize == Size.large) timerFromSize = 0.55f;
+        ChangeGrowthLevel();
 
         while (true)
         {
+
             IncreaseUnits();
 
             yield return new WaitForSeconds(timerFromSize);
         }
+    }
+
+    public void ChangeGrowthLevel()
+    {
+        switch (selectedSize)
+        {
+            case Size.small:
+                timerFromSize = 1.25f;
+                break;
+            case Size.medium:
+                timerFromSize = 0.95f;
+                break;
+            case Size.large:
+                timerFromSize = 0.75f;
+                break;
+            default:
+                break;
+        }
+
+        timerFromSize = timerFromSize - (timerFromSize * growthLevel);
     }
 
     public void SelectPlanet()
@@ -171,4 +203,8 @@ public class Planet : MonoBehaviour
         framePlanet.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f / 255f);
     }
 
+    public void CheckProgress()
+    {
+        GetComponent<ProgressPlanet>().CheckProgress();
+    }
 }

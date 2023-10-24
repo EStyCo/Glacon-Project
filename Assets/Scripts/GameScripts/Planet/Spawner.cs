@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 using Zenject;
 
 public abstract class Spawner : MonoBehaviour
 {
+    [Inject] protected DiContainer diContainer;
     [Inject] protected GameModeManager gameModeManager;
     [Inject(Id = "Planet")] protected GameObject planetPrefab;
     [Inject(Id = "PlayerUnit")] protected GameObject playerUnitPrefab;
@@ -11,6 +13,7 @@ public abstract class Spawner : MonoBehaviour
 
     protected List<Vector2> spawnPoints = new List<Vector2>();
     protected Color neutralColor = new Color(0.8207547f, 0.8207547f, 0.7162246f);
+    protected Transform t;
 
     [SerializeField] protected Canvas canvasParent;
     [SerializeField] protected GameObject leftTopCanvas;
@@ -27,6 +30,7 @@ public abstract class Spawner : MonoBehaviour
     }
     void Start()
     {
+        t = canvasParent.transform;
         GenerateObjects();
     }
 
@@ -55,11 +59,15 @@ public abstract class Spawner : MonoBehaviour
 
         for (int i = 0; i < numberOfPlanets; i++)
         {
-            Vector2 neutralSpawnPoint = GetRandomSpawnPoint();
-            GameObject neutralPlanet = Instantiate(planetPrefab, neutralSpawnPoint, Quaternion.identity);
+            int randomSize = UnityEngine.Random.Range(1, 4);
 
-            neutralPlanet.transform.SetParent(canvasParent.transform, true);
-            neutralPlanet.GetComponent<Planet>().selectedSize = (Planet.Size)UnityEngine.Random.Range(1, 4);
+            Vector2 neutralSpawnPoint = GetRandomSpawnPoint();
+            GameObject neutralPlanet = diContainer.InstantiatePrefab(planetPrefab, neutralSpawnPoint, Quaternion.identity, t);
+
+            Planet planetScript = neutralPlanet.GetComponent<Planet>();
+            planetScript.selectedSize = (Planet.Size)randomSize;
+            planetScript.framePlanet.GetComponent<SpriteResolver>().SetCategoryAndLabel("Frame", "Frame" + randomSize.ToString());
+
             neutralPlanet.GetComponent<SpriteRenderer>().color = neutralColor;
             neutralPlanet.tag = "NeutralPlanet";
             spawnPoints.Add(neutralSpawnPoint);

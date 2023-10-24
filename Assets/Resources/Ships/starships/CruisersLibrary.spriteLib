@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Cruiser
+    m_Hash: 693080733
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Cruiser5
+      m_Hash: 170298309
+      m_Sprite: {fileID: 21300000, guid: 9dbb6de60767c3542be75337845a4274, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 9dbb6de60767c3542be75337845a4274, type: 3}
+    - m_Name: Cruiser4
+      m_Hash: 1025620819
+      m_Sprite: {fileID: 21300000, guid: 3518bc15b61f6044d8879b09f6c2a293, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 3518bc15b61f6044d8879b09f6c2a293, type: 3}
+    - m_Name: Cruiser3
+      m_Hash: 591736560
+      m_Sprite: {fileID: 21300000, guid: 01bc691f744f19645bacd3c07c02469a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 01bc691f744f19645bacd3c07c02469a, type: 3}
+    - m_Name: Cruiser2
+      m_Hash: 339877478
+      m_Sprite: {fileID: 21300000, guid: 282cd66576f9b7345a2580b2c237a5fb, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 282cd66576f9b7345a2580b2c237a5fb, type: 3}
+    - m_Name: Cruiser1
+      m_Hash: 223039452
+      m_Sprite: {fileID: 21300000, guid: a32f867e6934e3a43ab83de9b71a941a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: a32f867e6934e3a43ab83de9b71a941a, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 5
+  - m_Name: CruiserShield
+    m_Hash: 669684535
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Shield1
+      m_Hash: 581840819
+      m_Sprite: {fileID: 21300000, guid: a8aada962f276124e89ea6ed8ec361fe, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: a8aada962f276124e89ea6ed8ec361fe, type: 3}
+    - m_Name: Shield2
+      m_Hash: 1000832521
+      m_Sprite: {fileID: 21300000, guid: 3c1a03c7ace20ed469dab8b6a12c034a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 3c1a03c7ace20ed469dab8b6a12c034a, type: 3}
+    - m_Name: Shield3
+      m_Hash: 211832479
+      m_Sprite: {fileID: 21300000, guid: 7254155caa7f0b14fb963c199d6432cb, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 7254155caa7f0b14fb963c199d6432cb, type: 3}
+    - m_Name: Shield4
+      m_Hash: 314891068
+      m_Sprite: {fileID: 21300000, guid: 5cc9658851a65e44ab20cdd8597ed97d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 5cc9658851a65e44ab20cdd8597ed97d, type: 3}
+    - m_Name: Shield5
+      m_Hash: 633596842
+      m_Sprite: {fileID: 21300000, guid: be60a84193eb0bf44894fe6c256fa5ac, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: be60a84193eb0bf44894fe6c256fa5ac, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 5
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 638334176439784906
+  m_Version: 1

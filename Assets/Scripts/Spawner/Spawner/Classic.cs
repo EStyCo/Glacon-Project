@@ -11,6 +11,8 @@ public class Classic : Spawner
     [Inject(Id = "Enemy1Cruiser")] private GameObject enemy1CruiserPrefab;
     [Inject(Id = "Enemy2Cruiser")] private GameObject enemy2CruiserPrefab;
     [Inject(Id = "Enemy3Cruiser")] private GameObject enemy3CruiserPrefab;
+    
+    [Inject] protected Growth growth;
 
     private Color[] enemyColors = new Color[4];
 
@@ -18,9 +20,7 @@ public class Classic : Spawner
     {
         Vector2 playerSpawnPoint = GetRandomSpawnPoint();
 
-        GameObject playerPlanet = Instantiate(planetPrefab, playerSpawnPoint, Quaternion.identity);
-        playerPlanet.transform.SetParent(canvasParent.transform, true);
-
+        GameObject playerPlanet = diContainer.InstantiatePrefab(planetPrefab, playerSpawnPoint, Quaternion.identity, t);
         ShipDesign.ChangePlayerSkin(playerPlanet, playerUnitPrefab, playerCruiserPrefab);
 
         spawnPoints.Add(playerSpawnPoint);
@@ -28,7 +28,9 @@ public class Classic : Spawner
         SpawnEnemyPlanets();
         SpawnNeutralPlanets();
 
+        Invoke( "StartGrowthScript", 2f);
     }
+
     private void SpawnEnemyPlanets()
     {
         enemyColors[1] = new Color(1.0f, 0.0f, 0.0f); 
@@ -42,9 +44,8 @@ public class Classic : Spawner
         for (int i = 1; i <= count; i++)
         {
             Vector2 enemySpawnPoint = GetRandomSpawnPoint();
-            GameObject newPlanet = Instantiate(planetPrefab, enemySpawnPoint, Quaternion.identity);
+            GameObject newPlanet = diContainer.InstantiatePrefab(planetPrefab, enemySpawnPoint, Quaternion.identity, t);
             newPlanet.tag = "Enemy" + i.ToString();
-            newPlanet.transform.SetParent(canvasParent.transform, true);
             newPlanet.GetComponent<SpriteRenderer>().color = enemyColors[i];
 
             GameObject unitPrefab = GetEnemyPrefabUnit(i);
@@ -119,5 +120,10 @@ public class Classic : Spawner
             default:
                 return null;
         }
+    }
+
+    private void StartGrowthScript()
+    {
+        growth.CheckMembers();
     }
 }

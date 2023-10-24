@@ -1366,7 +1366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9056604, g: 0.49982202, b: 0.5825428, a: 1}
+  m_Color: {r: 0.9056604, g: 0.8661362, b: 0.49127805, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1871,7 +1871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2460395, g: 0.7364816, b: 0.9150943, a: 1}
+  m_Color: {r: 0.5486828, g: 0.62075704, b: 0.8490566, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2166,7 +2166,6 @@ MonoBehaviour:
   textPlanets: {fileID: 941179547}
   sliderPlanets: {fileID: 780792721}
   randomPlanets: {fileID: 1604682674}
-  initialPlanetsValue: 15
   count: 15
 --- !u!1 &908284606
 GameObject:
@@ -2896,7 +2895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5011275, g: 0.9056604, b: 0.13243146, a: 1}
+  m_Color: {r: 0.40970984, g: 0.8773585, b: 0.77825326, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3300,7 +3299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9150943, g: 0.57028145, b: 0.14244394, a: 1}
+  m_Color: {r: 0.9056604, g: 0.59549886, b: 0.31185475, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4393,7 +4392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.71449804, g: 0.8018868, b: 0.21560162, a: 1}
+  m_Color: {r: 0.8679245, g: 0.42986825, b: 0.6688082, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5159,7 +5158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7160586, g: 0.46662515, b: 0.9245283, a: 1}
+  m_Color: {r: 0.59560823, g: 0.34420612, b: 0.8018868, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
