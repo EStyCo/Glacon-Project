@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 public class MakeShip : MonoBehaviour
 {
     [Inject] private DiContainer diContainer;
+    [Inject] private ShipConstructor shipConstructor;
     [Inject] private ProgressPlayer player;
     [Inject] private ProgressEnemy1 enemy1;
     [Inject] private ProgressEnemy2 enemy2;
@@ -77,7 +76,7 @@ public class MakeShip : MonoBehaviour
         Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, directionToTarget);
         GameObject unitInstance = diContainer.InstantiatePrefab(prefab, spawnPosition, spawnRotation, planet.unitsParent.transform);
 
-        UnitConstructor.Instance.ChangeUnit(unitInstance);
+        shipConstructor.ChangeUnit(unitInstance);
 
         unitInstance.GetComponent<Unit>().unitPrefab = unitPrefab;
         unitInstance.GetComponent<Unit>().cruiserPrefab = cruiserPrefab;
@@ -100,7 +99,7 @@ public class MakeShip : MonoBehaviour
         Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, directionToTarget);
         GameObject cruiserInstance = diContainer.InstantiatePrefab(prefab, spawnPosition, spawnRotation, planet.unitsParent.transform);
 
-        UnitConstructor.Instance.ChangeCruiser(cruiserInstance);
+        shipConstructor.ChangeCruiser(cruiserInstance);
 
         cruiserInstance.GetComponent<Cruiser>().unitPrefab = unitPrefab;
         cruiserInstance.GetComponent<Cruiser>().cruiserPrefab = cruiserPrefab;
@@ -117,8 +116,4 @@ public class MakeShip : MonoBehaviour
         }
     }
 
-    private void CheckArmor(string tag)
-    { 
-        
-    }
 }

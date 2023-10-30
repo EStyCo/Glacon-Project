@@ -3,6 +3,7 @@ using Zenject;
 
 public class ProgressInstaller : MonoInstaller
 {
+    [SerializeField] private ShipConstructor shipConstructor;
     [SerializeField] private ProgressPlayer progressPlayer;
     [SerializeField] private ProgressEnemy1 progressEnemy1;
     [SerializeField] private ProgressEnemy2 progressEnemy2;
@@ -10,6 +11,7 @@ public class ProgressInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
+        Container.Bind<ShipConstructor>().FromInstance(shipConstructor).AsSingle().NonLazy();
         Container.Bind<ProgressPlayer>().FromInstance(progressPlayer).AsSingle().NonLazy();
         Container.Bind<ProgressEnemy1>().FromInstance(progressEnemy1).AsSingle().NonLazy();
         Container.Bind<ProgressEnemy2>().FromInstance(progressEnemy2).AsSingle().NonLazy();

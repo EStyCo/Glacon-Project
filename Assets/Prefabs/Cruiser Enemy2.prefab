@@ -432,13 +432,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5499fffd12c4fb44b99c41c198c98045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 0.55
+  armor: 0
+  health: 20
+  damage: 0
   target: {fileID: 0}
   unitPrefab: {fileID: 0}
   cruiserPrefab: {fileID: 0}
   isImmuneToTP: 0
+  isTryAvoid: 0
   tagUnit: 
-  movementSpeed: 0.55
-  health: 20
   gun: {fileID: 1272435948719458146}
   shield: {fileID: 1637719969419656669}
   skinCruiser: {fileID: 7820060231343451839}

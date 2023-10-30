@@ -1,13 +1,19 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Ship : MonoBehaviour
 {
+    [Header("Difference")]
+    public float movementSpeed = 0;
+    public int armor = 0;
+    public int health = 0;
+    public int damage = 0;
+
     [HideInInspector] public Transform target;
     [HideInInspector] public GameObject unitPrefab;
     [HideInInspector] public GameObject cruiserPrefab;
     [HideInInspector] public bool isImmuneToTP = false;
+    [HideInInspector] public bool isTryAvoid = false;
     [HideInInspector] public string tagUnit;
 
     protected GameObject canvasParent;
@@ -21,10 +27,11 @@ public abstract class Ship : MonoBehaviour
     protected bool isDestruction = false;
     protected bool isRotation = true;
     protected bool isAbsorb = false;
+    
 
     protected float suctionForce = 0.55f;
 
-    protected abstract void OnCollisionEnter2D(Collision2D collision);
+    protected abstract void OnCollisionStay2D(Collision2D collision);
 
     protected abstract void OnTriggerStay2D(Collider2D collision);
 
@@ -110,7 +117,9 @@ public abstract class Ship : MonoBehaviour
     {
         if (targetPlanet.currentUnitCount < 1)
         {
+            targetPlanet.DeselectPlanet();
             targetPlanet.tag = tagUnit;
+            targetPlanet.turret.GetComponent<Turret>().ChangeTag(tagUnit);
             targetPlanet.planetRenderer.color = sprite.color;
             targetPlanet.CheckMakeUnits();
             targetPlanet.CheckProgress();
@@ -118,5 +127,25 @@ public abstract class Ship : MonoBehaviour
             targetPlanet.unitPrefab = unitPrefab;
             targetPlanet.cruiserPrefab = cruiserPrefab;
         }
+    }
+
+    public void TryAvoidCollision(int healthEnemy, int enemyDamage)
+    {
+        for (int i = 0; i < healthEnemy; i++)
+        {
+            if (Random.Range(0, 101) > armor)
+                DecreaseHealth(enemyDamage);
+        }
+    }
+
+    protected void DecreaseHealth(int enemyDamage)
+    {
+        health--;
+
+        if (Random.Range(0, 101) > enemyDamage)
+            health--;
+
+        if (health <= 0)
+            StartCoroutine(Destruction());
     }
 }

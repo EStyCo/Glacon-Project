@@ -2352,6 +2352,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433513193d0255e4eb3b401de630d4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bustMoveSpeed: 0
+  bustArmor: 0
+  bustDamage: 0
 --- !u!1 &1739879620
 GameObject:
   m_ObjectHideFlags: 0

@@ -74,6 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5811304252557588626}
   - component: {fileID: 4098574310507652519}
+  - component: {fileID: 3436354101028748854}
   - component: {fileID: 6362550977963866734}
   - component: {fileID: 5640232878677190263}
   - component: {fileID: 7948572025777969379}
@@ -112,10 +113,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3278cc8738e56f647bf1f31e3fc9265e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shipConstructor: {fileID: 3436354101028748854}
   progressPlayer: {fileID: 6362550977963866734}
   progressEnemy1: {fileID: 5640232878677190263}
   progressEnemy2: {fileID: 7948572025777969379}
   progressEnemy3: {fileID: 7892999729010826434}
+--- !u!114 &3436354101028748854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4904436940911126488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433513193d0255e4eb3b401de630d4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bustMoveSpeed: 0.15
+  bustArmor: 10
+  bustDamage: 10
 --- !u!114 &6362550977963866734
 MonoBehaviour:
   m_ObjectHideFlags: 0

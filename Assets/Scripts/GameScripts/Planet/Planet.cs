@@ -15,11 +15,12 @@ public class Planet : MonoBehaviour
 
     [Inject] Growth growth;
 
+    public GameObject turret;
     public int armor;
     public float growthLevel;
-    public GameObject unitPrefab;
-    public GameObject cruiserPrefab;
-    public SpriteRenderer planetRenderer;
+    [HideInInspector] public GameObject unitPrefab;
+    [HideInInspector] public GameObject cruiserPrefab;
+    [HideInInspector] public SpriteRenderer planetRenderer;
     public TextMeshProUGUI unitCountText;
     public SpriteRenderer framePlanet;
     public GameObject unitsParent;
@@ -36,7 +37,7 @@ public class Planet : MonoBehaviour
     private bool isIncreaseCoroutineRunning = false;
     private string tagPlanet;
 
-    private int maxUnitCurrent = 75;
+    public int maxUnitCurrent = 60;
     public int currentUnitCount;
     public float timerFromSize = 1f;
     public float timerFinal = 0;
@@ -75,11 +76,11 @@ public class Planet : MonoBehaviour
     {
         if (gameObject.tag != "NeutralPlanet")
         {
-            currentUnitCount = 65;
+            currentUnitCount = 60;
+
             if (gameObject.tag == "PlayerPlanet")
-            {
-                currentUnitCount = 40;
-            }
+                currentUnitCount = Random.Range(35, 45);
+
             CheckMakeUnits();
         }
         else currentUnitCount = Random.Range(15, 41);
@@ -143,6 +144,7 @@ public class Planet : MonoBehaviour
     public void CheckMakeUnits()
     {
         CheckProgress();
+
         if (isIncreaseCoroutineRunning)
         {
             tempCoroutin--;

@@ -199,14 +199,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57043401ba635624db137983761c5f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 0.95
+  armor: 0
+  health: 1
+  damage: 0
   target: {fileID: 0}
   unitPrefab: {fileID: 0}
   cruiserPrefab: {fileID: 0}
   isImmuneToTP: 0
+  isTryAvoid: 0
   tagUnit: 
-  movementSpeed: 0.95
-  armor: 0
-  damage: 0
 --- !u!95 &8909385735165267071
 Animator:
   serializedVersion: 5

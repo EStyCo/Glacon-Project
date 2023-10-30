@@ -4,10 +4,6 @@ using UnityEngine.U2D.Animation;
 
 public class Cruiser : Ship
 {
-    [Header("Difference")] 
-    public float movementSpeed = 0.55f;
-    public int health = 20;
-
     [Header("Skin Settings")]
     [SerializeField] GameObject gun;
     [SerializeField] GameObject shield;
@@ -15,39 +11,40 @@ public class Cruiser : Ship
     public SpriteResolver skinShield;
 
 
-    protected override void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag != gameObject.tag)
         {
-            Cruiser cruiser = collision.gameObject.GetComponent<Cruiser>();
+            if (collision.gameObject.TryGetComponent(out Cruiser cruiser) && gameObject.GetComponent<Cruiser>() != null)
+            {
+                isTryAvoid = true;
 
-            if (cruiser != null && cruiser.health == health)
-            {
-                StartCoroutine(Destruction());
-                cruiser.StartCoroutine(Destruction());
-            }
-            else if (cruiser != null && cruiser.health > health)
-            {
-                cruiser.health -= health;
-                StartCoroutine(Destruction());
-            }
-            else if (cruiser != null && cruiser.health < health)
-            {
-                health -= cruiser.health;
-                cruiser.StartCoroutine(Destruction());
-            }
-            else
-            {
-                if (health > 0)
+                int enemyDamage = cruiser.damage;
+                int enemyHealth = cruiser.health;
+                int mainHealth = health;
+
+                if (enemyHealth <= 0 && mainHealth <= 0)
+                    return;
+
+                if (cruiser.isTryAvoid)
                 {
-                    health -= 1;
+                    TryAvoidCollision(enemyHealth, damage);
+                    cruiser.TryAvoidCollision(mainHealth, enemyDamage);
                 }
-                if (health <= 0)
-                {
-                    StartCoroutine(Destruction());
-                }
+            }
+
+            if (collision.gameObject.TryGetComponent(out Unit unit))
+            {
+                int enemyDamage = unit.damage;
+
+                TryAvoidCollision(unit.health, enemyDamage);
             }
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        isTryAvoid = false;
     }
 
     protected override void Moving()
@@ -73,25 +70,16 @@ public class Cruiser : Ship
             collision.gameObject == targetPlanet.gameObject &&
             gameObject.tag != collision.gameObject.tag)
         {
-            int tempUnits = targetPlanet.currentUnitCount - health;
-
-            if (tempUnits <= 0)
-            {
-                targetPlanet.currentUnitCount -= (health + tempUnits);
-                ChangeTagPlanet();
-                targetPlanet.currentUnitCount += Mathf.Abs(tempUnits);
-            }
-            else
-            {
-                targetPlanet.currentUnitCount -= health;
-            }
-            StartCoroutine(Destruction());
+            DesantToPlanet(collision.gameObject);
         }
         else if (targetPlanet != null &&
                  collision.gameObject == targetPlanet.gameObject &&
                  gameObject.tag == collision.gameObject.tag)
         {
             targetPlanet.currentUnitCount += health;
+
+            if (targetPlanet.currentUnitCount > targetPlanet.maxUnitCurrent)
+                targetPlanet.currentUnitCount = targetPlanet.maxUnitCurrent;
 
             SpriteRenderer targetSprite = targetPlanet.GetComponent<SpriteRenderer>();
             if (sprite.color != targetSprite.color)
@@ -101,6 +89,50 @@ public class Cruiser : Ship
             }
             Destroy(gameObject);
         }
+
+        if (collision.TryGetComponent(out Bullet bullet))
+        {
+            Destroy(bullet.gameObject);
+            health--;
+
+            if (health <= 0)
+                StartCoroutine(Destruction());
+        }
+    }
+
+    private void DesantToPlanet(GameObject obj)
+    {
+        Planet planet = obj.GetComponent<Planet>();
+        int index = health;
+
+        for (int i = 0; i < index; i++)
+        {
+            if (Random.Range(0, 101) < damage)
+            {
+                planet.DecreaseUnits();
+                health--;
+            }
+
+            if (Random.Range(0, 101) < planet.armor)
+            {
+                health--;
+            }
+            else
+            {
+                planet.DecreaseUnits();
+                health--;
+            }
+
+
+            if (planet.currentUnitCount <= 0)
+            {
+                ChangeTagPlanet();
+                planet.currentUnitCount += (index - i);
+                break;
+            }
+        }
+
+        StartCoroutine(Destruction());
     }
 
     protected override IEnumerator Destruction()
@@ -138,4 +170,5 @@ public class Cruiser : Ship
         else
             shield.GetComponent<SpriteRenderer>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f / 255f);
     }
+
 }

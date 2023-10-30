@@ -3,32 +3,13 @@ using UnityEngine;
 
 public class Unit : Ship
 {
-    public float movementSpeed = 0.95f;
-    public int armor = 0;
-    public int damage;
+    #region Triggers and Collisions
 
-    protected override void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag != gameObject.tag)
         {
-            int randomValue = Random.Range(0, 101);
-            if (randomValue < armor)
-            {
-
-            }
-            else
-            {
-                StartCoroutine(Destruction());
-            }
-        }
-    }
-
-    protected override void Moving()
-    {
-        if (isMoving)
-        {
-            Vector3 newPosition = Vector2.MoveTowards(transform.position, target.position, movementSpeed * Time.deltaTime);
-            transform.position = newPosition;
+            TryAvoidCollision(1, damage);
         }
     }
 
@@ -49,8 +30,7 @@ public class Unit : Ship
             targetPlanet.DecreaseUnits();
             ChangeTagPlanet();
 
-            int randomValue = Random.Range(0, 101);
-            if (randomValue < damage)
+            if (Random.Range(0, 101) < damage)
             {
                 targetPlanet.DecreaseUnits();
             }
@@ -71,6 +51,23 @@ public class Unit : Ship
                 targetPlanet.color = sprite.color;
             }
             Destroy(gameObject);
+        }
+
+        if (collision.TryGetComponent(out Bullet bullet))
+        {
+            Destroy(bullet.gameObject);
+            StartCoroutine(Destruction());
+        }
+    }
+
+    #endregion
+
+    protected override void Moving()
+    {
+        if (isMoving)
+        {
+            Vector3 newPosition = Vector2.MoveTowards(transform.position, target.position, movementSpeed * Time.deltaTime);
+            transform.position = newPosition;
         }
     }
 
