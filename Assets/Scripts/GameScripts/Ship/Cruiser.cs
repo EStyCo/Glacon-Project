@@ -144,20 +144,21 @@ public class Cruiser : Ship
             isRotation = false;
             isMoving = false;
 
+            sprite.color = new Color(255/255f, 255 / 255f, 255 / 255f, 0 / 255f);
             float randomAngle = Random.Range(0f, 360f);
             transform.rotation = Quaternion.Euler(0f, 0f, randomAngle);
 
             Vector2 randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-            transform.position = initialPosition + randomDirection * Random.Range(-0.5f, 0.5f);
+            transform.position = initialPosition + randomDirection * Random.Range(-0.25f, 0.25f);
 
             colliderUnit.enabled = false;
             gun.SetActive(false);
             shield.SetActive(false);
 
             isDestruction = true;
-            animator.Play("Bang");
+            animator.Play("BangCruiser");
 
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.55f);
 
             Destroy(gameObject);
         }

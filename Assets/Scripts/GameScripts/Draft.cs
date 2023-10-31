@@ -103,8 +103,8 @@ public class Draft : MonoBehaviour
 
     private bool IsValidPosition(Vector2 randomPoint)
     {
-        if (randomPoint.x <= 8f && randomPoint.x >= -8f &&
-            randomPoint.y <= 5 && randomPoint.y >= -5f)
+        if (randomPoint.x <= 15f && randomPoint.x >= -15f &&
+            randomPoint.y <= 10 && randomPoint.y >= -10f)
         {
             return false;
         }

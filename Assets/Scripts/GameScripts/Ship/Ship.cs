@@ -16,10 +16,11 @@ public abstract class Ship : MonoBehaviour
     [HideInInspector] public bool isTryAvoid = false;
     [HideInInspector] public string tagUnit;
 
+    protected Animator animator;
+
     protected GameObject canvasParent;
     protected Planet targetPlanet;
     protected SpriteRenderer sprite;
-    protected Animator animator;
     protected CapsuleCollider2D colliderUnit;
     protected Rigidbody2D rb;
 
@@ -41,10 +42,10 @@ public abstract class Ship : MonoBehaviour
 
     protected void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         canvasParent = GameObject.FindGameObjectWithTag("CanvasParent");
         rb = GetComponent<Rigidbody2D>();
         colliderUnit = GetComponent<CapsuleCollider2D>();
-        animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
 
         tagUnit = gameObject.tag;

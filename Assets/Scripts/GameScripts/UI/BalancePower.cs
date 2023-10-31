@@ -96,7 +96,7 @@ public class BalancePower : MonoBehaviour
         {
             foreach (Planet planet in planetLists[i])
             {
-                tempUnitsCount += planet.currentUnitCount;
+                //tempUnitsCount += planet.currentUnitCount;
             }
         }
         int flyedUnits = FindUnits();
@@ -135,7 +135,7 @@ public class BalancePower : MonoBehaviour
 
     private void UpdateFill()
     {
-        SumUnits();
+        /*SumUnits();
         int playerCount = 0;
         foreach (Planet planet in playerPlanet)
         {
@@ -187,7 +187,7 @@ public class BalancePower : MonoBehaviour
         }
 
         float tempPlayerCount = (float)playerCount / (float)unitsCount;
-        StartCoroutine(SmoothTransition(tempPlayerCount, playerFill, 1.4f));
+        StartCoroutine(SmoothTransition(tempPlayerCount, playerFill, 1.4f));*/
     }
 
     IEnumerator SmoothTransition(float newFillCount, Image imageFill, float duration)

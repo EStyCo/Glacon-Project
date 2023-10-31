@@ -15,45 +15,40 @@ public class Planet : MonoBehaviour
 
     [Inject] Growth growth;
     [Inject] Draft draft;
-
-    public GameObject turret;
-    public int armor;
-    public float growthLevel;
+    [HideInInspector] public Color color;
     [HideInInspector] public GameObject unitPrefab;
     [HideInInspector] public GameObject cruiserPrefab;
     [HideInInspector] public SpriteRenderer planetRenderer;
-    public TextMeshProUGUI unitCountText;
-    public SpriteRenderer framePlanet;
-    public GameObject unitsParent;
-    private GameObject canvasParent;
+    [HideInInspector] public Size selectedSize = Size.medium;
+
     private SpriteResolver spriteResolver;
     private CircleCollider2D circleCollider;
     private MakeShip makeShip;
+    private bool isCoroutineRunning = false;
 
-    public Color color;
-    public Size selectedSize = Size.medium;
+    public int armor;
 
-    private const float unitSpacing = 0.25f;
+    [Header("Addictions")]
+    public GameObject turret;
+    public TextMeshProUGUI unitCountText;
+    public SpriteRenderer framePlanet;
+    public GameObject unitsParent;
+    public Animator GrowthEffect;
 
-    private bool isIncreaseCoroutineRunning = false;
-    private string tagPlanet;
-
-    public int maxUnitCurrent = 60;
-    public int currentUnitCount;
-    public float timerFromSize = 1f;
-    public float timerFinal = 0;
-
-    public int tempCoroutin = 0;
+    [Header("Units")]
+    public float currentUnitCount;
+    public float maxUnitCurrent = 60f;
+    public float spawnRate = 1f;
+    public float growthLevel = 0f;
 
     private void Update()
     {
-        unitCountText.text = currentUnitCount.ToString();
+        unitCountText.text = currentUnitCount.ToString("0");
     }
+
     private void Start()
     {
-        canvasParent = GameObject.FindGameObjectWithTag("CanvasParent");
         unitsParent = GameObject.FindGameObjectWithTag("UnitsParent");
-        tagPlanet = gameObject.tag.ToString();
         makeShip = gameObject.GetComponent<MakeShip>();
         planetRenderer = GetComponent<SpriteRenderer>();
         spriteResolver = GetComponent<SpriteResolver>();
@@ -86,7 +81,8 @@ public class Planet : MonoBehaviour
             CheckMakeUnits();
         }
         else currentUnitCount = Random.Range(15, 41);
-    } // Генерация юнитов на планетах игрока и противника.
+    }
+
     public void SendShipsToPlanet(Planet targetPlanet)
     {
         if (gameObject.CompareTag("PlayerPlanet") && Selector.Instance != null)
@@ -101,15 +97,15 @@ public class Planet : MonoBehaviour
         }
         else
         {
-            int unitsToSend = currentUnitCount / 2;
+            int unitsToSend = (int)currentUnitCount / 2;
 
             if (unitsToSend > 0)
             {
                 StartCoroutine(makeShip.SpawnUnitsWithDelay(targetPlanet, unitsToSend));
             }
         }
+    }
 
-    } // Отправка юнитов с планеты на планету.
     public void CheckSize(int value)
     {
         Size selectedSize = (Size)value;
@@ -129,71 +125,61 @@ public class Planet : MonoBehaviour
             spriteResolver.SetCategoryAndLabel("Large", "Large" + Random.Range(1, 3).ToString());
             circleCollider.radius = 0.7f;
         }
-    } // Проверка планеты на размер для старта корутины генерации юнитов.
+
+        ChangeSpawnRate();
+    }
 
     public void IncreaseUnits()
     {
         if (currentUnitCount < maxUnitCurrent)
             currentUnitCount++;
-    } // Увеличение юнитов
+    }
 
     public void DecreaseUnits()
     {
         if (currentUnitCount > 0)
             currentUnitCount--;
-    } // Уменьшение юнитов и смена тэга планеты.
+    }
 
     public void CheckMakeUnits()
     {
         CheckProgress();
 
-        if (isIncreaseCoroutineRunning)
+        if (!isCoroutineRunning)
         {
-            tempCoroutin--;
-            StopAllCoroutines();
-            isIncreaseCoroutineRunning = false;
-            CheckMakeUnits();
-        }
-        else
-        {
-            tempCoroutin++; // считаем сколько раз запусталсь корутина.
-
             StartCoroutine(IncreaseUnitsOverTime());
-            isIncreaseCoroutineRunning = true;
+            isCoroutineRunning = true;
         }
     }
 
     private System.Collections.IEnumerator IncreaseUnitsOverTime()
     {
-        ChangeGrowthLevel();
-
         while (true)
         {
+            if (currentUnitCount < maxUnitCurrent)
+                currentUnitCount += (spawnRate + growthLevel);
+            else currentUnitCount = maxUnitCurrent;
 
-            IncreaseUnits();
-
-            yield return new WaitForSeconds(timerFromSize);
+            yield return new WaitForSeconds(1f);
         }
     }
 
-    public void ChangeGrowthLevel()
+    private void ChangeSpawnRate()
     {
         switch (selectedSize)
         {
             case Size.small:
-                timerFromSize = 1.25f;
+                spawnRate = 0.65f;
                 break;
             case Size.medium:
-                timerFromSize = 0.95f;
+                spawnRate = 0.9f;
                 break;
             case Size.large:
-                timerFromSize = 0.75f;
+                spawnRate = 1.15f;
                 break;
             default:
                 break;
         }
-
-        timerFromSize = timerFromSize - (timerFromSize * growthLevel);
     }
 
     public void SelectPlanet()

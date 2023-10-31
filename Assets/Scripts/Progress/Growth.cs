@@ -16,6 +16,26 @@ public class Growth : MonoBehaviour
     public List<GameObject> enemy2Planet = new List<GameObject>();
     public List<GameObject> enemy3Planet = new List<GameObject>();
 
+    public void CheckMembers()
+    {
+        if (AbilityGrowth(player))
+        {
+            GrowthPlayer();
+        }
+        if (AbilityGrowth(enemy1))
+        {
+            GrowthEnemy1();
+        }
+        if (AbilityGrowth(enemy2))
+        {
+            GrowthEnemy2();
+        }
+        if (AbilityGrowth(enemy3))
+        {
+            GrowthEnemy3();
+        }
+    }
+
     public void GetPlanet(GameObject planet)
     {
         if (planet != null && !allPlanets.Contains(planet))
@@ -65,34 +85,14 @@ public class Growth : MonoBehaviour
         }
     }
 
-    public void CheckMembers()
-    {
-        if (AbilityGrowth(player))
-        {
-            GrowthPlayer();
-        }
-        if (AbilityGrowth(enemy1))
-        {
-            GrowthEnemy1();
-        }
-        if (AbilityGrowth(enemy2))
-        {
-            GrowthEnemy2();
-        }
-        if (AbilityGrowth(enemy3))
-        {
-            GrowthEnemy3();
-        }
-    }
 
     private void GrowthStarting(List<GameObject> listPlanet)
     {
         foreach (GameObject planet in listPlanet)
         {
             Planet script = planet.GetComponent<Planet>();
-            script.growthLevel += 0.08f;
-            script.ChangeGrowthLevel();
-            planet.GetComponent<ProgressPlanet>()?.GrowthEffect(true);
+            script.growthLevel += 0.15f;
+            script.GrowthEffect.Play("GrowthEffect");
         }
 
         StartCoroutine(TimerGrowth(listPlanet));
@@ -103,9 +103,8 @@ public class Growth : MonoBehaviour
         foreach (GameObject planet in listPlanet)
         {
             Planet script = planet.GetComponent<Planet>();
-            script.growthLevel -= 0.08f;
-            script.ChangeGrowthLevel();
-            planet.GetComponent<ProgressPlanet>()?.GrowthEffect(false);
+            script.growthLevel -= 0.15f;
+            script.GrowthEffect.Play("Idle");
         }
 
         StartCoroutine(TimerRest(listPlanet));

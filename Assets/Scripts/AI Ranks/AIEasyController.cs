@@ -53,7 +53,7 @@ public class AIEasyController : MonoBehaviour
 
             Planet targetPlanet = ChooseTargetPlanet(mainPlanets);
 
-            int countTargetUnits = (targetPlanet != null) ? targetPlanet.currentUnitCount : 0;
+            int countTargetUnits = (targetPlanet != null) ? (int)targetPlanet.currentUnitCount : 0;
             int countEnemyUnits = 0;
 
             foreach (Planet planet in mainPlanets)

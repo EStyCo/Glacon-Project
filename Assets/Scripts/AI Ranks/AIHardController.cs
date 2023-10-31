@@ -44,7 +44,7 @@ public class AIHardController : MonoBehaviour
 
             Planet targetPlanet = ChooseTargetPlanet();
 
-            int countTargetUnits = targetPlanet.currentUnitCount;
+            int countTargetUnits = (int)targetPlanet.currentUnitCount;
             int countEnemyUnits = 0;
 
             foreach (Planet planet in enemyPlanets)

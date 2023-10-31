@@ -59,13 +59,13 @@ public class ProgressPlanet : MonoBehaviour
         switch (player.growthPlanet)
         {
             case 1:
-                GetComponent<Planet>().growthLevel = 0.04f;
+                GetComponent<Planet>().growthLevel = 0.05f;
                 break;
             case 2:
-                GetComponent<Planet>().growthLevel = 0.08f;
+                GetComponent<Planet>().growthLevel = 0.1f;
                 break;
             case 3:
-                GetComponent<Planet>().growthLevel = 0.12f; //
+                GetComponent<Planet>().growthLevel = 0.1f; 
                 break;
             default:
                 GetComponent<Planet>().growthLevel = 0f; 
@@ -97,13 +97,13 @@ public class ProgressPlanet : MonoBehaviour
         switch (enemy1.growthPlanet)
         {
             case 1:
-                GetComponent<Planet>().growthLevel = 0.04f;
+                GetComponent<Planet>().growthLevel = 0.05f;
                 break;
             case 2:
-                GetComponent<Planet>().growthLevel = 0.08f;
+                GetComponent<Planet>().growthLevel = 0.1f;
                 break;
             case 3:
-                GetComponent<Planet>().growthLevel = 0.12f; //
+                GetComponent<Planet>().growthLevel = 0.1f; //
                 break;
             default:
                 GetComponent<Planet>().growthLevel = 0f;
@@ -135,13 +135,13 @@ public class ProgressPlanet : MonoBehaviour
         switch (enemy2.growthPlanet)
         {
             case 1:
-                GetComponent<Planet>().growthLevel = 0.04f;
+                GetComponent<Planet>().growthLevel = 0.05f;
                 break;
             case 2:
-                GetComponent<Planet>().growthLevel = 0.08f;
+                GetComponent<Planet>().growthLevel = 0.1f;
                 break;
             case 3:
-                GetComponent<Planet>().growthLevel = 0.12f; //
+                GetComponent<Planet>().growthLevel = 0.1f; //
                 break;
             default:
                 GetComponent<Planet>().growthLevel = 0f;
@@ -173,30 +173,17 @@ public class ProgressPlanet : MonoBehaviour
         switch (enemy3.growthPlanet)
         {
             case 1:
-                GetComponent<Planet>().growthLevel = 0.04f;
+                GetComponent<Planet>().growthLevel = 0.1f;
                 break;
             case 2:
-                GetComponent<Planet>().growthLevel = 0.08f;
+                GetComponent<Planet>().growthLevel = 0.1f;
                 break;
             case 3:
-                GetComponent<Planet>().growthLevel = 0.12f; //
+                GetComponent<Planet>().growthLevel = 0.1f; //
                 break;
             default:
                 GetComponent<Planet>().growthLevel = 0f;
                 break;
         }
     }
-
-    public void GrowthEffect(bool isShow)
-    {
-        if (isShow)
-        {
-            growthEffect.SetActive(true);
-        }
-        else
-        {
-            growthEffect.SetActive(false);
-        }
-    }
-
 }
