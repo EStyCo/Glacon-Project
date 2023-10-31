@@ -14,6 +14,7 @@ public class Planet : MonoBehaviour
     } // Размеры планет
 
     [Inject] Growth growth;
+    [Inject] Draft draft;
 
     public GameObject turret;
     public int armor;
@@ -62,6 +63,7 @@ public class Planet : MonoBehaviour
         StartUnitCount();
         SetColor();
         growth.GetPlanet(gameObject);
+        draft.GetPlanet(gameObject);
     }
 
     private void SetColor()

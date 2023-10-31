@@ -13,6 +13,7 @@ public class Classic : Spawner
     [Inject(Id = "Enemy3Cruiser")] private GameObject enemy3CruiserPrefab;
     
     [Inject] protected Growth growth;
+    [Inject] protected Draft draft;
 
     private Color[] enemyColors = new Color[4];
 
@@ -28,7 +29,8 @@ public class Classic : Spawner
         SpawnEnemyPlanets();
         SpawnNeutralPlanets();
 
-        Invoke( "StartGrowthScript", 2f);
+        Invoke("StartGrowthScript", 2f);
+        Invoke("StartDraftScript", 2f);
     }
 
     private void SpawnEnemyPlanets()
@@ -125,5 +127,10 @@ public class Classic : Spawner
     private void StartGrowthScript()
     {
         growth.CheckMembers();
+    }
+
+    private void StartDraftScript()
+    {
+        draft.CheckMembers();
     }
 }

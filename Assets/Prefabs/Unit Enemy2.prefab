@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 81bc6c0b2db159d4abb5a04c29817ead, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 39c390f4ae0c9bf44974b6dfa18ed2a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_CategoryHash: 6.321469e-16
   m_labelHash: 9.2477986e-29
   m_SpriteKey: 0
-  m_SpriteHash: 585832974
+  m_SpriteHash: 193511227
 --- !u!114 &6341145960352792526
 MonoBehaviour:
   m_ObjectHideFlags: 0
