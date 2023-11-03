@@ -15,7 +15,7 @@ public class Turret : MonoBehaviour
     private void Start()
     {
         turret.transform.rotation = Quaternion.Euler(new Vector3(0, 0, UnityEngine.Random.Range(0f, 360f)));
-        tagPlanet = gameObject.GetComponentInParent<Planet>().tag;
+        tagPlanet = transform.parent.gameObject.tag;
         StartCoroutine(Shooting());
     }
 
@@ -25,12 +25,11 @@ public class Turret : MonoBehaviour
         {
             if (target != null)
             {
-                GameObject bulletInstance = Instantiate(bullet, turret);
-                bulletInstance.transform.rotation = transform.rotation;
-                bulletInstance.GetComponent<Bullet>().SetTarget(target);
+                GameObject bulletInstance = Instantiate(bullet, turret.transform.position, turret.transform.rotation, turret);
+                bullet.tag = tagPlanet;
             }
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.75f);
         }
     }
 

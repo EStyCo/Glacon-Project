@@ -8,6 +8,7 @@ public class ProgressPlanet : MonoBehaviour
     [Inject] private ProgressEnemy2 enemy2;
     [Inject] private ProgressEnemy3 enemy3;
 
+    [SerializeField] private float armorPlanet;
     [SerializeField] private GameObject turret;
     [SerializeField] private GameObject growthEffect;
 
@@ -42,13 +43,13 @@ public class ProgressPlanet : MonoBehaviour
         switch (player.armorPlanet)
         {
             case 1:
-                GetComponent<Planet>().armor = 10;
+                GetComponent<Planet>().armor = armorPlanet;
                 break;
             case 2:
-                GetComponent<Planet>().armor = 20;
+                GetComponent<Planet>().armor = armorPlanet * 2;
                 break;
             case 3:
-                GetComponent<Planet>().armor = 20;
+                GetComponent<Planet>().armor = armorPlanet * 2;
                 turret.SetActive(true);
                 break;
             default:
@@ -80,13 +81,13 @@ public class ProgressPlanet : MonoBehaviour
         switch (enemy1.armorPlanet)
         {
             case 1:
-                GetComponent<Planet>().armor = 10;
+                GetComponent<Planet>().armor = armorPlanet;
                 break;
             case 2:
-                GetComponent<Planet>().armor = 20;
+                GetComponent<Planet>().armor = armorPlanet * 2;
                 break;
             case 3:
-                GetComponent<Planet>().armor = 20;
+                GetComponent<Planet>().armor = armorPlanet * 2;
                 turret.SetActive(true);
                 break;
             default:
@@ -118,13 +119,13 @@ public class ProgressPlanet : MonoBehaviour
         switch (enemy2.armorPlanet)
         {
             case 1:
-                GetComponent<Planet>().armor = 10;
+                GetComponent<Planet>().armor = armorPlanet;
                 break;
             case 2:
-                GetComponent<Planet>().armor = 20;
+                GetComponent<Planet>().armor = armorPlanet * 2;
                 break;
             case 3:
-                GetComponent<Planet>().armor = 20;
+                GetComponent<Planet>().armor = armorPlanet * 2;
                 turret.SetActive(true);
                 break;
             default:
@@ -156,13 +157,13 @@ public class ProgressPlanet : MonoBehaviour
         switch (enemy3.armorPlanet)
         {
             case 1:
-                GetComponent<Planet>().armor = 10;
+                GetComponent<Planet>().armor = armorPlanet;
                 break;
             case 2:
-                GetComponent<Planet>().armor = 20;
+                GetComponent<Planet>().armor = armorPlanet * 2;
                 break;
             case 3:
-                GetComponent<Planet>().armor = 20;
+                GetComponent<Planet>().armor = armorPlanet * 2;
                 turret.SetActive(true);
                 break;
             default:

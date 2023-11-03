@@ -26,7 +26,7 @@ public class Planet : MonoBehaviour
     private MakeShip makeShip;
     private bool isCoroutineRunning = false;
 
-    public int armor;
+    public float armor;
 
     [Header("Addictions")]
     public GameObject turret;

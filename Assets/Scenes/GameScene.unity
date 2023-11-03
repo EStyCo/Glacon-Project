@@ -2287,7 +2287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.89400005, y: 0}
   m_AnchorMax: {x: 1, y: 0.20285025}
-  m_AnchoredPosition: {x: -37.596375, y: -96.65515}
+  m_AnchoredPosition: {x: -37.596375, y: -96.655136}
   m_SizeDelta: {x: 91.91991, y: 146.54523}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &995884874
@@ -2821,7 +2821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetLayer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 64
   isPaused: 0
   isSelecting: 0
 --- !u!120 &1089749275

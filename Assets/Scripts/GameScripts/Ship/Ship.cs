@@ -7,19 +7,18 @@ public abstract class Ship : MonoBehaviour
     public float movementSpeed = 0;
     public int armor = 0;
     public int health = 0;
-    public int damage = 0;
+    public float damage = 0;
 
     [HideInInspector] public Transform target;
     [HideInInspector] public GameObject unitPrefab;
     [HideInInspector] public GameObject cruiserPrefab;
     [HideInInspector] public bool isImmuneToTP = false;
-    [HideInInspector] public bool isTryAvoid = false;
     [HideInInspector] public string tagUnit;
+    [HideInInspector]public Planet targetPlanet;
 
     protected Animator animator;
 
     protected GameObject canvasParent;
-    protected Planet targetPlanet;
     protected SpriteRenderer sprite;
     protected CapsuleCollider2D colliderUnit;
     protected Rigidbody2D rb;
@@ -127,15 +126,7 @@ public abstract class Ship : MonoBehaviour
 
             targetPlanet.unitPrefab = unitPrefab;
             targetPlanet.cruiserPrefab = cruiserPrefab;
-        }
-    }
-
-    public void TryAvoidCollision(int healthEnemy, int enemyDamage)
-    {
-        for (int i = 0; i < healthEnemy; i++)
-        {
-            if (Random.Range(0, 101) > armor)
-                DecreaseHealth(enemyDamage);
+            targetPlanet.currentUnitCount = 0;
         }
     }
 

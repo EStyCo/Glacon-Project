@@ -70,7 +70,7 @@ public class MakeShip : MonoBehaviour
         return transform.position + directionToTarget.normalized * spawnDistance;
     }
 
-    private void SpawnUnitsAtPosition(Vector3 spawnPosition, Planet targetPlanet, GameObject prefab)
+    public void SpawnUnitsAtPosition(Vector3 spawnPosition, Planet targetPlanet, GameObject prefab)
     {
         Vector3 directionToTarget = (targetPlanet.transform.position - spawnPosition).normalized;
         Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, directionToTarget);
@@ -103,6 +103,15 @@ public class MakeShip : MonoBehaviour
 
         cruiserInstance.GetComponent<Cruiser>().unitPrefab = unitPrefab;
         cruiserInstance.GetComponent<Cruiser>().cruiserPrefab = cruiserPrefab;
+
+        AirCraftSpawner aircraftSpawner = cruiserInstance.GetComponentInChildren<AirCraftSpawner>();
+
+        if (aircraftSpawner != null)
+        {
+            aircraftSpawner.unitPrefab = unitPrefab;
+            aircraftSpawner.makeShip = gameObject.GetComponent<MakeShip>();
+        }
+
         Cruiser cruiser = cruiserInstance.GetComponent<Cruiser>();
 
         if (cruiser != null)

@@ -9,7 +9,18 @@ public class Unit : Ship
     {
         if (collision.gameObject.tag != gameObject.tag)
         {
-            TryAvoidCollision(1, damage);
+            Physics2D.IgnoreCollision(colliderUnit, collision.collider);
+            AvoidCollision();
+        }
+    }
+
+    private void AvoidCollision()
+    {
+        armor--;
+
+        if (armor < 0)
+        {
+            StartCoroutine(Destruction());
         }
     }
 
@@ -27,14 +38,9 @@ public class Unit : Ship
             collision.gameObject == targetPlanet.gameObject &&
             gameObject.tag != collision.gameObject.tag)
         {
-            targetPlanet.DecreaseUnits();
-            ChangeTagPlanet();
+            Planet planet = collision.gameObject.GetComponent<Planet>();
 
-            if (Random.Range(0, 101) < damage)
-            {
-                targetPlanet.DecreaseUnits();
-            }
-
+            targetPlanet.currentUnitCount -= (health + (damage- planet.armor));
             ChangeTagPlanet();
             StartCoroutine(Destruction());
         }
@@ -53,7 +59,7 @@ public class Unit : Ship
             Destroy(gameObject);
         }
 
-        if (collision.TryGetComponent(out Bullet bullet))
+        if (collision.TryGetComponent(out Bullet bullet) && bullet.tag != tag)
         {
             Destroy(bullet.gameObject);
             StartCoroutine(Destruction());

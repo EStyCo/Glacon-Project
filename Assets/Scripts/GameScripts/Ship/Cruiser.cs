@@ -5,10 +5,14 @@ using UnityEngine.U2D.Animation;
 public class Cruiser : Ship
 {
     [Header("Skin Settings")]
-    [SerializeField] GameObject gun;
+    [SerializeField] GameObject turret;
     [SerializeField] GameObject shield;
+    [SerializeField] GameObject airCraftSpawner;
     public SpriteResolver skinCruiser;
     public SpriteResolver skinShield;
+
+    public bool isCollision = false;
+    private bool hasAnimDestr = false;
 
 
     protected override void OnCollisionStay2D(Collision2D collision)
@@ -17,34 +21,50 @@ public class Cruiser : Ship
         {
             if (collision.gameObject.TryGetComponent(out Cruiser cruiser) && gameObject.GetComponent<Cruiser>() != null)
             {
-                isTryAvoid = true;
-
-                int enemyDamage = cruiser.damage;
-                int enemyHealth = cruiser.health;
-                int mainHealth = health;
-
-                if (enemyHealth <= 0 && mainHealth <= 0)
-                    return;
-
-                if (cruiser.isTryAvoid)
+                if (!isCollision)
                 {
-                    TryAvoidCollision(enemyHealth, damage);
-                    cruiser.TryAvoidCollision(mainHealth, enemyDamage);
+                    int enemyHealt = cruiser.health;
+                    int mainHealth = health;
+
+                    AvoidCollision(enemyHealt);
+                    cruiser.AvoidCollision(mainHealth);
                 }
+
+                isCollision = true;
+                cruiser.isCollision = true;
+
+                Physics2D.IgnoreCollision(colliderUnit, collision.collider);
             }
 
             if (collision.gameObject.TryGetComponent(out Unit unit))
             {
-                int enemyDamage = unit.damage;
-
-                TryAvoidCollision(unit.health, enemyDamage);
+                AvoidCollision(1);
+                Physics2D.IgnoreCollision(colliderUnit, collision.collider);
             }
+
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        isTryAvoid = false;
+        isCollision = false;
+
+        Physics2D.IgnoreCollision(colliderUnit, collision.collider, false);
+    }
+
+    public void AvoidCollision(int count)
+    {
+        int tempArmor = armor -= count;
+
+        if (tempArmor <= 0)
+        {
+            health -= Mathf.Abs(tempArmor);
+        }
+
+        if (health <= 0)
+        {
+            StartCoroutine(Destruction());
+        }
     }
 
     protected override void Moving()
@@ -87,10 +107,16 @@ public class Cruiser : Ship
                 sprite.color = targetSprite.color;
                 targetPlanet.color = sprite.color;
             }
-            Destroy(gameObject);
+
+            if (hasAnimDestr)
+                StartCoroutine(Destruction());
+            else
+                Destroy(gameObject);
+
+            ChangeTagPlanet();
         }
 
-        if (collision.TryGetComponent(out Bullet bullet))
+        if (collision.TryGetComponent(out Bullet bullet) && bullet.tag != tag)
         {
             Destroy(bullet.gameObject);
             health--;
@@ -107,32 +133,18 @@ public class Cruiser : Ship
 
         for (int i = 0; i < index; i++)
         {
-            if (Random.Range(0, 101) < damage)
-            {
-                planet.DecreaseUnits();
-                health--;
-            }
+            planet.currentUnitCount -= (1 + (damage - planet.armor));
+            health--;
 
-            if (Random.Range(0, 101) < planet.armor)
-            {
-                health--;
-            }
-            else
-            {
-                planet.DecreaseUnits();
-                health--;
-            }
-
-
-            if (planet.currentUnitCount <= 0)
-            {
-                ChangeTagPlanet();
-                planet.currentUnitCount += (index - i);
+            if (health <= 0)
+                StartCoroutine(Destruction());
+            if (planet.currentUnitCount < 1)
                 break;
-            }
         }
 
-        StartCoroutine(Destruction());
+
+        ChangeTagPlanet();
+        hasAnimDestr = true;
     }
 
     protected override IEnumerator Destruction()
@@ -144,7 +156,7 @@ public class Cruiser : Ship
             isRotation = false;
             isMoving = false;
 
-            sprite.color = new Color(255/255f, 255 / 255f, 255 / 255f, 0 / 255f);
+            sprite.color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 0 / 255f);
             float randomAngle = Random.Range(0f, 360f);
             transform.rotation = Quaternion.Euler(0f, 0f, randomAngle);
 
@@ -152,7 +164,7 @@ public class Cruiser : Ship
             transform.position = initialPosition + randomDirection * Random.Range(-0.25f, 0.25f);
 
             colliderUnit.enabled = false;
-            gun.SetActive(false);
+            turret.SetActive(false);
             shield.SetActive(false);
 
             isDestruction = true;
@@ -172,4 +184,13 @@ public class Cruiser : Ship
             shield.GetComponent<SpriteRenderer>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f / 255f);
     }
 
+    public void OnTurret()
+    {
+        turret.SetActive(true);
+    }
+
+    public void OnAirCraftSpawner()
+    {
+        airCraftSpawner.SetActive(true);
+    }
 }

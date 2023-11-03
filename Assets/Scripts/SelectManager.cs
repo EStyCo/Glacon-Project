@@ -8,6 +8,7 @@ public class SelectManager : MonoBehaviour
 {
     public static SelectManager Instance { get; private set; }
 
+    private List<Planet> selectedPlanets = new List<Planet>();
     private Planet targetPlanet;
     public LayerMask planetLayer;
 
@@ -16,11 +17,7 @@ public class SelectManager : MonoBehaviour
     private bool isDrawing = false;
 
     private float delayDraw = 0.125f;
-
     private UnityEngine.Vector2 selectionStartPoint;
-
-    private List<Planet> selectedPlanets = new List<Planet>();
-
 
     private void Awake()
     {
@@ -37,21 +34,12 @@ public class SelectManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, planetLayer);
 
-            if (hit.collider != null)
+            Planet planet = hit.collider?.GetComponent<Planet>();
+            if (hit.collider != null && planet != null)
             {
-                Planet planet = hit.collider.GetComponent<Planet>();
-                if (planet != null)
+                if (planet.CompareTag("PlayerPlanet"))
                 {
-                    if (planet.CompareTag("PlayerPlanet") && !selectedPlanets.Contains(planet))
-                    {
-                        TogleListPlanet(planet);
-                        planet = null;
-                    }
-                    else if (planet.CompareTag("PlayerPlanet") && selectedPlanets.Contains(planet))
-                    {
-                        TogleListPlanet(planet);
-                        planet = null;
-                    }
+                    TogleListPlanet(planet);
                 }
             }
             else ClearSelectionListPlanet();
@@ -61,23 +49,13 @@ public class SelectManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, planetLayer);
 
-            if (hit.collider != null)
+            Planet planet = hit.collider?.GetComponent<Planet>();
+            if (hit.collider != null && planet != null)
             {
-                Planet planet = hit.collider.GetComponent<Planet>();
-                if (planet != null)
+                if (selectedPlanets != null)
                 {
-                    if (planet.tag == "PlayerPlanet" && selectedPlanets != null && targetPlanet == null)
-                    {
-                        targetPlanet = planet;
-                        SendShips();
-                        targetPlanet = null;
-                    }
-                    else if (selectedPlanets != null && targetPlanet == null)
-                    {
-                        targetPlanet = planet;
-                        SendShips();
-                        targetPlanet = null;
-                    }
+                    targetPlanet = planet;
+                    SendShips();
                 }
             }
         } // ПКМ, отправка юнитов.
@@ -89,7 +67,7 @@ public class SelectManager : MonoBehaviour
         {
             StartCoroutine(DelayDrawing());
             selectionStartPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        } 
+        }
     }// Начало рисование прямоугольника с задержкой.
     private IEnumerator DelayDrawing()
     {
@@ -124,7 +102,7 @@ public class SelectManager : MonoBehaviour
 
             LineRenderer lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.positionCount = 0;
-        } 
+        }
     }// Отпускание лкм, конец рисования прямоугольника.
     // Методы рисования.
     private void DrawSelectionRectangle(UnityEngine.Vector2 startPoint, UnityEngine.Vector2 endPoint)
@@ -157,6 +135,7 @@ public class SelectManager : MonoBehaviour
                          .Where(planet => planet != null)
                          .ToArray();
     }
+
     private void TogleListPlanet(Planet planet)
     {
         if (selectedPlanets.Contains(planet))
@@ -169,25 +148,26 @@ public class SelectManager : MonoBehaviour
             selectedPlanets.Add(planet);
             planet.SelectPlanet();
         }
-    } // Метод выделения планет и добавления в Лист.
+    }
 
     private void SendShips()
     {
-        if (selectedPlanets.Count > 0)
-            foreach (Planet planet in selectedPlanets)
-                if (planet != targetPlanet)
-                    planet.SendShipsToPlanet(targetPlanet);
+        foreach (Planet planet in selectedPlanets)
+        {
+            if (planet != targetPlanet)
+                planet.SendShipsToPlanet(targetPlanet);
+        }
 
         ClearSelectionListPlanet();
     } // Отправка юнитов.
+
     private void ClearSelectionListPlanet()
     {
         foreach (Planet planet in selectedPlanets)
-            if (planet.tag == "PlayerPlanet")
-            { 
-                planet.DeselectPlanet();  
-            }
+        {
+            planet.DeselectPlanet();
+        }
 
         selectedPlanets.Clear();
-    } // Очистка списка выделенных планет.
+    }
 }

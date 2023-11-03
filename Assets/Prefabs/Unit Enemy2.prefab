@@ -318,5 +318,5 @@ MonoBehaviour:
   unitPrefab: {fileID: 0}
   cruiserPrefab: {fileID: 0}
   isImmuneToTP: 0
-  isTryAvoid: 0
   tagUnit: 
+  targetPlanet: {fileID: 0}
