@@ -12,7 +12,7 @@ public class BalancePower : MonoBehaviour
 
     private int unitsCount = 0;
 
-    public List<List<Planet>> planetLists;
+    public List<Planet> listPlanets;
 
     public List<Planet> playerPlanet = new List<Planet>();
     public List<Planet> enemy1Planet = new List<Planet>();
@@ -21,10 +21,12 @@ public class BalancePower : MonoBehaviour
 
     private void Start()
     {
-        planetLists = new List<List<Planet>> { playerPlanet, enemy1Planet, enemy2Planet, enemy3Planet };
-        ClearFillArea();
-        InvokeRepeating("CreateListPlanet", 0f, 0.25f);
-        InvokeRepeating("UpdateFill", 0f, 0.25f);
+        //listPlanets = new List<List<Planet>> { playerPlanet, enemy1Planet, enemy2Planet, enemy3Planet };
+    }
+
+    public void SplitPlanets()
+    {
+        Debug.Log("Split Planets");
     }
 
     private void SetColor()
@@ -91,7 +93,7 @@ public class BalancePower : MonoBehaviour
 
     private void SumUnits()
     {
-        int tempUnitsCount = 0;
+/*        int tempUnitsCount = 0;
         for (int i = 0; i < planetLists.Count; i++)
         {
             foreach (Planet planet in planetLists[i])
@@ -100,7 +102,7 @@ public class BalancePower : MonoBehaviour
             }
         }
         int flyedUnits = FindUnits();
-        unitsCount = tempUnitsCount + flyedUnits;
+        unitsCount = tempUnitsCount + flyedUnits;*/
     }
 
     private int FindUnits()

@@ -2300,7 +2300,6 @@ GameObject:
   m_Component:
   - component: {fileID: 995884875}
   - component: {fileID: 995884877}
-  - component: {fileID: 995884876}
   m_Layer: 0
   m_Name: Filling
   m_TagString: Untagged
@@ -2332,26 +2331,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.704, y: 0.0252}
   m_SizeDelta: {x: 17.777, y: 10.3912}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &995884876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995884874}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 458f41656e26a1e4589a1ed2980eb406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerFill: {fileID: 1069122294}
-  enemy1Fill: {fileID: 644027734}
-  enemy2Fill: {fileID: 962962467}
-  enemy3Fill: {fileID: 1208384158}
-  playerPlanet: []
-  enemy1Planet: []
-  enemy2Planet: []
-  enemy3Planet: []
 --- !u!223 &995884877
 Canvas:
   m_ObjectHideFlags: 0
@@ -4297,6 +4276,73 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000045776367, y: 0}
   m_SizeDelta: {x: 0, y: -34}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1688797382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1688797385}
+  - component: {fileID: 1688797383}
+  - component: {fileID: 1688797384}
+  m_Layer: 0
+  m_Name: BalancePower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1688797383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688797382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fcf099abafa6b439585383b2f51f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  balancePower: {fileID: 1688797384}
+--- !u!114 &1688797384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688797382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 458f41656e26a1e4589a1ed2980eb406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerFill: {fileID: 1069122294}
+  enemy1Fill: {fileID: 644027734}
+  enemy2Fill: {fileID: 962962467}
+  enemy3Fill: {fileID: 1208384158}
+  listPlanets: []
+  playerPlanet: []
+  enemy1Planet: []
+  enemy2Planet: []
+  enemy3Planet: []
+--- !u!4 &1688797385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688797382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1923801373}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1702228593
 GameObject:
   m_ObjectHideFlags: 0
@@ -4812,6 +4858,7 @@ MonoBehaviour:
   - {fileID: 803606910}
   - {fileID: 1523469559}
   - {fileID: 1468980682}
+  - {fileID: 1688797383}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -4844,6 +4891,7 @@ Transform:
   - {fileID: 803606911}
   - {fileID: 1523469561}
   - {fileID: 1468980684}
+  - {fileID: 1688797385}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

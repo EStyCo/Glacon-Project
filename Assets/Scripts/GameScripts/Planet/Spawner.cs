@@ -90,6 +90,28 @@ public abstract class Spawner : MonoBehaviour
         }
     }
 
+    protected void SpawnNeutralPlanets(BalancePower balancePower)
+    {
+        int numberOfPlanets = gameModeManager.planetCount;
+
+        for (int i = 0; i < numberOfPlanets; i++)
+        {
+            int randomSize = UnityEngine.Random.Range(1, 4);
+
+            Vector2 neutralSpawnPoint = GetRandomSpawnPoint(false);
+            GameObject neutralPlanet = diContainer.InstantiatePrefab(planetPrefab, neutralSpawnPoint, Quaternion.identity, t);
+
+            Planet planetScript = neutralPlanet.GetComponent<Planet>();
+            planetScript.selectedSize = (Planet.Size)randomSize;
+            planetScript.framePlanet.GetComponent<SpriteResolver>().SetCategoryAndLabel("Frame", "Frame" + randomSize.ToString());
+            balancePower.listPlanets.Add(planetScript);
+
+            neutralPlanet.GetComponent<SpriteRenderer>().color = neutralColor;
+            neutralPlanet.tag = "NeutralPlanet";
+            spawnPoints.Add(neutralSpawnPoint);
+        }
+    }
+
     protected bool IsValidSpawnPoint(Vector2 point, bool isEnemy)
     {
         if (leftBottomPM != null)

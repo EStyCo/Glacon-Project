@@ -11,7 +11,8 @@ public class Classic : Spawner
     [Inject(Id = "Enemy1Cruiser")] private GameObject enemy1CruiserPrefab;
     [Inject(Id = "Enemy2Cruiser")] private GameObject enemy2CruiserPrefab;
     [Inject(Id = "Enemy3Cruiser")] private GameObject enemy3CruiserPrefab;
-    
+
+    [Inject] protected BalancePower balancePower;
     [Inject] protected Growth growth;
     [Inject] protected Draft draft;
 
@@ -24,13 +25,16 @@ public class Classic : Spawner
         GameObject playerPlanet = diContainer.InstantiatePrefab(planetPrefab, playerSpawnPoint, Quaternion.identity, t);
         ShipDesign.ChangePlayerSkin(playerPlanet, playerUnitPrefab, playerCruiserPrefab);
 
+        balancePower.listPlanets.Add(playerPlanet.GetComponent<Planet>());
         spawnPoints.Add(playerSpawnPoint);
 
         SpawnEnemyPlanets();
-        SpawnNeutralPlanets();
+        SpawnNeutralPlanets(balancePower);
 
         Invoke("StartGrowthScript", 2f);
         Invoke("StartDraftScript", 2f);
+
+        balancePower.SplitPlanets();
     }
 
     private void SpawnEnemyPlanets()
@@ -66,6 +70,7 @@ public class Classic : Spawner
                 newObject.tag = "Enemy" + i.ToString();
             }
 
+            balancePower.listPlanets.Add(newPlanet.GetComponent<Planet>());
             spawnPoints.Add(enemySpawnPoint);
         }
     }
