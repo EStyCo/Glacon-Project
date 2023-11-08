@@ -13,15 +13,15 @@ public abstract class Ship : MonoBehaviour
     [HideInInspector] public GameObject unitPrefab;
     [HideInInspector] public GameObject cruiserPrefab;
     [HideInInspector] public bool isImmuneToTP = false;
-    [HideInInspector] public string tagUnit;
-    [HideInInspector]public Planet targetPlanet;
+    [HideInInspector] public string tagUnit; 
+    [HideInInspector] public Planet targetPlanet;
+    [HideInInspector] public Color mainColor;
 
     protected Animator animator;
     protected GameObject canvasParent;
     protected SpriteRenderer sprite;
     protected CapsuleCollider2D colliderUnit;
     protected Rigidbody2D rb;
-    protected Color mainColor;
 
     protected bool isMoving = true;
     protected bool isDestruction = false;

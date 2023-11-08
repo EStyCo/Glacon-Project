@@ -104,13 +104,13 @@ public class MakeShip : MonoBehaviour
         cruiserInstance.GetComponent<Cruiser>().unitPrefab = unitPrefab;
         cruiserInstance.GetComponent<Cruiser>().cruiserPrefab = cruiserPrefab;
 
-        AirCraftSpawner aircraftSpawner = cruiserInstance.GetComponentInChildren<AirCraftSpawner>();
+/*        AirCraftSpawner aircraftSpawner = cruiserInstance.GetComponentInChildren<AirCraftSpawner>();
 
         if (aircraftSpawner != null)
         {
             aircraftSpawner.unitPrefab = unitPrefab;
             aircraftSpawner.makeShip = gameObject.GetComponent<MakeShip>();
-        }
+        }*/
 
         Cruiser cruiser = cruiserInstance.GetComponent<Cruiser>();
 

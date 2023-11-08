@@ -209,6 +209,7 @@ MonoBehaviour:
   isImmuneToTP: 0
   tagUnit: 
   targetPlanet: {fileID: 0}
+  mainColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8678360363542758778
 GameObject:
   m_ObjectHideFlags: 0

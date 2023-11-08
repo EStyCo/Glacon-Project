@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 0}
-  makeShip: {fileID: 0}
+  cruiserPrefab: {fileID: 0}
 --- !u!1 &1637719969419656669
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,6 +663,7 @@ MonoBehaviour:
   isImmuneToTP: 0
   tagUnit: 
   targetPlanet: {fileID: 0}
+  mainColor: {r: 0, g: 0, b: 0, a: 0}
   turret: {fileID: 6004046831413513652}
   shield: {fileID: 1637719969419656669}
   airCraftSpawner: {fileID: 1418184351858440134}

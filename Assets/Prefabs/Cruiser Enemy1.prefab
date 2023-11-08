@@ -94,7 +94,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 7254155caa7f0b14fb963c199d6432cb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8aada962f276124e89ea6ed8ec361fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_CategoryHash: 6.5107658e-15
   m_labelHash: 4.72133e-18
   m_SpriteKey: 0
-  m_SpriteHash: 82557452
+  m_SpriteHash: 719706912
 --- !u!1 &2096591185436640994
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 0}
-  makeShip: {fileID: 0}
+  cruiserPrefab: {fileID: 0}
 --- !u!1 &5105447967081844672
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +449,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 01bc691f744f19645bacd3c07c02469a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a32f867e6934e3a43ab83de9b71a941a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -475,7 +475,7 @@ MonoBehaviour:
   m_CategoryHash: 4.60904e-14
   m_labelHash: 6.265033e-31
   m_SpriteKey: 0
-  m_SpriteHash: 152710171
+  m_SpriteHash: 655641911
 --- !u!114 &6341145960352792526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,6 +574,7 @@ MonoBehaviour:
   isImmuneToTP: 0
   tagUnit: 
   targetPlanet: {fileID: 0}
+  mainColor: {r: 0, g: 0, b: 0, a: 0}
   turret: {fileID: 6462366491722148392}
   shield: {fileID: 1637719969419656669}
   airCraftSpawner: {fileID: 2096591185436640994}
