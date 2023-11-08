@@ -4319,6 +4319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458f41656e26a1e4589a1ed2980eb406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duration: 1.5
   playerFill: {fileID: 1069122294}
   enemy1Fill: {fileID: 644027734}
   enemy2Fill: {fileID: 962962467}

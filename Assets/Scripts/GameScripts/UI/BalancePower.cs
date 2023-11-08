@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BalancePower : MonoBehaviour
 {
+    [SerializeField] private float duration;
     [SerializeField] private UnityEngine.UI.Image playerFill;
     [SerializeField] private UnityEngine.UI.Image enemy1Fill;
     [SerializeField] private UnityEngine.UI.Image enemy2Fill;
     [SerializeField] private UnityEngine.UI.Image enemy3Fill;
 
-    private int unitsCount = 0;
+    private float units = 0;
 
     public List<Planet> listPlanets;
 
@@ -19,6 +19,11 @@ public class BalancePower : MonoBehaviour
     public List<Planet> enemy2Planet = new List<Planet>();
     public List<Planet> enemy3Planet = new List<Planet>();
 
+    private bool isPlayer = false;
+    private bool isEnemy1 = false;
+    private bool isEnemy2 = false;
+    private bool isEnemy3 = false;
+
     private void Start()
     {
         //listPlanets = new List<List<Planet>> { playerPlanet, enemy1Planet, enemy2Planet, enemy3Planet };
@@ -26,10 +31,132 @@ public class BalancePower : MonoBehaviour
 
     public void SplitPlanets()
     {
-        Debug.Log("Split Planets");
+        StartCoroutine(asd());
     }
 
+    private IEnumerator asd()
+    {
+        while (true)
+        {
+            units = 0;
+            float player = 0;
+            float enemy1 = 0;
+            float enemy2 = 0;
+            float enemy3 = 0;
+
+            ClearAllLists();
+
+            foreach (Planet planet in listPlanets)
+            {
+                switch (planet.gameObject.tag)
+                {
+                    case "PlayerPlanet":
+                        playerPlanet.Add(planet);
+                        player += planet.currentUnitCount;
+
+                        if (planet.currentUnitCount == 0)
+                            yield return null;
+                        break;
+                    case "Enemy1":
+                        enemy1Planet.Add(planet);
+                        enemy1 += planet.currentUnitCount;
+
+                        if (planet.currentUnitCount == 0)
+                            yield return null;
+                        break;
+                    case "Enemy2":
+                        enemy2Planet.Add(planet);
+                        enemy2 += planet.currentUnitCount;
+
+                        if (planet.currentUnitCount == 0)
+                            yield return null;
+                        break;
+                    case "Enemy3":
+                        enemy3Planet.Add(planet);
+                        enemy3 += planet.currentUnitCount;
+
+                        if (planet.currentUnitCount == 0)
+                            yield return null;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            units = player + enemy1 + enemy2 + enemy3;
+
+            enemy1 += player;
+            enemy2 += enemy1;
+
+            SetColor();
+            SetFilling(player, enemy1, enemy2);
+
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+
+    private void ClearAllLists()
+    {
+        playerPlanet.Clear();
+        enemy1Planet.Clear();
+        enemy2Planet.Clear();
+        enemy3Planet.Clear();
+    }
+
+    private void SetFilling(float player, float enemy1, float enemy2)
+    {
+        if (enemy3Planet.Count > 0)
+        {
+            enemy3Fill.fillAmount = 1f;
+
+            if (enemy2Fill.fillAmount != 0 && enemy1Fill.fillAmount != 0 && playerFill.fillAmount != 0)
+            {
+                StartCoroutine(SmoothTransitionEnemy2(enemy2 / units));
+                StartCoroutine(SmoothTransitionEnemy1(enemy1 / units));
+                StartCoroutine(SmoothTransitionPlayer(player / units));
+            }
+            else
+            {
+                enemy2Fill.fillAmount = enemy2 / units;
+                enemy1Fill.fillAmount = enemy1 / units;
+                playerFill.fillAmount = player / units;
+            }
+            return;
+        }
+        else if (enemy2Planet.Count > 0)
+        {
+            enemy2Fill.fillAmount = 1f;
+
+            if (enemy1Fill.fillAmount != 0 && playerFill.fillAmount != 0)
+            {
+                StartCoroutine(SmoothTransitionEnemy1(enemy1 / units));
+                StartCoroutine(SmoothTransitionPlayer(player / units));
+            }
+            else
+            {
+                enemy1Fill.fillAmount = enemy1 / units;
+                playerFill.fillAmount = player / units;
+            }
+            return;
+        }
+        else if (enemy1Planet.Count > 0)
+        {
+            enemy1Fill.fillAmount = 1f;
+
+            if (playerFill.fillAmount != 0)
+            {
+                StartCoroutine(SmoothTransitionPlayer(player / units));
+            }
+            else
+            {
+                playerFill.fillAmount = player / units;
+            }
+            return;
+        }
+    }
     private void SetColor()
+
     {
         if (playerPlanet.Count > 0)
         {
@@ -56,15 +183,6 @@ public class BalancePower : MonoBehaviour
         }
     }
 
-
-    private void ClearFillArea()
-    {
-        playerFill.fillAmount = 0f;
-        enemy1Fill.fillAmount = 0f;
-        enemy2Fill.fillAmount = 0f;
-        StartCoroutine(SmoothTransition(1f, enemy3Fill, 1.4f));
-    }
-
     private void CreateListPlanet()
     {
         RefreshListPlanet(playerPlanet, "PlayerPlanet");
@@ -75,7 +193,10 @@ public class BalancePower : MonoBehaviour
 
     private void RefreshListPlanet(List<Planet> listPlanet, string tagPlanet)
     {
-        listPlanet.Clear();
+
+
+
+        /*listPlanet.Clear();
 
         GameObject[] playerPlanetObjects = GameObject.FindGameObjectsWithTag(tagPlanet);
 
@@ -88,21 +209,21 @@ public class BalancePower : MonoBehaviour
             }
         }
 
-        SetColor();
+        SetColor();*/
     }
 
     private void SumUnits()
     {
-/*        int tempUnitsCount = 0;
-        for (int i = 0; i < planetLists.Count; i++)
-        {
-            foreach (Planet planet in planetLists[i])
-            {
-                //tempUnitsCount += planet.currentUnitCount;
-            }
-        }
-        int flyedUnits = FindUnits();
-        unitsCount = tempUnitsCount + flyedUnits;*/
+        /*        int tempUnitsCount = 0;
+                for (int i = 0; i < planetLists.Count; i++)
+                {
+                    foreach (Planet planet in planetLists[i])
+                    {
+                        //tempUnitsCount += planet.currentUnitCount;
+                    }
+                }
+                int flyedUnits = FindUnits();
+                unitsCount = tempUnitsCount + flyedUnits;*/
     }
 
     private int FindUnits()
@@ -192,21 +313,73 @@ public class BalancePower : MonoBehaviour
         StartCoroutine(SmoothTransition(tempPlayerCount, playerFill, 1.4f));*/
     }
 
-    IEnumerator SmoothTransition(float newFillCount, Image imageFill, float duration)
+    IEnumerator SmoothTransitionPlayer(float newFillCount)
     {
-        float oldFillCount = imageFill.fillAmount;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < duration)
+        if (!isPlayer)
         {
-            float t = elapsedTime / duration;
-            imageFill.fillAmount = Mathf.Lerp(oldFillCount, newFillCount, t);
+            isPlayer = true;
 
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            float oldFillCount = playerFill.fillAmount;
+            float elapsedTime = 0f;
+
+            while (elapsedTime < duration)
+            {
+                float t = elapsedTime / duration;
+                playerFill.fillAmount = Mathf.Lerp(oldFillCount, newFillCount, t);
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            playerFill.fillAmount = newFillCount;
+            isPlayer = false;
         }
+    }
 
-        imageFill.fillAmount = newFillCount;
+    IEnumerator SmoothTransitionEnemy1(float newFillCount)
+    {
+        if (!isEnemy1)
+        {
+            isEnemy1 = true;
+
+            float oldFillCount = enemy1Fill.fillAmount;
+            float elapsedTime = 0f;
+
+            while (elapsedTime < duration)
+            {
+                float t = elapsedTime / duration;
+                enemy1Fill.fillAmount = Mathf.Lerp(oldFillCount, newFillCount, t);
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            enemy1Fill.fillAmount = newFillCount;
+            isEnemy1 = false;
+        }
+    }
+
+    IEnumerator SmoothTransitionEnemy2(float newFillCount)
+    {
+        if (!isEnemy2)
+        {
+            isEnemy2 = true;
+
+            float oldFillCount = enemy2Fill.fillAmount;
+            float elapsedTime = 0f;
+
+            while (elapsedTime < duration)
+            {
+                float t = elapsedTime / duration;
+                enemy2Fill.fillAmount = Mathf.Lerp(oldFillCount, newFillCount, t);
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            enemy2Fill.fillAmount = newFillCount;
+            isEnemy2 = false;
+        }
     }
 
 }
