@@ -249,7 +249,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: e7ad801e03d527a45858f383835ed3f9, type: 3}
-  m_Color: {r: 0.44299573, g: 0.44299573, b: 0.5188679, a: 1}
+  m_Color: {r: 0.9056604, g: 0.8661362, b: 0.49127805, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -460,7 +460,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.8027649
+  m_Radius: 2.92
 --- !u!114 &1124331014242586532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,11 +473,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf4b560694f9ae43b19102d481444b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 50
   turret: {fileID: 8898175716439849088}
   bullet: {fileID: 3610037366364468372, guid: a67b0e01987dacc409f860daacec8bfe, type: 3}
-  target: {fileID: 0}
+  contactLayers:
+    serializedVersion: 2
+    m_Bits: 32640
+  enemyList: []
+  colliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  targetPosition: {fileID: 0}
   tagPlanet: 
-  isHasTarget: 0
+  isRotateTurret: 0
 --- !u!1 &3909310190112347961
 GameObject:
   m_ObjectHideFlags: 0

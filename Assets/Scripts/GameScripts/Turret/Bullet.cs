@@ -1,18 +1,27 @@
+using System.Collections;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private float movementSpeed = 3.0f;
+    private float movementSpeed = 1.8f;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        StartCoroutine(TimerLife());
     }
 
     private void Update()
     {
         Moving();
+    }
+
+    private IEnumerator TimerLife()
+    { 
+        yield return new WaitForSeconds(5f);
+
+        Destroy(gameObject);
     }
 
     #region Движение

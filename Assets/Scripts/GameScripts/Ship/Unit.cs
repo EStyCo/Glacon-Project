@@ -97,7 +97,8 @@ public class Unit : Ship
 
             colliderUnit.enabled = false;
             isDestruction = true;
-            sprite.color = new Color(255/255f, 255 / 255f, 255 / 255f, 0 / 255f);
+            sprite.sortingOrder = -1;
+            //sprite.color = new Color(255/255f, 255 / 255f, 255 / 255f, 0 / 255f);
             animator.Play("Bang2");
 
             yield return new WaitForSeconds(0.55f);
