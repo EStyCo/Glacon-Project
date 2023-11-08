@@ -17,11 +17,11 @@ public abstract class Ship : MonoBehaviour
     [HideInInspector]public Planet targetPlanet;
 
     protected Animator animator;
-
     protected GameObject canvasParent;
     protected SpriteRenderer sprite;
     protected CapsuleCollider2D colliderUnit;
     protected Rigidbody2D rb;
+    protected Color mainColor;
 
     protected bool isMoving = true;
     protected bool isDestruction = false;
@@ -46,6 +46,7 @@ public abstract class Ship : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         colliderUnit = GetComponent<CapsuleCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
+        mainColor = sprite.color;
 
         tagUnit = gameObject.tag;
         StartCoroutine(CorrectAngleTracking());
@@ -131,6 +132,16 @@ public abstract class Ship : MonoBehaviour
             targetPlanet.unitPrefab = unitPrefab;
             targetPlanet.cruiserPrefab = cruiserPrefab;
             targetPlanet.currentUnitCount = 0;
+        }
+    }
+
+    protected void CheckColor()
+    {
+        targetPlanet.TryGetComponent(out SpriteRenderer targetSprite);
+        if (mainColor != targetSprite.color)
+        {
+            targetPlanet.color = mainColor;
+            targetSprite.color = mainColor;
         }
     }
 

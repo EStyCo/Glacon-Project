@@ -50,12 +50,7 @@ public class Unit : Ship
         {
             targetPlanet.IncreaseUnits();
 
-            SpriteRenderer targetSprite = targetPlanet.GetComponent<SpriteRenderer>();
-            if (sprite.color != targetSprite.color)
-            {
-                sprite.color = targetSprite.color;
-                targetPlanet.color = sprite.color;
-            }
+            CheckColor();
             Destroy(gameObject);
         }
 

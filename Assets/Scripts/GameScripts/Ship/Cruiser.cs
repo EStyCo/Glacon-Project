@@ -8,12 +8,12 @@ public class Cruiser : Ship
     [SerializeField] GameObject turret;
     [SerializeField] GameObject shield;
     [SerializeField] GameObject airCraftSpawner;
+    
     public SpriteResolver skinCruiser;
     public SpriteResolver skinShield;
 
     public bool isCollision = false;
     private bool hasAnimDestr = false;
-
 
     protected override void OnCollisionStay2D(Collision2D collision)
     {
@@ -93,20 +93,15 @@ public class Cruiser : Ship
             DesantToPlanet(collision.gameObject);
         }
         else if (targetPlanet != null &&
-                 collision.gameObject == targetPlanet.gameObject &&
-                 gameObject.tag == collision.gameObject.tag)
+                 collision.gameObject == targetPlanet.gameObject && 
+                 collision.gameObject.CompareTag(tagUnit))
         {
             targetPlanet.currentUnitCount += health;
 
             if (targetPlanet.currentUnitCount > targetPlanet.maxUnitCurrent)
                 targetPlanet.currentUnitCount = targetPlanet.maxUnitCurrent;
 
-            SpriteRenderer targetSprite = targetPlanet.GetComponent<SpriteRenderer>();
-            if (sprite.color != targetSprite.color)
-            {
-                sprite.color = targetSprite.color;
-                targetPlanet.color = sprite.color;
-            }
+            CheckColor();
 
             if (hasAnimDestr)
                 StartCoroutine(Destruction());
