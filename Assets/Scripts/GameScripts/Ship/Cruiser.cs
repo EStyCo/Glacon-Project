@@ -59,6 +59,7 @@ public class Cruiser : Ship
         if (tempArmor <= 0)
         {
             health -= Mathf.Abs(tempArmor);
+            armor = 0;
         }
 
         if (health <= 0)

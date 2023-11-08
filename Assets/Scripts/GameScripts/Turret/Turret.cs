@@ -17,7 +17,10 @@ public class Turret : MonoBehaviour
 
     private void Start()
     {
-        parent = gameObject.GetComponentInParent<Planet>().unitsParent.transform;
+        gameObject.transform.parent.TryGetComponent(out Planet planet);
+        gameObject.transform.parent.TryGetComponent(out Cruiser cruiser);
+        parent = planet?.unitsParent.transform ?? cruiser.transform.parent;
+
         turret.transform.rotation = Quaternion.Euler(new Vector3(0, 0, UnityEngine.Random.Range(0f, 360f)));
         tagPlanet = transform.parent.gameObject.tag;
         StartCycleTurret();

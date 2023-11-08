@@ -242,10 +242,10 @@ MonoBehaviour:
   listEnemy: []
   objectLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 15232
   turret: {fileID: 2928686977244883001}
   bullet: {fileID: 3610037366364468372, guid: a67b0e01987dacc409f860daacec8bfe, type: 3}
-  reloadSpeed: 0
+  reloadSpeed: 1.35
 --- !u!1 &1637719969419656669
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +340,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: a8aada962f276124e89ea6ed8ec361fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5cc9658851a65e44ab20cdd8597ed97d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -364,9 +364,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 6.5107658e-15
-  m_labelHash: 4.72133e-18
+  m_labelHash: 2.4699222e-31
   m_SpriteKey: 0
-  m_SpriteHash: 719706912
+  m_SpriteHash: 445591471
 --- !u!1 &6312795829811529286
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +454,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: a32f867e6934e3a43ab83de9b71a941a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3518bc15b61f6044d8879b09f6c2a293, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -478,9 +478,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 4.60904e-14
-  m_labelHash: 6.265033e-31
+  m_labelHash: 1.0689331e-17
   m_SpriteKey: 0
-  m_SpriteHash: 655641911
+  m_SpriteHash: 394181048
 --- !u!114 &6341145960352792526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,7 +658,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: b0e1b5c2e2522af40bf94ed94cd7856d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
