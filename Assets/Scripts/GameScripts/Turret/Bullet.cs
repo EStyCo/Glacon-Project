@@ -4,7 +4,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private float movementSpeed = 1.8f;
+    [SerializeField] private float movementSpeed;
+    [SerializeField] private float lifeTimer;
 
     private void Start()
     {
@@ -19,7 +20,7 @@ public class Bullet : MonoBehaviour
 
     private IEnumerator TimerLife()
     { 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(lifeTimer);
 
         Destroy(gameObject);
     }

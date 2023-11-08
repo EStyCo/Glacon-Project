@@ -473,67 +473,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf4b560694f9ae43b19102d481444b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 50
-  turret: {fileID: 8898175716439849088}
-  bullet: {fileID: 3610037366364468372, guid: a67b0e01987dacc409f860daacec8bfe, type: 3}
-  contactLayers:
+  tagPlanet: 
+  listEnemy: []
+  objectLayer:
     serializedVersion: 2
     m_Bits: 32640
-  enemyList: []
-  colliders:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  targetPosition: {fileID: 0}
-  tagPlanet: 
-  isRotateTurret: 0
+  turret: {fileID: 8898175716439849088}
+  bullet: {fileID: 3610037366364468372, guid: a67b0e01987dacc409f860daacec8bfe, type: 3}
+  reloadSpeed: 1.35
 --- !u!1 &3909310190112347961
 GameObject:
   m_ObjectHideFlags: 0

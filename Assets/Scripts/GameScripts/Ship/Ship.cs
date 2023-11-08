@@ -83,6 +83,10 @@ public abstract class Ship : MonoBehaviour
         }
     }
 
+    public Transform GetPosition()
+    {
+        return gameObject.transform;
+    }
 
     protected IEnumerator Absorb(Collider2D collision)
     {
@@ -119,10 +123,10 @@ public abstract class Ship : MonoBehaviour
         {
             targetPlanet.DeselectPlanet();
             targetPlanet.tag = tagUnit;
-            targetPlanet.turret.GetComponent<Turret>().ChangeTag(tagUnit);
             targetPlanet.planetRenderer.color = sprite.color;
             targetPlanet.CheckMakeUnits();
             targetPlanet.CheckProgress();
+            targetPlanet.turret.GetComponent<Turret>().ChangeTag(tagUnit);
 
             targetPlanet.unitPrefab = unitPrefab;
             targetPlanet.cruiserPrefab = cruiserPrefab;

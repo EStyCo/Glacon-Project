@@ -40,7 +40,7 @@ public class Unit : Ship
         {
             Planet planet = collision.gameObject.GetComponent<Planet>();
 
-            targetPlanet.currentUnitCount -= (health + (damage- planet.armor));
+            targetPlanet.currentUnitCount -= (health + (damage - planet.armor));
             ChangeTagPlanet();
             StartCoroutine(Destruction());
         }

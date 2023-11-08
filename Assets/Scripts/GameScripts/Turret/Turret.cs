@@ -4,129 +4,138 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    [SerializeField] private float rotationSpeed = 5f;
+    [HideInInspector] public string tagPlanet;
+    [HideInInspector] public List<Vector3> listEnemy = new List<Vector3>();
+
+    [SerializeField] private LayerMask objectLayer;
     [SerializeField] private Transform turret;
     [SerializeField] private GameObject bullet;
-    [SerializeField] private LayerMask contactLayers;
-    private ContactFilter2D filter = new ContactFilter2D();
-    private CircleCollider2D circleCollider;
+    [SerializeField] private float reloadSpeed;
 
-    public List<Transform> enemyList = new List<Transform>();
-    public Collider2D[] colliders = new Collider2D[50];
-    public Transform targetPosition;
-
-    public string tagPlanet;
-
-    public bool isRotateTurret = false;
+    private Transform parent;
+    private Vector3 target;
 
     private void Start()
     {
-        circleCollider = GetComponent<CircleCollider2D>();
-        //turret.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0f, 360f)));
+        parent = gameObject.GetComponentInParent<Planet>().unitsParent.transform;
+        turret.transform.rotation = Quaternion.Euler(new Vector3(0, 0, UnityEngine.Random.Range(0f, 360f)));
         tagPlanet = transform.parent.gameObject.tag;
-        StartCoroutine(CycleTurret());
+        StartCycleTurret();
     }
 
-    private IEnumerator Shooting()
-    {
-        /*        Transform parent = transform.parent.GetComponent<Planet>().unitsParent.transform;
-
-                while (true)
-                {
-                    if (targetPosition != Vector2.zero)
-                    {
-                        Instantiate(bullet, turret.transform.position, turret.transform.rotation, parent);
-                        bullet.tag = tagPlanet;
-                    }
-
-                    yield return new WaitForSeconds(0.95f);
-                }*/
-        yield return null;
-    }
+    #region Change Tag
 
     public void ChangeTag(string tag)
     {
         tagPlanet = tag;
+
+        StopAllCoroutines();
+        StartCycleTurret();
     }
 
-    private IEnumerator CycleTurret()
+    private void StartCycleTurret()
     {
-        while (true)
+        if (gameObject.activeSelf)
         {
-            FindTarget();
-
-            yield return new WaitForSeconds(0.2f);
-        }
-    }
-
-    private void FindTarget()
-    {
-        enemyList.Clear();
-
-        filter.useLayerMask = true;
-        filter.layerMask = contactLayers;
-
-        int numColliders = Physics2D.OverlapCollider(circleCollider, filter, colliders);
-
-        for (int i = 0; i < numColliders; i++)
-        {
-            if (colliders[i] != null && colliders[i] != circleCollider && colliders[i].gameObject.tag != tagPlanet)
-            {
-                enemyList.Add(colliders[i].transform);
-            }
-        }
-
-        CalculateTarget();
-    }
-
-    private void CalculateTarget()
-    {
-        float closestDistance = Mathf.Infinity;
-        Transform closestEnemy = null;
-
-        foreach (Transform enemy in enemyList)
-        {
-            if (enemy == null || ReferenceEquals(enemy, null))
-            {
-                break;
-            }
-
-            float distance = Vector3.Distance(transform.position, enemy.transform.position);
-
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closestEnemy = enemy;
-            }
-        }
-
-        if (closestEnemy != null)
-            targetPosition = closestEnemy;
-
-        if (!isRotateTurret)
-        {
+            StartCoroutine(ClearList());
+            StartCoroutine(FindNearTarget());
+            StartCoroutine(Shooting());
             StartCoroutine(AimTarget());
         }
     }
+
+    #endregion
+
+    #region Find Target
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out Ship ship) && !listEnemy.Contains(ship.transform.position) && !ship.CompareTag(tagPlanet))
+        {
+            listEnemy.Add(ship.GetPosition().position);
+        }
+    }
+
+    private IEnumerator FindNearTarget()
+    {
+        while (true)
+        {
+            while (listEnemy.Count > 0)
+            {
+                float closestDistance = Mathf.Infinity;
+
+                foreach (Vector3 ship in listEnemy)
+                {
+                    float distance = Vector3.Distance(transform.position, ship);
+
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        target = ship;
+                    }
+                }
+
+                yield return new WaitForSeconds(0.05f);
+            }
+
+            target = Vector3.zero;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    private IEnumerator ClearList()
+    {
+        while (true)
+        {
+            listEnemy.Clear();
+            target = Vector3.zero;
+
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    #endregion
 
     #region Aim
 
     private IEnumerator AimTarget()
     {
-        isRotateTurret = true;
-        Vector2 direction = targetPosition.position - transform.position;
-        direction.Normalize();
-
-        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.AngleAxis(targetAngle - 90f, Vector3.forward);
-
-        while (transform.rotation != rotation)
+        while (true)
         {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
-            yield return null;
-        }
+            while (target != Vector3.zero)
+            {
+                yield return new WaitForSeconds(0.04f);
+                CorrectAngle();
+            }
 
-        isRotateTurret = false;
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    private void CorrectAngle()
+    {
+        if (target != Vector3.zero)
+        {
+            Vector3 dir = target - transform.position;
+            dir.Normalize();
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+            turret.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+        }
+    }
+
+    private IEnumerator Shooting()
+    {
+        while (true)
+        {
+            if (target != Vector3.zero)
+            {
+                GameObject bulletInstance = Instantiate(bullet, turret.transform.position, turret.transform.rotation, parent);
+                bulletInstance.tag = tagPlanet;
+            }
+
+            yield return new WaitForSeconds(reloadSpeed);
+        }
     }
 
     #endregion
