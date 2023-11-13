@@ -29,46 +29,91 @@ public class Draft : MonoBehaviour
     {
         if (player.draftPlanet > 0)
         {
-            StartCoroutine(DraftPlanets(player.draftPlanet, "PlayerPlanet", playerPlanet));
+            int chance = 25;
+            if (player.draftPlanet > 1)
+                chance = 50;
+
+            StartCoroutine(DraftPlanets(chance, player.draftPlanet, "PlayerPlanet", playerPlanet));
         }
+
         if (enemy1.draftPlanet > 0)
         {
-            StartCoroutine(DraftPlanets(enemy1.draftPlanet, "Enemy1", enemy1Planet));
+            int chance = 25;
+            if (enemy1.draftPlanet > 1)
+                chance = 50;
+
+            StartCoroutine(DraftPlanets(chance, enemy1.draftPlanet, "Enemy1", enemy1Planet));
         }
+
         if (enemy2.draftPlanet > 0)
         {
-            StartCoroutine(DraftPlanets(enemy2.draftPlanet, "Enemy3", enemy2Planet));
+            int chance = 25;
+            if (enemy2.draftPlanet > 1)
+                chance = 50;
+
+            StartCoroutine(DraftPlanets(chance, enemy2.draftPlanet, "Enemy2", enemy2Planet));
         }
+
         if (enemy3.draftPlanet > 0)
         {
-            StartCoroutine(DraftPlanets(enemy3.draftPlanet, "Enemy3", enemy3Planet));
+            int chance = 25;
+            if (enemy3.draftPlanet > 1)
+                chance = 50;
+
+            StartCoroutine(DraftPlanets(chance, enemy3.draftPlanet, "Enemy3", enemy3Planet));
         }
     }
 
-    private IEnumerator DraftPlanets(int index, string tagPlanets, List<GameObject> listPlanet)
+    private IEnumerator DraftPlanets(int percent, int index, string tagPlanets, List<GameObject> listPlanet)
     {
-        yield return new WaitForSeconds(Random.Range(5f, 30f));
-        SplitPlanet(tagPlanets, listPlanet);
+        yield return new WaitForSeconds(Random.Range(5f, 15f));
 
-        while (listPlanet.Count > 0)
+        while (CheckPlanets(tagPlanets))
         {
-            SplitPlanet(tagPlanets, listPlanet);
+            SplitPlanet(tagPlanets, listPlanet, percent);
 
-            SpawnShips(index, listPlanet);
+            SpawnShips(listPlanet, index);
 
-            yield return new WaitForSeconds(Random.Range(5f, 30f));
+            yield return new WaitForSeconds(Random.Range(11f, 30f));
         }
 
+        Debug.Log("Draft is gone");
         yield break;
     }
 
-    private void SpawnShips(int index, List<GameObject> listPlanet)
+    private bool CheckPlanets(string tag)
     {
+        foreach (GameObject planet in allPlanets)
+        { 
+            if(planet.CompareTag(tag)) return true;
+        }
+
+        return false;
+    }
+
+    private void SpawnShips(List<GameObject> listPlanet, int index)
+    {
+        int maxUnits = 0;
+
+        if (index == 1)
+        {
+            maxUnits = 6;
+        }
+        else if (index >= 2)
+        {
+            maxUnits = 11;
+        }
+
+        if (index == 3)
+        {
+            SpawnCruisers(listPlanet);
+        }
+
         foreach (GameObject planet in listPlanet)
         {
             Vector2 spawnPoint = GetRandomPoint();
 
-            for (int i = 0; i < Random.Range(1, 10); i++)
+            for (int i = 0; i < Random.Range(1, maxUnits); i++)
             {
                 GameObject unit = planet.GetComponent<Planet>().unitPrefab;
                 GameObject cruiser = planet.GetComponent<Planet>().cruiserPrefab;
@@ -90,6 +135,40 @@ public class Draft : MonoBehaviour
                     unitMovement.target = planet.transform;
                     unitMovement.SetTarget(planet.GetComponent<Planet>());
                 }
+            }
+        }
+    }
+
+    private void SpawnCruisers(List<GameObject> listPlanet)
+    {
+        foreach (GameObject planet in listPlanet)
+        {
+            int randomCount = Random.Range(0, 101);
+            if (randomCount < 25)
+            {
+                Vector2 spawnPoint = GetRandomPoint();
+
+                GameObject unit = planet.GetComponent<Planet>().unitPrefab;
+                GameObject cruiser = planet.GetComponent<Planet>().cruiserPrefab;
+                GameObject parent = planet.GetComponent<Planet>().unitsParent;
+                GameObject cruiserInstance = diContainer.InstantiatePrefab(cruiser, spawnPoint, Quaternion.identity, parent.transform);
+
+                shipConstructor.ChangeCruiser(cruiserInstance);
+
+                cruiserInstance.GetComponent<Cruiser>().unitPrefab = unit;
+                cruiserInstance.GetComponent<Cruiser>().cruiserPrefab = cruiser;
+                Cruiser cruiserEx = cruiserInstance.GetComponent<Cruiser>();
+
+                if (cruiserEx != null)
+                {
+                    cruiserInstance.tag = planet.tag;
+                    cruiserEx.tagUnit = cruiserInstance.tag.ToString();
+                    cruiserInstance.GetComponent<SpriteRenderer>().color = planet.GetComponent<Planet>().planetRenderer.color;
+
+                    cruiserEx.target = planet.transform;
+                    cruiserEx.SetTarget(planet.GetComponent<Planet>());
+                }
+
             }
         }
     }
@@ -128,24 +207,15 @@ public class Draft : MonoBehaviour
         }
     }
 
-    private bool IsValidPosition(Vector2 randomPoint)
-    {
-        if (randomPoint.x <= 15f && randomPoint.x >= -15f &&
-            randomPoint.y <= 10 && randomPoint.y >= -10f)
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    private void SplitPlanet(string tag, List<GameObject> listPlanet)
+    private void SplitPlanet(string tag, List<GameObject> listPlanet, int percent)
     {
         listPlanet.Clear();
 
         foreach (GameObject planet in allPlanets)
         {
-            if (planet.tag == tag)
+            int randomCount = Random.Range(0, 101);
+
+            if (planet.CompareTag(tag) && randomCount < percent)
             {
                 listPlanet.Add(planet);
             }
