@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public abstract class Ship : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public abstract class Ship : MonoBehaviour
     [HideInInspector] public string tagUnit; 
     [HideInInspector] public Planet targetPlanet;
     [HideInInspector] public Color mainColor;
+    [Inject] protected BalancePower balancePower;
 
     protected Animator animator;
     protected GameObject canvasParent;
@@ -27,7 +29,7 @@ public abstract class Ship : MonoBehaviour
     protected bool isDestruction = false;
     protected bool isRotation = true;
     protected bool isAbsorb = false;
-    
+    protected int originalHealth;
 
     protected float suctionForce = 0.55f;
 
@@ -47,6 +49,10 @@ public abstract class Ship : MonoBehaviour
         colliderUnit = GetComponent<CapsuleCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         mainColor = sprite.color;
+
+        originalHealth = health;
+
+        balancePower.GetFlyingShips(originalHealth, tagUnit, true);
 
         tagUnit = gameObject.tag;
         StartCoroutine(CorrectAngleTracking());
@@ -154,5 +160,10 @@ public abstract class Ship : MonoBehaviour
 
         if (health <= 0)
             StartCoroutine(Destruction());
+    }
+
+    private void OnDestroy()
+    {
+        balancePower.GetFlyingShips(originalHealth, tagUnit, false);
     }
 }
