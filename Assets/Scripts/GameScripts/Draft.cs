@@ -5,6 +5,11 @@ using Zenject;
 
 public class Draft : MonoBehaviour
 {
+    [SerializeField] private RectTransform topLeft;
+    [SerializeField] private RectTransform topRight;
+    [SerializeField] private RectTransform botLeft;
+    [SerializeField] private RectTransform botRight;
+
     [Inject] private DiContainer diContainer;
     [Inject] private ShipConstructor shipConstructor;
     [Inject] private ProgressPlayer player;
@@ -89,7 +94,18 @@ public class Draft : MonoBehaviour
 
     private Vector2 GetRandomPoint()
     {
-        Vector2 randomPoint;
+        Vector2 topPoint = topLeft.position;
+        Vector2 botPoint = botLeft.position;
+        float randomValue = Random.Range(0f, 1f);
+
+        Vector2 spawnPosition = Vector2.Lerp(botPoint, topPoint, randomValue);
+        return spawnPosition;
+
+
+
+
+
+/*        Vector2 randomPoint;
 
         do
         {
@@ -98,7 +114,7 @@ public class Draft : MonoBehaviour
             randomPoint = new Vector2(randomX, randomY);
         }
         while (IsValidPosition(randomPoint));
-        return randomPoint;
+        return randomPoint;*/
     }
 
     private bool IsValidPosition(Vector2 randomPoint)
