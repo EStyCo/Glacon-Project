@@ -5,10 +5,18 @@ using Zenject;
 
 public class Draft : MonoBehaviour
 {
-    [SerializeField] private RectTransform topLeft;
-    [SerializeField] private RectTransform topRight;
-    [SerializeField] private RectTransform botLeft;
-    [SerializeField] private RectTransform botRight;
+    [Header("Points")]
+    [SerializeField] private RectTransform[] top = new RectTransform[2];
+    [SerializeField] private RectTransform[] bottom = new RectTransform[2];
+    [SerializeField] private RectTransform[] left = new RectTransform[2];
+    [SerializeField] private RectTransform[] right = new RectTransform[2];
+
+    [Header("Planets")]
+    public List<GameObject> allPlanets = new List<GameObject>();
+    public List<GameObject> playerPlanet = new List<GameObject>();
+    public List<GameObject> enemy1Planet = new List<GameObject>();
+    public List<GameObject> enemy2Planet = new List<GameObject>();
+    public List<GameObject> enemy3Planet = new List<GameObject>();
 
     [Inject] private DiContainer diContainer;
     [Inject] private ShipConstructor shipConstructor;
@@ -16,12 +24,6 @@ public class Draft : MonoBehaviour
     [Inject] private ProgressEnemy1 enemy1;
     [Inject] private ProgressEnemy2 enemy2;
     [Inject] private ProgressEnemy3 enemy3;
-
-    public List<GameObject> allPlanets = new List<GameObject>();
-    public List<GameObject> playerPlanet = new List<GameObject>();
-    public List<GameObject> enemy1Planet = new List<GameObject>();
-    public List<GameObject> enemy2Planet = new List<GameObject>();
-    public List<GameObject> enemy3Planet = new List<GameObject>();
 
     public void CheckMembers()
     {
@@ -94,27 +96,36 @@ public class Draft : MonoBehaviour
 
     private Vector2 GetRandomPoint()
     {
-        Vector2 topPoint = topLeft.position;
-        Vector2 botPoint = botLeft.position;
+        RectTransform[] arrayPoints = RandomSide();
+        Vector2 topPoint = arrayPoints[0].position;
+        Vector2 botPoint = arrayPoints[1].position;
         float randomValue = Random.Range(0f, 1f);
 
         Vector2 spawnPosition = Vector2.Lerp(botPoint, topPoint, randomValue);
         return spawnPosition;
+    }
 
+    private RectTransform[] RandomSide()
+    {
+        int randomIndex = Random.Range(0, 4);
 
-
-
-
-/*        Vector2 randomPoint;
-
-        do
+        switch (randomIndex)
         {
-            float randomX = UnityEngine.Random.Range(-20f, 20f);
-            float randomY = UnityEngine.Random.Range(-15f, 15f);
-            randomPoint = new Vector2(randomX, randomY);
+            case 0:
+                return top;
+
+            case 1:
+                return bottom;
+
+            case 2:
+                return left;
+
+            case 3:
+                return right;
+
+            default:
+                return null;
         }
-        while (IsValidPosition(randomPoint));
-        return randomPoint;*/
     }
 
     private bool IsValidPosition(Vector2 randomPoint)

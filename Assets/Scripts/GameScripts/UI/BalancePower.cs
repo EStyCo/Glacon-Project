@@ -10,7 +10,6 @@ public class BalancePower : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image enemy2Fill;
     [SerializeField] private UnityEngine.UI.Image enemy3Fill;
 
-    private float units = 0;
 
     public List<Planet> listPlanets;
 
@@ -19,6 +18,7 @@ public class BalancePower : MonoBehaviour
     public List<Planet> enemy2Planet = new List<Planet>();
     public List<Planet> enemy3Planet = new List<Planet>();
 
+    private float units = 0;
     private int flyingPlayer = 0;
     private int flyingEnemy1 = 0;
     private int flyingEnemy2 = 0;
