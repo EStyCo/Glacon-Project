@@ -26,6 +26,7 @@ public class Draft : MonoBehaviour
     [Inject] private ProgressEnemy3 enemy3;
 
     #region Start
+
     public void CheckMembers()
     {
         if (player.draftPlanet > 0)
@@ -84,12 +85,11 @@ public class Draft : MonoBehaviour
 
     #endregion
 
-
     private bool CheckPlanets(string tag)
     {
         foreach (GameObject planet in allPlanets)
-        { 
-            if(planet.CompareTag(tag)) return true;
+        {
+            if (planet.CompareTag(tag)) return true;
         }
 
         return false;
