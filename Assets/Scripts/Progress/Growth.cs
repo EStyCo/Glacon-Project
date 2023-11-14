@@ -48,28 +48,28 @@ public class Growth : MonoBehaviour
     {
         SplitPlanet("PlayerPlanet", playerPlanet);
 
-        GrowthStarting(playerPlanet);
+        GrowthStarting("PlayerPlanet", playerPlanet);
     }
 
     private void GrowthEnemy1()
     {
         SplitPlanet("Enemy1", enemy1Planet);
 
-        GrowthStarting(enemy1Planet);
+        GrowthStarting("Enemy1", enemy1Planet);
     }
 
     private void GrowthEnemy2()
     {
         SplitPlanet("Enemy2", enemy2Planet);
 
-        GrowthStarting(enemy2Planet);
+        GrowthStarting("Enemy2", enemy2Planet);
     }
 
     private void GrowthEnemy3()
     {
         SplitPlanet("Enemy3", enemy3Planet);
 
-        GrowthStarting(enemy2Planet);
+        GrowthStarting("Enemy3", enemy3Planet);
     }
 
     private void SplitPlanet(string tag, List<GameObject> listPlanet)
@@ -86,8 +86,10 @@ public class Growth : MonoBehaviour
     }
 
 
-    private void GrowthStarting(List<GameObject> listPlanet)
+    private void GrowthStarting(string tag, List<GameObject> listPlanet)
     {
+        if (listPlanet.Count <= 0) return;
+
         foreach (GameObject planet in listPlanet)
         {
             Planet script = planet.GetComponent<Planet>();
@@ -95,10 +97,10 @@ public class Growth : MonoBehaviour
             script.GrowthEffect.Play("GrowthEffect");
         }
 
-        StartCoroutine(TimerGrowth(listPlanet));
+        StartCoroutine(TimerGrowth(tag, listPlanet));
     }
 
-    private void GrowthCanceling(List<GameObject> listPlanet)
+    private void GrowthCanceling(string tag, List<GameObject> listPlanet)
     {
         foreach (GameObject planet in listPlanet)
         {
@@ -107,22 +109,22 @@ public class Growth : MonoBehaviour
             script.GrowthEffect.Play("Idle");
         }
 
-        StartCoroutine(TimerRest(listPlanet));
+        StartCoroutine(TimerRest(tag));
     }
 
-    private IEnumerator TimerGrowth(List<GameObject> listPlanet)
+    private IEnumerator TimerGrowth(string tag, List<GameObject> listPlanet)
     {
         yield return new WaitForSeconds(10f);
 
-        GrowthCanceling(listPlanet);
+        GrowthCanceling(tag, listPlanet);
     }
 
-    private IEnumerator TimerRest(List<GameObject> listPlanet)
+    private IEnumerator TimerRest(string tag)
     {
         float restTimer = Random.Range(5f, 12f);
         yield return new WaitForSeconds(restTimer);
 
-        switch (listPlanet[0].tag)
+        switch (tag)
         {
             case "PlayerPlanet":
                 GrowthPlayer();

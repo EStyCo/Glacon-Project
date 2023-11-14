@@ -25,6 +25,7 @@ public class Draft : MonoBehaviour
     [Inject] private ProgressEnemy2 enemy2;
     [Inject] private ProgressEnemy3 enemy3;
 
+    #region Start
     public void CheckMembers()
     {
         if (player.draftPlanet > 0)
@@ -81,6 +82,9 @@ public class Draft : MonoBehaviour
         yield break;
     }
 
+    #endregion
+
+
     private bool CheckPlanets(string tag)
     {
         foreach (GameObject planet in allPlanets)
@@ -93,21 +97,9 @@ public class Draft : MonoBehaviour
 
     private void SpawnShips(List<GameObject> listPlanet, int index)
     {
-        int maxUnits = 0;
+        int maxUnits = index == 1 ? 6 : index >= 2 ? 11 : 0;
 
-        if (index == 1)
-        {
-            maxUnits = 6;
-        }
-        else if (index >= 2)
-        {
-            maxUnits = 11;
-        }
-
-        if (index == 3)
-        {
-            SpawnCruisers(listPlanet);
-        }
+        if (index == 3) SpawnCruisers(listPlanet);
 
         foreach (GameObject planet in listPlanet)
         {
