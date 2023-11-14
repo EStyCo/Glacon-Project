@@ -1,4 +1,3 @@
-using Game;
 using TMPro;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
@@ -13,6 +12,7 @@ public class Planet : MonoBehaviour
         large = 3
     } // Размеры планет
 
+    [Inject] private GameManager gameManager;
     [Inject] Growth growth;
     [Inject] Draft draft;
     [HideInInspector] public Color color;
@@ -65,7 +65,8 @@ public class Planet : MonoBehaviour
     {
         if (gameObject.CompareTag("PlayerPlanet"))
         {
-            color = GameManager.Instance.colorPlanet;
+            color = gameManager.colorPlayer;
+            planetRenderer.color = color;
         }
     }
 

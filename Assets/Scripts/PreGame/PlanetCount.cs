@@ -1,11 +1,10 @@
 using TMPro;
 using UnityEngine;
-using Game;
 using Zenject;
 
 public class PlanetCount : MonoBehaviour
 {
-    [Inject] GameModeManager gameModeManager;   
+    [Inject] GameModeManager gameModeManager;
     public TextMeshProUGUI textPlanets;
     public UnityEngine.UI.Slider sliderPlanets;
     public UnityEngine.UI.Toggle randomPlanets;

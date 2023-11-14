@@ -1,4 +1,3 @@
-using Game;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
@@ -20,7 +19,7 @@ public class MainPlanet : MonoBehaviour
     private SpriteResolver spriteResolver;
     private CircleCollider2D circleCollider;
 
-    private Color originalColor;
+    //private Color originalColor;
     public Size selectedSize = Size.medium;
 
     private const float spawnDistance = 0.25f;
@@ -41,7 +40,7 @@ public class MainPlanet : MonoBehaviour
         if (canvasParent == null) Debug.LogWarning("Не найден родитель канвас для планет!");
         unitsParent = GameObject.FindGameObjectWithTag("UnitsParent");
         if (unitsParent == null) Debug.LogWarning("Не найден родитель для юнитов!");
-        originalColor = GameManager.Instance.colorPlanet;
+        //originalColor = GameManager.Instance.colorPlanet;
         planetRenderer = GetComponent<SpriteRenderer>();
         spriteResolver = GetComponent<SpriteResolver>();
         circleCollider = GetComponent<CircleCollider2D>();

@@ -1,4 +1,3 @@
-using Game;
 using System;
 using UnityEngine;
 using Zenject;
@@ -12,6 +11,7 @@ public class Classic : Spawner
     [Inject(Id = "Enemy2Cruiser")] private GameObject enemy2CruiserPrefab;
     [Inject(Id = "Enemy3Cruiser")] private GameObject enemy3CruiserPrefab;
 
+    [Inject] protected GameManager gameManager;
     [Inject] protected BalancePower balancePower;
     [Inject] protected Growth growth;
     [Inject] protected Draft draft;
@@ -23,7 +23,7 @@ public class Classic : Spawner
         Vector2 playerSpawnPoint = GetRandomSpawnPoint(true);
 
         GameObject playerPlanet = diContainer.InstantiatePrefab(planetPrefab, playerSpawnPoint, Quaternion.identity, t);
-        ShipDesign.ChangePlayerSkin(playerPlanet, playerUnitPrefab, playerCruiserPrefab);
+        ShipDesign.ChangePlayerSkin(gameManager, playerPlanet, playerUnitPrefab, playerCruiserPrefab);
 
         balancePower.listPlanets.Add(playerPlanet.GetComponent<Planet>());
         spawnPoints.Add(playerSpawnPoint);
@@ -39,8 +39,8 @@ public class Classic : Spawner
 
     private void SpawnEnemyPlanets()
     {
-        enemyColors[1] = new Color(1.0f, 0.0f, 0.0f); 
-        enemyColors[2] = new Color(0.0f, 1.0f, 0.0f); 
+        enemyColors[1] = new Color(1.0f, 0.0f, 0.0f);
+        enemyColors[2] = new Color(0.0f, 1.0f, 0.0f);
         enemyColors[3] = new Color(0.0f, 0.0f, 1.0f);
 
         int count = gameModeManager.countEnemyPlanets;

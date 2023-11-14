@@ -1,4 +1,3 @@
-using Game;
 using UnityEngine;
 
 public class MainSceneSpawner : Spawner

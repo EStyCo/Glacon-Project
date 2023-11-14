@@ -1,45 +1,71 @@
-using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using UnityEngine.U2D.Animation;
 
-namespace Game
+public class GameManager : MonoBehaviour
 {
-	public class GameManager : MonoBehaviour
-	{
-		public static GameManager Instance { get; private set; }
+    public bool isPaused = false;
+    public int skinUnits;
+    public Color colorPlayer;
 
-		public bool isPaused = false;
-		public int skinUnits = 3;
-		public Color colorPlanet;
-		public SpriteRenderer playerPlanetPrefab;
+    private void Start()
+    {
+        LoadSkin();
+        LoadColor();
+    }
 
-		public SpriteRenderer unitPrefab;
-		public GameObject enemyPrefab;
+    public void ChangeColor(Color color)
+    {
+        colorPlayer = color;
+        SaveColor(colorPlayer);
+    }
 
-		private void Awake()
-		{
-			if (Instance == null)
-			{
-				Instance = this;
-				DontDestroyOnLoad(gameObject);
-			}
-			else
-			{
-				Destroy(gameObject);
-			}
-		}
+    public void ChangeSkin(int index)
+    {
+        skinUnits = index;
+        SaveSkin(skinUnits);
+    }
 
-        private void Start()
-		{
-			Color startingColor = new Color(1f, 1f, 1f, 1f);
-			ChangeColorUnits(startingColor);
-		}
+    private void SaveColor(Color color)
+    {
+        PlayerPrefs.SetFloat("ColorR", color.r);
+        PlayerPrefs.SetFloat("ColorG", color.g);
+        PlayerPrefs.SetFloat("ColorB", color.b);
+        PlayerPrefs.SetFloat("ColorA", color.a);
+    }
 
-		public void ChangeColorUnits(Color color)
-		{
-			colorPlanet = color;
-			playerPlanetPrefab.color = colorPlanet;
-		}
-	}
+    private void LoadColor()
+    {
+        if (PlayerPrefs.HasKey("ColorR") && PlayerPrefs.HasKey("ColorG") && PlayerPrefs.HasKey("ColorB") && PlayerPrefs.HasKey("ColorA"))
+        {
+            float r = PlayerPrefs.GetFloat("ColorR");
+            float g = PlayerPrefs.GetFloat("ColorG");
+            float b = PlayerPrefs.GetFloat("ColorB");
+            float a = PlayerPrefs.GetFloat("ColorA");
+
+            colorPlayer = new Color(r, g, b, a);
+        }
+        else colorPlayer = new Color(1f, 1f, 1f, 1f);
+    }
+
+    private void SaveSkin(int index)
+    {
+        PlayerPrefs.SetInt("Skin", index);
+    }
+
+    private void LoadSkin()
+    {
+        if (PlayerPrefs.HasKey("Skin"))
+        {
+            skinUnits = PlayerPrefs.GetInt("Skin");
+        }
+        else skinUnits = 3;
+    }
+
+    public void ResetData()
+    {
+        PlayerPrefs.DeleteAll();
+
+        LoadSkin();
+        LoadColor();
+    }
 }
+

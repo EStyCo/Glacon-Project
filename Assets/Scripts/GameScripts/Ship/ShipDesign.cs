@@ -1,4 +1,3 @@
-using Game;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
@@ -10,9 +9,9 @@ public static class ShipDesign
     /// <param name="planetPrefab"> Планета. </param>
     /// <param name="unitPrefab"> "Префаб Юнита" </param>
     /// <param name="cruiserPrefab"> "Префаб Крейсера" </param>
-    public static void ChangePlayerSkin(GameObject planetPrefab, GameObject unitPrefab, GameObject cruiserPrefab)
+    public static void ChangePlayerSkin(GameManager gameManager, GameObject planetPrefab, GameObject unitPrefab, GameObject cruiserPrefab)
     {
-        int skinUnits = GameManager.Instance.skinUnits;
+        int skinUnits = gameManager.skinUnits;
         GameObject instance = planetPrefab;
 
         GameObject tempUnitPrefab = instance.GetComponent<Planet>().unitPrefab = unitPrefab;
