@@ -265,9 +265,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d88e6a48b98754d823790bc6881bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPaused: 0
+  level: 0
+  points: 10
   skinUnits: 0
   colorPlayer: {r: 0, g: 0, b: 0, a: 0}
+  isPaused: 0
 --- !u!1 &7874029099813455436
 GameObject:
   m_ObjectHideFlags: 0

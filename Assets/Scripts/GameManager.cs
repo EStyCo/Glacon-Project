@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public bool isPaused = false;
+    public int level;
+    public int points;
     public int skinUnits;
     public Color colorPlayer;
+    public bool isPaused = false;
 
     private void Start()
     {
