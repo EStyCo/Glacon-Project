@@ -2,10 +2,18 @@ using UnityEngine;
 using Zenject;
 
 public class ShipConstructor : MonoBehaviour
-{    
-    [Header("Settings X1")]
-    [SerializeField] private float bustMoveSpeed;
+{
+    [Header("Units")]
+    public float speedUnits;
+    public float speedCruisers;
+
+    [Header("Ships Upgrade")]
+    [SerializeField] private float bustSpeed1Level;
+    [SerializeField] private float bustSpeed2Level;
+    [SerializeField] private float bustDamage1Level;
+    [SerializeField] private float bustDamage2Level;
     [SerializeField] private int bustArmorShip;
+
     [SerializeField] private float bustDamage;
 
     [Inject] private ProgressPlayer player;
@@ -61,18 +69,17 @@ public class ShipConstructor : MonoBehaviour
 
     // »√–Œ 
 
-    private void ChangePlayerUnits(GameObject unit)
+    private void ChangePlayerUnits(GameObject unitPrefab)
     {
+        unitPrefab.TryGetComponent(out Unit unit);
+
         switch (player.speedUnit)
         {
             case 1:
-                unit.GetComponent<Unit>().movementSpeed += bustMoveSpeed;
+                unit.movementSpeed += bustSpeed1Level;
                 break;
-            case 2:
-                unit.GetComponent<Unit>().movementSpeed += (bustMoveSpeed * 2);
-                break;
-            case 3:
-                unit.GetComponent<Unit>().movementSpeed += (bustMoveSpeed * 2);
+            case >= 2:
+                unit.movementSpeed += bustSpeed2Level;
                 break;
             default:
                 break;
@@ -96,13 +103,10 @@ public class ShipConstructor : MonoBehaviour
         switch (player.damageUnit)
         {
             case 1:
-                unit.GetComponent<Unit>().damage = bustDamage;
+                unit.damage = bustDamage1Level;
                 break;
-            case 2:
-                unit.GetComponent<Unit>().damage = (bustDamage * 2);
-                break;
-            case 3:
-                unit.GetComponent<Unit>().damage = (bustDamage * 2);
+            case >= 2:
+                unit.damage = bustDamage2Level;
                 break;
             default:
                 break;
@@ -155,18 +159,17 @@ public class ShipConstructor : MonoBehaviour
 
     // œ–Œ“»¬Õ»  1
 
-    private void ChangeEnemy1Unit(GameObject unit)
+    private void ChangeEnemy1Unit(GameObject unitPrefab)
     {
+        unitPrefab.TryGetComponent(out Unit unit);
+
         switch (enemy1.speedUnit)
         {
             case 1:
-                unit.GetComponent<Unit>().movementSpeed += bustMoveSpeed;
+                unit.movementSpeed += bustSpeed1Level;
                 break;
-            case 2:
-                unit.GetComponent<Unit>().movementSpeed += (bustMoveSpeed * 2);
-                break;
-            case 3:
-                unit.GetComponent<Unit>().movementSpeed += (bustMoveSpeed * 2);
+            case >= 2:
+                unit.movementSpeed += bustSpeed2Level;
                 break;
             default:
                 break;
@@ -190,13 +193,10 @@ public class ShipConstructor : MonoBehaviour
         switch (enemy1.damageUnit)
         {
             case 1:
-                unit.GetComponent<Unit>().damage = bustDamage;
+                unit.damage = bustDamage1Level;
                 break;
-            case 2:
-                unit.GetComponent<Unit>().damage = bustDamage * 2;
-                break;
-            case 3:
-                unit.GetComponent<Unit>().damage = bustDamage * 2;
+            case >= 2:
+                unit.damage = bustDamage2Level;
                 break;
             default:
                 break;
@@ -249,18 +249,17 @@ public class ShipConstructor : MonoBehaviour
 
     // œ–Œ“»¬Õ»  2
 
-    private void ChangeEnemy2Unit(GameObject unit)
+    private void ChangeEnemy2Unit(GameObject unitPrefab)
     {
+        unitPrefab.TryGetComponent(out Unit unit);
+
         switch (enemy2.speedUnit)
         {
             case 1:
-                unit.GetComponent<Unit>().movementSpeed += bustMoveSpeed;
+                unit.movementSpeed += bustSpeed1Level;
                 break;
-            case 2:
-                unit.GetComponent<Unit>().movementSpeed += (bustMoveSpeed * 2);
-                break;
-            case 3:
-                unit.GetComponent<Unit>().movementSpeed += (bustMoveSpeed * 2);
+            case >= 2:
+                unit.movementSpeed += bustSpeed2Level;
                 break;
             default:
                 break;
@@ -284,13 +283,10 @@ public class ShipConstructor : MonoBehaviour
         switch (enemy2.damageUnit)
         {
             case 1:
-                unit.GetComponent<Unit>().damage = bustDamage;
+                unit.damage = bustDamage1Level;
                 break;
-            case 2:
-                unit.GetComponent<Unit>().damage = bustDamage * 2;
-                break;
-            case 3:
-                unit.GetComponent<Unit>().damage = bustDamage * 2;
+            case >= 2:
+                unit.damage = bustDamage2Level;
                 break;
             default:
                 break;
@@ -341,20 +337,19 @@ public class ShipConstructor : MonoBehaviour
         }
     }
 
-    // œ–Œ“»¬Õ»  3
+    // œ–Œ“»¬Õ»  3 f
 
-    private void ChangeEnemy3Unit(GameObject unit)
+    private void ChangeEnemy3Unit(GameObject unitPrefab)
     {
+        unitPrefab.TryGetComponent(out Unit unit);
+
         switch (enemy3.speedUnit)
         {
             case 1:
-                unit.GetComponent<Unit>().movementSpeed += bustMoveSpeed;
+                unit.movementSpeed += bustSpeed1Level;
                 break;
-            case 2:
-                unit.GetComponent<Unit>().movementSpeed += (bustMoveSpeed * 2);
-                break;
-            case 3:
-                unit.GetComponent<Unit>().movementSpeed += (bustMoveSpeed * 2);
+            case >= 2:
+                unit.movementSpeed += bustSpeed2Level;
                 break;
             default:
                 break;
@@ -378,13 +373,10 @@ public class ShipConstructor : MonoBehaviour
         switch (enemy3.damageUnit)
         {
             case 1:
-                unit.GetComponent<Unit>().damage = bustDamage;
+                unit.damage = bustDamage1Level;
                 break;
-            case 2:
-                unit.GetComponent<Unit>().damage = bustDamage * 2;
-                break;
-            case 3:
-                unit.GetComponent<Unit>().damage = bustDamage * 2;
+            case >= 2:
+                unit.damage = bustDamage2Level;
                 break;
             default:
                 break;

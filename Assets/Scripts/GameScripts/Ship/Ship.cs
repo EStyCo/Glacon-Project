@@ -5,7 +5,6 @@ using Zenject;
 public abstract class Ship : MonoBehaviour
 {
     [Header("Difference")]
-    public float movementSpeed = 0;
     public int armor = 0;
     public int health = 0;
     public float damage = 0;
@@ -18,6 +17,7 @@ public abstract class Ship : MonoBehaviour
     [HideInInspector] public Planet targetPlanet;
     [HideInInspector] public Color mainColor;
     [Inject] protected BalancePower balancePower;
+    [Inject] protected ShipConstructor constructor;
 
     protected Animator animator;
     protected GameObject canvasParent;
@@ -25,6 +25,7 @@ public abstract class Ship : MonoBehaviour
     protected CapsuleCollider2D colliderUnit;
     protected Rigidbody2D rb;
 
+    public float movementSpeed = 0;
     protected bool isMoving = true;
     protected bool isDestruction = false;
     protected bool isRotation = true;
@@ -38,6 +39,8 @@ public abstract class Ship : MonoBehaviour
     protected abstract void OnTriggerStay2D(Collider2D collision);
 
     protected abstract IEnumerator Destruction();
+
+    public abstract void SetMoveSpeed();
 
     abstract protected void Moving();
 
@@ -55,6 +58,7 @@ public abstract class Ship : MonoBehaviour
         balancePower.GetFlyingShips(originalHealth, tagUnit, true);
 
         tagUnit = gameObject.tag;
+        //SetMoveSpeed();
         StartCoroutine(CorrectAngleTracking());
     }
 

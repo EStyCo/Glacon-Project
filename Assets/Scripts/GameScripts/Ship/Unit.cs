@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Unit : Ship
 {
+
     #region Triggers and Collisions
 
     protected override void OnCollisionStay2D(Collision2D collision)
@@ -63,6 +64,11 @@ public class Unit : Ship
 
     #endregion
 
+    public override void SetMoveSpeed()
+    {
+        movementSpeed = constructor.speedUnits;
+    }
+
     protected override void Moving()
     {
         if (isMoving)
@@ -101,4 +107,6 @@ public class Unit : Ship
             Destroy(gameObject);
         }
     }
+
+
 }

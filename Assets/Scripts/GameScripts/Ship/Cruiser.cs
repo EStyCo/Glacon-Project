@@ -189,4 +189,10 @@ public class Cruiser : Ship
     {
         airCraftSpawner.SetActive(true);
     }
+
+    public override void SetMoveSpeed()
+    {
+        movementSpeed = constructor.speedCruisers;
+    }
+
 }

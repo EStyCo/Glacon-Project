@@ -76,11 +76,13 @@ public class MakeShip : MonoBehaviour
         Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, directionToTarget);
         GameObject unitInstance = diContainer.InstantiatePrefab(prefab, spawnPosition, spawnRotation, planet.unitsParent.transform);
 
-        shipConstructor.ChangeUnit(unitInstance);
-
         unitInstance.GetComponent<Unit>().unitPrefab = unitPrefab;
         unitInstance.GetComponent<Unit>().cruiserPrefab = cruiserPrefab;
         Unit unitMovement = unitInstance.GetComponent<Unit>();
+        unitMovement.SetMoveSpeed();
+
+        shipConstructor.ChangeUnit(unitInstance);
+
 
         if (unitMovement != null)
         {

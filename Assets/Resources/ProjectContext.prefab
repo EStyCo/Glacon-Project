@@ -132,7 +132,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433513193d0255e4eb3b401de630d4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bustMoveSpeed: 0.06
+  speedUnits: 0.8
+  speedCruisers: 0.5
+  bustSpeed1Level: 0.21
+  bustSpeed2Level: 0.43
+  bustDamage1Level: 0.18
+  bustDamage2Level: 0.19
   bustArmorShip: 1
   bustDamage: 0.1
 --- !u!114 &6362550977963866734

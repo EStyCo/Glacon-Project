@@ -195,7 +195,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 2d5510dc744ccc043a51e68b7fab5def, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 81bc6c0b2db159d4abb5a04c29817ead, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_CategoryHash: 6.321469e-16
   m_labelHash: 9.2477986e-29
   m_SpriteKey: 0
-  m_SpriteHash: 1016041389
+  m_SpriteHash: 585832974
 --- !u!114 &6341145960352792526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,7 +310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57043401ba635624db137983761c5f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0.85
   armor: 0
   health: 1
   damage: 0
@@ -321,3 +320,4 @@ MonoBehaviour:
   tagUnit: 
   targetPlanet: {fileID: 0}
   mainColor: {r: 0, g: 0, b: 0, a: 0}
+  movementSpeed: 0.85
