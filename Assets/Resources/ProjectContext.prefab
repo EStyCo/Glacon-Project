@@ -138,7 +138,17 @@ MonoBehaviour:
   bustSpeed2Level: 0.43
   bustDamage1Level: 0.18
   bustDamage2Level: 0.19
-  bustArmorShip: 1
+  bustArmorUnits: 0
+  healthCruisers: 20
+  armorDreadnought: 50
+  firstTimerStart: 3
+  firstTimerEnd: 10
+  cycleTimerStart: 10
+  cycleTimerEnd: 30
+  units1LevelStart: 7
+  units1LevelEnd: 9
+  units2LevelStart: 10
+  units2LevelEnd: 19
   bustDamage: 0.1
 --- !u!114 &6362550977963866734
 MonoBehaviour:

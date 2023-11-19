@@ -140,7 +140,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 5cc9658851a65e44ab20cdd8597ed97d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8aada962f276124e89ea6ed8ec361fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_CategoryHash: 6.5107658e-15
   m_labelHash: 1.2423384e-27
   m_SpriteKey: 0
-  m_SpriteHash: 445591471
+  m_SpriteHash: 719706912
 --- !u!1 &4515447281540674870
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +538,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 3518bc15b61f6044d8879b09f6c2a293, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a32f867e6934e3a43ab83de9b71a941a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_CategoryHash: 4.60904e-14
   m_labelHash: 0.039485287
   m_SpriteKey: 0
-  m_SpriteHash: 394181048
+  m_SpriteHash: 655641911
 --- !u!114 &6341145960352792526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,7 +653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5499fffd12c4fb44b99c41c198c98045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0.55
   armor: 0
   health: 20
   damage: 0
@@ -664,6 +663,7 @@ MonoBehaviour:
   tagUnit: 
   targetPlanet: {fileID: 0}
   mainColor: {r: 0, g: 0, b: 0, a: 0}
+  movementSpeed: 0.55
   turret: {fileID: 6004046831413513652}
   shield: {fileID: 1637719969419656669}
   airCraftSpawner: {fileID: 1418184351858440134}

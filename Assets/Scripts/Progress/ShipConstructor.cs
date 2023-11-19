@@ -12,7 +12,25 @@ public class ShipConstructor : MonoBehaviour
     [SerializeField] private float bustSpeed2Level;
     [SerializeField] private float bustDamage1Level;
     [SerializeField] private float bustDamage2Level;
-    [SerializeField] private int bustArmorShip;
+    [SerializeField] private int bustArmorUnits;
+
+    [Header("Cruisers")]
+    public int healthCruisers;
+    [SerializeField] private int armorDreadnought;
+
+    [Header("Draft")]
+    public int firstTimerStart;
+    public int firstTimerEnd;
+    public int cycleTimerStart;
+    public int cycleTimerEnd;
+    public int units1LevelStart;
+    public int units1LevelEnd;
+    public int units2LevelStart;
+    public int units2LevelEnd;
+
+
+
+
 
     [SerializeField] private float bustDamage;
 
@@ -91,10 +109,10 @@ public class ShipConstructor : MonoBehaviour
                 unit.GetComponent<Unit>().armor = 0;
                 break;
             case 2:
-                unit.GetComponent<Unit>().armor = bustArmorShip;
+                unit.GetComponent<Unit>().armor = bustArmorUnits;
                 break;
             case 3:
-                unit.GetComponent<Unit>().armor = bustArmorShip;
+                unit.GetComponent<Unit>().armor = bustArmorUnits;
                 break;
             default:
                 break;
@@ -130,11 +148,11 @@ public class ShipConstructor : MonoBehaviour
                 cruiser.GetComponent<Cruiser>().armor = 0;
                 break;
             case 2:
-                cruiser.GetComponent<Cruiser>().armor = (bustArmorShip * 20);
+                cruiser.GetComponent<Cruiser>().armor = (bustArmorUnits * healthCruisers);
                 break;
             case 3:
                 cruiser.GetComponent<Cruiser>().ShowShield(true);
-                cruiser.GetComponent<Cruiser>().armor = (bustArmorShip * 200);
+                cruiser.GetComponent<Cruiser>().armor = (armorDreadnought);
                 break;
             default:
                 break;
@@ -181,10 +199,10 @@ public class ShipConstructor : MonoBehaviour
                 unit.GetComponent<Unit>().armor = 0;
                 break;
             case 2:
-                unit.GetComponent<Unit>().armor = bustArmorShip;
+                unit.GetComponent<Unit>().armor = bustArmorUnits;
                 break;
             case 3:
-                unit.GetComponent<Unit>().armor = bustArmorShip;
+                unit.GetComponent<Unit>().armor = bustArmorUnits;
                 break;
             default:
                 break;
@@ -220,11 +238,11 @@ public class ShipConstructor : MonoBehaviour
                 cruiser.GetComponent<Cruiser>().armor = 0;
                 break;
             case 2:
-                cruiser.GetComponent<Cruiser>().armor = (bustArmorShip * 20);
+                cruiser.GetComponent<Cruiser>().armor = (bustArmorUnits * healthCruisers);
                 break;
             case 3:
                 cruiser.GetComponent<Cruiser>().ShowShield(true);
-                cruiser.GetComponent<Cruiser>().armor = (bustArmorShip * 200);
+                cruiser.GetComponent<Cruiser>().armor = (armorDreadnought);
                 break;
             default:
                 break;
@@ -271,10 +289,10 @@ public class ShipConstructor : MonoBehaviour
                 unit.GetComponent<Unit>().armor = 0;
                 break;
             case 2:
-                unit.GetComponent<Unit>().armor = bustArmorShip;
+                unit.GetComponent<Unit>().armor = bustArmorUnits;
                 break;
             case 3:
-                unit.GetComponent<Unit>().armor = bustArmorShip;
+                unit.GetComponent<Unit>().armor = bustArmorUnits;
                 break;
             default:
                 break;
@@ -310,11 +328,11 @@ public class ShipConstructor : MonoBehaviour
                 cruiser.GetComponent<Cruiser>().armor = 0;
                 break;
             case 2:
-                cruiser.GetComponent<Cruiser>().armor = (bustArmorShip * 20);
+                cruiser.GetComponent<Cruiser>().armor = (bustArmorUnits * healthCruisers);
                 break;
             case 3:
                 cruiser.GetComponent<Cruiser>().ShowShield(true);
-                cruiser.GetComponent<Cruiser>().armor = (bustArmorShip * 200);
+                cruiser.GetComponent<Cruiser>().armor = (armorDreadnought);
                 break;
             default:
                 break;
@@ -337,7 +355,7 @@ public class ShipConstructor : MonoBehaviour
         }
     }
 
-    // œ–Œ“»¬Õ»  3 f
+    // œ–Œ“»¬Õ»  3 
 
     private void ChangeEnemy3Unit(GameObject unitPrefab)
     {
@@ -400,11 +418,11 @@ public class ShipConstructor : MonoBehaviour
                 cruiser.GetComponent<Cruiser>().armor = 0;
                 break;
             case 2:
-                cruiser.GetComponent<Cruiser>().armor = (bustArmorShip * 20);
+                cruiser.GetComponent<Cruiser>().armor = (bustArmorUnits * healthCruisers);
                 break;
             case 3:
                 cruiser.GetComponent<Cruiser>().ShowShield(true);
-                cruiser.GetComponent<Cruiser>().armor = (bustArmorShip * 200);
+                cruiser.GetComponent<Cruiser>().armor = (armorDreadnought);
                 break;
             default:
                 break;

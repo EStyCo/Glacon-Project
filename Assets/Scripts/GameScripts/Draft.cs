@@ -68,7 +68,8 @@ public class Draft : MonoBehaviour
 
     private IEnumerator DraftPlanets(int percent, int index, string tagPlanets, List<GameObject> listPlanet)
     {
-        yield return new WaitForSeconds(Random.Range(5f, 15f));
+        int waiting = Random.Range(shipConstructor.firstTimerStart, shipConstructor.firstTimerEnd);
+        yield return new WaitForSeconds(waiting);
 
         while (CheckPlanets(tagPlanets))
         {
@@ -76,10 +77,10 @@ public class Draft : MonoBehaviour
 
             SpawnShips(listPlanet, index);
 
-            yield return new WaitForSeconds(Random.Range(11f, 30f));
+            waiting = Random.Range(shipConstructor.cycleTimerStart, shipConstructor.cycleTimerEnd);
+            yield return new WaitForSeconds(waiting);
         }
 
-        Debug.Log("Draft is gone");
         yield break;
     }
 
@@ -97,7 +98,7 @@ public class Draft : MonoBehaviour
 
     private void SpawnShips(List<GameObject> listPlanet, int index)
     {
-        int maxUnits = index == 1 ? 6 : index >= 2 ? 11 : 0;
+        int[] unitsCount = GetUnitsCount(index);
 
         if (index == 3) SpawnCruisers(listPlanet);
 
@@ -105,7 +106,7 @@ public class Draft : MonoBehaviour
         {
             Vector2 spawnPoint = GetRandomPoint();
 
-            for (int i = 0; i < Random.Range(1, maxUnits); i++)
+            for (int i = 0; i < Random.Range(unitsCount[0], unitsCount[1]); i++)
             {
                 GameObject unit = planet.GetComponent<Planet>().unitPrefab;
                 GameObject cruiser = planet.GetComponent<Planet>().cruiserPrefab;
@@ -129,6 +130,24 @@ public class Draft : MonoBehaviour
                 }
             }
         }
+    }
+
+    private int[] GetUnitsCount(int index)
+    {
+        int[] unitsCount = new int[2];
+
+        if (index < 0)
+        {
+            unitsCount[0] = shipConstructor.units1LevelStart;
+            unitsCount[1] = shipConstructor.units1LevelEnd;
+        }
+        else if (index >= 2)
+        {
+            unitsCount[0] = shipConstructor.units2LevelStart;
+            unitsCount[1] = shipConstructor.units2LevelEnd;
+        }
+
+        return unitsCount;
     }
 
     private void SpawnCruisers(List<GameObject> listPlanet)
