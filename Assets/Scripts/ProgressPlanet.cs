@@ -3,6 +3,7 @@ using Zenject;
 
 public class ProgressPlanet : MonoBehaviour
 {
+    [Inject] private ShipConstructor shipConstructor;
     [Inject] private ProgressPlayer player;
     [Inject] private ProgressEnemy1 enemy1;
     [Inject] private ProgressEnemy2 enemy2;
@@ -60,14 +61,13 @@ public class ProgressPlanet : MonoBehaviour
         switch (player.growthPlanet)
         {
             case 1:
-                GetComponent<Planet>().growthLevel = 0.05f;
+                GetComponent<Planet>().growthLevel = shipConstructor.bustGrowth1Level;
                 break;
-            case 2:
-                GetComponent<Planet>().growthLevel = 0.1f;
+
+            case >= 2:
+                GetComponent<Planet>().growthLevel = shipConstructor.bustGrowth2Level;
                 break;
-            case 3:
-                GetComponent<Planet>().growthLevel = 0.1f; 
-                break;
+
             default:
                 GetComponent<Planet>().growthLevel = 0f; 
                 break;
@@ -98,14 +98,13 @@ public class ProgressPlanet : MonoBehaviour
         switch (enemy1.growthPlanet)
         {
             case 1:
-                GetComponent<Planet>().growthLevel = 0.05f;
+                GetComponent<Planet>().growthLevel = shipConstructor.bustGrowth1Level;
                 break;
-            case 2:
-                GetComponent<Planet>().growthLevel = 0.1f;
+
+            case >= 2:
+                GetComponent<Planet>().growthLevel = shipConstructor.bustGrowth2Level;
                 break;
-            case 3:
-                GetComponent<Planet>().growthLevel = 0.1f; //
-                break;
+
             default:
                 GetComponent<Planet>().growthLevel = 0f;
                 break;
@@ -136,14 +135,13 @@ public class ProgressPlanet : MonoBehaviour
         switch (enemy2.growthPlanet)
         {
             case 1:
-                GetComponent<Planet>().growthLevel = 0.05f;
+                GetComponent<Planet>().growthLevel = shipConstructor.bustGrowth1Level;
                 break;
-            case 2:
-                GetComponent<Planet>().growthLevel = 0.1f;
+
+            case >= 2:
+                GetComponent<Planet>().growthLevel = shipConstructor.bustGrowth2Level;
                 break;
-            case 3:
-                GetComponent<Planet>().growthLevel = 0.1f; //
-                break;
+
             default:
                 GetComponent<Planet>().growthLevel = 0f;
                 break;
@@ -174,14 +172,13 @@ public class ProgressPlanet : MonoBehaviour
         switch (enemy3.growthPlanet)
         {
             case 1:
-                GetComponent<Planet>().growthLevel = 0.1f;
+                GetComponent<Planet>().growthLevel = shipConstructor.bustGrowth1Level;
                 break;
-            case 2:
-                GetComponent<Planet>().growthLevel = 0.1f;
+
+            case >= 2:
+                GetComponent<Planet>().growthLevel = shipConstructor.bustGrowth2Level;
                 break;
-            case 3:
-                GetComponent<Planet>().growthLevel = 0.1f; //
-                break;
+
             default:
                 GetComponent<Planet>().growthLevel = 0f;
                 break;

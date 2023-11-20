@@ -149,6 +149,10 @@ MonoBehaviour:
   units1LevelEnd: 9
   units2LevelStart: 10
   units2LevelEnd: 19
+  timerStart: 1
+  timerEnd: 5
+  bustGrowth1Level: 0.21
+  bustGrowth2Level: 0.15
   bustDamage: 0.1
 --- !u!114 &6362550977963866734
 MonoBehaviour:

@@ -32,7 +32,7 @@ public class MakeShip : MonoBehaviour
         {
             if (planet.currentUnitCount > 20)
             {
-                SendCruisers(targetPlanet);
+                SendCruisers(targetPlanet, false);
                 planet.currentUnitCount -= 20;
                 yield return new WaitForSeconds(0.08f);
             }
@@ -49,12 +49,20 @@ public class MakeShip : MonoBehaviour
         }
     }
 
-    private void SendCruisers(Planet targetPlanet)
+    public void SpawnGrowthingCruiser(Planet targetPlanet)
+    {
+        unitPrefab = planet.unitPrefab;
+        cruiserPrefab = planet.cruiserPrefab;
+
+        SendCruisers(targetPlanet, true);
+    }
+
+    private void SendCruisers(Planet targetPlanet, bool isGrowth)
     {
         Vector3 directionToTarget = (targetPlanet.transform.position - transform.position) * transform.localScale.normalized.y;
         Vector3 spawnPosition = CalculateSpawnPosition(directionToTarget);
 
-        SpawnCruisersAtPosition(spawnPosition, targetPlanet, cruiserPrefab);
+        SpawnCruisersAtPosition(spawnPosition, targetPlanet, cruiserPrefab, isGrowth);
     }
 
     private void SendUnits(Planet targetPlanet)
@@ -95,7 +103,7 @@ public class MakeShip : MonoBehaviour
         }
     }
 
-    private void SpawnCruisersAtPosition(Vector3 spawnPosition, Planet targetPlanet, GameObject prefab)
+    public void SpawnCruisersAtPosition(Vector3 spawnPosition, Planet targetPlanet, GameObject prefab, bool isGrowth)
     {
         Vector3 directionToTarget = (targetPlanet.transform.position - spawnPosition).normalized;
         Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, directionToTarget);
@@ -115,6 +123,9 @@ public class MakeShip : MonoBehaviour
         }*/
 
         Cruiser cruiser = cruiserInstance.GetComponent<Cruiser>();
+
+        if(isGrowth)
+            cruiser.isGrowthingCruiser = true;
 
         if (cruiser != null)
         {

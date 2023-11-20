@@ -18,6 +18,7 @@ public abstract class Ship : MonoBehaviour
     [HideInInspector] public Color mainColor;
     [Inject] protected BalancePower balancePower;
     [Inject] protected ShipConstructor constructor;
+    [Inject] protected Growth growth;
 
     protected Animator animator;
     protected GameObject canvasParent;

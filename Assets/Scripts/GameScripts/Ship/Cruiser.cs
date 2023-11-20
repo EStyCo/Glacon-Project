@@ -8,10 +8,11 @@ public class Cruiser : Ship
     [SerializeField] GameObject turret;
     [SerializeField] GameObject shield;
     [SerializeField] GameObject airCraftSpawner;
-    
+
     public SpriteResolver skinCruiser;
     public SpriteResolver skinShield;
 
+    public bool isGrowthingCruiser = false;
     public bool isCollision = false;
     private bool hasAnimDestr = false;
 
@@ -93,11 +94,13 @@ public class Cruiser : Ship
         {
             DesantToPlanet(collision.gameObject);
         }
+
         else if (targetPlanet != null &&
-                 collision.gameObject == targetPlanet.gameObject && 
+                 collision.gameObject == targetPlanet.gameObject &&
                  collision.gameObject.CompareTag(tagUnit))
         {
-            targetPlanet.currentUnitCount += health;
+            if (!isGrowthingCruiser)
+                targetPlanet.currentUnitCount += health;
 
             if (targetPlanet.currentUnitCount > targetPlanet.maxUnitCurrent)
                 targetPlanet.currentUnitCount = targetPlanet.maxUnitCurrent;
@@ -109,7 +112,7 @@ public class Cruiser : Ship
             else
                 Destroy(gameObject);
 
-            ChangeTagPlanet();
+            //ChangeTagPlanet();
         }
 
         if (collision.TryGetComponent(out Bullet bullet) && bullet.tag != tag)
@@ -195,4 +198,9 @@ public class Cruiser : Ship
         movementSpeed = constructor.speedCruisers;
     }
 
+    private void OnDestroy()
+    {
+        if (isGrowthingCruiser)
+            growth.DisableFlag(gameObject.tag);
+    }
 }

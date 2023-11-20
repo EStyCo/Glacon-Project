@@ -5,10 +5,16 @@ using Zenject;
 
 public class Growth : MonoBehaviour
 {
+    [Inject] private ShipConstructor shipConstructor;
     [Inject] private ProgressPlayer player;
     [Inject] private ProgressEnemy1 enemy1;
     [Inject] private ProgressEnemy2 enemy2;
     [Inject] private ProgressEnemy3 enemy3;
+
+    public bool isPlayer = false;
+    public bool isEnemy1 = false;
+    public bool isEnemy2 = false;
+    public bool isEnemy3 = false;
 
     public List<GameObject> allPlanets = new List<GameObject>();
     public List<GameObject> playerPlanet = new List<GameObject>();
@@ -16,60 +22,66 @@ public class Growth : MonoBehaviour
     public List<GameObject> enemy2Planet = new List<GameObject>();
     public List<GameObject> enemy3Planet = new List<GameObject>();
 
-    public void CheckMembers()
+    private Coroutine lifeCycle;
+
+    public void GetPlanet(GameObject planet) { if (planet != null && !allPlanets.Contains(planet)) allPlanets.Add(planet); }
+
+    private void Start()
     {
-        if (AbilityGrowth(player))
+        lifeCycle = StartCoroutine(LifeCycle());
+    }
+
+    private IEnumerator LifeCycle()
+    {
+        while (true)
         {
-            GrowthPlayer();
-        }
-        if (AbilityGrowth(enemy1))
-        {
-            GrowthEnemy1();
-        }
-        if (AbilityGrowth(enemy2))
-        {
-            GrowthEnemy2();
-        }
-        if (AbilityGrowth(enemy3))
-        {
-            GrowthEnemy3();
+            yield return new WaitForSeconds(1f);
+
+            CheckMembers();
         }
     }
 
-    public void GetPlanet(GameObject planet)
+    public void CheckMembers()
     {
-        if (planet != null && !allPlanets.Contains(planet))
-        {
-            allPlanets.Add(planet);
-        }
+        if (AbilityGrowth(player)) GrowthPlayer();
+
+        if (AbilityGrowth(enemy1)) GrowthEnemy1();
+
+        if (AbilityGrowth(enemy2)) GrowthEnemy2();
+
+        if (AbilityGrowth(enemy3)) GrowthEnemy3();
     }
 
     private void GrowthPlayer()
     {
         SplitPlanet("PlayerPlanet", playerPlanet);
 
-        GrowthStarting("PlayerPlanet", playerPlanet);
+        if (playerPlanet.Count >= 2 && !isPlayer)
+            StartCoroutine(GrowthStarting("PlayerPlanet", playerPlanet));
     }
 
     private void GrowthEnemy1()
     {
         SplitPlanet("Enemy1", enemy1Planet);
 
-        GrowthStarting("Enemy1", enemy1Planet);
+        if (enemy1Planet.Count >= 2 && !isEnemy1)
+            StartCoroutine(GrowthStarting("Enemy1", enemy1Planet));
     }
 
     private void GrowthEnemy2()
     {
         SplitPlanet("Enemy2", enemy2Planet);
 
-        GrowthStarting("Enemy2", enemy2Planet);
+        if (enemy2Planet.Count >= 2 && !isEnemy2)
+            StartCoroutine(GrowthStarting("Enemy2", enemy2Planet));
     }
 
     private void GrowthEnemy3()
     {
         SplitPlanet("Enemy3", enemy3Planet);
 
-        GrowthStarting("Enemy3", enemy3Planet);
+        if (enemy3Planet.Count >= 2 && !isEnemy3)
+            StartCoroutine(GrowthStarting("Enemy3", enemy3Planet));
     }
 
     private void SplitPlanet(string tag, List<GameObject> listPlanet)
@@ -79,65 +91,90 @@ public class Growth : MonoBehaviour
         foreach (GameObject planet in allPlanets)
         {
             if (planet.tag == tag)
-            {
                 listPlanet.Add(planet);
-            }
         }
     }
 
-
-    private void GrowthStarting(string tag, List<GameObject> listPlanet)
+    private IEnumerator GrowthStarting(string tag, List<GameObject> listPlanet)
     {
-        if (listPlanet.Count <= 0) return;
+        int timer = Random.Range(shipConstructor.timerStart, shipConstructor.timerEnd);
+        EnableFlag(tag);
 
-        foreach (GameObject planet in listPlanet)
-        {
-            Planet script = planet.GetComponent<Planet>();
-            script.growthLevel += 0.15f;
-            script.GrowthEffect.Play("GrowthEffect");
-        }
+        yield return new WaitForSeconds(timer);
 
-        StartCoroutine(TimerGrowth(tag, listPlanet));
+        if (listPlanet.Count <= 0) yield return null;
+
+        int[] randomPlanets = GetRandomPlanets(listPlanet);
+
+        GameObject chosenPlanet = listPlanet[randomPlanets[0]];
+        MakeShip makeShips = chosenPlanet.GetComponent<MakeShip>();
+
+        Planet targetPlanet = listPlanet[randomPlanets[1]].GetComponent<Planet>();
+        makeShips.SpawnGrowthingCruiser(targetPlanet);
     }
 
-    private void GrowthCanceling(string tag, List<GameObject> listPlanet)
-    {
-        foreach (GameObject planet in listPlanet)
-        {
-            Planet script = planet.GetComponent<Planet>();
-            script.growthLevel -= 0.15f;
-            script.GrowthEffect.Play("Idle");
-        }
+    #region Trash
 
-        StartCoroutine(TimerRest(tag));
+    private int[] GetRandomPlanets(List<GameObject> list)
+    {
+        int[] randomPlanets = new int[2];
+        int randomStart = Random.Range(0, list.Count);
+        int randomEnd = Random.Range(0, list.Count);
+
+        while (randomStart == randomEnd)
+            randomEnd = Random.Range(0, list.Count);
+
+        randomPlanets[0] = randomStart;
+        randomPlanets[1] = randomEnd;
+
+        return randomPlanets;
     }
 
-    private IEnumerator TimerGrowth(string tag, List<GameObject> listPlanet)
+    private void EnableFlag(string tag)
     {
-        yield return new WaitForSeconds(10f);
-
-        GrowthCanceling(tag, listPlanet);
-    }
-
-    private IEnumerator TimerRest(string tag)
-    {
-        float restTimer = Random.Range(5f, 12f);
-        yield return new WaitForSeconds(restTimer);
-
         switch (tag)
         {
             case "PlayerPlanet":
-                GrowthPlayer();
+                isPlayer = true;
                 break;
+
             case "Enemy1":
-                GrowthEnemy1();
+                isEnemy1 = true;
                 break;
+
             case "Enemy2":
-                GrowthEnemy2();
+                isEnemy2 = true;
                 break;
+
             case "Enemy3":
-                GrowthEnemy3();
+                isEnemy3 = true;
                 break;
+
+            default:
+                break;
+        }
+    }
+
+    public void DisableFlag(string tag)
+    {
+        switch (tag)
+        {
+            case "PlayerPlanet":
+                isPlayer = false;
+                break;
+
+            case "Enemy1":
+                isEnemy1 = false;
+                break;
+
+            case "Enemy2":
+                isEnemy2 = false;
+                break;
+
+            case "Enemy3":
+                isEnemy3 = false;
+                break;
+
             default:
                 break;
         }
@@ -175,4 +212,5 @@ public class Growth : MonoBehaviour
             return false;
     }
 
+    #endregion
 }

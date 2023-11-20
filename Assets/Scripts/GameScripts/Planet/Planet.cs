@@ -33,7 +33,6 @@ public class Planet : MonoBehaviour
     public TextMeshProUGUI unitCountText;
     public SpriteRenderer framePlanet;
     public GameObject unitsParent;
-    public Animator GrowthEffect;
 
     [Header("Units")]
     public float currentUnitCount;

@@ -28,6 +28,12 @@ public class ShipConstructor : MonoBehaviour
     public int units2LevelStart;
     public int units2LevelEnd;
 
+    [Header("Growth")]
+    public int timerStart;
+    public int timerEnd;
+    public float bustGrowth1Level;
+    public float bustGrowth2Level;
+
 
 
 

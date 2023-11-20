@@ -31,7 +31,6 @@ public class Classic : Spawner
         SpawnEnemyPlanets();
         SpawnNeutralPlanets(balancePower);
 
-        Invoke("StartGrowthScript", 2f);
         Invoke("StartDraftScript", 2f);
 
         balancePower.SplitPlanets();
@@ -127,11 +126,6 @@ public class Classic : Spawner
             default:
                 return null;
         }
-    }
-
-    private void StartGrowthScript()
-    {
-        growth.CheckMembers();
     }
 
     private void StartDraftScript()
