@@ -12,6 +12,7 @@ public class Planet : MonoBehaviour
         large = 3
     } // Размеры планет
 
+    [Inject] private ShipConstructor shipConstructor;
     [Inject] private GameManager gameManager;
     [Inject] Growth growth;
     [Inject] Draft draft;
@@ -73,14 +74,14 @@ public class Planet : MonoBehaviour
     {
         if (gameObject.tag != "NeutralPlanet")
         {
-            currentUnitCount = 60;
+            currentUnitCount = shipConstructor.startUnitsEnemy;
 
             if (gameObject.tag == "PlayerPlanet")
-                currentUnitCount = Random.Range(35, 45);
+                currentUnitCount = Random.Range(shipConstructor.minUnitsPlayer, shipConstructor.maxUnitsPlayer);
 
             CheckMakeUnits();
         }
-        else currentUnitCount = Random.Range(15, 41);
+        else currentUnitCount = Random.Range(shipConstructor.minNeutralUnits, shipConstructor.maxNeutralUnits);
     }
 
     public void SendShipsToPlanet(Planet targetPlanet)

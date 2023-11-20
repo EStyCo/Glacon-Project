@@ -3,9 +3,21 @@ using Zenject;
 
 public class ShipConstructor : MonoBehaviour
 {
-    [Header("Units")]
+    [Header("Ships")]
     public float speedUnits;
     public float speedCruisers;
+
+    [Header("Planet")]
+    public int minUnitsPlayer;
+    public int maxUnitsPlayer;
+    public int startUnitsEnemy;
+    public int minNeutralUnits;
+    public int maxNeutralUnits;
+
+    [Header("Turret")]
+    public float reloadSpeed;
+    public float bulletSpeed;
+    public float rangeFly;
 
     [Header("Ships Upgrade")]
     [SerializeField] private float bustSpeed1Level;
@@ -27,18 +39,15 @@ public class ShipConstructor : MonoBehaviour
     public int units1LevelEnd;
     public int units2LevelStart;
     public int units2LevelEnd;
+    public int chanceDraft1Level;
+    public int chanceDraft2Level;
+    public int chanceSpawnCruisers;
 
     [Header("Growth")]
     public int timerStart;
     public int timerEnd;
     public float bustGrowth1Level;
     public float bustGrowth2Level;
-
-
-
-
-
-    [SerializeField] private float bustDamage;
 
     [Inject] private ProgressPlayer player;
     [Inject] private ProgressEnemy1 enemy1;
@@ -114,12 +123,11 @@ public class ShipConstructor : MonoBehaviour
             case 1:
                 unit.GetComponent<Unit>().armor = 0;
                 break;
-            case 2:
+
+            case >= 2:
                 unit.GetComponent<Unit>().armor = bustArmorUnits;
                 break;
-            case 3:
-                unit.GetComponent<Unit>().armor = bustArmorUnits;
-                break;
+
             default:
                 break;
         }
@@ -167,13 +175,13 @@ public class ShipConstructor : MonoBehaviour
         switch (player.damageUnit)
         {
             case 1:
-                cruiser.GetComponent<Cruiser>().damage = bustDamage;
+                cruiser.GetComponent<Cruiser>().damage = bustDamage1Level;
                 break;
             case 2:
-                cruiser.GetComponent<Cruiser>().damage = (bustDamage * 2);
+                cruiser.GetComponent<Cruiser>().damage = bustDamage2Level;
                 break;
             case 3:
-                cruiser.GetComponent<Cruiser>().damage = (bustDamage * 2);
+                cruiser.GetComponent<Cruiser>().damage = bustDamage2Level;
                 cruiser.GetComponent<Cruiser>().OnTurret();
                 break;
             default:
@@ -204,12 +212,11 @@ public class ShipConstructor : MonoBehaviour
             case 1:
                 unit.GetComponent<Unit>().armor = 0;
                 break;
-            case 2:
+
+            case >= 2:
                 unit.GetComponent<Unit>().armor = bustArmorUnits;
                 break;
-            case 3:
-                unit.GetComponent<Unit>().armor = bustArmorUnits;
-                break;
+
             default:
                 break;
         }
@@ -257,13 +264,13 @@ public class ShipConstructor : MonoBehaviour
         switch (enemy1.damageUnit)
         {
             case 1:
-                cruiser.GetComponent<Cruiser>().damage = bustDamage;
+                cruiser.GetComponent<Cruiser>().damage = bustDamage1Level;
                 break;
             case 2:
-                cruiser.GetComponent<Cruiser>().damage = (bustDamage * 2);
+                cruiser.GetComponent<Cruiser>().damage = bustDamage2Level;
                 break;
             case 3:
-                cruiser.GetComponent<Cruiser>().damage = (bustDamage * 2);
+                cruiser.GetComponent<Cruiser>().damage = bustDamage2Level;
                 cruiser.GetComponent<Cruiser>().OnTurret();
                 break;
             default:
@@ -294,12 +301,11 @@ public class ShipConstructor : MonoBehaviour
             case 1:
                 unit.GetComponent<Unit>().armor = 0;
                 break;
-            case 2:
+
+            case >= 2:
                 unit.GetComponent<Unit>().armor = bustArmorUnits;
                 break;
-            case 3:
-                unit.GetComponent<Unit>().armor = bustArmorUnits;
-                break;
+
             default:
                 break;
         }
@@ -347,13 +353,13 @@ public class ShipConstructor : MonoBehaviour
         switch (enemy2.damageUnit)
         {
             case 1:
-                cruiser.GetComponent<Cruiser>().damage = bustDamage;
+                cruiser.GetComponent<Cruiser>().damage = bustDamage1Level;
                 break;
             case 2:
-                cruiser.GetComponent<Cruiser>().damage = (bustDamage * 2);
+                cruiser.GetComponent<Cruiser>().damage = bustDamage2Level;
                 break;
             case 3:
-                cruiser.GetComponent<Cruiser>().damage = (bustDamage * 2);
+                cruiser.GetComponent<Cruiser>().damage = bustDamage2Level;
                 cruiser.GetComponent<Cruiser>().OnTurret();
                 break;
             default:
@@ -384,12 +390,11 @@ public class ShipConstructor : MonoBehaviour
             case 1:
                 unit.GetComponent<Unit>().armor = 0;
                 break;
-            case 2:
-                unit.GetComponent<Unit>().armor = 1;
+
+            case >= 2:
+                unit.GetComponent<Unit>().armor = bustArmorUnits;
                 break;
-            case 3:
-                unit.GetComponent<Unit>().armor = 1;
-                break;
+
             default:
                 break;
         }
@@ -437,13 +442,13 @@ public class ShipConstructor : MonoBehaviour
         switch (enemy3.damageUnit)
         {
             case 1:
-                cruiser.GetComponent<Cruiser>().damage = bustDamage;
+                cruiser.GetComponent<Cruiser>().damage = bustDamage1Level;
                 break;
             case 2:
-                cruiser.GetComponent<Cruiser>().damage = (bustDamage * 2);
+                cruiser.GetComponent<Cruiser>().damage = bustDamage2Level;
                 break;
             case 3:
-                cruiser.GetComponent<Cruiser>().damage = (bustDamage * 2);
+                cruiser.GetComponent<Cruiser>().damage = bustDamage2Level;
                 cruiser.GetComponent<Cruiser>().OnTurret();
                 break;
             default:

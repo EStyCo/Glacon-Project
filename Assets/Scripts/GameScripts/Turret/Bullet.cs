@@ -1,11 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public class Bullet : MonoBehaviour
 {
+    [Inject] ShipConstructor shipConstructor;
+
     private Rigidbody2D rb;
-    [SerializeField] private float movementSpeed;
-    [SerializeField] private float lifeTimer;
 
     private void Start()
     {
@@ -20,16 +21,16 @@ public class Bullet : MonoBehaviour
 
     private IEnumerator TimerLife()
     { 
-        yield return new WaitForSeconds(lifeTimer);
+        yield return new WaitForSeconds(shipConstructor.rangeFly);
 
         Destroy(gameObject);
     }
 
-    #region Движение
+    #region Moving
 
     private void Moving()
     {
-        rb.velocity = transform.up * movementSpeed;
+        rb.velocity = transform.up * shipConstructor.bulletSpeed;
     }
 
     #endregion

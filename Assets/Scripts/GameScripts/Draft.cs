@@ -31,36 +31,36 @@ public class Draft : MonoBehaviour
     {
         if (player.draftPlanet > 0)
         {
-            int chance = 25;
+            int chance = shipConstructor.chanceDraft1Level;
             if (player.draftPlanet > 1)
-                chance = 50;
+                chance = shipConstructor.chanceDraft2Level;
 
             StartCoroutine(DraftPlanets(chance, player.draftPlanet, "PlayerPlanet", playerPlanet));
         }
 
         if (enemy1.draftPlanet > 0)
         {
-            int chance = 25;
+            int chance = shipConstructor.chanceDraft1Level;
             if (enemy1.draftPlanet > 1)
-                chance = 50;
+                chance = shipConstructor.chanceDraft2Level;
 
             StartCoroutine(DraftPlanets(chance, enemy1.draftPlanet, "Enemy1", enemy1Planet));
         }
 
         if (enemy2.draftPlanet > 0)
         {
-            int chance = 25;
+            int chance = shipConstructor.chanceDraft1Level;
             if (enemy2.draftPlanet > 1)
-                chance = 50;
+                chance = shipConstructor.chanceDraft2Level;
 
             StartCoroutine(DraftPlanets(chance, enemy2.draftPlanet, "Enemy2", enemy2Planet));
         }
 
         if (enemy3.draftPlanet > 0)
         {
-            int chance = 25;
+            int chance = shipConstructor.chanceDraft1Level;
             if (enemy3.draftPlanet > 1)
-                chance = 50;
+                chance = shipConstructor.chanceDraft2Level;
 
             StartCoroutine(DraftPlanets(chance, enemy3.draftPlanet, "Enemy3", enemy3Planet));
         }
@@ -155,7 +155,7 @@ public class Draft : MonoBehaviour
         foreach (GameObject planet in listPlanet)
         {
             int randomCount = Random.Range(0, 101);
-            if (randomCount < 25)
+            if (randomCount < shipConstructor.chanceSpawnCruisers)
             {
                 Vector2 spawnPoint = GetRandomPoint();
 

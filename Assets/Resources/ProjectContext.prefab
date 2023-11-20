@@ -132,11 +132,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433513193d0255e4eb3b401de630d4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedUnits: 0.8
-  speedCruisers: 0.5
+  speedUnits: 0.85
+  speedCruisers: 0.51
+  minUnitsPlayer: 35
+  maxUnitsPlayer: 45
+  startUnitsEnemy: 60
+  minNeutralUnits: 16
+  maxNeutralUnits: 35
+  reloadSpeed: 1.05
+  bulletSpeed: 0.69
+  rangeFly: 1.86
   bustSpeed1Level: 0.21
   bustSpeed2Level: 0.43
-  bustDamage1Level: 0.18
+  bustDamage1Level: 0.12
   bustDamage2Level: 0.19
   bustArmorUnits: 0
   healthCruisers: 20
@@ -149,11 +157,13 @@ MonoBehaviour:
   units1LevelEnd: 9
   units2LevelStart: 10
   units2LevelEnd: 19
+  chanceDraft1Level: 25
+  chanceDraft2Level: 54
+  chanceSpawnCruisers: 32
   timerStart: 1
   timerEnd: 5
   bustGrowth1Level: 0.21
   bustGrowth2Level: 0.15
-  bustDamage: 0.1
 --- !u!114 &6362550977963866734
 MonoBehaviour:
   m_ObjectHideFlags: 0

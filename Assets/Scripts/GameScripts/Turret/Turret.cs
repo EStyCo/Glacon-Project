@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Turret : MonoBehaviour
 {
+    [Inject] private ShipConstructor shipConstructor;
+
     [HideInInspector] public string tagPlanet;
     [HideInInspector] public List<Vector3> listEnemy = new List<Vector3>();
 
     [SerializeField] private LayerMask objectLayer;
     [SerializeField] private Transform turret;
     [SerializeField] private GameObject bullet;
-    [SerializeField] private float reloadSpeed;
 
     private Transform parent;
     private Vector3 target;
@@ -137,7 +139,7 @@ public class Turret : MonoBehaviour
                 bulletInstance.tag = tagPlanet;
             }
 
-            yield return new WaitForSeconds(reloadSpeed);
+            yield return new WaitForSeconds(shipConstructor.reloadSpeed);
         }
     }
 

@@ -404,7 +404,6 @@ MonoBehaviour:
     m_Bits: 23936
   turret: {fileID: 3898028460265212847}
   bullet: {fileID: 3610037366364468372, guid: a67b0e01987dacc409f860daacec8bfe, type: 3}
-  reloadSpeed: 1.35
 --- !u!1 &6312795829811529286
 GameObject:
   m_ObjectHideFlags: 0
