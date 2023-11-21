@@ -4,7 +4,7 @@ using Zenject;
 
 public class PlanetCount : MonoBehaviour
 {
-    [Inject] GameModeManager gameModeManager;
+    [Inject] GameManager gameManager;
     public TextMeshProUGUI textPlanets;
     public UnityEngine.UI.Slider sliderPlanets;
     public UnityEngine.UI.Toggle randomPlanets;
@@ -14,23 +14,25 @@ public class PlanetCount : MonoBehaviour
 
     private void Start()
     {
-        sliderPlanets.value = gameModeManager.planetCount;
-        UpdatePlanetsValueText(gameModeManager.planetCount);
+        sliderPlanets.value = gameManager.planets;
+        UpdatePlanetsValueText(gameManager.planets);
         ToggleRandomPlanets();
-
     }
+
     public void OnSliderPlanentsValueChanged()
     {
         UpdatePlanetsValueText(sliderPlanets.value);
     }
+
     public void UpdatePlanetsValueText(float value)
     {
         if (isRandom) textPlanets.text = "Планеты";
         else textPlanets.text = "Планеты: " + value.ToString();
 
         count = (int)value;
-        gameModeManager.planetCount = count;
+        gameManager.ChangePlanets(count);
     }
+
     public void ToggleRandomPlanets()
     {
         isRandom = randomPlanets.isOn;

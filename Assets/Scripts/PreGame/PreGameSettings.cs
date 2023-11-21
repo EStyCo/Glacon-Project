@@ -32,18 +32,22 @@ public class PreGameSettings : MonoBehaviour
         CheckColorUnits();
         CheckRank();
     }
+
     public void UpdateRankValueText()
     {
         if (sliderRank.value == 1) textRank.text = "Мичман";
         if (sliderRank.value == 2) textRank.text = "Капитан";
         if (sliderRank.value == 3) textRank.text = "Адмирал";
-        gameModeManager.ChangeDifficulty((int)sliderRank.value);
+
+        gameManager.ChangeDifficult((int)sliderRank.value);
     }
+
     private void CheckRank()
     {
         int indexRank = (int)gameModeManager.currentDifficulty;
         sliderRank.value = indexRank;
     }
+
     public void OnSliderRankValueChanged()
     {
         UpdateRankValueText();
