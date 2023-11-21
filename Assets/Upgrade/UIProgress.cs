@@ -24,27 +24,39 @@ public class UIProgress : MonoBehaviour
         if (points <= 0)
             return false;
 
-        CheckParameters(param, value);
-
-        return true;
+        return CheckParameters(param, value);
     }
 
-    private void CheckParameters(string param, int value)
+    private bool Check(ref int origValue, int value)
+    {
+        if (value - 1 == origValue)
+        {
+            origValue = value;
+            gameManager.points -= 1;
+
+            uiMain.UpdateData();
+            return true;
+        }
+        return false;
+    }
+
+
+    private bool CheckParameters(string param, int value)
     {
         switch (param)
         {
             case "ShipSpeed":
-                ChangeValue(value, ref player.speedUnit);
-                break;
+                return Check(ref player.speedUnit, value);
+
             default:
-                break;
+                return false;
         }
     }
 
     private void ChangeValue(int value, ref int originalValue)
     {
         if (value - 1 == originalValue)
-        { 
+        {
             originalValue = value;
             gameManager.points -= 1;
 
