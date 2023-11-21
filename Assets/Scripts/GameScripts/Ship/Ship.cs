@@ -137,12 +137,12 @@ public abstract class Ship : MonoBehaviour
             targetPlanet.tag = tagUnit;
             targetPlanet.planetRenderer.color = sprite.color;
             targetPlanet.CheckMakeUnits();
-            targetPlanet.CheckProgress();
             targetPlanet.turret.GetComponent<Turret>().ChangeTag(tagUnit);
 
             targetPlanet.unitPrefab = unitPrefab;
             targetPlanet.cruiserPrefab = cruiserPrefab;
             targetPlanet.currentUnitCount = 0;
+            targetPlanet.CheckProgress();
         }
     }
 

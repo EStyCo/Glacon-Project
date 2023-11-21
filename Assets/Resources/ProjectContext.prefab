@@ -134,11 +134,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedUnits: 0.85
   speedCruisers: 0.51
+  healthCruisers: 20
+  armorDreadnought: 50
   minUnitsPlayer: 35
   maxUnitsPlayer: 45
   startUnitsEnemy: 60
   minNeutralUnits: 16
   maxNeutralUnits: 35
+  restTimerShield: 3
+  speedShield: 1.16
+  radiusShield: 0.45
+  healthShield: 20
   reloadSpeed: 1.05
   bulletSpeed: 0.69
   rangeFly: 1.86
@@ -146,9 +152,7 @@ MonoBehaviour:
   bustSpeed2Level: 0.43
   bustDamage1Level: 0.12
   bustDamage2Level: 0.19
-  bustArmorUnits: 0
-  healthCruisers: 20
-  armorDreadnought: 50
+  bustArmorUnits: 1
   firstTimerStart: 3
   firstTimerEnd: 10
   cycleTimerStart: 10

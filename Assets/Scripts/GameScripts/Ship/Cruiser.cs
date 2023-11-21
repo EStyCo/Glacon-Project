@@ -43,6 +43,23 @@ public class Cruiser : Ship
                 Physics2D.IgnoreCollision(colliderUnit, collision.collider);
             }
 
+            if (collision.gameObject.TryGetComponent(out ShieldPlanet shield))
+            {
+                if (!isCollision)
+                {
+                    int enemyHealt = shield.health;
+                    int mainHealth = health;
+
+                    AvoidCollision(enemyHealt);
+                    shield.DecreasedHealth(mainHealth);
+                }
+
+                isCollision = true;
+                shield.isCollision = true;
+
+                Physics2D.IgnoreCollision(colliderUnit, collision.collider);
+            }
+
         }
     }
 

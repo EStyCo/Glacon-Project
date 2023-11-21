@@ -7,12 +7,22 @@ public class ShipConstructor : MonoBehaviour
     public float speedUnits;
     public float speedCruisers;
 
+    [Header("Cruisers")]
+    public int healthCruisers;
+    [SerializeField] private int armorDreadnought;
+
     [Header("Planet")]
     public int minUnitsPlayer;
     public int maxUnitsPlayer;
     public int startUnitsEnemy;
     public int minNeutralUnits;
     public int maxNeutralUnits;
+
+    [Header("Shield Planet")]
+    public int restTimerShield;    
+    public float speedShield;
+    public float radiusShield;
+    public int healthShield;
 
     [Header("Turret")]
     public float reloadSpeed;
@@ -25,10 +35,6 @@ public class ShipConstructor : MonoBehaviour
     [SerializeField] private float bustDamage1Level;
     [SerializeField] private float bustDamage2Level;
     [SerializeField] private int bustArmorUnits;
-
-    [Header("Cruisers")]
-    public int healthCruisers;
-    [SerializeField] private int armorDreadnought;
 
     [Header("Draft")]
     public int firstTimerStart;
@@ -48,6 +54,7 @@ public class ShipConstructor : MonoBehaviour
     public int timerEnd;
     public float bustGrowth1Level;
     public float bustGrowth2Level;
+
 
     [Inject] private ProgressPlayer player;
     [Inject] private ProgressEnemy1 enemy1;

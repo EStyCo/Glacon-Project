@@ -11,7 +11,7 @@ public class ProgressPlanet : MonoBehaviour
 
     [SerializeField] private float armorPlanet;
     [SerializeField] private GameObject turret;
-    [SerializeField] private GameObject growthEffect;
+    [SerializeField] private GameObject shield;
 
     public void CheckProgress()
     {
@@ -44,17 +44,23 @@ public class ProgressPlanet : MonoBehaviour
         switch (player.armorPlanet)
         {
             case 1:
-                GetComponent<Planet>().armor = armorPlanet;
+                shield.SetActive(true);
+                shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
+
             case 2:
-                GetComponent<Planet>().armor = armorPlanet * 2;
+                shield.SetActive(true);
+                shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
+
             case 3:
-                GetComponent<Planet>().armor = armorPlanet * 2;
+                shield.SetActive(true);
+                shield.GetComponent<ShieldPlanet>().ResetShield();
                 turret.SetActive(true);
                 break;
+
             default:
-                GetComponent<Planet>().armor = 0;
+                shield.SetActive(false);
                 break;
         }
 
@@ -81,17 +87,23 @@ public class ProgressPlanet : MonoBehaviour
         switch (enemy1.armorPlanet)
         {
             case 1:
-                GetComponent<Planet>().armor = armorPlanet;
+                shield.SetActive(true);
+                shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
+
             case 2:
-                GetComponent<Planet>().armor = armorPlanet * 2;
+                shield.SetActive(true);
+                shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
+
             case 3:
-                GetComponent<Planet>().armor = armorPlanet * 2;
+                shield.SetActive(true);
+                shield.GetComponent<ShieldPlanet>().ResetShield();
                 turret.SetActive(true);
                 break;
+
             default:
-                GetComponent<Planet>().armor = 0;
+                shield.SetActive(false);
                 break;
         }
 
@@ -118,17 +130,22 @@ public class ProgressPlanet : MonoBehaviour
         switch (enemy2.armorPlanet)
         {
             case 1:
-                GetComponent<Planet>().armor = armorPlanet;
+                shield.SetActive(true);
+                shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
+
             case 2:
-                GetComponent<Planet>().armor = armorPlanet * 2;
+                shield.SetActive(true);
+                shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
+
             case 3:
-                GetComponent<Planet>().armor = armorPlanet * 2;
+                shield.SetActive(true);
+                shield.GetComponent<ShieldPlanet>().ResetShield();
                 turret.SetActive(true);
                 break;
             default:
-                GetComponent<Planet>().armor = 0;
+                shield.SetActive(false);
                 break;
         }
 
@@ -155,17 +172,22 @@ public class ProgressPlanet : MonoBehaviour
         switch (enemy3.armorPlanet)
         {
             case 1:
-                GetComponent<Planet>().armor = armorPlanet;
+                shield.SetActive(true);
+                shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
+
             case 2:
-                GetComponent<Planet>().armor = armorPlanet * 2;
+                shield.SetActive(true);
+                shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
+
             case 3:
-                GetComponent<Planet>().armor = armorPlanet * 2;
+                shield.SetActive(true);
+                shield.GetComponent<ShieldPlanet>().ResetShield();
                 turret.SetActive(true);
                 break;
             default:
-                GetComponent<Planet>().armor = 0;
+                shield.SetActive(false);
                 break;
         }
 
