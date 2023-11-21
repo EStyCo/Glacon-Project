@@ -113,5 +113,8 @@ public class Unit : Ship
         }
     }
 
-
+    private void OnDestroy()
+    {
+        balancePower.GetFlyingShips(originalHealth, gameObject.tag, false);
+    }
 }

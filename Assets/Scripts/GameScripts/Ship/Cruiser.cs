@@ -217,6 +217,8 @@ public class Cruiser : Ship
 
     private void OnDestroy()
     {
+        balancePower.GetFlyingShips(originalHealth, gameObject.tag, false);
+        
         if (isGrowthingCruiser)
             growth.DisableFlag(gameObject.tag);
     }

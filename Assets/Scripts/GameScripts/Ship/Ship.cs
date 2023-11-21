@@ -166,9 +166,4 @@ public abstract class Ship : MonoBehaviour
         if (health <= 0)
             StartCoroutine(Destruction());
     }
-
-    private void OnDestroy()
-    {
-        balancePower.GetFlyingShips(originalHealth, tagUnit, false);
-    }
 }

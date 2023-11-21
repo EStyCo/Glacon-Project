@@ -54,6 +54,7 @@ public class BalancePower : MonoBehaviour
                         if (planet.currentUnitCount == 0)
                             yield return null;
                         break;
+
                     case "Enemy1":
                         enemy1Planet.Add(planet);
                         enemy1 += planet.currentUnitCount;
@@ -61,6 +62,7 @@ public class BalancePower : MonoBehaviour
                         if (planet.currentUnitCount == 0)
                             yield return null;
                         break;
+
                     case "Enemy2":
                         enemy2Planet.Add(planet);
                         enemy2 += planet.currentUnitCount;
@@ -68,6 +70,7 @@ public class BalancePower : MonoBehaviour
                         if (planet.currentUnitCount == 0)
                             yield return null;
                         break;
+
                     case "Enemy3":
                         enemy3Planet.Add(planet);
                         enemy3 += planet.currentUnitCount;
@@ -75,6 +78,7 @@ public class BalancePower : MonoBehaviour
                         if (planet.currentUnitCount == 0)
                             yield return null;
                         break;
+
                     default:
                         break;
                 }
@@ -84,6 +88,16 @@ public class BalancePower : MonoBehaviour
 
             enemy1 += player;
             enemy2 += enemy1;
+
+            /*Debug.Log("FlyPlayer: " + flyingPlayer);
+            Debug.Log("FlyEnemy1: " + flyingEnemy1);
+            Debug.Log("FlyEnemy2: " + flyingEnemy2);
+            Debug.Log("FlyEnemy3: " + flyingEnemy3);
+
+            Debug.Log("Player: " + player);
+            Debug.Log("Enemy1: " + enemy1);
+            Debug.Log("Enemy2: " + enemy2);
+            Debug.Log("Enemy3: " + enemy3);*/
 
             SetColor();
             SetFilling(player, enemy1, enemy2);
