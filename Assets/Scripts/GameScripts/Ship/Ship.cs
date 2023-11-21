@@ -77,10 +77,14 @@ public abstract class Ship : MonoBehaviour
             {
                 Vector3 direction = (target.position - transform.position).normalized;
                 Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, direction);
-                transform.rotation = targetRotation;
+
+                if (Quaternion.Angle(transform.rotation, targetRotation) > 2f)
+                {
+                    transform.rotation = targetRotation;
+                }
             }
 
-            yield return new WaitForSeconds(0.025f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
