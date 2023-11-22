@@ -32,7 +32,7 @@ public class UIProgress : MonoBehaviour
         if (value - 1 == origValue)
         {
             origValue = value;
-            gameManager.points -= 1;
+            if (!TakePoints(value)) return false;
 
             uiMain.UpdateData();
             return true;
@@ -40,6 +40,15 @@ public class UIProgress : MonoBehaviour
         return false;
     }
 
+    private bool TakePoints(int index)
+    {
+        int temp = gameManager.points - index;
+
+        if (temp < 0) return false;
+        
+        gameManager.points = temp;
+        return true;
+    }
 
     private bool CheckParameters(string param, int value)
     {

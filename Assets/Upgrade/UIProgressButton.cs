@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 using UnityEngine.UI;
 using Zenject;
 
@@ -10,13 +10,51 @@ public class UIProgressButton : MonoBehaviour
 
     [SerializeField] int value;
     [SerializeField] string param;
+    [SerializeField] SpriteResolver substrateResolver;
+    [SerializeField] SpriteRenderer substrateRenderer;
+    [SerializeField] Color originalColor;
+    [SerializeField] Color selectColor;
 
-    public void SendValue()
+    private bool isChosen = false;
+
+    public void Upgrade()
     {
         if (uIProgress.SetNewValue(param, value))
-        { 
-            gameObject.GetComponent<Button>().interactable = false;
-            gameObject.GetComponent<Image>().color = new Color(0.5754717f, 0.5754717f, 0.5754717f, 1f);
+        {
+            SelectButton(true);
+            ChangeSprite(true);
         }
+        else SelectButton(false);
+    }
+
+    public void SelectButton(bool isSelected)
+    {
+        if (isSelected)
+        {
+            substrateRenderer.color = selectColor;
+        }
+        else
+        { 
+            substrateRenderer.color = originalColor;
+        }
+    }
+
+    public void ChangeSprite(bool state)
+    {
+        SpriteResolver spriteResolver = gameObject.GetComponent<SpriteResolver>();
+
+        if (state)
+        {
+            spriteResolver.SetCategoryAndLabel("Button", "Chosen");
+            substrateResolver.SetCategoryAndLabel("Substrate", "Chosen");
+            isChosen = true;
+        }
+        else
+        {
+            spriteResolver.SetCategoryAndLabel("Button", "UnChosen");
+            substrateResolver.SetCategoryAndLabel("Substrate", "UnChosen");
+            isChosen = false;
+        }
+
     }
 }
