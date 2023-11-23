@@ -2026,6 +2026,7 @@ MonoBehaviour:
   enemy1CruiserPrefab: {fileID: 6312795829811529286, guid: 5cd2f6ef513ca9c44b9988f318b17e45, type: 3}
   enemy2CruiserPrefab: {fileID: 6312795829811529286, guid: 95e0218d5c2ff2144a8bffefd134b62b, type: 3}
   enemy3CruiserPrefab: {fileID: 6312795829811529286, guid: 261308f389543344a8b6390c10da0d86, type: 3}
+  bullet: {fileID: 3610037366364468372, guid: a67b0e01987dacc409f860daacec8bfe, type: 3}
 --- !u!4 &803606911
 Transform:
   m_ObjectHideFlags: 0
@@ -4394,6 +4395,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d489bdc5d4864e246962781acc8bb84e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
+  isEnemy1: 0
+  isEnemy2: 0
+  isEnemy3: 0
   allPlanets: []
   playerPlanet: []
   enemy1Planet: []

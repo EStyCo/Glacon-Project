@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     }
 
     private IEnumerator TimerLife()
-    { 
+    {
         yield return new WaitForSeconds(shipConstructor.rangeFly);
 
         Destroy(gameObject);

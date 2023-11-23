@@ -13,6 +13,7 @@ public class PrefabInstaller : MonoInstaller
     [SerializeField] private GameObject enemy1CruiserPrefab;
     [SerializeField] private GameObject enemy2CruiserPrefab;
     [SerializeField] private GameObject enemy3CruiserPrefab;
+    [SerializeField] private GameObject bullet;
 
     public override void InstallBindings()
     {
@@ -27,6 +28,7 @@ public class PrefabInstaller : MonoInstaller
         Container.Bind<GameObject>().WithId("Enemy1Cruiser").FromInstance(enemy1CruiserPrefab);
         Container.Bind<GameObject>().WithId("Enemy2Cruiser").FromInstance(enemy2CruiserPrefab);
         Container.Bind<GameObject>().WithId("Enemy3Cruiser").FromInstance(enemy3CruiserPrefab);
+        Container.Bind<GameObject>().WithId("Bullet").FromInstance(bullet);
     }
 
 }

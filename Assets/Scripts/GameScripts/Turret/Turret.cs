@@ -6,13 +6,14 @@ using Zenject;
 public class Turret : MonoBehaviour
 {
     [Inject] private ShipConstructor shipConstructor;
+    [Inject] protected DiContainer diContainer;
+    [Inject(Id = "Bullet")] private GameObject bullet;
 
     [HideInInspector] public string tagPlanet;
     [HideInInspector] public List<Vector3> listEnemy = new List<Vector3>();
 
     [SerializeField] private LayerMask objectLayer;
     [SerializeField] private Transform turret;
-    [SerializeField] private GameObject bullet;
 
     private Transform parent;
     private Vector3 target;
@@ -135,7 +136,7 @@ public class Turret : MonoBehaviour
         {
             if (target != Vector3.zero)
             {
-                GameObject bulletInstance = Instantiate(bullet, turret.transform.position, turret.transform.rotation, parent);
+                GameObject bulletInstance = diContainer.InstantiatePrefab(bullet, turret.transform.position, turret.transform.rotation, parent);
                 bulletInstance.tag = tagPlanet;
             }
 

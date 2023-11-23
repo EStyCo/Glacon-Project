@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -8,9 +9,7 @@ public class UIProgress : MonoBehaviour
     [Inject] private UIMain uiMain;
 
     [Header("Ships")]
-    [SerializeField] private GameObject[] shipsSpeed = new GameObject[3];
-    [SerializeField] private GameObject[] shipsDamage = new GameObject[3];
-    [SerializeField] private GameObject[] shipsArmor = new GameObject[3];
+    [SerializeField] private UIProgressButton[] ships = new UIProgressButton[9];
 
     [Header("Planets")]
     [SerializeField] private GameObject[] planetsArmor = new GameObject[3];
@@ -18,8 +17,21 @@ public class UIProgress : MonoBehaviour
     [SerializeField] private GameObject[] shipsGrowth = new GameObject[3];
 
 
+    private void Start()
+    {
+        UpdatePosition();
+    }
+
+    public void UpdatePosition()
+    {
+        foreach (var item in ships) item.LookPosition();
+    }
+
     public bool SetNewValue(string param, int value)
     {
+        if (!CheckStudyBranches(param))
+            return false;
+
         int points = gameManager.points;
         if (points <= 0)
             return false;
@@ -31,9 +43,10 @@ public class UIProgress : MonoBehaviour
     {
         if (value - 1 == origValue)
         {
-            origValue = value;
             if (!TakePoints(value)) return false;
+            origValue = value;
 
+            player.SaveData();
             uiMain.UpdateData();
             return true;
         }
@@ -45,17 +58,25 @@ public class UIProgress : MonoBehaviour
         int temp = gameManager.points - index;
 
         if (temp < 0) return false;
-        
+
         gameManager.points = temp;
         return true;
     }
+
+
 
     private bool CheckParameters(string param, int value)
     {
         switch (param)
         {
-            case "ShipSpeed":
+            case "SpeedUnit":
                 return Check(ref player.speedUnit, value);
+
+            case "ArmorUnit":
+                return Check(ref player.armorUnit, value);
+
+            case "DamageUnit":
+                return Check(ref player.damageUnit, value);
 
             default:
                 return false;
@@ -73,5 +94,40 @@ public class UIProgress : MonoBehaviour
         }
     }
 
+    private bool CheckStudyBranches(string param)
+    {
+        Dictionary<string, int> branch = GetBranch(param);
+        if (branch.Count >= 2 && !branch.ContainsKey(param)) return false;
 
+        if (branch.Count == 2 && branch.ContainsKey(param) && branch[param] >= 2)
+        {
+            foreach (var skill in branch)
+            {
+                if (skill.Key == param && !branch.ContainsValue(3)) return true;
+            }
+            return false;
+        }
+
+        return true;
+    }
+
+    private Dictionary<string, int> GetBranch(string param)
+    {
+        Dictionary<string, int> branch = new Dictionary<string, int>();
+
+        if (param == "SpeedUnit" || param == "ArmorUnit" || param == "DamageUnit")
+        {
+            if (player.speedUnit > 0) branch.Add("SpeedUnit", player.speedUnit);
+            if (player.armorUnit > 0) branch.Add("ArmorUnit", player.armorUnit);
+            if (player.damageUnit > 0) branch.Add("DamageUnit", player.damageUnit);
+        }
+        else
+        {
+            if (player.armorPlanet > 0) branch.Add("ArmorPlanet", player.armorPlanet);
+            if (player.draftPlanet > 0) branch.Add("DraftPlanet", player.draftPlanet);
+            if (player.growthPlanet > 0) branch.Add("DraftPlanet", player.growthPlanet);
+        }
+
+        return branch;
+    }
 }

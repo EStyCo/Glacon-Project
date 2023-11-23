@@ -299,7 +299,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 0
-  points: 10
+  points: 22
+  difficult: 0
+  planets: 0
   skinUnits: 0
   colorPlayer: {r: 0, g: 0, b: 0, a: 0}
   isPaused: 0

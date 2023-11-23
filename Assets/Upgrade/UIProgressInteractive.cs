@@ -1,4 +1,3 @@
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class UIProgressInteractive : MonoBehaviour
@@ -11,30 +10,37 @@ public class UIProgressInteractive : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (selectButton != null) selectButton.SelectButton(false);
+            DisableButton();
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, layer);
+            RaycastHit2D hit = RaycastHit();
 
-            if (IsUpgrade(hit))
-            {
-                selectButton.Upgrade();
-                selectButton = null;
-            }
+            TryUpgrade(hit);
 
             selectButton = hit.collider?.GetComponent<UIProgressButton>();
-
-            if (selectButton != null) selectButton.SelectButton(true);
+            selectButton?.SelectButton(true);
         }
     }
 
-    private bool IsUpgrade(RaycastHit2D hit)
+    private void TryUpgrade(RaycastHit2D hit)
     {
-        return selectButton != null && selectButton == hit.collider?.GetComponent<UIProgressButton>();
+        if (selectButton != null && selectButton == hit.collider?.GetComponent<UIProgressButton>())
+        {
+            selectButton.Upgrade();
+            selectButton = null;
+        }
+    }
+
+
+    private RaycastHit2D RaycastHit()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, layer);
+        return hit;
     }
 
     private void Upgrade(UIProgressButton button)
-    { 
-        
+    {
+
     }
+    private void DisableButton() => selectButton?.SelectButton(false);
 }

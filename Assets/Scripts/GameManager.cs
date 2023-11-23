@@ -5,6 +5,7 @@ using Zenject;
 public class GameManager : MonoBehaviour
 {
     [Inject] GameModeManager gameModeManager;
+    [Inject] ProgressPlayer player;
     public int level;
     public int points;
 
@@ -120,6 +121,10 @@ public class GameManager : MonoBehaviour
 
         LoadSkin();
         LoadColor();
+        LoadDifficult();
+        LoadPlanets();
+
+        player.LoadData();
     }
 }
 
