@@ -80,6 +80,15 @@ public class UIProgressButton : MonoBehaviour
             case "DamageUnit":
                 return  player.damageUnit;
 
+            case "ArmorPlanet":
+                return player.armorPlanet;
+
+            case "DraftPlanet":
+                return player.draftPlanet;
+
+            case "GrowthPlanet":
+                return player.growthPlanet;
+
             default:
                 return 0;
         }

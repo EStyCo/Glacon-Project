@@ -114,17 +114,5 @@ public class GameManager : MonoBehaviour
         }
         else skinUnits = 3;
     }
-
-    public void ResetData()
-    {
-        PlayerPrefs.DeleteAll();
-
-        LoadSkin();
-        LoadColor();
-        LoadDifficult();
-        LoadPlanets();
-
-        player.LoadData();
-    }
 }
 

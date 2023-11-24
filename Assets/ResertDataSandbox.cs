@@ -1,14 +1,14 @@
 using UnityEngine;
 using Zenject;
 
-public class ResertData : MonoBehaviour
+public class ResetDataSandbox : MonoBehaviour
 {
-    [Inject] private GameManager gameManager;
+    [Inject] private ProgressPlayer player;
     [Inject] private UIProgress uiProgress;
 
     public void ResetData()
     {
-        gameManager.ResetData();
+        player.ResetDataSandbox();
         uiProgress.UpdatePosition();
     }
 }

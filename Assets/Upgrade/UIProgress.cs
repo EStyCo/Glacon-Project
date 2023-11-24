@@ -5,16 +5,12 @@ using Zenject;
 public class UIProgress : MonoBehaviour
 {
     [Inject] private ProgressPlayer player;
-    [Inject] private GameManager gameManager;
-    [Inject] private UIMain uiMain;
 
     [Header("Ships")]
-    [SerializeField] private UIProgressButton[] ships = new UIProgressButton[9];
+    [SerializeField] private UIProgressButton[] ships = new UIProgressButton[0];
 
     [Header("Planets")]
-    [SerializeField] private GameObject[] planetsArmor = new GameObject[3];
-    [SerializeField] private GameObject[] shipsDraft = new GameObject[3];
-    [SerializeField] private GameObject[] shipsGrowth = new GameObject[3];
+    [SerializeField] private UIProgressButton[] planets = new UIProgressButton[0];
 
 
     private void Start()
@@ -25,15 +21,12 @@ public class UIProgress : MonoBehaviour
     public void UpdatePosition()
     {
         foreach (var item in ships) item.LookPosition();
+        foreach(var item in planets) item.LookPosition();
     }
 
     public bool SetNewValue(string param, int value)
     {
         if (!CheckStudyBranches(param))
-            return false;
-
-        int points = gameManager.points;
-        if (points <= 0)
             return false;
 
         return CheckParameters(param, value);
@@ -43,27 +36,12 @@ public class UIProgress : MonoBehaviour
     {
         if (value - 1 == origValue)
         {
-            if (!TakePoints(value)) return false;
             origValue = value;
-
-            player.SaveData();
-            uiMain.UpdateData();
+            player.SaveDataSandBox();
             return true;
         }
         return false;
     }
-
-    private bool TakePoints(int index)
-    {
-        int temp = gameManager.points - index;
-
-        if (temp < 0) return false;
-
-        gameManager.points = temp;
-        return true;
-    }
-
-
 
     private bool CheckParameters(string param, int value)
     {
@@ -78,19 +56,17 @@ public class UIProgress : MonoBehaviour
             case "DamageUnit":
                 return Check(ref player.damageUnit, value);
 
+            case "ArmorPlanet":
+                return Check(ref player.armorPlanet, value);
+
+            case "DraftPlanet":
+                return Check(ref player.draftPlanet, value);
+
+            case "GrowthPlanet":
+                return Check(ref player.growthPlanet, value);
+
             default:
                 return false;
-        }
-    }
-
-    private void ChangeValue(int value, ref int originalValue)
-    {
-        if (value - 1 == originalValue)
-        {
-            originalValue = value;
-            gameManager.points -= 1;
-
-            uiMain.UpdateData();
         }
     }
 
