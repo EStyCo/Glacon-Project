@@ -13,11 +13,6 @@ public class Unit : Ship
             Physics2D.IgnoreCollision(colliderUnit, collision.collider);
             AvoidCollision();
         }
-
-        if (collision.gameObject.TryGetComponent(out ShieldPlanet shield) && !gameObject.CompareTag(shield.gameObject.tag))
-        {
-            StartCoroutine(Destruction());
-        }
     }
 
     private void AvoidCollision()
@@ -38,6 +33,11 @@ public class Unit : Ship
             {
                 StartCoroutine((Absorb(collision)));
             }
+        }
+
+        if (collision.gameObject.TryGetComponent(out ShieldPlanet shield) && !gameObject.CompareTag(shield.gameObject.tag))
+        {
+            StartCoroutine(Destruction());
         }
 
         if (targetPlanet != null &&

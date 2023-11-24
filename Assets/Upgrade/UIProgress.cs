@@ -101,7 +101,7 @@ public class UIProgress : MonoBehaviour
         {
             if (player.armorPlanet > 0) branch.Add("ArmorPlanet", player.armorPlanet);
             if (player.draftPlanet > 0) branch.Add("DraftPlanet", player.draftPlanet);
-            if (player.growthPlanet > 0) branch.Add("DraftPlanet", player.growthPlanet);
+            if (player.growthPlanet > 0) branch.Add("GrowthPlanet", player.growthPlanet);
         }
 
         return branch;

@@ -478,7 +478,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 32640
   turret: {fileID: 8898175716439849088}
-  bullet: {fileID: 3610037366364468372, guid: a67b0e01987dacc409f860daacec8bfe, type: 3}
 --- !u!1 &3909310190112347961
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,6 +777,10 @@ PrefabInstance:
     - target: {fileID: 4947482502843636633, guid: 8d299eb1f7dfd2b45a3661d2310a6de6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174091611322329630, guid: 8d299eb1f7dfd2b45a3661d2310a6de6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6312795829811529286, guid: 8d299eb1f7dfd2b45a3661d2310a6de6, type: 3}
       propertyPath: m_Name

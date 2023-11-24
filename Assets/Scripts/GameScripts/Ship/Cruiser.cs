@@ -22,19 +22,7 @@ public class Cruiser : Ship
         {
             if (collision.gameObject.TryGetComponent(out Cruiser cruiser) && gameObject.GetComponent<Cruiser>() != null)
             {
-                if (!isCollision)
-                {
-                    int enemyHealt = cruiser.health;
-                    int mainHealth = health;
-
-                    AvoidCollision(enemyHealt);
-                    cruiser.AvoidCollision(mainHealth);
-                }
-
-                isCollision = true;
-                cruiser.isCollision = true;
-
-                Physics2D.IgnoreCollision(colliderUnit, collision.collider);
+                CollisionCruiser(cruiser, collision);
             }
 
             if (collision.gameObject.TryGetComponent(out Unit unit))
@@ -42,25 +30,41 @@ public class Cruiser : Ship
                 AvoidCollision(1);
                 Physics2D.IgnoreCollision(colliderUnit, collision.collider);
             }
-
-            if (collision.gameObject.TryGetComponent(out ShieldPlanet shield))
-            {
-                if (!isCollision)
-                {
-                    int enemyHealt = shield.health;
-                    int mainHealth = health;
-
-                    AvoidCollision(enemyHealt);
-                    shield.DecreasedHealth(mainHealth);
-                }
-
-                isCollision = true;
-                shield.isCollision = true;
-
-                Physics2D.IgnoreCollision(colliderUnit, collision.collider);
-            }
-
         }
+    }
+
+    private void CollisionShield(ShieldPlanet shield, Collider2D collision)
+    {
+        if (!isCollision)
+        {
+            int enemyHealt = shield.health;
+            int mainHealth = health;
+
+            AvoidCollision(enemyHealt);
+            shield.DecreasedHealth(mainHealth);
+        }
+
+        isCollision = true;
+        shield.isCollision = true;
+
+        Physics2D.IgnoreCollision(colliderUnit, collision);
+    }
+
+    private void CollisionCruiser(Cruiser cruiser, Collision2D collision)
+    {
+        if (!isCollision)
+        {
+            int enemyHealt = cruiser.health;
+            int mainHealth = health;
+
+            AvoidCollision(enemyHealt);
+            cruiser.AvoidCollision(mainHealth);
+        }
+
+        isCollision = true;
+        cruiser.isCollision = true;
+
+        Physics2D.IgnoreCollision(colliderUnit, collision.collider);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -105,6 +109,11 @@ public class Cruiser : Ship
             }
         }
 
+        if (collision.gameObject.TryGetComponent(out ShieldPlanet shield) && !gameObject.CompareTag(collision.gameObject.tag))
+        {
+            CollisionShield(shield, collision);
+        }
+
         if (targetPlanet != null &&
             collision.gameObject == targetPlanet.gameObject &&
             gameObject.tag != collision.gameObject.tag)
@@ -132,13 +141,28 @@ public class Cruiser : Ship
             //ChangeTagPlanet();
         }
 
-        if (collision.TryGetComponent(out Bullet bullet) && bullet.tag != tag)
+        if (collision.TryGetComponent(out Bullet bullet) && bullet.tag == tag)
+        {
+            IgnoreCollision(collision.gameObject, gameObject);
+        }
+        else if (bullet != null && bullet.tag != tag)
         {
             Destroy(bullet.gameObject);
             health--;
 
             if (health <= 0)
                 StartCoroutine(Destruction());
+        }
+    }
+
+    private void IgnoreCollision(GameObject obj1, GameObject obj2)
+    {
+        obj1.TryGetComponent(out Collider2D colliderObj1);
+        obj2.TryGetComponent(out Collider2D colliderObj2);
+
+        if (colliderObj1 != null && colliderObj2 != null)
+        {
+            Physics2D.IgnoreCollision(colliderObj1, colliderObj2);
         }
     }
 
@@ -218,7 +242,7 @@ public class Cruiser : Ship
     private void OnDestroy()
     {
         balancePower.GetFlyingShips(originalHealth, gameObject.tag, false);
-        
+
         if (isGrowthingCruiser)
             growth.DisableFlag(gameObject.tag);
     }
