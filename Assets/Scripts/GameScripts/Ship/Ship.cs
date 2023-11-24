@@ -13,7 +13,7 @@ public abstract class Ship : MonoBehaviour
     [HideInInspector] public GameObject unitPrefab;
     [HideInInspector] public GameObject cruiserPrefab;
     [HideInInspector] public bool isImmuneToTP = false;
-    [HideInInspector] public string tagUnit; 
+    [HideInInspector] public string tagUnit;
     [HideInInspector] public Planet targetPlanet;
     [HideInInspector] public Color mainColor;
     [Inject] protected BalancePower balancePower;
@@ -25,6 +25,7 @@ public abstract class Ship : MonoBehaviour
     protected SpriteRenderer sprite;
     protected CapsuleCollider2D colliderUnit;
     protected Rigidbody2D rb;
+    protected Vector3 blurTarget;
 
     public float movementSpeed = 0;
     protected bool isMoving = true;
@@ -32,7 +33,6 @@ public abstract class Ship : MonoBehaviour
     protected bool isRotation = true;
     protected bool isAbsorb = false;
     protected int originalHealth;
-
     protected float suctionForce = 0.55f;
 
     protected abstract void OnCollisionStay2D(Collision2D collision);
@@ -61,11 +61,29 @@ public abstract class Ship : MonoBehaviour
         tagUnit = gameObject.tag;
         //SetMoveSpeed();
         StartCoroutine(CorrectAngleTracking());
+        blurTarget = GetBlur();
     }
 
     protected void Update() => Moving();
 
-    public void SetTarget(Planet tagetP) => targetPlanet = tagetP;
+    public void SetTarget(Planet tagetP)
+    {
+        targetPlanet = tagetP;
+    }
+
+    private Vector3 GetBlur()
+    {
+        float xBlur;
+        float yBlur;
+        do
+        {
+            xBlur = Random.Range(-0.35f, 0.35f);
+            yBlur = Random.Range(-0.35f, 0.35f);
+        }
+        while (Mathf.Abs(xBlur) <= 0.1f && Mathf.Abs(yBlur) <= 0.1f);
+
+        return new Vector3(xBlur, yBlur, 0);
+    }
 
     public void ImmuneToTP() => StartCoroutine(StartImmune());
 
@@ -75,7 +93,7 @@ public abstract class Ship : MonoBehaviour
         {
             if (target != null)
             {
-                Vector3 direction = (target.position - transform.position).normalized;
+                Vector3 direction = ((target.position + blurTarget) - transform.position).normalized;
                 Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, direction);
 
                 if (Quaternion.Angle(transform.rotation, targetRotation) > 2f)
@@ -169,5 +187,21 @@ public abstract class Ship : MonoBehaviour
 
         if (health <= 0)
             StartCoroutine(Destruction());
+    }
+
+    protected IEnumerator IgnoreCollision(GameObject obj1, GameObject obj2)
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        if (obj1 != null && obj2 != null)
+        {
+            obj1.TryGetComponent(out Collider2D colliderObj1);
+            obj2.TryGetComponent(out Collider2D colliderObj2);
+
+            if (colliderObj1 != null && colliderObj2 != null)
+            {
+                Physics2D.IgnoreCollision(colliderObj1, colliderObj2);
+            }
+        }
     }
 }

@@ -141,13 +141,13 @@ MonoBehaviour:
   startUnitsEnemy: 60
   minNeutralUnits: 16
   maxNeutralUnits: 35
-  restTimerShield: 3
-  speedShield: 1.16
-  radiusShield: 0.45
-  healthShield: 20
+  restTimerShield: 4
+  speedShield: 3.1
+  radiusShield: 0.5
+  healthShield: 15
   reloadSpeed: 1.05
-  bulletSpeed: 0.69
-  rangeFly: 1.86
+  bulletSpeed: 0.75
+  rangeFly: 1.74
   bustSpeed1Level: 0.21
   bustSpeed2Level: 0.43
   bustDamage1Level: 0.12

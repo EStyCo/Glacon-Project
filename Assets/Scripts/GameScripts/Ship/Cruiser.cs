@@ -33,6 +33,11 @@ public class Cruiser : Ship
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (gameObject.CompareTag(collision.gameObject.tag)) StartCoroutine(IgnoreCollision(collision.gameObject, gameObject));
+    }
+
     private void CollisionShield(ShieldPlanet shield, Collider2D collision)
     {
         if (!isCollision)
@@ -71,7 +76,8 @@ public class Cruiser : Ship
     {
         isCollision = false;
 
-        Physics2D.IgnoreCollision(colliderUnit, collision.collider, false);
+        if (!collision.gameObject.CompareTag(gameObject.tag))
+            Physics2D.IgnoreCollision(colliderUnit, collision.collider, false);
     }
 
     public void AvoidCollision(int count)
@@ -141,28 +147,13 @@ public class Cruiser : Ship
             //ChangeTagPlanet();
         }
 
-        if (collision.TryGetComponent(out Bullet bullet) && bullet.tag == tag)
-        {
-            IgnoreCollision(collision.gameObject, gameObject);
-        }
-        else if (bullet != null && bullet.tag != tag)
+        if (collision.TryGetComponent(out Bullet bullet) && bullet.tag != tag)
         {
             Destroy(bullet.gameObject);
             health--;
 
             if (health <= 0)
                 StartCoroutine(Destruction());
-        }
-    }
-
-    private void IgnoreCollision(GameObject obj1, GameObject obj2)
-    {
-        obj1.TryGetComponent(out Collider2D colliderObj1);
-        obj2.TryGetComponent(out Collider2D colliderObj2);
-
-        if (colliderObj1 != null && colliderObj2 != null)
-        {
-            Physics2D.IgnoreCollision(colliderObj1, colliderObj2);
         }
     }
 

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Unit : Ship
 {
-
     #region Triggers and Collisions
 
     protected override void OnCollisionStay2D(Collision2D collision)
@@ -13,6 +12,11 @@ public class Unit : Ship
             Physics2D.IgnoreCollision(colliderUnit, collision.collider);
             AvoidCollision();
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (gameObject.CompareTag(collision.gameObject.tag)) StartCoroutine(IgnoreCollision(collision.gameObject, gameObject));
     }
 
     private void AvoidCollision()
@@ -78,7 +82,7 @@ public class Unit : Ship
     {
         if (isMoving)
         {
-            Vector3 newPosition = Vector2.MoveTowards(transform.position, target.position, movementSpeed * Time.deltaTime);
+            Vector3 newPosition = Vector2.MoveTowards(transform.position, target.position + blurTarget, movementSpeed * Time.deltaTime);
             transform.position = newPosition;
         }
     }

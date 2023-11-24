@@ -14,6 +14,7 @@ public class ShieldPlanet : MonoBehaviour
 
     private float angle;
     private float bustRadius;
+    private Color invColor = new Color(1f, 1f, 1f, 0f);
 
     public bool isCollision = false;
 
@@ -92,19 +93,9 @@ public class ShieldPlanet : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Cruiser cruiser) && gameObject.GetComponent<Cruiser>() != null)
+        if (IsCruiser(collision, out Cruiser cruiser))
         {
-            if (!isCollision)
-            {
-                int enemyHealt = cruiser.health;
-                int mainHealth = health;
-
-                DecreasedHealth(enemyHealt);
-                cruiser.AvoidCollision(mainHealth);
-            }
-
-            isCollision = true;
-            cruiser.isCollision = true;
+            CruiserCollision(cruiser);
         }
 
         if (collision.gameObject.TryGetComponent(out Unit unit))
@@ -113,13 +104,38 @@ public class ShieldPlanet : MonoBehaviour
         }
     }
 
+    private void CruiserCollision(Cruiser cruiser)
+    {
+        if (!isCollision)
+        {
+            int enemyHealt = cruiser.health;
+            int mainHealth = health;
+
+            DecreasedHealth(enemyHealt);
+            cruiser.AvoidCollision(mainHealth);
+        }
+
+        isCollision = true;
+        cruiser.isCollision = true;
+    }
+
     private IEnumerator RestTimer()
     {
         colliderShield.enabled = false;
-        spriteRenderer.color = new Color(1f, 1f, 1f, 0f);
+        spriteRenderer.color = invColor;
 
         yield return new WaitForSeconds(constructor.restTimerShield);
 
         ResetShield();
     }
+
+    #region Bools
+
+    private bool IsCruiser(Collider2D collision, out Cruiser cruiser)
+    {
+        cruiser = null;
+        return collision.gameObject.TryGetComponent(out cruiser) && gameObject.GetComponent<Cruiser>() != null;
+    }
+
+    #endregion
 }

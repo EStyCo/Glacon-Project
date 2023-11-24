@@ -86,20 +86,20 @@ public class MakeShip : MonoBehaviour
 
         unitInstance.GetComponent<Unit>().unitPrefab = unitPrefab;
         unitInstance.GetComponent<Unit>().cruiserPrefab = cruiserPrefab;
-        Unit unitMovement = unitInstance.GetComponent<Unit>();
-        unitMovement.SetMoveSpeed();
+        Unit unit = unitInstance.GetComponent<Unit>();
+        unit.SetMoveSpeed();
 
         shipConstructor.ChangeUnit(unitInstance);
 
 
-        if (unitMovement != null)
+        if (unit != null)
         {
             unitInstance.tag = gameObject.tag;
-            unitMovement.tagUnit = unitInstance.tag.ToString();
+            unit.tagUnit = unitInstance.tag;
             unitInstance.GetComponent<SpriteRenderer>().color = planet.planetRenderer.color;
 
-            unitMovement.target = targetPlanet.transform;
-            unitMovement.SetTarget(targetPlanet);
+            unit.target = targetPlanet.transform;
+            unit.SetTarget(targetPlanet);
         }
     }
 
@@ -114,14 +114,6 @@ public class MakeShip : MonoBehaviour
         cruiserInstance.GetComponent<Cruiser>().unitPrefab = unitPrefab;
         cruiserInstance.GetComponent<Cruiser>().cruiserPrefab = cruiserPrefab;
 
-/*        AirCraftSpawner aircraftSpawner = cruiserInstance.GetComponentInChildren<AirCraftSpawner>();
-
-        if (aircraftSpawner != null)
-        {
-            aircraftSpawner.unitPrefab = unitPrefab;
-            aircraftSpawner.makeShip = gameObject.GetComponent<MakeShip>();
-        }*/
-
         Cruiser cruiser = cruiserInstance.GetComponent<Cruiser>();
 
         if(isGrowth)
@@ -130,7 +122,7 @@ public class MakeShip : MonoBehaviour
         if (cruiser != null)
         {
             cruiser.tag = gameObject.tag;
-            cruiser.tagUnit = cruiserInstance.tag.ToString();
+            cruiser.tagUnit = cruiserInstance.tag;
             cruiser.GetComponent<SpriteRenderer>().color = planet.planetRenderer.color;
 
             cruiser.target = targetPlanet.transform;
