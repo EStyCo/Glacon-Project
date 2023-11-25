@@ -1,23 +1,27 @@
-using UnityEditor.Experimental.GraphView;
+using TMPro;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
-using UnityEngine.UI;
 using Zenject;
-using Zenject.SpaceFighter;
 
 public class UIProgressButton : MonoBehaviour
 {
     [Inject] private UIProgress uiProgress;
     [Inject] private ProgressPlayer player;
 
-    [SerializeField] int value;
-    [SerializeField] string param;
-    [SerializeField] SpriteResolver substrateResolver;
-    [SerializeField] SpriteRenderer substrateRenderer;
-    [SerializeField] Color originalColor;
-    [SerializeField] Color selectColor;
+    [SerializeField] private int value;
+    [SerializeField] private string param;
+    [SerializeField] private SpriteResolver substrateResolver;
+    [SerializeField] private SpriteRenderer substrateRenderer;
+    [SerializeField] private Color originalColor;
+    [SerializeField] private Color selectColor;
 
-    private bool isChosen = false;
+    [Header("Name")]
+    [SerializeField] private string nameSkill;
+    [SerializeField] private TextMeshProUGUI textName;
+
+    [Header("Description")]
+    [SerializeField] private string description;
+    [SerializeField] private TextMeshProUGUI textDescription;
 
     public void Upgrade()
     {
@@ -34,10 +38,12 @@ public class UIProgressButton : MonoBehaviour
         if (isSelected)
         {
             substrateRenderer.color = selectColor;
+            ShowDescription(true);
         }
         else
-        { 
+        {
             substrateRenderer.color = originalColor;
+            ShowDescription(false);
         }
     }
 
@@ -49,13 +55,11 @@ public class UIProgressButton : MonoBehaviour
         {
             spriteResolver.SetCategoryAndLabel("Button", "Chosen");
             substrateResolver.SetCategoryAndLabel("Substrate", "Chosen");
-            isChosen = true;
         }
         else
         {
             spriteResolver.SetCategoryAndLabel("Button", "UnChosen");
             substrateResolver.SetCategoryAndLabel("Substrate", "UnChosen");
-            isChosen = false;
         }
     }
 
@@ -67,18 +71,33 @@ public class UIProgressButton : MonoBehaviour
         else ChangeSprite(false);
     }
 
+    private void ShowDescription(bool isShow)
+    {
+        if (isShow)
+        {
+            textName.text = nameSkill;
+            textDescription.text = description;
+        }
+        else
+        {
+            textName.text = "";
+            textDescription.text =  "";
+        }
+
+    }
+
     private int GetParam(string param)
     {
         switch (param)
         {
             case "SpeedUnit":
-                return  player.speedUnit;
+                return player.speedUnit;
 
             case "ArmorUnit":
                 return player.armorUnit;
 
             case "DamageUnit":
-                return  player.damageUnit;
+                return player.damageUnit;
 
             case "ArmorPlanet":
                 return player.armorPlanet;

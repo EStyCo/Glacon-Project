@@ -30,7 +30,6 @@ public class UIProgressInteractive : MonoBehaviour
         }
     }
 
-
     private RaycastHit2D RaycastHit()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -38,9 +37,5 @@ public class UIProgressInteractive : MonoBehaviour
         return hit;
     }
 
-    private void Upgrade(UIProgressButton button)
-    {
-
-    }
     private void DisableButton() => selectButton?.SelectButton(false);
 }
