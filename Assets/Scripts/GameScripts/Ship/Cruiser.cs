@@ -11,10 +11,17 @@ public class Cruiser : Ship
 
     public SpriteResolver skinCruiser;
     public SpriteResolver skinShield;
-
     public bool isGrowthingCruiser = false;
     public bool isCollision = false;
+
     private bool hasAnimDestr = false;
+
+    #region COLLISIONS
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (gameObject.CompareTag(collision.gameObject.tag)) StartCoroutine(IgnoreCollision(collision.gameObject, gameObject));
+    }
 
     protected override void OnCollisionStay2D(Collision2D collision)
     {
@@ -33,76 +40,12 @@ public class Cruiser : Ship
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (gameObject.CompareTag(collision.gameObject.tag)) StartCoroutine(IgnoreCollision(collision.gameObject, gameObject));
-    }
-
-    private void CollisionShield(ShieldPlanet shield, Collider2D collision)
-    {
-        if (!isCollision)
-        {
-            int enemyHealt = shield.health;
-            int mainHealth = health;
-
-            AvoidCollision(enemyHealt);
-            shield.DecreasedHealth(mainHealth);
-        }
-
-        isCollision = true;
-        shield.isCollision = true;
-
-        Physics2D.IgnoreCollision(colliderUnit, collision);
-    }
-
-    private void CollisionCruiser(Cruiser cruiser, Collision2D collision)
-    {
-        if (!isCollision)
-        {
-            int enemyHealt = cruiser.health;
-            int mainHealth = health;
-
-            AvoidCollision(enemyHealt);
-            cruiser.AvoidCollision(mainHealth);
-        }
-
-        isCollision = true;
-        cruiser.isCollision = true;
-
-        Physics2D.IgnoreCollision(colliderUnit, collision.collider);
-    }
-
     private void OnCollisionExit2D(Collision2D collision)
     {
         isCollision = false;
 
         if (!collision.gameObject.CompareTag(gameObject.tag))
             Physics2D.IgnoreCollision(colliderUnit, collision.collider, false);
-    }
-
-    public void AvoidCollision(int count)
-    {
-        int tempArmor = armor -= count;
-
-        if (tempArmor <= 0)
-        {
-            health -= Mathf.Abs(tempArmor);
-            armor = 0;
-        }
-
-        if (health <= 0)
-        {
-            StartCoroutine(Destruction());
-        }
-    }
-
-    protected override void Moving()
-    {
-        if (isMoving)
-        {
-            Vector3 newPosition = Vector2.MoveTowards(transform.position, target.position, movementSpeed * Time.deltaTime);
-            transform.position = newPosition;
-        }
     }
 
     protected override void OnTriggerStay2D(Collider2D collision)
@@ -143,8 +86,6 @@ public class Cruiser : Ship
                 StartCoroutine(Destruction());
             else
                 Destroy(gameObject);
-
-            //ChangeTagPlanet();
         }
 
         if (collision.TryGetComponent(out Bullet bullet) && bullet.tag != tag)
@@ -154,6 +95,102 @@ public class Cruiser : Ship
 
             if (health <= 0)
                 StartCoroutine(Destruction());
+        }
+    }
+
+    #endregion
+
+    #region MONO
+
+    private void OnDestroy()
+    {
+        balancePower.GetFlyingShips(originalHealth, gameObject.tag, false);
+
+        if (isGrowthingCruiser)
+            growth.DisableFlag(gameObject.tag);
+    }
+
+    #endregion
+
+    public void AvoidCollision(int count)
+    {
+        int tempArmor = armor -= count;
+
+        if (tempArmor <= 0)
+        {
+            health -= Mathf.Abs(tempArmor);
+            armor = 0;
+        }
+
+        if (health <= 0)
+        {
+            StartCoroutine(Destruction());
+        }
+    }
+
+    public void ShowShield(bool isEnabled)
+    {
+        if (isEnabled)
+            shield.GetComponent<SpriteRenderer>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+        else
+            shield.GetComponent<SpriteRenderer>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f / 255f);
+    }
+
+    public void OnTurret()
+    {
+        turret.SetActive(true);
+    }
+
+    public void OnAirCraftSpawner()
+    {
+        airCraftSpawner.SetActive(true);
+    }
+
+    public override void SetMoveSpeed()
+    {
+        movementSpeed = constructor.speedCruisers;
+    }
+
+    private void CollisionShield(ShieldPlanet shield, Collider2D collision)
+    {
+        if (!isCollision)
+        {
+            int enemyHealt = shield.health;
+            int mainHealth = health;
+
+            AvoidCollision(enemyHealt);
+            shield.DecreasedHealth(mainHealth);
+        }
+
+        isCollision = true;
+        shield.isCollision = true;
+
+        Physics2D.IgnoreCollision(colliderUnit, collision);
+    }
+
+    private void CollisionCruiser(Cruiser cruiser, Collision2D collision)
+    {
+        if (!isCollision)
+        {
+            int enemyHealt = cruiser.health;
+            int mainHealth = health;
+
+            AvoidCollision(enemyHealt);
+            cruiser.AvoidCollision(mainHealth);
+        }
+
+        isCollision = true;
+        cruiser.isCollision = true;
+
+        Physics2D.IgnoreCollision(colliderUnit, collision.collider);
+    }
+
+    protected override void Moving()
+    {
+        if (isMoving)
+        {
+            Vector3 newPosition = Vector2.MoveTowards(transform.position, target.position, movementSpeed * Time.deltaTime);
+            transform.position = newPosition;
         }
     }
 
@@ -205,36 +242,5 @@ public class Cruiser : Ship
 
             Destroy(gameObject);
         }
-    }
-
-    public void ShowShield(bool isEnabled)
-    {
-        if (isEnabled)
-            shield.GetComponent<SpriteRenderer>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
-        else
-            shield.GetComponent<SpriteRenderer>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f / 255f);
-    }
-
-    public void OnTurret()
-    {
-        turret.SetActive(true);
-    }
-
-    public void OnAirCraftSpawner()
-    {
-        airCraftSpawner.SetActive(true);
-    }
-
-    public override void SetMoveSpeed()
-    {
-        movementSpeed = constructor.speedCruisers;
-    }
-
-    private void OnDestroy()
-    {
-        balancePower.GetFlyingShips(originalHealth, gameObject.tag, false);
-
-        if (isGrowthingCruiser)
-            growth.DisableFlag(gameObject.tag);
     }
 }

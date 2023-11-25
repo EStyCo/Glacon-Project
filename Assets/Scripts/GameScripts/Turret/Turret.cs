@@ -18,6 +18,20 @@ public class Turret : MonoBehaviour
     private Transform parent;
     private Vector3 target;
 
+    #region COLLISIONS
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out Ship ship) && !listEnemy.Contains(ship.transform.position) && !ship.CompareTag(tagPlanet))
+        {
+            listEnemy.Add(ship.GetPosition().position);
+        }
+    } 
+
+    #endregion
+
+    #region MONO
+
     private void Start()
     {
         gameObject.transform.parent.TryGetComponent(out Planet planet);
@@ -29,7 +43,7 @@ public class Turret : MonoBehaviour
         StartCycleTurret();
     }
 
-    #region Change Tag
+    #endregion
 
     public void ChangeTag(string tag)
     {
@@ -47,18 +61,6 @@ public class Turret : MonoBehaviour
             StartCoroutine(FindNearTarget());
             StartCoroutine(Shooting());
             StartCoroutine(AimTarget());
-        }
-    }
-
-    #endregion
-
-    #region Find Target
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.TryGetComponent(out Ship ship) && !listEnemy.Contains(ship.transform.position) && !ship.CompareTag(tagPlanet))
-        {
-            listEnemy.Add(ship.GetPosition().position);
         }
     }
 
@@ -100,10 +102,6 @@ public class Turret : MonoBehaviour
         }
     }
 
-    #endregion
-
-    #region Aim
-
     private IEnumerator AimTarget()
     {
         while (true)
@@ -143,6 +141,4 @@ public class Turret : MonoBehaviour
             yield return new WaitForSeconds(shipConstructor.reloadSpeed);
         }
     }
-
-    #endregion
 }

@@ -10,22 +10,16 @@ public class Planet : MonoBehaviour
         small = 1,
         medium = 2,
         large = 3
-    } // Размеры планет
+    }
+
+    #region INJECTION
 
     [Inject] private ShipConstructor shipConstructor;
     [Inject] private GameManager gameManager;
-    [Inject] Growth growth;
-    [Inject] Draft draft;
-    [HideInInspector] public Color color;
-    [HideInInspector] public GameObject unitPrefab;
-    [HideInInspector] public GameObject cruiserPrefab;
-    [HideInInspector] public SpriteRenderer planetRenderer;
-    [HideInInspector] public Size selectedSize = Size.medium;
+    [Inject] private Growth growth;
+    [Inject] private Draft draft; 
 
-    private SpriteResolver spriteResolver;
-    private CircleCollider2D circleCollider;
-    private MakeShip makeShip;
-    private bool isCoroutineRunning = false;
+    #endregion
 
     public float armor;
 
@@ -40,6 +34,19 @@ public class Planet : MonoBehaviour
     public float maxUnitCurrent = 60f;
     public float spawnRate = 1f;
     public float growthLevel = 0f;
+
+    [HideInInspector] public Color color;
+    [HideInInspector] public GameObject unitPrefab;
+    [HideInInspector] public GameObject cruiserPrefab;
+    [HideInInspector] public SpriteRenderer planetRenderer;
+    [HideInInspector] public Size selectedSize = Size.medium;
+
+    private SpriteResolver spriteResolver;
+    private CircleCollider2D circleCollider;
+    private MakeShip makeShip;
+    private bool isCoroutineRunning = false;
+
+    #region MONO
 
     private void Update()
     {
@@ -61,28 +68,7 @@ public class Planet : MonoBehaviour
         draft.GetPlanet(gameObject);
     }
 
-    private void SetColor()
-    {
-        if (gameObject.CompareTag("PlayerPlanet"))
-        {
-            color = gameManager.colorPlayer;
-            planetRenderer.color = color;
-        }
-    }
-
-    private void StartUnitCount()
-    {
-        if (gameObject.tag != "NeutralPlanet")
-        {
-            currentUnitCount = shipConstructor.startUnitsEnemy;
-
-            if (gameObject.tag == "PlayerPlanet")
-                currentUnitCount = Random.Range(shipConstructor.minUnitsPlayer, shipConstructor.maxUnitsPlayer);
-
-            CheckMakeUnits();
-        }
-        else currentUnitCount = Random.Range(shipConstructor.minNeutralUnits, shipConstructor.maxNeutralUnits);
-    }
+    #endregion
 
     public void SendShipsToPlanet(Planet targetPlanet)
     {
@@ -107,6 +93,22 @@ public class Planet : MonoBehaviour
         }
     }
 
+    public void SelectPlanet()
+
+    {
+        framePlanet.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+    }
+
+    public void DeselectPlanet()
+    {
+        framePlanet.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f / 255f);
+    }
+
+    public void CheckProgress()
+    {
+        GetComponent<ProgressPlanet>().CheckProgress();
+    }
+
     public void CheckSize(int value)
     {
         Size selectedSize = (Size)value;
@@ -116,11 +118,13 @@ public class Planet : MonoBehaviour
             spriteResolver.SetCategoryAndLabel("Small", "Small" + Random.Range(1, 3).ToString());
             circleCollider.radius = 0.5f;
         }
+
         if (selectedSize == Size.medium)
         {
             spriteResolver.SetCategoryAndLabel("Medium", "Medium" + Random.Range(1, 3).ToString());
             circleCollider.radius = 0.6f;
         }
+
         if (selectedSize == Size.large)
         {
             spriteResolver.SetCategoryAndLabel("Large", "Large" + Random.Range(1, 3).ToString());
@@ -153,6 +157,29 @@ public class Planet : MonoBehaviour
         }
     }
 
+    private void SetColor()
+    {
+        if (gameObject.CompareTag("PlayerPlanet"))
+        {
+            color = gameManager.colorPlayer;
+            planetRenderer.color = color;
+        }
+    }
+
+    private void StartUnitCount()
+    {
+        if (gameObject.tag != "NeutralPlanet")
+        {
+            currentUnitCount = shipConstructor.startUnitsEnemy;
+
+            if (gameObject.tag == "PlayerPlanet")
+                currentUnitCount = Random.Range(shipConstructor.minUnitsPlayer, shipConstructor.maxUnitsPlayer);
+
+            CheckMakeUnits();
+        }
+        else currentUnitCount = Random.Range(shipConstructor.minNeutralUnits, shipConstructor.maxNeutralUnits);
+    }
+
     private System.Collections.IEnumerator IncreaseUnitsOverTime()
     {
         while (true)
@@ -172,30 +199,17 @@ public class Planet : MonoBehaviour
             case Size.small:
                 spawnRate = 0.65f;
                 break;
+
             case Size.medium:
                 spawnRate = 0.9f;
                 break;
+
             case Size.large:
                 spawnRate = 1.15f;
                 break;
+
             default:
                 break;
         }
-    }
-
-    public void SelectPlanet()
-
-    {
-        framePlanet.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
-    }
-
-    public void DeselectPlanet()
-    {
-        framePlanet.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f / 255f);
-    }
-
-    public void CheckProgress()
-    {
-        GetComponent<ProgressPlanet>().CheckProgress();
     }
 }

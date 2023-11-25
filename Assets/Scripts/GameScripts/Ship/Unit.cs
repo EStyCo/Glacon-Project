@@ -3,7 +3,16 @@ using UnityEngine;
 
 public class Unit : Ship
 {
-    #region Triggers and Collisions
+    public override void SetMoveSpeed()
+    {
+        movementSpeed = constructor.speedUnits;
+    }
+
+    #region COLLISIONS
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (gameObject.CompareTag(collision.gameObject.tag)) StartCoroutine(IgnoreCollision(collision.gameObject, gameObject));
+    }
 
     protected override void OnCollisionStay2D(Collision2D collision)
     {
@@ -14,19 +23,9 @@ public class Unit : Ship
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnDestroy()
     {
-        if (gameObject.CompareTag(collision.gameObject.tag)) StartCoroutine(IgnoreCollision(collision.gameObject, gameObject));
-    }
-
-    private void AvoidCollision()
-    {
-        armor--;
-
-        if (armor < 0)
-        {
-            StartCoroutine(Destruction());
-        }
+        balancePower.GetFlyingShips(originalHealth, gameObject.tag, false);
     }
 
     protected override void OnTriggerStay2D(Collider2D collision)
@@ -38,6 +37,7 @@ public class Unit : Ship
                 StartCoroutine((Absorb(collision)));
             }
         }
+
 
         if (collision.gameObject.TryGetComponent(out ShieldPlanet shield) && !gameObject.CompareTag(shield.gameObject.tag))
         {
@@ -73,9 +73,14 @@ public class Unit : Ship
 
     #endregion
 
-    public override void SetMoveSpeed()
+    private void AvoidCollision()
     {
-        movementSpeed = constructor.speedUnits;
+        armor--;
+
+        if (armor < 0)
+        {
+            StartCoroutine(Destruction());
+        }
     }
 
     protected override void Moving()
@@ -108,17 +113,11 @@ public class Unit : Ship
             colliderUnit.enabled = false;
             isDestruction = true;
             sprite.sortingOrder = -1;
-            //sprite.color = new Color(255/255f, 255 / 255f, 255 / 255f, 0 / 255f);
             animator.Play("Bang2");
 
             yield return new WaitForSeconds(0.55f);
 
             Destroy(gameObject);
         }
-    }
-
-    private void OnDestroy()
-    {
-        balancePower.GetFlyingShips(originalHealth, gameObject.tag, false);
     }
 }
