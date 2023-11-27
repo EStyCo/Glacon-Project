@@ -157,17 +157,20 @@ MonoBehaviour:
   firstTimerEnd: 10
   cycleTimerStart: 10
   cycleTimerEnd: 30
-  units1LevelStart: 7
-  units1LevelEnd: 9
-  units2LevelStart: 10
-  units2LevelEnd: 19
+  units1LevelStart: 1
+  units1LevelEnd: 5
+  units2LevelStart: 5
+  units2LevelEnd: 12
   chanceDraft1Level: 25
-  chanceDraft2Level: 54
+  chanceDraft2Level: 45
   chanceSpawnCruisers: 32
   timerStart: 1
   timerEnd: 5
   bustGrowth1Level: 0.21
   bustGrowth2Level: 0.15
+  level1: 01000000010000000100000001000000
+  level2: 02000000010000000300000001000000
+  level3: 03000000020000000300000002000000
 --- !u!114 &6362550977963866734
 MonoBehaviour:
   m_ObjectHideFlags: 0

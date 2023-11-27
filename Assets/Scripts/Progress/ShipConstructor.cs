@@ -55,6 +55,11 @@ public class ShipConstructor : MonoBehaviour
     public float bustGrowth1Level;
     public float bustGrowth2Level;
 
+    [Header("Progress Enemy")]
+    [Range(0, 3)] public int[] level1 = new int[4];
+    [Range(0, 3)] public int[] level2 = new int[4];
+    [Range(0, 3)] public int[] level3 = new int[4];
+
 
     [Inject] private ProgressPlayer player;
     [Inject] private ProgressEnemy1 enemy1;

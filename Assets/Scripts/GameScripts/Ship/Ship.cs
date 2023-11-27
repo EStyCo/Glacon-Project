@@ -157,7 +157,8 @@ public abstract class Ship : MonoBehaviour
         {
             targetPlanet.DeselectPlanet();
             targetPlanet.tag = tagUnit;
-            targetPlanet.planetRenderer.color = sprite.color;
+            //targetPlanet.planetRenderer.color = sprite.color;
+            targetPlanet.planetRenderer.color = mainColor;
             targetPlanet.CheckMakeUnits();
             targetPlanet.turret.GetComponent<Turret>().ChangeTag(tagUnit);
 
