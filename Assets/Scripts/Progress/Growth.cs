@@ -90,20 +90,25 @@ public class Growth : MonoBehaviour
 
         foreach (GameObject planet in allPlanets)
         {
-            if (planet.tag == tag)
+            if (planet.CompareTag(tag))
                 listPlanet.Add(planet);
         }
     }
 
     private IEnumerator GrowthStarting(string tag, List<GameObject> listPlanet)
     {
-        int timer = Random.Range(shipConstructor.timerStart, shipConstructor.timerEnd);
         EnableFlag(tag);
+        int timer = Random.Range(shipConstructor.timerStart, shipConstructor.timerEnd);
 
         yield return new WaitForSeconds(timer);
 
-        if (listPlanet.Count <= 0) yield return null;
+        if (listPlanet.Count <= 1)
+        {
+            DisableFlag(tag);
+            yield break;
+        }
 
+        SplitPlanet(tag, listPlanet);
         int[] randomPlanets = GetRandomPlanets(listPlanet);
 
         GameObject chosenPlanet = listPlanet[randomPlanets[0]];

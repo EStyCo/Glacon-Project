@@ -81,7 +81,7 @@ public class Draft : MonoBehaviour
             yield return new WaitForSeconds(waiting);
         }
 
-        yield break;
+        //yield break;
     }
 
     #endregion
@@ -98,6 +98,8 @@ public class Draft : MonoBehaviour
 
     private void SpawnShips(List<GameObject> listPlanet, int index)
     {
+        if (listPlanet.Count <= 0) return;
+
         int[] unitsCount = GetUnitsCount(index);
 
         if (index == 3) SpawnCruisers(listPlanet);
