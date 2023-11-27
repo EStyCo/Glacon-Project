@@ -1,6 +1,8 @@
 using System;
+using System.Drawing;
 using UnityEngine;
 using Zenject;
+using Color = UnityEngine.Color;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,14 +11,21 @@ public class GameManager : MonoBehaviour
     public int level;
     public int points;
 
+    public float volumeCount;
+
     public int difficult;
     public int planets;
     public int skinUnits;
     public Color colorPlayer;
     public bool isPaused = false;
 
+    private void Awake()
+    {
+    }
+
     private void Start()
     {
+        LoadVolume();
         LoadSkin();
         LoadColor();
         LoadDifficult();
@@ -46,6 +55,12 @@ public class GameManager : MonoBehaviour
     { 
         planets = count;
         SavePlanets(planets);
+    }
+
+    public void SaveVolume(float count)
+    {
+        volumeCount = count;
+        PlayerPrefs.SetFloat("VolumeCount", count);
     }
 
     private void SaveColor(Color color)
@@ -78,6 +93,15 @@ public class GameManager : MonoBehaviour
     private void SaveDifficult(int index)
     {
         PlayerPrefs.SetInt("Difficult", index);
+    }
+
+    private void LoadVolume()
+    {
+        if (PlayerPrefs.HasKey("VolumeCount"))
+        {
+            volumeCount = PlayerPrefs.GetFloat("VolumeCount");
+        }
+        else volumeCount = 0.5f;
     }
 
     private void LoadDifficult()

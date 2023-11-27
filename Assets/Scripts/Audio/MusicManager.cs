@@ -38,7 +38,8 @@ public class MusicManager : MonoBehaviour
         recordClips = recordClips.OrderBy(x => Guid.NewGuid()).ToList();
 
         PlayMusic();
-    } // Преобразование из массива в список с перемешиванием.
+    } 
+
     public void PlayMusic()
     {
         audioSource.clip = recordClips.Last();
@@ -46,13 +47,13 @@ public class MusicManager : MonoBehaviour
 
         audioSource.Play();
         StartCoroutine(DelayMusic());
-    } // Проигрывание трека.
+    } 
 
     IEnumerator DelayMusic()
     {
         yield return new WaitForSeconds(currentClipDuration);
         NextSong();
-    } // Таймер переключения трека.
+    } 
 
     public void SetVolume(float volume)
     {
@@ -60,6 +61,7 @@ public class MusicManager : MonoBehaviour
 
         SoundManager.Instance.SetVolume(volume);
     }
+
     public void NextSong()
     {
         StopAllCoroutines();

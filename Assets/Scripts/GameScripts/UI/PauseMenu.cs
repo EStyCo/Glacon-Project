@@ -88,6 +88,7 @@ public class PauseMenu : MonoBehaviour
         float newVolume = volumeSlider.value;
         MusicManager.Instance.SetVolume(newVolume);
     }
+
     public void Soundless()
     {
         if (MusicManager.Instance.audioSource.volume != 0)
@@ -98,6 +99,7 @@ public class PauseMenu : MonoBehaviour
         }
 
     }
+
     public void ResetVolume()
     {
 
