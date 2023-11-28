@@ -3,30 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
 public class MusicManager : MonoBehaviour
 {
-    public static MusicManager Instance { get; private set; }
+    [Inject] private GameManager gameManager;
 
-    public AudioClip[] musicClips; // Массив с исходными треками.
+    [SerializeField] private AudioClip[] musicClips;
     List<AudioClip> recordClips = new List<AudioClip>();
 
-    public AudioSource audioSource;
+    [SerializeField] private AudioSource musicSource;
 
     private float currentClipDuration;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     private void Start()
     {
@@ -38,26 +26,26 @@ public class MusicManager : MonoBehaviour
         recordClips = recordClips.OrderBy(x => Guid.NewGuid()).ToList();
 
         PlayMusic();
-    } 
+    }
 
     public void PlayMusic()
     {
-        audioSource.clip = recordClips.Last();
-        currentClipDuration = audioSource.clip.length;
+        musicSource.clip = recordClips.Last();
+        currentClipDuration = musicSource.clip.length;
 
-        audioSource.Play();
+        musicSource.Play();
         StartCoroutine(DelayMusic());
-    } 
+    }
 
     IEnumerator DelayMusic()
     {
         yield return new WaitForSeconds(currentClipDuration);
         NextSong();
-    } 
+    }
 
     public void SetVolume(float volume)
     {
-        audioSource.volume = volume;
+        musicSource.volume = volume;
 
         SoundManager.Instance.SetVolume(volume);
     }
@@ -66,7 +54,7 @@ public class MusicManager : MonoBehaviour
     {
         StopAllCoroutines();
 
-        audioSource.Stop();
+        musicSource.Stop();
 
         if (recordClips.Count > 1)
         {

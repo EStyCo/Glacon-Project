@@ -4,14 +4,17 @@ using Zenject;
 
 public class UIMainMusic : MonoBehaviour
 {
-    [Inject] GameManager gameManager;
+    [Inject] private GameManager gameManager;
+    [Inject] private MusicManager musicManager;
 
-    [SerializeField] private AudioSource audioMusic;
+    private AudioSource musicSource;
+
     [SerializeField] private Slider slider;
 
     void Start()
     {
-        audioMusic.volume = gameManager.volumeCount;
+        musicSource = musicManager.GetComponent<AudioSource>();
+        musicSource.volume = gameManager.volumeCount;
         slider.value = gameManager.volumeCount;
     }
 
@@ -19,7 +22,21 @@ public class UIMainMusic : MonoBehaviour
     {
         float count = slider.value;
 
-        audioMusic.volume = count;
+        musicSource.volume = count;
         gameManager.SaveVolume(count);
+    }
+
+    public void SoundlessMusic(bool isTrue)
+    {
+        if (isTrue)
+        {
+            musicSource.volume = 0;
+            gameManager.SaveVolume(0);
+        }
+        else
+        {
+            musicSource.volume = 1;
+            gameManager.SaveVolume(1);
+        }
     }
 }

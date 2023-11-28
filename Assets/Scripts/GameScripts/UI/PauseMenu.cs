@@ -14,7 +14,6 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        volumeSlider.value = MusicManager.Instance.audioSource.volume;
         tempVolume = volumeSlider.value;
     }
     void Update()
@@ -49,8 +48,6 @@ public class PauseMenu : MonoBehaviour
     {
         menuAnimator.Play("ShowPM");
 
-        volumeSlider.value = MusicManager.Instance.audioSource.volume;
-
         StartCoroutine(SetTimeScale());
 
         SelectManager.Instance.isPaused = true;
@@ -81,30 +78,5 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(currentScene.name);
         SoundManager.Instance.GoNoise();
         buttonPause.enabled = true;
-    }
-
-    public void UpdateVolume()
-    {
-        float newVolume = volumeSlider.value;
-        MusicManager.Instance.SetVolume(newVolume);
-    }
-
-    public void Soundless()
-    {
-        if (MusicManager.Instance.audioSource.volume != 0)
-        {
-            tempVolume = MusicManager.Instance.audioSource.volume;
-            MusicManager.Instance.audioSource.volume = 0;
-            volumeSlider.value = 0;
-        }
-
-    }
-
-    public void ResetVolume()
-    {
-
-        MusicManager.Instance.audioSource.volume = tempVolume;
-        volumeSlider.value = MusicManager.Instance.audioSource.volume;
-
     }
 }
