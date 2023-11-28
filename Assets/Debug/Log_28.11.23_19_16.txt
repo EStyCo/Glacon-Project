@@ -1,0 +1,207 @@
+Начало игровой сессии
+19:16:54 - Метод - LifeCycle | Запустился
+19:16:55 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:16:55 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:16:56 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:16:56 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:16:57 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:16:57 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:16:58 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:16:58 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:16:59 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 2
+19:16:59 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: System.Collections.Generic.List`1[UnityEngine.GameObject]: 2
+19:16:59 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:16:59 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:00 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 2
+19:17:00 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:01 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 2
+19:17:01 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:02 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 2
+19:17:02 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 0, 1 - 1
+19:17:02 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:17:02 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 2
+19:17:02 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:03 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 2
+19:17:03 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:04 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 3
+19:17:04 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:05 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 3
+19:17:05 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: System.Collections.Generic.List`1[UnityEngine.GameObject]: 3
+19:17:05 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:17:05 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:06 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 3
+19:17:06 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 2, 1 - 1
+19:17:06 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:17:06 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 3
+19:17:06 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:07 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 3
+19:17:07 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 2
+19:17:07 - Корутина - GrowthStarting | Запустилась по тэгу: Enemy3. Список: System.Collections.Generic.List`1[UnityEngine.GameObject]: 2
+19:17:07 - Корутина - GrowthStarting | Поднялся флаг Enemy3
+19:17:08 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 2
+19:17:08 - Корутина - GrowthStarting | ТэгEnemy3. Рандомные числа сгенерированы: 1 - 1, 1 - 0
+19:17:08 - Корутина - GrowthStarting | ТэгEnemy3. Корабль отправлен, корутина закончилась.
+19:17:08 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 3
+19:17:08 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 2
+19:17:09 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 4
+19:17:09 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: System.Collections.Generic.List`1[UnityEngine.GameObject]: 4
+19:17:09 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:17:09 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:10 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 4
+19:17:10 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:11 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 4
+19:17:11 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 3, 1 - 1
+19:17:11 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:17:11 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 4
+19:17:11 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:12 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 4
+19:17:12 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: System.Collections.Generic.List`1[UnityEngine.GameObject]: 4
+19:17:12 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:17:12 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:13 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 4
+19:17:13 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:14 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 4
+19:17:14 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:15 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 4
+19:17:15 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 2, 1 - 3
+19:17:15 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:17:15 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 4
+19:17:15 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:16 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 5
+19:17:16 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:17 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 5
+19:17:17 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: System.Collections.Generic.List`1[UnityEngine.GameObject]: 5
+19:17:17 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:17:17 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:18 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 5
+19:17:18 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:19 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 5
+19:17:19 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 0, 1 - 3
+19:17:19 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:17:19 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 5
+19:17:19 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:20 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 5
+19:17:20 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: System.Collections.Generic.List`1[UnityEngine.GameObject]: 5
+19:17:20 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:17:20 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:21 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 5
+19:17:21 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:22 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 5
+19:17:22 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:23 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 7
+19:17:23 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 1
+19:17:24 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 7
+19:17:24 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 1, 1 - 6
+19:17:24 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:17:24 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 7
+19:17:24 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:25 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 7
+19:17:25 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:26 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 7
+19:17:26 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: System.Collections.Generic.List`1[UnityEngine.GameObject]: 7
+19:17:26 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:17:26 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:27 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 7
+19:17:27 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:28 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 7
+19:17:28 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:29 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 8
+19:17:29 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:30 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 8
+19:17:30 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 1, 1 - 4
+19:17:30 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:17:30 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 8
+19:17:30 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:31 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 8
+19:17:31 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:32 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 8
+19:17:32 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:33 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 10
+19:17:33 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:34 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 10
+19:17:34 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:35 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 10
+19:17:35 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:36 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 10
+19:17:36 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:37 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 9
+19:17:37 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:38 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 10
+19:17:38 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: System.Collections.Generic.List`1[UnityEngine.GameObject]: 10
+19:17:38 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:17:38 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:39 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 10
+19:17:39 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:40 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 10
+19:17:40 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:41 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 10
+19:17:41 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 4, 1 - 9
+19:17:41 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:17:41 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 10
+19:17:41 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:42 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 11
+19:17:42 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:43 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 11
+19:17:43 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:44 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 12
+19:17:44 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:45 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 12
+19:17:45 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:46 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 11
+19:17:46 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:47 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 11
+19:17:47 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:48 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 10
+19:17:48 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:49 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 11
+19:17:49 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:50 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 11
+19:17:50 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:51 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 12
+19:17:51 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:52 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 12
+19:17:52 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: System.Collections.Generic.List`1[UnityEngine.GameObject]: 12
+19:17:52 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:17:52 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:53 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 13
+19:17:53 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:54 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 13
+19:17:54 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:55 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 13
+19:17:55 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:56 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 12
+19:17:56 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 0, 1 - 9
+19:17:56 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:17:56 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 12
+19:17:56 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:57 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 13
+19:17:57 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:58 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 13
+19:17:58 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:17:59 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 14
+19:17:59 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:18:00 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 14
+19:18:00 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:18:01 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 14
+19:18:01 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: System.Collections.Generic.List`1[UnityEngine.GameObject]: 14
+19:18:01 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:18:01 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:18:02 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 15
+19:18:02 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 0, 1 - 10
+19:18:02 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:18:02 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 15
+19:18:02 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:18:03 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 15
+19:18:03 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:18:04 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 15
+19:18:04 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:18:05 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 16
+19:18:05 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:18:06 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 16
+19:18:06 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:18:07 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 17
+19:18:07 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: System.Collections.Generic.List`1[UnityEngine.GameObject]: 17
+19:18:07 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:18:07 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0
+19:18:08 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 17
+19:18:08 - Метод - SplitPlanet | По тэгу Enemy3. Список System.Collections.Generic.List`1[UnityEngine.GameObject]: 0

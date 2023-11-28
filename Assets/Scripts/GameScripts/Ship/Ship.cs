@@ -160,7 +160,6 @@ public abstract class Ship : MonoBehaviour
             //targetPlanet.planetRenderer.color = sprite.color;
             targetPlanet.planetRenderer.color = mainColor;
             targetPlanet.CheckMakeUnits();
-            targetPlanet.turret.GetComponent<Turret>().ChangeTag(tagUnit);
 
             targetPlanet.unitPrefab = unitPrefab;
             targetPlanet.cruiserPrefab = cruiserPrefab;

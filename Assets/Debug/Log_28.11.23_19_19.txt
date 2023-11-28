@@ -1,0 +1,250 @@
+Начало игровой сессии
+19:19:50 - Метод - LifeCycle | Запустился
+19:19:51 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 1
+19:19:51 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 1
+19:19:52 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 1
+19:19:52 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 1
+19:19:53 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 1
+19:19:53 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 1
+19:19:54 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 1
+19:19:54 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 1
+19:19:55 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 1
+19:19:55 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 1
+19:19:56 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 1
+19:19:56 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 2
+19:19:56 - Корутина - GrowthStarting | Запустилась по тэгу: Enemy1. Список: listPlanet: 2
+19:19:56 - Корутина - GrowthStarting | Поднялся флаг Enemy1
+19:19:57 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 2
+19:19:57 - Корутина - GrowthStarting | ТэгEnemy1. Рандомные числа сгенерированы: 1 - 1, 1 - 0
+19:19:57 - Корутина - GrowthStarting | ТэгEnemy1. Корабль отправлен, корутина закончилась.
+19:19:57 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 2
+19:19:57 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: listPlanet: 2
+19:19:57 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:19:57 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 2
+19:19:58 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 2
+19:19:58 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 0, 1 - 1
+19:19:58 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:19:58 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 2
+19:19:58 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 2
+19:19:59 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 2
+19:19:59 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 2
+19:20:00 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 2
+19:20:00 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 2
+19:20:01 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 3
+19:20:01 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 2
+19:20:01 - Корутина - GrowthStarting | Запустилась по тэгу: Enemy1. Список: listPlanet: 2
+19:20:01 - Корутина - GrowthStarting | Поднялся флаг Enemy1
+19:20:02 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 3
+19:20:02 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 2
+19:20:03 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 3
+19:20:03 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 2
+19:20:04 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 3
+19:20:04 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: listPlanet: 3
+19:20:04 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:20:04 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 3
+19:20:05 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 3
+19:20:05 - Корутина - GrowthStarting | ТэгEnemy1. Рандомные числа сгенерированы: 1 - 1, 1 - 0
+19:20:05 - Корутина - GrowthStarting | ТэгEnemy1. Корабль отправлен, корутина закончилась.
+19:20:05 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 4
+19:20:05 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 3
+19:20:06 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 4
+19:20:06 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 1, 1 - 3
+19:20:06 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:20:06 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 4
+19:20:06 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 3
+19:20:07 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 4
+19:20:07 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: listPlanet: 4
+19:20:07 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:20:07 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 3
+19:20:08 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 4
+19:20:08 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 3, 1 - 1
+19:20:08 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:20:08 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 4
+19:20:08 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 3
+19:20:09 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 4
+19:20:09 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: listPlanet: 4
+19:20:09 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:20:09 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 4
+19:20:10 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 5
+19:20:10 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 4
+19:20:11 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 5
+19:20:11 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 3, 1 - 2
+19:20:11 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:20:11 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 5
+19:20:11 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 4
+19:20:12 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 5
+19:20:12 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 4
+19:20:13 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 6
+19:20:13 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 4
+19:20:14 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 6
+19:20:14 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: listPlanet: 6
+19:20:14 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:20:14 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 4
+19:20:14 - Корутина - GrowthStarting | Запустилась по тэгу: Enemy1. Список: listPlanet: 4
+19:20:14 - Корутина - GrowthStarting | Поднялся флаг Enemy1
+19:20:15 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 6
+19:20:15 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 3, 1 - 1
+19:20:15 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:20:15 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 6
+19:20:15 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:16 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 6
+19:20:16 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: listPlanet: 6
+19:20:16 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:20:16 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:17 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 6
+19:20:17 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 4, 1 - 1
+19:20:17 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:20:17 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 6
+19:20:17 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:18 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:18 - Корутина - GrowthStarting | ТэгEnemy1. Рандомные числа сгенерированы: 1 - 4, 1 - 1
+19:20:18 - Корутина - GrowthStarting | ТэгEnemy1. Корабль отправлен, корутина закончилась.
+19:20:18 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 6
+19:20:18 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:19 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 6
+19:20:19 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:19 - Корутина - GrowthStarting | Запустилась по тэгу: Enemy1. Список: listPlanet: 5
+19:20:19 - Корутина - GrowthStarting | Поднялся флаг Enemy1
+19:20:20 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 6
+19:20:20 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 6
+19:20:21 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 6
+19:20:21 - Корутина - GrowthStarting | ТэгEnemy1. Рандомные числа сгенерированы: 1 - 4, 1 - 1
+19:20:21 - Корутина - GrowthStarting | ТэгEnemy1. Корабль отправлен, корутина закончилась.
+19:20:21 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 7
+19:20:21 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 6
+19:20:22 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 7
+19:20:22 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 6
+19:20:22 - Корутина - GrowthStarting | Запустилась по тэгу: Enemy1. Список: listPlanet: 6
+19:20:22 - Корутина - GrowthStarting | Поднялся флаг Enemy1
+19:20:23 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 7
+19:20:23 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: listPlanet: 7
+19:20:23 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:20:23 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 6
+19:20:24 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 7
+19:20:24 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 6
+19:20:25 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 7
+19:20:25 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 7
+19:20:26 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 7
+19:20:26 - Корутина - GrowthStarting | ТэгEnemy1. Рандомные числа сгенерированы: 1 - 5, 1 - 3
+19:20:26 - Корутина - GrowthStarting | ТэгEnemy1. Корабль отправлен, корутина закончилась.
+19:20:26 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 7
+19:20:26 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 3, 1 - 1
+19:20:26 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:20:26 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 7
+19:20:26 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 7
+19:20:27 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 7
+19:20:27 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 7
+19:20:27 - Корутина - GrowthStarting | Запустилась по тэгу: Enemy1. Список: listPlanet: 7
+19:20:27 - Корутина - GrowthStarting | Поднялся флаг Enemy1
+19:20:28 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 8
+19:20:28 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 6
+19:20:29 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 6
+19:20:29 - Корутина - GrowthStarting | ТэгEnemy1. Рандомные числа сгенерированы: 1 - 4, 1 - 0
+19:20:29 - Корутина - GrowthStarting | ТэгEnemy1. Корабль отправлен, корутина закончилась.
+19:20:29 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 8
+19:20:29 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 6
+19:20:30 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 8
+19:20:30 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 6
+19:20:31 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 8
+19:20:31 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: listPlanet: 8
+19:20:31 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:20:31 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 7
+19:20:32 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 8
+19:20:32 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 7
+19:20:33 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 9
+19:20:33 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 6
+19:20:34 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 10
+19:20:34 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:35 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 10
+19:20:35 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 3, 1 - 6
+19:20:35 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:20:35 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 10
+19:20:35 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:36 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 10
+19:20:36 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:37 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 10
+19:20:37 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:37 - Корутина - GrowthStarting | Запустилась по тэгу: Enemy1. Список: listPlanet: 5
+19:20:37 - Корутина - GrowthStarting | Поднялся флаг Enemy1
+19:20:38 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 11
+19:20:38 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:39 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:39 - Корутина - GrowthStarting | ТэгEnemy1. Рандомные числа сгенерированы: 1 - 1, 1 - 2
+19:20:39 - Корутина - GrowthStarting | ТэгEnemy1. Корабль отправлен, корутина закончилась.
+19:20:39 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 11
+19:20:39 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:40 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 11
+19:20:40 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:40 - Корутина - GrowthStarting | Запустилась по тэгу: Enemy1. Список: listPlanet: 5
+19:20:40 - Корутина - GrowthStarting | Поднялся флаг Enemy1
+19:20:41 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 11
+19:20:41 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:42 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 10
+19:20:42 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 6
+19:20:43 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 11
+19:20:43 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 5
+19:20:44 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 3
+19:20:44 - Корутина - GrowthStarting | ТэгEnemy1. Рандомные числа сгенерированы: 1 - 2, 1 - 1
+19:20:44 - Корутина - GrowthStarting | ТэгEnemy1. Корабль отправлен, корутина закончилась.
+19:20:44 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 13
+19:20:44 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 3
+19:20:45 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 12
+19:20:45 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 4
+19:20:46 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 12
+19:20:46 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 4
+19:20:47 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 13
+19:20:47 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 3
+19:20:47 - Корутина - GrowthStarting | Запустилась по тэгу: Enemy1. Список: listPlanet: 3
+19:20:47 - Корутина - GrowthStarting | Поднялся флаг Enemy1
+19:20:48 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 13
+19:20:48 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 3
+19:20:49 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 3
+19:20:49 - Корутина - GrowthStarting | ТэгEnemy1. Рандомные числа сгенерированы: 1 - 2, 1 - 0
+19:20:49 - Корутина - GrowthStarting | ТэгEnemy1. Корабль отправлен, корутина закончилась.
+19:20:49 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 13
+19:20:49 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 3
+19:20:50 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 13
+19:20:50 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 3
+19:20:51 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 14
+19:20:51 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 2
+19:20:52 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 14
+19:20:52 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: listPlanet: 14
+19:20:52 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:20:52 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 2
+19:20:53 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 16
+19:20:53 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 1
+19:20:54 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 16
+19:20:54 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 1, 1 - 4
+19:20:54 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:20:54 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 16
+19:20:54 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 1
+19:20:55 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 15
+19:20:55 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 2
+19:20:56 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 15
+19:20:56 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 2
+19:20:56 - Корутина - GrowthStarting | Запустилась по тэгу: Enemy1. Список: listPlanet: 2
+19:20:56 - Корутина - GrowthStarting | Поднялся флаг Enemy1
+19:20:57 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 16
+19:20:57 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 1
+19:20:58 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 16
+19:20:58 - Корутина - GrowthStarting | Запустилась по тэгу: PlayerPlanet. Список: listPlanet: 16
+19:20:58 - Корутина - GrowthStarting | Поднялся флаг PlayerPlanet
+19:20:58 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 1
+19:20:59 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 16
+19:20:59 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 1
+19:21:00 - Корутина - GrowthStarting | Закончилась по тэгу: Enemy1. Список: listPlanet: 1
+19:21:00 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 16
+19:21:00 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 1
+19:21:01 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 16
+19:21:01 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 1
+19:21:02 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 17
+19:21:02 - Корутина - GrowthStarting | ТэгPlayerPlanet. Рандомные числа сгенерированы: 1 - 6, 1 - 2
+19:21:02 - Корутина - GrowthStarting | ТэгPlayerPlanet. Корабль отправлен, корутина закончилась.
+19:21:02 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 17
+19:21:02 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 1
+19:21:03 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 18
+19:21:03 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 0
+19:21:04 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 18
+19:21:04 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 0
+19:21:05 - Метод - SplitPlanet | По тэгу PlayerPlanet. Список listPlanet: 18
+19:21:05 - Метод - SplitPlanet | По тэгу Enemy1. Список listPlanet: 0

@@ -9,8 +9,8 @@ public class Turret : MonoBehaviour
     [Inject] protected DiContainer diContainer;
     [Inject(Id = "Bullet")] private GameObject bullet;
 
-    [HideInInspector] public string tagPlanet;
-    [HideInInspector] public List<Vector3> listEnemy = new List<Vector3>();
+    public string tagPlanet;
+    public List<Vector3> listEnemy = new List<Vector3>();
 
     [SerializeField] private LayerMask objectLayer;
     [SerializeField] private Transform turret;
@@ -26,7 +26,7 @@ public class Turret : MonoBehaviour
         {
             listEnemy.Add(ship.GetPosition().position);
         }
-    } 
+    }
 
     #endregion
 
@@ -40,7 +40,7 @@ public class Turret : MonoBehaviour
 
         turret.transform.rotation = Quaternion.Euler(new Vector3(0, 0, UnityEngine.Random.Range(0f, 360f)));
         tagPlanet = transform.parent.gameObject.tag;
-        StartCycleTurret();
+        //ChangeTag(tagPlanet);
     }
 
     #endregion
@@ -55,13 +55,9 @@ public class Turret : MonoBehaviour
 
     private void StartCycleTurret()
     {
-        if (gameObject.activeSelf)
-        {
-            StartCoroutine(ClearList());
-            StartCoroutine(FindNearTarget());
-            StartCoroutine(Shooting());
-            StartCoroutine(AimTarget());
-        }
+        StartCoroutine(FindNearTarget());
+        StartCoroutine(Shooting());
+        StartCoroutine(AimTarget());
     }
 
     private IEnumerator FindNearTarget()
@@ -71,6 +67,7 @@ public class Turret : MonoBehaviour
             while (listEnemy.Count > 0)
             {
                 float closestDistance = Mathf.Infinity;
+                Vector3 newTarget = Vector3.zero;
 
                 foreach (Vector3 ship in listEnemy)
                 {
@@ -79,27 +76,24 @@ public class Turret : MonoBehaviour
                     if (distance < closestDistance)
                     {
                         closestDistance = distance;
-                        target = ship;
+                        newTarget = ship;
                     }
                 }
+                PickTarget(newTarget);
 
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.25f);
             }
 
             target = Vector3.zero;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
-    private IEnumerator ClearList()
+    private void PickTarget(Vector3 newTarget)
     {
-        while (true)
-        {
-            listEnemy.Clear();
-            target = Vector3.zero;
+        target = newTarget;
 
-            yield return new WaitForSeconds(1f);
-        }
+        listEnemy.Clear();
     }
 
     private IEnumerator AimTarget()
@@ -112,7 +106,7 @@ public class Turret : MonoBehaviour
                 CorrectAngle();
             }
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 

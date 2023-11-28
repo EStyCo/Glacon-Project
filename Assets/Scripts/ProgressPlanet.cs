@@ -39,16 +39,17 @@ public class ProgressPlanet : MonoBehaviour
 
     private void ChangePlayer()
     {
-        turret.SetActive(false);
 
         switch (player.armorPlanet)
         {
             case 1:
+                turret.SetActive(false);
                 shield.SetActive(true);
                 shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
 
             case 2:
+                turret.SetActive(false);
                 shield.SetActive(true);
                 shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
@@ -57,6 +58,7 @@ public class ProgressPlanet : MonoBehaviour
                 shield.SetActive(true);
                 shield.GetComponent<ShieldPlanet>().ResetShield();
                 turret.SetActive(true);
+                turret.GetComponent<Turret>().ChangeTag("PlayerPlanet");
                 break;
 
             default:
@@ -75,23 +77,23 @@ public class ProgressPlanet : MonoBehaviour
                 break;
 
             default:
-                GetComponent<Planet>().growthLevel = 0f; 
+                GetComponent<Planet>().growthLevel = 0f;
                 break;
         }
     }
 
     private void ChangeEnemy1()
     {
-        turret.SetActive(false);
-
         switch (enemy1.armorPlanet)
         {
             case 1:
+                turret.SetActive(false);
                 shield.SetActive(true);
                 shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
 
             case 2:
+                turret.SetActive(false);
                 shield.SetActive(true);
                 shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
@@ -100,6 +102,7 @@ public class ProgressPlanet : MonoBehaviour
                 shield.SetActive(true);
                 shield.GetComponent<ShieldPlanet>().ResetShield();
                 turret.SetActive(true);
+                turret.GetComponent<Turret>().ChangeTag("Enemy1");
                 break;
 
             default:
@@ -125,16 +128,16 @@ public class ProgressPlanet : MonoBehaviour
 
     private void ChangeEnemy2()
     {
-        turret.SetActive(false);
-
         switch (enemy2.armorPlanet)
         {
             case 1:
+                turret.SetActive(false);
                 shield.SetActive(true);
                 shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
 
             case 2:
+                turret.SetActive(false);
                 shield.SetActive(true);
                 shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
@@ -143,6 +146,7 @@ public class ProgressPlanet : MonoBehaviour
                 shield.SetActive(true);
                 shield.GetComponent<ShieldPlanet>().ResetShield();
                 turret.SetActive(true);
+                turret.GetComponent<Turret>().ChangeTag("Enemy2");
                 break;
             default:
                 shield.SetActive(false);
@@ -167,16 +171,16 @@ public class ProgressPlanet : MonoBehaviour
 
     private void ChangeEnemy3()
     {
-        turret.SetActive(false);
-
         switch (enemy3.armorPlanet)
         {
             case 1:
+                turret.SetActive(false);
                 shield.SetActive(true);
                 shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
 
             case 2:
+                turret.SetActive(false);
                 shield.SetActive(true);
                 shield.GetComponent<ShieldPlanet>().ResetShield();
                 break;
@@ -185,6 +189,7 @@ public class ProgressPlanet : MonoBehaviour
                 shield.SetActive(true);
                 shield.GetComponent<ShieldPlanet>().ResetShield();
                 turret.SetActive(true);
+                turret.GetComponent<Turret>().ChangeTag("Enemy3");
                 break;
             default:
                 shield.SetActive(false);

@@ -102,7 +102,7 @@ public class BalancePower : MonoBehaviour
             SetColor();
             SetFilling(player, enemy1, enemy2);
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.35f);
         }
     } 
 

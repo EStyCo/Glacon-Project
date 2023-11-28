@@ -34,7 +34,6 @@ public class Draft : MonoBehaviour
             int chance = shipConstructor.chanceDraft1Level;
             if (player.draftPlanet > 1)
                 chance = shipConstructor.chanceDraft2Level;
-
             StartCoroutine(DraftPlanets(chance, player.draftPlanet, "PlayerPlanet", playerPlanet));
         }
 
@@ -68,11 +67,13 @@ public class Draft : MonoBehaviour
 
     private IEnumerator DraftPlanets(int percent, int index, string tagPlanets, List<GameObject> listPlanet)
     {
+        //Debugger.Log($"Корутина - DraftPlanets | Запущена Тэг:{tagPlanets}. Планет: {listPlanet.Count}");
         int waiting = Random.Range(shipConstructor.firstTimerStart, shipConstructor.firstTimerEnd);
         yield return new WaitForSeconds(waiting);
 
         while (CheckPlanets(tagPlanets))
         {
+            //Debugger.Log($"Итерация цикла в корутине DraftPlanets | Тэг:{tagPlanets}. Планет: {listPlanet.Count}");
             SplitPlanet(tagPlanets, listPlanet, percent);
 
             SpawnShips(listPlanet, index);
@@ -81,6 +82,7 @@ public class Draft : MonoBehaviour
             yield return new WaitForSeconds(waiting);
         }
 
+        //Debugger.Log($"Корутина - DraftPlanets | Завершилась Тэг:{tagPlanets}. Планет: {listPlanet.Count}");
         //yield break;
     }
 
@@ -90,7 +92,11 @@ public class Draft : MonoBehaviour
     {
         foreach (GameObject planet in allPlanets)
         {
-            if (planet.CompareTag(tag)) return true;
+            if (planet.CompareTag(tag))
+            {
+                //Debugger.Log($"Метод - CheckPlanets | Вернул true, по тэгу {tag}");
+                return true;
+            }
         }
 
         return false;
@@ -233,6 +239,7 @@ public class Draft : MonoBehaviour
                 listPlanet.Add(planet);
             }
         }
+        //Debugger.Log($"Метод - SplitPlanet | Тэг {tag}. Планеты: {listPlanet.Count}");
     }
 
     public void GetPlanet(GameObject planet)

@@ -3,12 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Zenject;
 
 public class MusicManager : MonoBehaviour
 {
-    [Inject] private GameManager gameManager;
-
     [SerializeField] private AudioClip[] musicClips;
     List<AudioClip> recordClips = new List<AudioClip>();
 

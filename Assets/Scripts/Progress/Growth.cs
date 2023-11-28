@@ -33,12 +33,16 @@ public class Growth : MonoBehaviour
 
     private IEnumerator LifeCycle()
     {
+        //Debugger.Log($"Метод - LifeCycle | Запустился");
+
         while (true)
         {
             yield return new WaitForSeconds(1f);
 
             CheckMembers();
         }
+
+        //Debugger.Log($"Метод - LifeCycle | Закончился");
     }
 
     public void CheckMembers()
@@ -57,7 +61,10 @@ public class Growth : MonoBehaviour
         SplitPlanet("PlayerPlanet", playerPlanet);
 
         if (playerPlanet.Count >= 2 && !isPlayer)
+        {
             StartCoroutine(GrowthStarting("PlayerPlanet", playerPlanet));
+            
+        }
     }
 
     private void GrowthEnemy1()
@@ -93,11 +100,17 @@ public class Growth : MonoBehaviour
             if (planet.CompareTag(tag))
                 listPlanet.Add(planet);
         }
+
+        //Debugger.Log($"Метод - SplitPlanet | По тэгу {tag}. Планет: {listPlanet.Count}");
     }
 
     private IEnumerator GrowthStarting(string tag, List<GameObject> listPlanet)
     {
+        //Debugger.Log($"Корутина - GrowthStarting | Запустилась по тэгу: {tag}. Планет: {listPlanet.Count}");
+
         EnableFlag(tag);
+        //Debugger.Log($"Корутина - GrowthStarting | Поднялся флаг {tag}");
+
         int timer = Random.Range(shipConstructor.timerStart, shipConstructor.timerEnd);
 
         yield return new WaitForSeconds(timer);
@@ -105,17 +118,20 @@ public class Growth : MonoBehaviour
         if (listPlanet.Count <= 1)
         {
             DisableFlag(tag);
+            //Debugger.Log($"Корутина - GrowthStarting | Прекращена! Тэг:{tag}. Планет: {listPlanet.Count}");
             yield break;
         }
 
         SplitPlanet(tag, listPlanet);
         int[] randomPlanets = GetRandomPlanets(listPlanet);
+        //Debugger.Log($"Корутина - GrowthStarting | Тэг {tag}. [1 Число: {randomPlanets[0]}], [2 Число: {randomPlanets[1]}]");
 
         GameObject chosenPlanet = listPlanet[randomPlanets[0]];
         MakeShip makeShips = chosenPlanet.GetComponent<MakeShip>();
 
         Planet targetPlanet = listPlanet[randomPlanets[1]].GetComponent<Planet>();
         makeShips.SpawnGrowthingCruiser(targetPlanet);
+        //Debugger.Log($"Корутина - GrowthStarting | Тэг {tag}. Корабль отправлен, корутина закончилась.");
     }
 
     #region Trash

@@ -1,0 +1,5 @@
+Начало игровой сессии
+01:46:20 - SpeedU:3, ArmorU:2, DamageU:0, ArmorP:2, Draft:3, Growth:0
+01:46:20 - SpeedU:0, ArmorU:0, DamageU:3, ArmorP:0, Draft:0, Growth:0
+01:46:20 - SpeedU:0, ArmorU:0, DamageU:3, ArmorP:0, Draft:0, Growth:0
+01:46:20 - SpeedU:0, ArmorU:0, DamageU:3, ArmorP:0, Draft:0, Growth:0
