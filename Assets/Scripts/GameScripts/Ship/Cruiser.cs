@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
-using Zenject;
 
 public class Cruiser : Ship
 {
@@ -22,11 +21,6 @@ public class Cruiser : Ship
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (gameObject.CompareTag(collision.gameObject.tag)) StartCoroutine(IgnoreCollision(collision.gameObject, gameObject));
-
-        if (collision.gameObject.TryGetComponent(out Cruiser cruiser) && gameObject.GetComponent<Cruiser>() != null)
-        {
-            CollisionCruiser(cruiser, collision);
-        }
     }
 
     protected override void OnCollisionStay2D(Collision2D collision)
@@ -48,7 +42,7 @@ public class Cruiser : Ship
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        //isCollision = false;
+        isCollision = false;
 
         if (!collision.gameObject.CompareTag(gameObject.tag))
             Physics2D.IgnoreCollision(colliderUnit, collision.collider, false);
@@ -152,11 +146,6 @@ public class Cruiser : Ship
     {
         movementSpeed = constructor.speedCruisers;
     }
-
-/*    private void CollisionShield(ShieldPlanet shield)
-    {
-        
-    }*/
 
     private void CollisionCruiser(Cruiser cruiser, Collision2D collision)
     {

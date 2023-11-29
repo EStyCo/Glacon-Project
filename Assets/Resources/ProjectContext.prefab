@@ -307,8 +307,8 @@ MonoBehaviour:
   startUnitsEnemy: 60
   minNeutralUnits: 18
   maxNeutralUnits: 35
-  restTimerShield: 4
-  speedShield: 3.1
+  restTimerShield: 7
+  speedShield: 2.8
   radiusShield: 0.5
   healthShield: 15
   reloadSpeed: 0.9
