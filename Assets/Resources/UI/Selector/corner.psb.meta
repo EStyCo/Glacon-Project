@@ -96,14 +96,14 @@ ScriptedImporter:
   rigSpriteImportData:
   - name: Folder 18 Copy
     originalName: 
-    pivot: {x: 0.4141071, y: 0.5}
+    pivot: {x: 0.4105482, y: 0.5005509}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
+      x: 5
       y: 1440
-      width: 382
+      width: 381
       height: 191
     spriteID: b1b79ed2cbfaaa34c869274e6841abf1
     spriteBone: []
