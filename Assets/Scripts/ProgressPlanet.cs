@@ -62,6 +62,7 @@ public class ProgressPlanet : MonoBehaviour
                 break;
 
             default:
+                turret.SetActive(false);
                 shield.SetActive(false);
                 break;
         }
@@ -106,6 +107,7 @@ public class ProgressPlanet : MonoBehaviour
                 break;
 
             default:
+                turret.SetActive(false);
                 shield.SetActive(false);
                 break;
         }
@@ -149,6 +151,7 @@ public class ProgressPlanet : MonoBehaviour
                 turret.GetComponent<Turret>().ChangeTag("Enemy2");
                 break;
             default:
+                turret.SetActive(false);
                 shield.SetActive(false);
                 break;
         }
@@ -192,6 +195,7 @@ public class ProgressPlanet : MonoBehaviour
                 turret.GetComponent<Turret>().ChangeTag("Enemy3");
                 break;
             default:
+                turret.SetActive(false);
                 shield.SetActive(false);
                 break;
         }

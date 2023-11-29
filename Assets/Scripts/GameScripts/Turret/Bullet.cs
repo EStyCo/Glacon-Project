@@ -19,6 +19,15 @@ public class Bullet : MonoBehaviour
         Moving();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent(out Bullet bullet))
+        { 
+            Destroy(gameObject);
+            Destroy(bullet.gameObject);
+        }
+    }
+
     private IEnumerator TimerLife()
     {
         yield return new WaitForSeconds(shipConstructor.rangeFly);

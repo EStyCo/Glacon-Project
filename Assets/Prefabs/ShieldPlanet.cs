@@ -4,7 +4,7 @@ using Zenject;
 
 public class ShieldPlanet : MonoBehaviour
 {
-    [Inject] ShipConstructor constructor;
+    [Inject] private ShipConstructor constructor;
 
     public int health;
     private SpriteRenderer spriteRenderer;
@@ -58,9 +58,10 @@ public class ShieldPlanet : MonoBehaviour
         if (planet.unitPrefab != null)
         {
             spriteRenderer.sprite = planet.unitPrefab.GetComponent<SpriteRenderer>().sprite;
-            gameObject.layer = planet.cruiserPrefab.layer;
+            //gameObject.layer = planet.cruiserPrefab.layer;
         }
 
+        colliderShield.enabled = true;
         health = constructor.healthShield;
         gameObject.tag = planet.gameObject.tag;
     }
@@ -91,14 +92,14 @@ public class ShieldPlanet : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (IsCruiser(collision, out Cruiser cruiser))
+        if (!collision.gameObject.CompareTag(transform.parent.tag) && collision.TryGetComponent(out Cruiser cruiser))
         {
             CruiserCollision(cruiser);
         }
 
-        if (collision.gameObject.TryGetComponent(out Unit unit))
+        if (!collision.gameObject.CompareTag(transform.parent.tag) && collision.gameObject.TryGetComponent(out Unit unit))
         {
             DecreasedHealth(1);
         }
@@ -106,17 +107,11 @@ public class ShieldPlanet : MonoBehaviour
 
     private void CruiserCollision(Cruiser cruiser)
     {
-        if (!isCollision)
-        {
-            int enemyHealt = cruiser.health;
-            int mainHealth = health;
+        int enemyHealt = cruiser.health;
+        int mainHealth = health;
 
-            DecreasedHealth(enemyHealt);
-            cruiser.AvoidCollision(mainHealth);
-        }
-
-        isCollision = true;
-        cruiser.isCollision = true;
+        DecreasedHealth(enemyHealt);
+        cruiser.AvoidCollision(mainHealth);
     }
 
     private IEnumerator RestTimer()
@@ -129,13 +124,14 @@ public class ShieldPlanet : MonoBehaviour
         ResetShield();
     }
 
-    #region Bools
-
-    private bool IsCruiser(Collider2D collision, out Cruiser cruiser)
+    public IEnumerator OnCollision()
     {
-        cruiser = null;
-        return collision.gameObject.TryGetComponent(out cruiser) && gameObject.GetComponent<Cruiser>() != null;
+        yield return new WaitForSeconds(0.35f);
+
+        isCollision = false;
     }
+
+    #region Bools
 
     #endregion
 }

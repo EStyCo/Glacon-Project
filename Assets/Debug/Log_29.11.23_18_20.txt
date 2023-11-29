@@ -1,0 +1,13 @@
+Начало игровой сессии
+18:21:01 - SpeedU:2, ArmorU:0, DamageU:3, ArmorP:3, Draft:0, Growth:2
+18:21:01 - SpeedU:0, ArmorU:0, DamageU:0, ArmorP:0, Draft:0, Growth:0
+18:21:01 - SpeedU:0, ArmorU:0, DamageU:0, ArmorP:0, Draft:0, Growth:0
+18:21:01 - SpeedU:0, ArmorU:0, DamageU:0, ArmorP:0, Draft:0, Growth:0
+18:21:01 - SpeedU:2, ArmorU:0, DamageU:3, ArmorP:3, Draft:0, Growth:2
+18:21:01 - SpeedU:0, ArmorU:0, DamageU:0, ArmorP:0, Draft:0, Growth:0
+18:21:01 - SpeedU:0, ArmorU:0, DamageU:0, ArmorP:0, Draft:0, Growth:0
+18:21:01 - SpeedU:0, ArmorU:0, DamageU:0, ArmorP:0, Draft:0, Growth:0
+18:21:47 - SpeedU:2, ArmorU:0, DamageU:3, ArmorP:3, Draft:0, Growth:2
+18:21:47 - SpeedU:2, ArmorU:0, DamageU:3, ArmorP:2, Draft:3, Growth:0
+18:21:47 - SpeedU:3, ArmorU:0, DamageU:2, ArmorP:0, Draft:3, Growth:2
+18:21:47 - SpeedU:3, ArmorU:2, DamageU:0, ArmorP:3, Draft:2, Growth:0
