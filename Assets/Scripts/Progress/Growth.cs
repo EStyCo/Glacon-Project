@@ -152,9 +152,6 @@ public class Growth : MonoBehaviour
             randomPlanets[1] = second;
         }
 
-
-        Debugger.Log($"1Planet: {randomPlanets[0].tag}, 2Planet: {randomPlanets[1].tag}");
-
         return randomPlanets;
     }
 
