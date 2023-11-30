@@ -1,35 +1,24 @@
-using Newtonsoft.Json.Linq;
 using System;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
-public class ProgressLevel : MonoBehaviour
+public class LevelConfig : MonoBehaviour
 {
+    [Inject] private ShipConstructor constructor;
     [Inject] private ProgressEnemy1 enemy1;
     [Inject] private ProgressEnemy2 enemy2;
     [Inject] private ProgressEnemy3 enemy3;
-    [Inject] private ShipConstructor constructor;
+
+    //[Range(0, 3)][SerializeField] private int speed;
 
     public void Pick1Level()
     {
+        ResetProgressEnemy();
+
         UpgradeEnemy(enemy1, constructor.level1);
         UpgradeEnemy(enemy2, constructor.level1);
         UpgradeEnemy(enemy3, constructor.level1);
-    }
-
-    public void Pick2Level()
-    {
-        UpgradeEnemy(enemy1, constructor.level2);
-        UpgradeEnemy(enemy2, constructor.level2);
-        UpgradeEnemy(enemy3, constructor.level2);
-    }
-
-    public void Pick3Level()
-    {
-        UpgradeEnemy(enemy1, constructor.level3);
-        UpgradeEnemy(enemy2, constructor.level3);
-        UpgradeEnemy(enemy3, constructor.level3);
     }
 
     private void UpgradeEnemy(ProgressEnemy enemy, int[] counts)
@@ -42,7 +31,6 @@ public class ProgressLevel : MonoBehaviour
         GetPlanetsValue(values[0], enemy) = counts[2];
         GetPlanetsValue(values[1], enemy) = counts[3];
     }
-
     private int[] GetValues()
     {
         int[] values = new int[2];
@@ -56,7 +44,6 @@ public class ProgressLevel : MonoBehaviour
 
         return values;
     }
-
     private ref int GetShipsValue(int param, ProgressEnemy enemy)
     {
         switch (param)
@@ -85,5 +72,12 @@ public class ProgressLevel : MonoBehaviour
             default:
                 throw new ArgumentException("Invalid param value", nameof(param));
         }
+    }
+
+    private void ResetProgressEnemy()
+    {
+        enemy1.ResetProgress();
+        enemy2.ResetProgress();
+        enemy3.ResetProgress();
     }
 }

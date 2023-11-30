@@ -6707,10 +6707,10 @@ GameObject:
   - component: {fileID: 888107263}
   - component: {fileID: 888107262}
   - component: {fileID: 888107261}
-  - component: {fileID: 888107265}
-  - component: {fileID: 888107266}
   - component: {fileID: 888107268}
   - component: {fileID: 888107267}
+  - component: {fileID: 888107265}
+  - component: {fileID: 888107266}
   - component: {fileID: 888107269}
   - component: {fileID: 888107270}
   m_Layer: 5
