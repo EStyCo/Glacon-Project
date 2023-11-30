@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
-using Random = UnityEngine.Random;
 
 public class Growth : MonoBehaviour
 {
@@ -108,7 +109,7 @@ public class Growth : MonoBehaviour
     {
         EnableFlag(tag);
 
-        int timer = Random.Range(shipConstructor.timerStart, shipConstructor.timerEnd);
+        int timer = UnityEngine.Random.Range(shipConstructor.timerStart, shipConstructor.timerEnd);
 
         yield return new WaitForSeconds(timer);
 
@@ -119,34 +120,40 @@ public class Growth : MonoBehaviour
         }
 
         SplitPlanet(tag, listPlanet);
-        int[] randomPlanets = GetRandomPlanets(listPlanet);
+        GameObject[] randomPlanets = GetRandomPlanets(listPlanet);
 
-        GameObject chosenPlanet = listPlanet[randomPlanets[0]];
+        if (randomPlanets == null) yield break;
+
+        GameObject chosenPlanet = randomPlanets[0];
         MakeShip makeShips = chosenPlanet.GetComponent<MakeShip>();
 
-        Planet targetPlanet = listPlanet[randomPlanets[1]].GetComponent<Planet>();
+        Planet targetPlanet = randomPlanets[1].GetComponent<Planet>();
         makeShips.SpawnGrowthingCruiser(targetPlanet);
     }
 
-    #region Trash
-
-    private int[] GetRandomPlanets(List<GameObject> list)
+    private GameObject[] GetRandomPlanets(List<GameObject> list)
     {
-        int[] randomPlanets = new int[2];
-        int randomStart = Random.Range(0, list.Count);
-        int randomEnd = Random.Range(0, list.Count);
-        int i = 0;
+        GameObject[] randomPlanets = new GameObject[2];
+        var toPick = list.ToList();
 
-        Debugger.Log($"Tag: {list[0].tag}, Стартуем цикл.");
-        while (randomStart == randomEnd)
+        if (toPick.Count > 0)
         {
-            i++;
-            randomEnd = Random.Range(0, list.Count);
-            Debugger.Log($"Tag: {list[0].tag}, Планет: {list.Count}, Итерация цикла: {i}");
+            System.Random random = new System.Random();
+            var first = toPick.OrderBy(x => random.Next()).First();
+
+            toPick.Remove(first);
+
+            if (toPick.Count == 0)
+                return null;
+
+            var second = toPick.OrderBy(x => random.Next()).First();
+
+            randomPlanets[0] = first;
+            randomPlanets[1] = second;
         }
 
-        randomPlanets[0] = randomStart;
-        randomPlanets[1] = randomEnd;
+
+        Debugger.Log($"1Planet: {randomPlanets[0].tag}, 2Planet: {randomPlanets[1].tag}");
 
         return randomPlanets;
     }
@@ -233,5 +240,4 @@ public class Growth : MonoBehaviour
             return false;
     }
 
-    #endregion
 }
