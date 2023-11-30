@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
+using UnityEngine.UI;
 using Zenject;
 
 public class PreGameSettings : MonoBehaviour
@@ -12,15 +13,6 @@ public class PreGameSettings : MonoBehaviour
     public SpriteRenderer colorSendShips;
 
     public UnityEngine.UI.Slider sliderRank;
-
-    public UnityEngine.UI.Image showColor1;
-    public UnityEngine.UI.Image showColor2;
-    public UnityEngine.UI.Image showColor3;
-    public UnityEngine.UI.Image showColor4;
-    public UnityEngine.UI.Image showColor5;
-    public UnityEngine.UI.Image showColor6;
-    public UnityEngine.UI.Image showColor7;
-    public UnityEngine.UI.Image showColor8;
 
     private void Start()
     {
@@ -96,52 +88,60 @@ public class PreGameSettings : MonoBehaviour
     {
         sendShip.SetCategoryAndLabel(category, label);
     }
-    public void SetColorUnits1()
-    {
-        Color buttonColor = showColor1.color;
-        gameManager.ChangeColor(buttonColor);
-        CheckColorUnits();
-    }
-    public void SetColorUnits2()
-    {
-        Color buttonColor = showColor2.color;
-        gameManager.ChangeColor(buttonColor);
-        CheckColorUnits();
-    }
-    public void SetColorUnits3()
-    {
-        Color buttonColor = showColor3.color;
-        gameManager.ChangeColor(buttonColor);
-        CheckColorUnits();
-    }
-    public void SetColorUnits4()
-    {
-        Color buttonColor = showColor4.color;
-        gameManager.ChangeColor(buttonColor);
-        CheckColorUnits();
-    }
-    public void SetColorUnits5()
-    {
-        Color buttonColor = showColor5.color;
-        gameManager.ChangeColor(buttonColor);
-        CheckColorUnits();
-    }
-    public void SetColorUnits6()
-    {
-        Color buttonColor = showColor6.color;
-        gameManager.ChangeColor(buttonColor);
-        CheckColorUnits();
-    }
-    public void SetColorUnits7()
-    {
-        Color buttonColor = showColor7.color;
-        gameManager.ChangeColor(buttonColor);
-        CheckColorUnits();
-    }
-    public void SetColorUnits8()
+    /*    public void SetColorUnits1()
+        {
+            Color buttonColor = showColor1.color;
+            gameManager.ChangeColor(buttonColor);
+            CheckColorUnits();
+        }
+        public void SetColorUnits2()
+        {
+            Color buttonColor = showColor2.color;
+            gameManager.ChangeColor(buttonColor);
+            CheckColorUnits();
+        }
+        public void SetColorUnits3()
+        {
+            Color buttonColor = showColor3.color;
+            gameManager.ChangeColor(buttonColor);
+            CheckColorUnits();
+        }
+        public void SetColorUnits4()
+        {
+            Color buttonColor = showColor4.color;
+            gameManager.ChangeColor(buttonColor);
+            CheckColorUnits();
+        }
+        public void SetColorUnits5()
+        {
+            Color buttonColor = showColor5.color;
+            gameManager.ChangeColor(buttonColor);
+            CheckColorUnits();
+        }
+        public void SetColorUnits6()
+        {
+            Color buttonColor = showColor6.color;
+            gameManager.ChangeColor(buttonColor);
+            CheckColorUnits();
+        }
+        public void SetColorUnits7()
+        {
+            Color buttonColor = showColor7.color;
+            gameManager.ChangeColor(buttonColor);
+            CheckColorUnits();
+        }*/
+/*    public void SetColorUnits8()
     {
         Color buttonColor = showColor8.color;
         gameManager.ChangeColor(buttonColor);
         CheckColorUnits();
+    }*/
+
+    public void GetColor(Button button)
+    {
+        button.TryGetComponent(out Image image);
+        gameManager.ChangeColor(image.color);
+        CheckColorUnits();
     }
+
 }

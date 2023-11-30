@@ -5998,11 +5998,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 888107266}
         m_TargetAssemblyTypeName: PreGameSettings, Assembly-CSharp
-        m_MethodName: SetColorUnits8
-        m_Mode: 1
+        m_MethodName: GetColor
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 709213580}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6021,7 +6021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9056604, g: 0.8661362, b: 0.49127805, a: 1}
+  m_Color: {r: 0.7964113, g: 0.8773585, b: 0.55869526, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6579,11 +6579,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 888107266}
         m_TargetAssemblyTypeName: PreGameSettings, Assembly-CSharp
-        m_MethodName: SetColorUnits1
-        m_Mode: 1
+        m_MethodName: GetColor
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 868721715}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6602,7 +6602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5486828, g: 0.62075704, b: 0.8490566, a: 1}
+  m_Color: {r: 0.49043253, g: 0.6584858, b: 0.9716981, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6841,14 +6841,6 @@ MonoBehaviour:
   sendShip: {fileID: 1578833615}
   colorSendShips: {fileID: 1578833614}
   sliderRank: {fileID: 514822250}
-  showColor1: {fileID: 868721716}
-  showColor2: {fileID: 1103263836}
-  showColor3: {fileID: 1160137682}
-  showColor4: {fileID: 1949438341}
-  showColor5: {fileID: 1445955818}
-  showColor6: {fileID: 1233381959}
-  showColor7: {fileID: 908284609}
-  showColor8: {fileID: 709213581}
 --- !u!114 &888107267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7003,11 +6995,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 888107266}
         m_TargetAssemblyTypeName: PreGameSettings, Assembly-CSharp
-        m_MethodName: SetColorUnits7
-        m_Mode: 1
+        m_MethodName: GetColor
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 908284608}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7026,7 +7018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.41585082, g: 0.4183071, b: 0.990566, a: 1}
+  m_Color: {r: 0.4761839, g: 0.29783732, b: 0.6509434, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9243,11 +9235,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 888107266}
         m_TargetAssemblyTypeName: PreGameSettings, Assembly-CSharp
-        m_MethodName: SetColorUnits2
-        m_Mode: 1
+        m_MethodName: GetColor
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1103263835}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9266,7 +9258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.40970984, g: 0.8773585, b: 0.77825326, a: 1}
+  m_Color: {r: 0.19624422, g: 0.8490566, b: 0.7076139, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9897,11 +9889,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 888107266}
         m_TargetAssemblyTypeName: PreGameSettings, Assembly-CSharp
-        m_MethodName: SetColorUnits3
-        m_Mode: 1
+        m_MethodName: GetColor
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1160137681}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9920,7 +9912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9056604, g: 0.59549886, b: 0.31185475, a: 1}
+  m_Color: {r: 0.8867924, g: 0.75035954, b: 0.30535775, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10269,11 +10261,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 888107266}
         m_TargetAssemblyTypeName: PreGameSettings, Assembly-CSharp
-        m_MethodName: SetColorUnits6
-        m_Mode: 1
+        m_MethodName: GetColor
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1233381958}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -10292,7 +10284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.44299573, g: 0.44299573, b: 0.5188679, a: 1}
+  m_Color: {r: 0.42635277, g: 0.42635277, b: 0.6320754, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12840,11 +12832,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 888107266}
         m_TargetAssemblyTypeName: PreGameSettings, Assembly-CSharp
-        m_MethodName: SetColorUnits5
-        m_Mode: 1
+        m_MethodName: GetColor
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1445955817}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -12863,7 +12855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8679245, g: 0.42986825, b: 0.6688082, a: 1}
+  m_Color: {r: 0.8396226, g: 0.2811944, b: 0.4319583, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16145,11 +16137,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 888107266}
         m_TargetAssemblyTypeName: PreGameSettings, Assembly-CSharp
-        m_MethodName: SetColorUnits4
-        m_Mode: 1
+        m_MethodName: GetColor
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1949438340}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -16168,7 +16160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.59560823, g: 0.34420612, b: 0.8018868, a: 1}
+  m_Color: {r: 0.7505401, g: 0.53640085, b: 0.9245283, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

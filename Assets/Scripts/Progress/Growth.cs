@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 public class Growth : MonoBehaviour
 {
@@ -63,7 +64,6 @@ public class Growth : MonoBehaviour
         if (playerPlanet.Count >= 2 && !isPlayer)
         {
             StartCoroutine(GrowthStarting("PlayerPlanet", playerPlanet));
-            
         }
     }
 
@@ -106,10 +106,7 @@ public class Growth : MonoBehaviour
 
     private IEnumerator GrowthStarting(string tag, List<GameObject> listPlanet)
     {
-        //Debugger.Log($"Корутина - GrowthStarting | Запустилась по тэгу: {tag}. Планет: {listPlanet.Count}");
-
         EnableFlag(tag);
-        //Debugger.Log($"Корутина - GrowthStarting | Поднялся флаг {tag}");
 
         int timer = Random.Range(shipConstructor.timerStart, shipConstructor.timerEnd);
 
@@ -118,20 +115,17 @@ public class Growth : MonoBehaviour
         if (listPlanet.Count <= 1)
         {
             DisableFlag(tag);
-            //Debugger.Log($"Корутина - GrowthStarting | Прекращена! Тэг:{tag}. Планет: {listPlanet.Count}");
             yield break;
         }
 
         SplitPlanet(tag, listPlanet);
         int[] randomPlanets = GetRandomPlanets(listPlanet);
-        //Debugger.Log($"Корутина - GrowthStarting | Тэг {tag}. [1 Число: {randomPlanets[0]}], [2 Число: {randomPlanets[1]}]");
 
         GameObject chosenPlanet = listPlanet[randomPlanets[0]];
         MakeShip makeShips = chosenPlanet.GetComponent<MakeShip>();
 
         Planet targetPlanet = listPlanet[randomPlanets[1]].GetComponent<Planet>();
         makeShips.SpawnGrowthingCruiser(targetPlanet);
-        //Debugger.Log($"Корутина - GrowthStarting | Тэг {tag}. Корабль отправлен, корутина закончилась.");
     }
 
     #region Trash
@@ -141,9 +135,15 @@ public class Growth : MonoBehaviour
         int[] randomPlanets = new int[2];
         int randomStart = Random.Range(0, list.Count);
         int randomEnd = Random.Range(0, list.Count);
+        int i = 0;
 
+        Debugger.Log($"Tag: {list[0].tag}, Стартуем цикл.");
         while (randomStart == randomEnd)
+        {
+            i++;
             randomEnd = Random.Range(0, list.Count);
+            Debugger.Log($"Tag: {list[0].tag}, Планет: {list.Count}, Итерация цикла: {i}");
+        }
 
         randomPlanets[0] = randomStart;
         randomPlanets[1] = randomEnd;
