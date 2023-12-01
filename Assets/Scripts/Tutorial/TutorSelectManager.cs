@@ -154,10 +154,10 @@ public class TutorSelectManager : MonoBehaviour
         }
         else
         {
-            if (Tutorial.Instance.index == 1)
+            if (Tutorial2.Instance.index == 1)
             { 
-                Tutorial.Instance.NextDialog();
-                Tutorial.Instance.RisePlanet();
+                Tutorial2.Instance.NextDialog();
+                Tutorial2.Instance.RisePlanet();
             }
             selectedPlanets.Add(planet);
             planet.SelectPlanet();

@@ -18,6 +18,8 @@ public class BalancePower : MonoBehaviour
     public List<Planet> enemy2Planet = new List<Planet>();
     public List<Planet> enemy3Planet = new List<Planet>();
 
+    public List<GameObject> listShips = new List<GameObject>();
+
     private float units = 0;
     private int flyingPlayer = 0;
     private int flyingEnemy1 = 0;
@@ -113,6 +115,12 @@ public class BalancePower : MonoBehaviour
     public void SplitPlanets()
     {
         StartCoroutine(UpdateData());
+    }
+
+    public void StopScript()
+    { 
+        StopAllCoroutines();
+        listPlanets.Clear();
     }
 
     private void ClearAllLists()
@@ -317,5 +325,20 @@ public class BalancePower : MonoBehaviour
     }
 
     #endregion
+
+    public void GetShips(GameObject ship)
+    { 
+        listShips.Add(ship);
+    }
+
+    public void DestroyShips()
+    {
+        foreach (GameObject ship in listShips) 
+        { 
+            if (ship != null) Destroy(ship);
+        }
+
+        listShips.Clear();
+    }
 
 }

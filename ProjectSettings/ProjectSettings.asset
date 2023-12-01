@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: EStyCo
   productName: Galcon
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -44,8 +44,8 @@ PlayerSettings:
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
-  defaultScreenWidthWeb: 1280
-  defaultScreenHeightWeb: 720
+  defaultScreenWidthWeb: 1920
+  defaultScreenHeightWeb: 1080
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 1
   m_SpriteBatchVertexThreshold: 300
@@ -416,18 +416,26 @@ PlayerSettings:
     BANNER_STATIC_1: 
     BANNER_STATIC_2: 
     CHANGE_BAR_COLOR: 
+    CHANGE_BAR_COLOR_ON_DESKTOP: 
+    CHANGE_BAR_COLOR_ON_MOBILE: 
     CHANGE_LOADING_SCREEN_BACKGROUND: 
     CHANGE_LOGO_IMAGE: 
     CONFIGURE_SHADOWS: 
     CONNECT_WEB_AUDIO_PLUGIN_FILES: 
     CONNECT_YANDEX_SDK: 
+    CUSTOMIZE_CURSOR: 
     DEVICE_PIXEL_RATIO: 
+    DISABLE_CONSOLE_LOG: 
     ENABLE_CONSOLE: 
     LOCK_ASPECT_RATIO_ON_DESKTOP: 
     LOCK_ASPECT_RATIO_ON_MOBILE: 
     PRODUCT_DESCRIPTION: 
-    SET_ASPECT_RATIO_ON_DESKTOP: 
+    SET_ASPECT_RATIO_ON_DESKTOP: 16/9
     SET_ASPECT_RATIO_ON_MOBILE: 
+    SET_WINDOW_HEIGHT_ON_DESKTOP: 
+    SET_WINDOW_HEIGHT_ON_MOBILE: 
+    SET_WINDOW_WIDTH_ON_DESKTOP: 
+    SET_WINDOW_WIDTH_ON_MOBILE: 
     YASDK_SHOW_PRELOADER_AD: 
   mobileMTRendering:
     Android: 1
@@ -684,7 +692,7 @@ PlayerSettings:
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
-  webGLTemplate: PROJECT:ATP_YG1.5
+  webGLTemplate: PROJECT:ATP_YG1.6
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 0
@@ -725,7 +733,7 @@ PlayerSettings:
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
-  selectedPlatform: 0
+  selectedPlatform: 2
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 1

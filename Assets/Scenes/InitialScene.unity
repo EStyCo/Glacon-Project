@@ -748,11 +748,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62bd3c17a8fb366458586858ba778d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoints: []
   canvasParent: {fileID: 1439594787}
   leftTopCanvas: {fileID: 932570769}
   rightBottomCanvas: {fileID: 1191556547}
   leftBottomPM: {fileID: 0}
   rightTopSM: {fileID: 0}
+  listPlanets: []
   mainPlanetPrefab: {fileID: 3353950651158609308, guid: fd8b5d02cc1aaec4abd6bc3864e69b18, type: 3}
   blackHole: {fileID: 7255500008011285248, guid: 78bcbb506a86e524abe85df45294a68e, type: 3}
   parentBlackHole: {fileID: 1817268918}
@@ -1291,9 +1293,9 @@ GameObject:
   - component: {fileID: 627492875}
   - component: {fileID: 627492874}
   - component: {fileID: 627492873}
-  - component: {fileID: 627492877}
   - component: {fileID: 627492879}
   - component: {fileID: 627492878}
+  - component: {fileID: 627492877}
   - component: {fileID: 627492880}
   m_Layer: 5
   m_Name: Canvas
@@ -2816,7 +2818,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3066,6 +3068,7 @@ GameObject:
   - component: {fileID: 1503981132}
   - component: {fileID: 1503981131}
   - component: {fileID: 1503981130}
+  - component: {fileID: 1503981133}
   m_Layer: 5
   m_Name: Tutorial
   m_TagString: Untagged
@@ -3137,7 +3140,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1503981131}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1503981133}
+        m_TargetAssemblyTypeName: ButtonTutorial, Assembly-CSharp
+        m_MethodName: ChangeGameMode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1503981131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3176,6 +3191,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1503981128}
   m_CullTransparentMesh: 1
+--- !u!114 &1503981133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503981128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0ec8629a21c0a418ac756972a0189a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1515707699
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using UnityEngine;
 using Zenject;
+using static UnityEngine.EventSystems.EventTrigger;
 using Random = UnityEngine.Random;
 
 public class ProgressLevel : MonoBehaviour
@@ -10,6 +11,13 @@ public class ProgressLevel : MonoBehaviour
     [Inject] private ProgressEnemy2 enemy2;
     [Inject] private ProgressEnemy3 enemy3;
     [Inject] private ShipConstructor constructor;
+
+    public void Pick0Level()
+    {
+        enemy1.ResetProgress();
+        enemy2.ResetProgress();
+        enemy3.ResetProgress();
+    }
 
     public void Pick1Level()
     {
@@ -34,6 +42,8 @@ public class ProgressLevel : MonoBehaviour
 
     private void UpgradeEnemy(ProgressEnemy enemy, int[] counts)
     {
+        enemy.ResetProgress();
+
         int[] values = GetValues();
         GetShipsValue(values[0], enemy) = counts[0];
         GetShipsValue(values[1], enemy) = counts[1];

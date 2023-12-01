@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 using Zenject;
@@ -14,6 +15,7 @@ public class Planet : MonoBehaviour
 
     #region INJECTION
 
+    [Inject] private GameModeManager gameModeManager;
     [Inject] private ShipConstructor shipConstructor;
     [Inject] private GameManager gameManager;
     [Inject] private Growth growth;
@@ -159,7 +161,12 @@ public class Planet : MonoBehaviour
 
     private void SetColor()
     {
-        if (gameObject.CompareTag("PlayerPlanet"))
+        if (gameObject.CompareTag("PlayerPlanet") && gameModeManager.currentGameMode == GameModeManager.GameMode.Tutorial)
+        {
+            color = new Color(154 / 255f, 177 / 255f, 197 / 255f, 255 / 255f);
+            planetRenderer.color = color;
+        }
+        else if (gameObject.CompareTag("PlayerPlanet"))
         {
             color = gameManager.colorPlayer;
             planetRenderer.color = color;

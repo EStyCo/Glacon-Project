@@ -8,27 +8,16 @@ public class CosmoCat : MonoBehaviour
         idle = 2,
         talk = 3
     }
-    public static CosmoCat Instance;
 
     private States currentState;
 
-    public Animator animator;
+    private Animator animator;
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
     void Start()
     {
-        animator.Play("Hide CC");
+        animator = GetComponent<Animator>();
     }
+
     void Update()
     {
         if (currentState == States.idle)
@@ -40,22 +29,25 @@ public class CosmoCat : MonoBehaviour
             animator.Play("Talk CC");
         }
     }
+
     public void HideCC()
     {
         animator.Play("Hide CC");
         currentState = States.hide;
     }
+
     public void ShowCC()
     {
-        this.animator.Play("Show CC");
+        animator.Play("Show CC");
     }
+
     public void TalkCC()
     {
         currentState = States.talk;
     }
+
     public void IdleCC()
     {
         currentState = States.idle;
     }
-
 }

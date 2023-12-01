@@ -57,6 +57,7 @@ public abstract class Ship : MonoBehaviour
         originalHealth = health;
 
         balancePower.GetFlyingShips(originalHealth, tagUnit, true);
+        balancePower.GetShips(gameObject);
 
         tagUnit = gameObject.tag;
         //SetMoveSpeed();

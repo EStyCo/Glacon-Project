@@ -12,7 +12,7 @@ public abstract class Spawner : MonoBehaviour
     [Inject(Id = "PlayerUnit")] protected GameObject playerUnitPrefab;
     [Inject(Id = "PlayerCruiser")] protected GameObject playerCruiserPrefab;
 
-    protected List<Vector2> spawnPoints = new List<Vector2>();
+    public List<Vector2> spawnPoints = new List<Vector2>();
     protected Color neutralColor = new Color(0.8207547f, 0.8207547f, 0.7162246f);
     protected Transform t;
 
@@ -21,6 +21,8 @@ public abstract class Spawner : MonoBehaviour
     [SerializeField] protected GameObject rightBottomCanvas;
     [SerializeField] protected GameObject leftBottomPM;
     [SerializeField] protected GameObject rightTopSM;
+
+    public List<GameObject> listPlanets = new List<GameObject>();
 
     private float minDistance = 1.1f;
     private float minDistanceToEnemy = 5f;
@@ -87,14 +89,13 @@ public abstract class Spawner : MonoBehaviour
             neutralPlanet.GetComponent<SpriteRenderer>().color = neutralColor;
             neutralPlanet.tag = "NeutralPlanet";
             spawnPoints.Add(neutralSpawnPoint);
+            listPlanets.Add(neutralPlanet);
         }
     }
 
-    protected void SpawnNeutralPlanets(BalancePower balancePower)
+    protected void SpawnNeutralPlanets(BalancePower balancePower, int count)
     {
-        int numberOfPlanets = gameModeManager.planetCount;
-
-        for (int i = 0; i < numberOfPlanets; i++)
+        for (int i = 0; i < count; i++)
         {
             int randomSize = UnityEngine.Random.Range(1, 4);
 
@@ -109,6 +110,7 @@ public abstract class Spawner : MonoBehaviour
             neutralPlanet.GetComponent<SpriteRenderer>().color = neutralColor;
             neutralPlanet.tag = "NeutralPlanet";
             spawnPoints.Add(neutralSpawnPoint);
+            listPlanets.Add(neutralPlanet);
         }
     }
 
@@ -154,4 +156,11 @@ public abstract class Spawner : MonoBehaviour
         return true;
     }
 
+    public void DeletePlanets()
+    {
+        foreach (var planet in listPlanets)
+        {
+            Destroy(planet);
+        }
+    }
 }

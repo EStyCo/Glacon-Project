@@ -171,6 +171,7 @@ public class Cruiser : Ship
             Vector3 newPosition = Vector2.MoveTowards(transform.position, target.position, movementSpeed * Time.deltaTime);
             transform.position = newPosition;
         }
+
     }
 
     private void DesantToPlanet(GameObject obj)

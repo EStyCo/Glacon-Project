@@ -26,11 +26,26 @@
     #if SET_ASPECT_RATIO_ON_DESKTOP && SET_ASPECT_RATIO_ON_DESKTOP !== "-" && SET_ASPECT_RATIO_ON_DESKTOP !== " "
     <!-- Фиксация экрана на ПК включена -->
     #endif
+    #if SET_WINDOW_WIDTH_ON_MOBILE && SET_WINDOW_WIDTH_ON_MOBILE !== "-" && SET_WINDOW_WIDTH_ON_MOBILE !== " " && SET_WINDOW_WIDTH_ON_MOBILE !== "0"
+    <!-- Указана минимальная ширина при котором включится фиксация экрана на телефонах -->
+    #endif
+    #if SET_WINDOW_HEIGHT_ON_MOBILE && SET_WINDOW_HEIGHT_ON_MOBILE !== "-" && SET_WINDOW_HEIGHT_ON_MOBILE !== " " && SET_WINDOW_HEIGHT_ON_MOBILE !== "0"
+    <!-- Указана минимальная высота при котором включится фиксация экрана на телефонах -->
+    #endif
+    #if SET_WINDOW_WIDTH_ON_DESKTOP && SET_WINDOW_WIDTH_ON_DESKTOP !== "-" && SET_WINDOW_WIDTH_ON_DESKTOP !== " " && SET_WINDOW_WIDTH_ON_DESKTOP !== "0"
+    <!-- Указана минимальная ширина при котором включится фиксация экрана на ПК -->
+    #endif
+    #if SET_WINDOW_HEIGHT_ON_DESKTOP && SET_WINDOW_HEIGHT_ON_DESKTOP !== "-" && SET_WINDOW_HEIGHT_ON_DESKTOP !== " " && SET_WINDOW_HEIGHT_ON_DESKTOP !== "0"
+    <!-- Указана минимальная высота при котором включится фиксация экрана на ПК -->
+    #endif
     #if CONFIGURE_SHADOWS && CONFIGURE_SHADOWS !== "-" && CONFIGURE_SHADOWS !== " "
     <!-- Тени вокруг экрана с игрой включены -->
     #endif
-    #if CHANGE_BAR_COLOR && CHANGE_BAR_COLOR !== "-" && CHANGE_BAR_COLOR !== " "
-    <!-- Полосы по бокам изменены -->
+    #if CHANGE_BAR_COLOR_ON_MOBILE && CHANGE_BAR_COLOR_ON_MOBILE !== "-" && CHANGE_BAR_COLOR_ON_MOBILE !== " "
+    <!-- Полосы по бокам на телефоне изменены -->
+    #endif
+    #if CHANGE_BAR_COLOR_ON_DESKTOP && CHANGE_BAR_COLOR_ON_DESKTOP !== "-" && CHANGE_BAR_COLOR_ON_DESKTOP !== " "
+    <!-- Полосы по бокам на ПК изменены -->
     #endif
     #if CHANGE_LOGO_IMAGE && CHANGE_LOGO_IMAGE !== "-" && CHANGE_LOGO_IMAGE !== " "
     <!-- Лого во время загрузочного экрана изменено -->
@@ -38,8 +53,14 @@
     #if CHANGE_LOADING_SCREEN_BACKGROUND && CHANGE_LOADING_SCREEN_BACKGROUND !== "-" && CHANGE_LOADING_SCREEN_BACKGROUND !== " "
     <!-- Загрузочный экран изменен -->
     #endif
+    #if CUSTOMIZE_CURSOR && CUSTOMIZE_CURSOR !== "-" && CUSTOMIZE_CURSOR !== " "
+    <!-- Курсор был изменен -->
+    #endif
     #if DEVICE_PIXEL_RATIO && DEVICE_PIXEL_RATIO !== "-" && DEVICE_PIXEL_RATIO !== " "
     <!-- Пикселизация включена -->
+    #endif
+    #if DISABLE_CONSOLE_LOG && DISABLE_CONSOLE_LOG !== "-" && DISABLE_CONSOLE_LOG !== " "
+    <!-- Отключен спам отладочных сообщений -->
     #endif
 
     <style>
@@ -64,13 +85,6 @@
 
         /* Ставим высоту на 100% */
         height: 100%;
-
-        /* Меняем цвет полос */
-      	#if CHANGE_BAR_COLOR && CHANGE_BAR_COLOR !== "-" && CHANGE_BAR_COLOR !== " "
-      	{{{ CHANGE_BAR_COLOR }}}
-      	#else
-     	background-image: url('background.png');
-     	#endif
 
         /* Центрируем, если привязана картинка или творим магию, чтобы можно было использовать градиент */
   	background-position-x: 50%;
@@ -141,7 +155,7 @@
         #if CHANGE_LOADING_SCREEN_BACKGROUND && CHANGE_LOADING_SCREEN_BACKGROUND !== "-" && CHANGE_LOADING_SCREEN_BACKGROUND !== " "
         {{{ CHANGE_LOADING_SCREEN_BACKGROUND }}}
         #else
-        background-image: linear-gradient(#e677f1, #8546c7);
+        background-image: linear-gradient(#2976fa, #6919c6);
         #endif
 
         /* Центрируем, если привязана картинка или творим магию, чтобы можно было использовать градиент */
@@ -175,8 +189,12 @@
         background: url('logo.png');
      	#endif
 
+        pointer-events: none;
+
         background-position: center;
   	background-repeat: no-repeat;
+ 	background-size: contain;
+        background-attachment: scroll;
       }
       #unity-progress-bar-empty {
         width: 135px;
@@ -194,6 +212,29 @@
         background-position: center;
   	background-repeat: no-repeat;
       }
+      #if CUSTOMIZE_CURSOR !== "false"
+      /* Кастомизация курсора */
+      #custom-cursor {
+    	position: absolute;
+    	transform: translate(-100px,-100px);
+        pointer-events: none;
+        z-index: 11100;
+    	height: 50px;
+    	width: 50px;
+      	#if CUSTOMIZE_CURSOR && CUSTOMIZE_CURSOR !== "-" && CUSTOMIZE_CURSOR !== " "
+      	{{{ CUSTOMIZE_CURSOR }}}
+        background-position: center;
+  	background-repeat: no-repeat;
+ 	background-size: contain;
+        background-attachment: scroll;
+      	#else
+	opacity: 25%;
+    	border-radius: 50%;
+	border: 2px solid white;
+	box-shadow: 0 2px 25px black;
+     	#endif
+      }
+      #endif
     </style>
 
   </head>
@@ -215,6 +256,9 @@
         </div>
       </div>
     </div>
+    #if CUSTOMIZE_CURSOR !== "false"
+    <div id="custom-cursor"></div>
+    #endif
     <script>
       #if CONNECT_YANDEX_SDK && CONNECT_YANDEX_SDK !== "-" && CONNECT_YANDEX_SDK !== " "
       // Инициализация СДК
@@ -245,6 +289,35 @@
       } else {
         isTouchDevice = false;
       }
+
+      // Меняем цвет полос
+      if(isTouchDevice) {
+        #if CHANGE_BAR_COLOR_ON_MOBILE && CHANGE_BAR_COLOR_ON_MOBILE !== "-" && CHANGE_BAR_COLOR_ON_MOBILE !== " "
+        document.body.style.{{{ CHANGE_BAR_COLOR_ON_MOBILE }}}
+        #else
+        document.body.style.backgroundImage = "url('background.png')";
+        #endif
+      } else {
+        #if CHANGE_BAR_COLOR_ON_DESKTOP && CHANGE_BAR_COLOR_ON_DESKTOP !== "-" && CHANGE_BAR_COLOR_ON_DESKTOP !== " "
+        document.body.style.{{{ CHANGE_BAR_COLOR_ON_DESKTOP }}}
+        #else
+        document.body.style.backgroundImage = "url('background.png')";
+        #endif
+      }
+
+      #if CUSTOMIZE_CURSOR !== "false"
+      // Кастомный курсор
+      var custom_cursor = document.querySelector("#custom-cursor");
+
+      if(!isTouchDevice) {
+        document.addEventListener('mousemove', e => {
+          custom_cursor.style.top = e.pageY + 75 + "px";
+          custom_cursor.style.left = e.pageX + 75 + "px";
+        });
+      } else {
+        custom_cursor.style.display = "none";
+      }
+      #endif
 
       // Определение домена
       var isEnglish;
@@ -380,6 +453,11 @@
       }
       #endif
 
+      #if DISABLE_CONSOLE_LOG && DISABLE_CONSOLE_LOG !== "-" && DISABLE_CONSOLE_LOG !== " "
+      // Отключаем спам отладочных сообщений в консоль
+      console.log = function(){};
+      #endif
+
       // Фиксируем экран с игрой
       var containerAspectRatio;
 
@@ -416,6 +494,11 @@
         canvas.style.right = "0";
       }
 
+      function resetAspectRatio() {
+        canvas.style.width = "100vw";
+        canvas.style.height = "100vh";
+      }
+
       loadingBar.style.display = "block";
 
       // Подключаем myGameInstance для связи Unity с браузером
@@ -440,31 +523,47 @@
 
           // Недобросовестная реклама
           if(isEnglish) {
-            #if ENABLE_CONSOLE && ENABLE_CONSOLE !== "-" && ENABLE_CONSOLE !== " "
-            writeToConsole("> " + "Ad: The game uses a free version of advanced templates for Unity. Our group: https://t.me/chikadev. To support us and explore the templates, please visit: https://boosty.to/chikadev. Enjoy your game! Best regards, Chika", "orange");
-            #else
-            console.log("%cAd: The game uses a free version of advanced templates for Unity. Our group: https://t.me/chikadev. To support us and explore the templates, please visit: https://boosty.to/chikadev. Enjoy your game! Best regards, Chika", "background: orange; color: white; padding: 2px 4px; border-radius: 2px; font-family: sans-serif;");
-            #endif
+            console.log("%cThere used to be advertising here. Enjoy your game! Best regards, Chika.", "background: orange; color: white; padding: 2px 4px; border-radius: 2px; font-family: sans-serif;");
           } else {
-            #if ENABLE_CONSOLE && ENABLE_CONSOLE !== "-" && ENABLE_CONSOLE !== " "
-            writeToConsole("> " + "Реклама: Игра использует бесплатную версию расширенных шаблонов для Unity. Наша группа: https://t.me/chikadev. Поддержать и ознакомиться с шаблонами можно здесь: https://boosty.to/chikadev. Приятной игры! С уважением, Чика", "orange");
-            #else
-            console.log("%cРеклама: Игра использует бесплатную версию расширенных шаблонов для Unity. Наша группа: https://t.me/chikadev. Поддержать и ознакомиться с шаблонами можно здесь: https://boosty.to/chikadev. Приятной игры! С уважением, Чика", "background: orange; color: white; padding: 2px 4px; border-radius: 2px; font-family: sans-serif;");
-            #endif
+            console.log("%cРаньше здесь была реклама. Приятной игры! С уважением, Чика.", "background: orange; color: white; padding: 2px 4px; border-radius: 2px; font-family: sans-serif;");
           }
 
           // Проверяем устройство и фиксируем экран, если включено
           if(isTouchDevice) {
             #if SET_ASPECT_RATIO_ON_MOBILE && SET_ASPECT_RATIO_ON_MOBILE !== "-" && SET_ASPECT_RATIO_ON_MOBILE !== " "
+            #if SET_WINDOW_WIDTH_ON_MOBILE && SET_WINDOW_WIDTH_ON_MOBILE !== "-" && SET_WINDOW_WIDTH_ON_MOBILE !== " " && SET_WINDOW_WIDTH_ON_MOBILE !== "0" && SET_WINDOW_HEIGHT_ON_MOBILE && SET_WINDOW_HEIGHT_ON_MOBILE !== "-" && SET_WINDOW_HEIGHT_ON_MOBILE !== " " && SET_WINDOW_HEIGHT_ON_MOBILE !== "0"
+            function newFunction() {
+              if(window.innerWidth < {{{ SET_WINDOW_WIDTH_ON_MOBILE }}} || window.innerHeight < {{{ SET_WINDOW_HEIGHT_ON_MOBILE }}} ) {
+                updateAspectRatio();
+              } else {
+                resetAspectRatio();
+              }
+            }
+            newFunction();
+            window.addEventListener("resize", newFunction);
+            #else
             updateAspectRatio();
             window.addEventListener("resize", updateAspectRatio);
+            #endif
             #else
             // Фиксация экрана на телефонах отключена
-          #endif
+            #endif
           } else {
             #if SET_ASPECT_RATIO_ON_DESKTOP && SET_ASPECT_RATIO_ON_DESKTOP !== "-" && SET_ASPECT_RATIO_ON_DESKTOP !== " "
+            #if SET_WINDOW_WIDTH_ON_DESKTOP && SET_WINDOW_WIDTH_ON_DESKTOP !== "-" && SET_WINDOW_WIDTH_ON_DESKTOP !== " " && SET_WINDOW_WIDTH_ON_DESKTOP !== "0" && SET_WINDOW_HEIGHT_ON_DESKTOP && SET_WINDOW_HEIGHT_ON_DESKTOP !== "-" && SET_WINDOW_HEIGHT_ON_DESKTOP !== " " && SET_WINDOW_HEIGHT_ON_DESKTOP !== "0"
+            function newFunction() {
+              if(window.innerWidth < {{{ SET_WINDOW_WIDTH_ON_DESKTOP }}} || window.innerHeight < {{{ SET_WINDOW_HEIGHT_ON_DESKTOP }}} ) {
+                updateAspectRatio();
+              } else {
+                resetAspectRatio();
+              }
+            }
+            newFunction();
+            window.addEventListener("resize", newFunction);
+            #else
             updateAspectRatio();
             window.addEventListener("resize", updateAspectRatio);
+            #endif
             #else
             // Фиксация экрана на ПК отключена
             #endif

@@ -29,7 +29,7 @@ public class Classic : Spawner
         spawnPoints.Add(playerSpawnPoint);
 
         SpawnEnemyPlanets();
-        SpawnNeutralPlanets(balancePower);
+        SpawnNeutralPlanets(balancePower, gameModeManager.planetCount);
 
         Invoke("StartDraftScript", 2f);
 
@@ -38,7 +38,7 @@ public class Classic : Spawner
 
     private void SpawnEnemyPlanets()
     {
-        enemyColors[1] = new Color(1.0f, 0.0f, 0.0f);
+        enemyColors[1] = new Color(243 / 255f, 71 / 255f, 35 / 255f, 255 / 255f);
         enemyColors[2] = new Color(0.0f, 1.0f, 0.0f);
         enemyColors[3] = new Color(0.0f, 0.0f, 1.0f);
 

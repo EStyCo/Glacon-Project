@@ -16,6 +16,7 @@ public class PreGameSettings : MonoBehaviour
 
     private void Start()
     {
+        gameModeManager.currentGameMode = GameModeManager.GameMode.Classic;
         UpdateRankValueText();
     }
     public void OnEnable()

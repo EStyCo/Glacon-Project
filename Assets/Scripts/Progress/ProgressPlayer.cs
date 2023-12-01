@@ -1,5 +1,4 @@
 using UnityEngine;
-using Zenject;
 
 public class ProgressPlayer : MonoBehaviour
 {
@@ -104,4 +103,13 @@ public class ProgressPlayer : MonoBehaviour
         else growthPlanet = 0;
     }
 
+    public void DisableProgress()
+    {
+        speedUnit = 0;
+        armorUnit = 0;
+        damageUnit = 0;
+        armorPlanet = 0;
+        draftPlanet = 0;
+        growthPlanet = 0;
+    }
 }

@@ -7,10 +7,19 @@ using Zenject;
 public class InitializeGM : MonoBehaviour
 {
     [Inject] GameModeManager gameModeManager;
+    [Inject] ProgressPlayer player;
+    [Inject] ProgressEnemy1 enemy1;
 
+    [Header("GameMode")]
     [SerializeField] private GameObject classicGM;
     [SerializeField] private GameObject speedGM;
     [SerializeField] private GameObject stealthGM;
+
+    [Header("Tutorial")]
+    [SerializeField] private GameObject tutorialGM;
+    [SerializeField] private GameObject tutorialCanvas;
+
+    [Header("Other")]
     [SerializeField] private GameObject damper;
 
     private string gameMode;
@@ -23,8 +32,10 @@ public class InitializeGM : MonoBehaviour
     }
     private void ClearComponents()
     {
+        tutorialCanvas.SetActive(false);
         classicGM.SetActive(false);
         speedGM.SetActive(false);
+        tutorialGM.SetActive(false);
         damper.SetActive(true);
     }
     private void GetGM()
@@ -39,9 +50,18 @@ public class InitializeGM : MonoBehaviour
             case "Classic":
                 SelectClassicMode();
                 break;
+
             case "SpeedTime":
                 SelectSpeedTimeMode();
                 break;
+
+            case "Tutorial":
+                SelectTutorialMode();
+                break;
+
+            default:
+                SelectClassicMode();
+                break;      
         }
     }
 
@@ -54,5 +74,14 @@ public class InitializeGM : MonoBehaviour
     {
         speedGM.SetActive(true);
         damper.SetActive(false);
+    }
+
+    private void SelectTutorialMode()
+    {
+        player.DisableProgress();
+        enemy1.ResetProgress();
+
+        tutorialCanvas.SetActive(true);
+        tutorialGM.SetActive(true);
     }
 }

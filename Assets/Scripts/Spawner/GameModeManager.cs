@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameModeManager : MonoBehaviour
@@ -13,7 +11,8 @@ public class GameModeManager : MonoBehaviour
     {
         Classic = 0,
         SpeedTime = 1,
-        Stealth = 3
+        Stealth = 3,
+        Tutorial = 4
     }
 
     public enum Difficulty
@@ -30,7 +29,7 @@ public class GameModeManager : MonoBehaviour
 
     public void ChangeDifficulty(int index)
     {
-        currentDifficulty = (Difficulty)index; 
+        currentDifficulty = (Difficulty)index;
     }
 
     public void ChangeGameMode(int index)

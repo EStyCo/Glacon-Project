@@ -50,7 +50,7 @@ public class TutorPlanet : MonoBehaviour
         if (gameObject.CompareTag("EnemyPlanet") && currentUnitCount < 15 && !isTryDesant)
         { 
             isTryDesant = true;
-            Tutorial.Instance.NextDialog();
+            Tutorial2.Instance.NextDialog();
         }
     }
     private void StartUnitCount()
@@ -163,7 +163,7 @@ public class TutorPlanet : MonoBehaviour
         if (currentUnitCount > 0) currentUnitCount--;
         if (currentUnitCount < 1 && gameObject.tag != "PlayerPlanet")
         {
-            Tutorial.Instance.Invoke("NextDialog", 2);
+            Tutorial2.Instance.Invoke("NextDialog", 2);
             gameObject.tag = "PlayerPlanet";
             canIncreaseUnits = true;
             CheckTagPlanet();
