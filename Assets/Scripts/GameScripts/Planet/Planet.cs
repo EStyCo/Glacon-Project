@@ -1,5 +1,4 @@
 using TMPro;
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 using Zenject;
@@ -163,7 +162,7 @@ public class Planet : MonoBehaviour
     {
         if (gameObject.CompareTag("PlayerPlanet") && gameModeManager.currentGameMode == GameModeManager.GameMode.Tutorial)
         {
-            color = new Color(154 / 255f, 177 / 255f, 197 / 255f, 255 / 255f);
+            color = new Color(55 / 255f, 189 / 255f, 128 / 255f, 255 / 255f);
             planetRenderer.color = color;
         }
         else if (gameObject.CompareTag("PlayerPlanet"))

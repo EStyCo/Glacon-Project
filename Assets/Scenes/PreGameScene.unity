@@ -11660,6 +11660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97cb1fa6d51ae04992f29f80ae5ede9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadData: {fileID: 888107270}
   ships:
   - {fileID: 1061969353}
   - {fileID: 190301814}

@@ -29,7 +29,6 @@ public class BalancePower : MonoBehaviour
     private bool isPlayer = false;
     private bool isEnemy1 = false;
     private bool isEnemy2 = false;
-    private bool isEnemy3 = false;
 
     #region Update Data
 

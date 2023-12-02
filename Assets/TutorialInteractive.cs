@@ -11,30 +11,30 @@ public class TutorialInteractive : MonoBehaviour
     [SerializeField] private GameObject block;
 
     [Header("Start Dialog")]
-    [SerializeField] private string startingDialog;
+    [TextArea][SerializeField] private string startingDialog;
 
     [Header("GeneralRules")]
-    [SerializeField] private string generalRules;
+    [TextArea][SerializeField] private string generalRules;
 
     [Header("Management")]
-    [SerializeField] private string management;
+    [TextArea][SerializeField] private string management;
 
     [Header("Selector")]
-    [SerializeField] private string selector;
     [SerializeField] private SpriteRenderer selectorSprite;
+    [TextArea][SerializeField] private string selector;
 
     [Header("BalancePower")]
-    [SerializeField] private string balancePower;
     [SerializeField] private SpriteRenderer balancePowerSprite;
+    [TextArea][SerializeField] private string balancePower;
 
     [Header("Unit")]
-    [SerializeField] private string unit;
+    [TextArea][SerializeField] private string unit;
 
     [Header("Cruiser")]
-    [SerializeField] private string cruiser;
+    [TextArea][SerializeField] private string cruiser;
 
     [Header("Progress")]
-    [SerializeField] private string progress;
+    [TextArea][SerializeField] private string progress;
 
     private float speedText = 0.055f;
     private bool isBlink = false;

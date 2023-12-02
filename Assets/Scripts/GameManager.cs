@@ -8,8 +8,6 @@ public class GameManager : MonoBehaviour
 {
     [Inject] GameModeManager gameModeManager;
     [Inject] ProgressPlayer player;
-    public int level;
-    public int points;
 
     public float volumeCount;
 

@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class ProgressPlayer : MonoBehaviour
 {
+    [Header("Campaign")]
+    public int completedlevel;
+    public int points;
+
+    [Header("Perks")]
     [Range(0, 3)] public int speedUnit = 0;
     [Range(0, 3)] public int armorUnit = 0;
     [Range(0, 3)] public int damageUnit = 0;
@@ -20,6 +25,7 @@ public class ProgressPlayer : MonoBehaviour
         PlayerPrefs.SetInt("SpeedUnit", speedUnit);
         PlayerPrefs.SetInt("ArmorUnit", armorUnit);
         PlayerPrefs.SetInt("DamageUnit", damageUnit);
+
         PlayerPrefs.SetInt("ArmorPlanet", armorPlanet);
         PlayerPrefs.SetInt("DraftPlanet", draftPlanet);
         PlayerPrefs.SetInt("GrowthPlanet", growthPlanet);
@@ -27,9 +33,13 @@ public class ProgressPlayer : MonoBehaviour
 
     public void SaveDataCampaign()
     {
+        PlayerPrefs.SetInt("CompletedLevel", completedlevel);
+        PlayerPrefs.SetInt("Points", points);
+
         PlayerPrefs.SetInt("SpeedUnitCampaign", speedUnit);
         PlayerPrefs.SetInt("ArmorUnitCampaign", armorUnit);
         PlayerPrefs.SetInt("DamageUnitCampaign", damageUnit);
+
         PlayerPrefs.SetInt("ArmorPlanetCampaign", armorPlanet);
         PlayerPrefs.SetInt("DraftPlanetCampaign", draftPlanet);
         PlayerPrefs.SetInt("GrowthPlanetCampaign", growthPlanet);
@@ -37,6 +47,9 @@ public class ProgressPlayer : MonoBehaviour
 
     public void ResetDataCampaign()
     {
+        PlayerPrefs.DeleteKey("CompletedLevel");
+        PlayerPrefs.DeleteKey("Points");
+
         PlayerPrefs.DeleteKey("SpeedUnitCampaign");
         PlayerPrefs.DeleteKey("ArmorUnitCampaign");
         PlayerPrefs.DeleteKey("DamageUnitCampaign");
@@ -84,6 +97,12 @@ public class ProgressPlayer : MonoBehaviour
 
     public void LoadDataCampaign()
     {
+        if (PlayerPrefs.HasKey("CompletedLevel")) completedlevel = PlayerPrefs.GetInt("CompletedLevel");
+        else completedlevel = 0;
+
+        if (PlayerPrefs.HasKey("Points")) points = PlayerPrefs.GetInt("Points");
+        else points = 0;
+
         if (PlayerPrefs.HasKey("SpeedUnitCampaign")) speedUnit = PlayerPrefs.GetInt("SpeedUnitCampaign");
         else speedUnit = 0;
 

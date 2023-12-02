@@ -6,6 +6,8 @@ public class UIProgress : MonoBehaviour
 {
     [Inject] private ProgressPlayer player;
 
+    [SerializeField] private LoadData loadData;
+
     [Header("Ships")]
     [SerializeField] private UIProgressButton[] ships = new UIProgressButton[0];
 
@@ -21,7 +23,7 @@ public class UIProgress : MonoBehaviour
     public void UpdatePosition()
     {
         foreach (var item in ships) item.LookPosition();
-        foreach(var item in planets) item.LookPosition();
+        foreach (var item in planets) item.LookPosition();
     }
 
     public bool SetNewValue(string param, int value)
@@ -36,11 +38,32 @@ public class UIProgress : MonoBehaviour
     {
         if (value - 1 == origValue)
         {
-            origValue = value;
-            player.SaveDataSandBox();
+            if (loadData.isSandbox)
+            {
+                origValue = value;
+                player.SaveDataSandBox();
+            }
+            else
+            {
+                return TakePoints(ref origValue, value);
+            }
+
             return true;
         }
         return false;
+    }
+
+    private bool TakePoints(ref int origValue, int value)
+    {
+        if (player.points >= value)
+        {
+            player.points -= value;
+            origValue = value;
+            player.SaveDataCampaign();
+
+            return true;
+        }
+        else return false;
     }
 
     private bool CheckParameters(string param, int value)

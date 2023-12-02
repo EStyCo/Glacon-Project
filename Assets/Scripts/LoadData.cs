@@ -8,8 +8,8 @@ public class LoadData : MonoBehaviour
     [Inject] private ProgressEnemy2 enemy2;
     [Inject] private ProgressEnemy3 enemy3;
 
-    [SerializeField] private bool isSandbox;
-    [SerializeField] private bool isCampaign;
+    public bool isSandbox;
+    public bool isCampaign;
 
     void Start()
     {
