@@ -131,4 +131,12 @@ public class ProgressPlayer : MonoBehaviour
         draftPlanet = 0;
         growthPlanet = 0;
     }
+
+    public void CompletedLevel()
+    {
+        points++;
+        completedlevel++;
+
+        SaveDataCampaign();
+    }
 }

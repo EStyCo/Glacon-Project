@@ -1,24 +1,29 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class SandBox : GameState
+public abstract class GameState : MonoBehaviour
 {
+    [SerializeField] protected SelectManager selectManager;
+
     [Header("Windows")]
-    [SerializeField] protected GameObject winGameWindow;
-    [SerializeField] protected GameObject loseGameWindow;
+    [SerializeField] protected GameObject endGameObject;
+    [SerializeField] protected EndGameWindow endGameWindow;
 
-    private Coroutine loseGame;
-    private Coroutine winGame;
+    public List<GameObject> listPlanet = new List<GameObject>();
 
-    public override void StartScript()
+    protected Coroutine loseGame;
+    protected Coroutine winGame;
+
+    public void GetPlanet(GameObject planet)
+    {
+        listPlanet.Add(planet);
+    }
+
+    public void StartScript()
     {
         loseGame = StartCoroutine(CheckLoseGame());
         winGame = StartCoroutine(CheckWinGame());
-    }
-
-    protected override void CreateGameState()
-    {
-        throw new System.NotImplementedException();
     }
 
     private IEnumerator CheckLoseGame()
@@ -38,8 +43,7 @@ public class SandBox : GameState
 
             if (!isLife)
             {
-                loseGameWindow.SetActive(true);
-                StopCoroutine(winGame);
+                LoseGame();
                 break;
             }
 
@@ -66,13 +70,14 @@ public class SandBox : GameState
 
             if (isWin)
             {
-                winGameWindow.SetActive(true);
-                selectManager.isPaused = true;
-                StopCoroutine(loseGame);
+                WinGame();
                 break;
             }
 
             yield return new WaitForSeconds(5f);
         }
     }
+
+    protected abstract void WinGame();
+    protected abstract void LoseGame();
 }

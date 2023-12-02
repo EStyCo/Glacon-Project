@@ -15,7 +15,6 @@ public class StateInitialize : MonoBehaviour
             case GameModeManager.State.Campaign:
                 return OnCampaignState();
 
-
             case GameModeManager.State.SandBox:
                 return OnSandBoxState();
 
