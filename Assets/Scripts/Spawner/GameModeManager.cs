@@ -2,11 +2,6 @@ using UnityEngine;
 
 public class GameModeManager : MonoBehaviour
 {
-    public int planetCount = 15;
-
-    public bool blackHoleIsOn = false;
-    public bool portalIsOn = false;
-
     public enum GameMode
     {
         Classic = 0,
@@ -22,10 +17,25 @@ public class GameModeManager : MonoBehaviour
         Hard = 3
     }
 
-    public int countEnemyPlanets = 1;
+    public enum State
+    {
+        Disable = 0,
+        SandBox = 1,
+        Campaign = 2
+    }
 
-    public Difficulty currentDifficulty = Difficulty.Medium;
-    public GameMode currentGameMode = GameMode.Classic;
+    [Header("Game Settings")]
+    public Difficulty currentDifficulty;
+    public GameMode currentGameMode;
+
+    public int planetCount;
+    public int countEnemyPlanets;
+    public bool blackHoleIsOn;
+    public bool portalIsOn;
+
+    [Header("Game State")]
+    public State currentState;
+
 
     public void ChangeDifficulty(int index)
     {

@@ -3,6 +3,8 @@ using Zenject;
 
 public class LoadData : MonoBehaviour
 {
+    [Inject] private GameModeManager gmManager;
+
     [Inject] private ProgressPlayer player;
     [Inject] private ProgressEnemy1 enemy1;
     [Inject] private ProgressEnemy2 enemy2;
@@ -17,11 +19,13 @@ public class LoadData : MonoBehaviour
 
         if (isSandbox)
         {
+            gmManager.currentState = GameModeManager.State.SandBox;
             player.LoadDataSandbox();
             return;
         }
         else if (isCampaign)
         {
+            gmManager.currentState = GameModeManager.State.Campaign;
             player.LoadDataCampaign();
             return;
         }

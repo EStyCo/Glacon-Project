@@ -6,11 +6,13 @@ using Zenject;
 
 public class ButtonTutorial : MonoBehaviour
 {
-    [Inject] private GameModeManager gameModeManager;
+    [Inject] private GameModeManager gmManager;
 
     public void ChangeGameMode()
     {
-        gameModeManager.currentGameMode = GameModeManager.GameMode.Tutorial;
+        gmManager.currentGameMode = GameModeManager.GameMode.Tutorial;
+        gmManager.currentState = GameModeManager.State.Disable;
+
         SceneManager.LoadScene(2);
     }
 }

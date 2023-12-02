@@ -12,10 +12,15 @@ public abstract class Spawner : MonoBehaviour
     [Inject(Id = "PlayerUnit")] protected GameObject playerUnitPrefab;
     [Inject(Id = "PlayerCruiser")] protected GameObject playerCruiserPrefab;
 
-    public List<Vector2> spawnPoints = new List<Vector2>();
+    protected List<Vector2> spawnPoints = new List<Vector2>();
     protected Color neutralColor = new Color(0.8207547f, 0.8207547f, 0.7162246f);
     protected Transform t;
 
+    [Header("Game State")]
+    [SerializeField] protected StateInitialize stateInitialize;
+    public GameState gameState;
+
+    [Header("Settings")]
     [SerializeField] protected Canvas canvasParent;
     [SerializeField] protected GameObject leftTopCanvas;
     [SerializeField] protected GameObject rightBottomCanvas;
@@ -27,17 +32,39 @@ public abstract class Spawner : MonoBehaviour
     private float minDistance = 1.1f;
     private float minDistanceToEnemy = 5f;
 
-    private void Awake()
-    {
-
-    }
     void Start()
     {
         t = canvasParent.transform;
+        InitializeGameState();
         GenerateObjects();
+        StartGameState();
+    }
+
+    private void InitializeGameState()
+    {
+        if (stateInitialize != null)
+        {
+            gameState = stateInitialize.GetState();
+        }
     }
 
     protected abstract void GenerateObjects();
+
+    protected void AddPlanetToGameState(GameObject planet)
+    {
+        if (gameState != null)
+        { 
+            gameState.GetPlanet(planet);
+        }
+    }
+
+    private void StartGameState()
+    {
+        if (gameState != null)
+        {
+            gameState.StartScript();
+        }
+    }
 
     protected Vector2 GetRandomSpawnPoint(bool isEnemy)
     {
@@ -101,6 +128,7 @@ public abstract class Spawner : MonoBehaviour
 
             Vector2 neutralSpawnPoint = GetRandomSpawnPoint(false);
             GameObject neutralPlanet = diContainer.InstantiatePrefab(planetPrefab, neutralSpawnPoint, Quaternion.identity, t);
+            AddPlanetToGameState(neutralPlanet);
 
             Planet planetScript = neutralPlanet.GetComponent<Planet>();
             planetScript.selectedSize = (Planet.Size)randomSize;

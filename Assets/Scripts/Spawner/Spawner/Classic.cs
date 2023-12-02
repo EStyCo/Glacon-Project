@@ -23,6 +23,7 @@ public class Classic : Spawner
         Vector2 playerSpawnPoint = GetRandomSpawnPoint(true);
 
         GameObject playerPlanet = diContainer.InstantiatePrefab(planetPrefab, playerSpawnPoint, Quaternion.identity, t);
+        AddPlanetToGameState(playerPlanet);
         ShipDesign.ChangePlayerSkin(gameManager, playerPlanet, playerUnitPrefab, playerCruiserPrefab);
 
         balancePower.listPlanets.Add(playerPlanet.GetComponent<Planet>());
@@ -50,6 +51,8 @@ public class Classic : Spawner
         {
             Vector2 enemySpawnPoint = GetRandomSpawnPoint(true);
             GameObject newPlanet = diContainer.InstantiatePrefab(planetPrefab, enemySpawnPoint, Quaternion.identity, t);
+            AddPlanetToGameState(newPlanet);
+
             newPlanet.tag = "Enemy" + i.ToString();
             newPlanet.GetComponent<SpriteRenderer>().color = enemyColors[i];
 

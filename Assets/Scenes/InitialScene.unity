@@ -748,7 +748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62bd3c17a8fb366458586858ba778d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints: []
+  stateInitialize: {fileID: 0}
+  gameState: {fileID: 0}
   canvasParent: {fileID: 1439594787}
   leftTopCanvas: {fileID: 932570769}
   rightBottomCanvas: {fileID: 1191556547}
