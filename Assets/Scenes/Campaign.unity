@@ -12375,6 +12375,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978a9197cc638bb4eb0ddb77fb99bf21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pick: 0
+  difficult: 0
+  enemyes: 1
+  speed1: 0
+  armor1: 0
+  damage1: 0
+  armorPlanet1: 0
+  growth1: 0
+  draft1: 0
+  speed2: 0
+  armor2: 0
+  damage2: 0
+  armorPlanet2: 0
+  growth2: 0
+  draft2: 0
+  speed3: 0
+  armor3: 0
+  damage3: 0
+  armorPlanet3: 0
+  growth3: 0
+  draft3: 0
 --- !u!1 &1579527319
 GameObject:
   m_ObjectHideFlags: 0
@@ -14725,6 +14746,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978a9197cc638bb4eb0ddb77fb99bf21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pick: 0
+  difficult: 0
+  enemyes: 0
+  speed1: 0
+  armor1: 0
+  damage1: 0
+  armorPlanet1: 0
+  growth1: 0
+  draft1: 0
+  speed2: 0
+  armor2: 0
+  damage2: 0
+  armorPlanet2: 0
+  growth2: 0
+  draft2: 0
+  speed3: 0
+  armor3: 0
+  damage3: 0
+  armorPlanet3: 0
+  growth3: 0
+  draft3: 0
 --- !u!1 &1952568145
 GameObject:
   m_ObjectHideFlags: 0

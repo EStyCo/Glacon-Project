@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ProgressPlayer : MonoBehaviour
 {
+    public bool isFirstRunning;
+
     [Header("Campaign")]
     public int completedlevel;
     public int points;
@@ -17,7 +19,7 @@ public class ProgressPlayer : MonoBehaviour
 
     private void Awake()
     {
-        //LoadData();
+        CheckFirstRunning();
     }
 
     public void SaveDataSandBox()
@@ -122,6 +124,42 @@ public class ProgressPlayer : MonoBehaviour
         else growthPlanet = 0;
     }
 
+    public void NewGame()
+    {
+        if (PlayerPrefs.HasKey("FirstRunning"))
+        {
+            PlayerPrefs.SetInt("FirstRunning", 1);
+            isFirstRunning = false;
+
+            ResetDataCampaign();
+        }
+    }
+
+    private void CheckFirstRunning()
+    {
+        if (PlayerPrefs.HasKey("FirstRunning"))
+        {
+            int index = PlayerPrefs.GetInt("FirstRunning");
+
+            if (index == 0) isFirstRunning = true;
+            else isFirstRunning = false;
+        }
+        else
+        {
+            PlayerPrefs.SetInt("FirstRunning", 0);
+            isFirstRunning = true;
+        }
+    }
+
+    public void ResetFirstRunning()
+    {
+        if (PlayerPrefs.HasKey("FirstRunning"))
+        {
+            PlayerPrefs.SetInt("FirstRunning", 0);
+            isFirstRunning = true;
+        }
+    }
+
     public void DisableProgress()
     {
         speedUnit = 0;
@@ -134,7 +172,7 @@ public class ProgressPlayer : MonoBehaviour
 
     public void CompletedLevel()
     {
-        points++;
+        points += 2;
         completedlevel++;
 
         SaveDataCampaign();

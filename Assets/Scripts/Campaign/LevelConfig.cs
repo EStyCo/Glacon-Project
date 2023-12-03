@@ -5,10 +5,57 @@ using Random = UnityEngine.Random;
 
 public class LevelConfig : MonoBehaviour
 {
+    public enum Difficult
+    {
+        easy = 0,
+        medium = 1,
+        hard = 2
+    }
+
+    public enum Pick
+    { 
+        None = 0,
+        level1 = 1, 
+        level2 = 2, 
+        level3 = 3
+    }
+
     [Inject] private ShipConstructor constructor;
     [Inject] private ProgressEnemy1 enemy1;
+
     [Inject] private ProgressEnemy2 enemy2;
     [Inject] private ProgressEnemy3 enemy3;
+
+    [Header("Prepared Progress")]
+    [SerializeField] private Pick pick;
+
+    [Header("Difficult")]
+    [SerializeField] private Difficult difficult;
+    [Range(1, 3)][SerializeField] private int enemyes;
+
+    [Header("Enemy 1")]
+    [Range(0, 3)][SerializeField] private int speed1;
+    [Range(0, 3)][SerializeField] private int armor1;
+    [Range(0, 3)][SerializeField] private int damage1;
+    [Range(0, 3)][SerializeField] private int armorPlanet1;
+    [Range(0, 3)][SerializeField] private int growth1;
+    [Range(0, 3)][SerializeField] private int draft1;
+
+    [Header("Enemy 1")]
+    [Range(0, 3)][SerializeField] private int speed2;
+    [Range(0, 3)][SerializeField] private int armor2;
+    [Range(0, 3)][SerializeField] private int damage2;
+    [Range(0, 3)][SerializeField] private int armorPlanet2;
+    [Range(0, 3)][SerializeField] private int growth2;
+    [Range(0, 3)][SerializeField] private int draft2;
+
+    [Header("Enemy 1")]
+    [Range(0, 3)][SerializeField] private int speed3;
+    [Range(0, 3)][SerializeField] private int armor3;
+    [Range(0, 3)][SerializeField] private int damage3;
+    [Range(0, 3)][SerializeField] private int armorPlanet3;
+    [Range(0, 3)][SerializeField] private int growth3;
+    [Range(0, 3)][SerializeField] private int draft3;
 
     //[Range(0, 3)][SerializeField] private int speed;
 

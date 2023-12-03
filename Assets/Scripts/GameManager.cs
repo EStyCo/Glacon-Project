@@ -17,10 +17,6 @@ public class GameManager : MonoBehaviour
     public Color colorPlayer;
     public bool isPaused = false;
 
-    private void Awake()
-    {
-    }
-
     private void Start()
     {
         LoadVolume();

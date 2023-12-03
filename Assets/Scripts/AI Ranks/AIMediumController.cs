@@ -1,10 +1,10 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class AIMediumController : MonoBehaviour
 {
-    public string tagPlanet;
+    private string tagPlanet;
 
     private bool isStartBattle = true;
 
@@ -19,14 +19,6 @@ public class AIMediumController : MonoBehaviour
         CheckStartBattle();
     }
 
-    private bool HasEnemyPlanets()
-    {
-        Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag(tagPlanet)
-                                 .Select(go => go.GetComponent<Planet>())
-                                 .Where(planet => planet != null)
-                                 .ToArray();
-        return enemyPlanets.Length > 0;
-    }
     private void CheckStartBattle()
     {
         Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag(tagPlanet)
@@ -34,36 +26,54 @@ public class AIMediumController : MonoBehaviour
                              .Where(planet => planet != null)
                              .ToArray();
         if (enemyPlanets.Length >= 4) isStartBattle = false;
+    } //Проверка на "Начальную" стадию битвы.
 
+    private Planet[] FindMainPlanets()
+    {
+        Planet[] mainPlanets = GameObject.FindGameObjectsWithTag(tagPlanet)
+                                     .Select(go => go.GetComponent<Planet>())
+                                     .Where(planet => planet != null)
+                                     .ToArray();
+        return mainPlanets;
     }
+
     private System.Collections.IEnumerator SendUnitsPeriodically()
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(3,9));
+            yield return new WaitForSeconds(Random.Range(1.5f, 4.5f));
 
-            Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag(tagPlanet)
-                                     .Select(go => go.GetComponent<Planet>())
-                                     .Where(planet => planet != null)
-                                     .ToArray();
+            Planet[] mainPlanets = FindMainPlanets();
 
-            foreach (Planet enemyPlanet in enemyPlanets)
+            if (mainPlanets.Length == 0)
+                yield break;
+
+            List<Planet> enemyListPlanets = new List<Planet>();
+
+            Planet targetPlanet = ChooseTargetPlanet(mainPlanets);
+
+            int countTargetUnits = (targetPlanet != null) ? (int)targetPlanet.currentUnitCount : 0;
+            int countEnemyUnits = 0;
+
+            foreach (Planet planet in mainPlanets)
             {
-                Planet targetPlanet = ChooseTargetPlanet(enemyPlanet);
-                if (targetPlanet != null)
-                {
-                    enemyPlanet.SendShipsToPlanet(targetPlanet);
-                }
+                enemyListPlanets.Add(planet);
+                countEnemyUnits += Mathf.FloorToInt(planet.currentUnitCount / 2f);
+
+                if (countEnemyUnits > countTargetUnits) break;
             }
+            foreach (Planet enemyPlanet in enemyListPlanets)
+            {
+                if (targetPlanet != null) enemyPlanet.SendShipsToPlanet(targetPlanet);
+            }
+
+            enemyListPlanets.Clear();
         }
     }
 
-    private Planet ChooseTargetPlanet(Planet sourcePlanet)
+    private Planet ChooseTargetPlanet(Planet[] mainPlanets)
     {
-        Planet[] enemyPlanets = GameObject.FindGameObjectsWithTag(tagPlanet)
-                                     .Select(go => go.GetComponent<Planet>())
-                                     .Where(planet => planet != null)
-                                     .ToArray();
+        Planet targetPlanet;
 
         Planet[] allPlanets = FindObjectsOfType<Planet>();
 
@@ -71,22 +81,76 @@ public class AIMediumController : MonoBehaviour
 
         Planet[] targetNeutralPlanets = allPlanets.Where(planet => planet.tag == "NeutralPlanet").ToArray();
 
-        if (isStartBattle)
+        Planet[] targetNeutralLargePlanets = allPlanets
+                        .Where(planet => planet.tag == "NeutralPlanet" && planet.selectedSize == Planet.Size.large)
+                        .OrderBy(planet => planet.currentUnitCount)
+                        .ToArray();
+        if (isStartBattle && targetNeutralLargePlanets.Length != 0)
         {
-            targetPlanets = targetNeutralPlanets.OrderBy(planet => planet.currentUnitCount).ToArray();
+            Vector2 averagePosition = AveragePosition(mainPlanets);
+            targetPlanet = FindClosestPlanet(averagePosition, targetNeutralLargePlanets);
 
-            return targetPlanets[0];
+            return targetPlanet;
         }
-        else if (targetPlanets.Length > 0)
+        else if (isStartBattle && targetNeutralPlanets.Length != 0)
         {
-            targetPlanets = targetPlanets.OrderBy(planet => planet.currentUnitCount).ToArray();
+            Vector2 averagePosition = AveragePosition(mainPlanets);
+            targetPlanet = FindClosestPlanet(averagePosition, targetNeutralPlanets);
 
-            return targetPlanets[0];
+            return targetPlanet;
         }
+        else
+        {
+            Vector2 averagePosition = AveragePosition(mainPlanets);
+            targetPlanet = FindClosestPlanet(averagePosition, targetPlanets);
 
-        return null;
+            return targetPlanet;
+        }
     }
 
+    private Vector2 AveragePosition(Planet[] mainPlanets)
+    {
+        float averageX = 0;
+        float averageY = 0;
+
+        foreach (Planet planet in mainPlanets)
+        {
+            averageX += planet.transform.position.x;
+            averageY += planet.transform.position.y;
+        }
+        averageX = averageX / mainPlanets.Length;
+        averageY = averageY / mainPlanets.Length;
+
+        Vector2 averagePosition = new Vector2(averageX, averageY);
+
+        return averagePosition;
+    }
+
+    private Planet FindClosestPlanet(Vector2 averagePosition, Planet[] planets)
+    {
+        if (planets.Length == 0)
+        {
+            return null;
+        }
+
+        Planet closestPlanet = null;
+        float closestDistance = float.MaxValue;
+
+        foreach (Planet planet in planets)
+        {
+            Vector2 planetPosition = planet.transform.position;
+
+            float distance = Vector2.Distance(averagePosition, planetPosition);
+
+            if (distance < closestDistance)
+            {
+                closestPlanet = planet;
+                closestDistance = distance;
+            }
+        }
+
+        return closestPlanet;
+    }
 
 
 }
