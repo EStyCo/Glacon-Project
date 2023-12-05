@@ -19,10 +19,10 @@ public class LevelConfig : MonoBehaviour
         level2 = 2, 
         level3 = 3
     }
-
+    
     [Inject] private ShipConstructor constructor;
+    [Inject] private GameModeManager gmManager;
     [Inject] private ProgressEnemy1 enemy1;
-
     [Inject] private ProgressEnemy2 enemy2;
     [Inject] private ProgressEnemy3 enemy3;
 
@@ -31,6 +31,7 @@ public class LevelConfig : MonoBehaviour
 
     [Header("Difficult")]
     [SerializeField] private Difficult difficult;
+    [Range(10, 25)][SerializeField] private int countPlanets;
     [Range(1, 3)][SerializeField] private int enemyes;
 
     [Header("Enemy 1")]
@@ -57,15 +58,48 @@ public class LevelConfig : MonoBehaviour
     [Range(0, 3)][SerializeField] private int growth3;
     [Range(0, 3)][SerializeField] private int draft3;
 
-    //[Range(0, 3)][SerializeField] private int speed;
-
-    public void Pick1Level()
+    public void LoadLevel()
     {
         ResetProgressEnemy();
+        
+        bool isPrepared = CheckPreparedProgress();
 
-        UpgradeEnemy(enemy1, constructor.level1);
-        UpgradeEnemy(enemy2, constructor.level1);
-        UpgradeEnemy(enemy3, constructor.level1);
+        if (isPrepared)
+        {
+            gmManager.planetCount = 15;
+        }
+        else
+        {
+            gmManager.planetCount = 20;
+        }
+    }
+
+    private void PickLevel(int[] counts)
+    {
+        UpgradeEnemy(enemy1, counts);
+        UpgradeEnemy(enemy2, counts);
+        UpgradeEnemy(enemy3, counts);
+    }
+
+    private bool CheckPreparedProgress()
+    {
+        switch (pick)
+        {
+            case Pick.None:
+                return false;
+            case Pick.level3:
+                PickLevel(constructor.level3);
+                return true;
+            case Pick.level2:
+                PickLevel(constructor.level2);
+                return true;
+            case Pick.level1:
+                PickLevel(constructor.level1);
+                return true;
+            default:
+                Debug.Log("Error prepared progress");
+                return false;
+        }
     }
 
     private void UpgradeEnemy(ProgressEnemy enemy, int[] counts)
