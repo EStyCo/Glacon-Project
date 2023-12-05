@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class LevelConfig : MonoBehaviour
 {
-    public enum Difficult
+    private enum Difficult
     {
         easy = 0,
         medium = 1,
@@ -62,19 +62,64 @@ public class LevelConfig : MonoBehaviour
     {
         ResetProgressEnemy();
         
-        bool isPrepared = CheckPreparedProgress();
+        ChangeSettings();
 
-        if (isPrepared)
+        if (!CheckPreparedProgress())
         {
-            gmManager.planetCount = 15;
-        }
-        else
-        {
-            gmManager.planetCount = 20;
+            PickCustomProgress();
         }
     }
 
-    private void PickLevel(int[] counts)
+    private void PickCustomProgress()
+    {
+        enemy1.speedUnit = speed1;
+        enemy1.armorUnit = armor1;
+        enemy1.damageUnit = damage1;
+        enemy1.armorPlanet = armorPlanet1;
+        enemy1.growthPlanet = growth1;
+        enemy1.draftPlanet = draft1;
+        
+        enemy2.speedUnit = speed2;
+        enemy2.armorUnit = armor2;
+        enemy2.damageUnit = damage2;
+        enemy2.armorPlanet = armorPlanet2;
+        enemy2.growthPlanet = growth2;
+        enemy2.draftPlanet = draft2;
+        
+        enemy3.speedUnit = speed3;
+        enemy3.armorUnit = armor3;
+        enemy3.damageUnit = damage3;
+        enemy3.armorPlanet = armorPlanet3;
+        enemy3.growthPlanet = growth3;
+        enemy3.draftPlanet = draft3;
+    }
+
+    private void ChangeSettings()
+    {
+        gmManager.planetCount = countPlanets;
+        gmManager.countEnemyPlanets = enemyes;
+        GetDifficult();
+    }
+
+    private void GetDifficult()
+    {
+        switch (difficult)
+        {
+            case Difficult.easy:
+                gmManager.ChangeDifficulty(1);
+                break;
+            case Difficult.medium:
+                gmManager.ChangeDifficulty(2);
+                break;
+            case Difficult.hard:
+                gmManager.ChangeDifficulty(3);
+                break;
+                default:
+                    break;
+        }
+    }
+
+    private void PickLevelProgress(int[] counts)
     {
         UpgradeEnemy(enemy1, counts);
         UpgradeEnemy(enemy2, counts);
@@ -88,13 +133,13 @@ public class LevelConfig : MonoBehaviour
             case Pick.None:
                 return false;
             case Pick.level3:
-                PickLevel(constructor.level3);
+                PickLevelProgress(constructor.level3);
                 return true;
             case Pick.level2:
-                PickLevel(constructor.level2);
+                PickLevelProgress(constructor.level2);
                 return true;
             case Pick.level1:
-                PickLevel(constructor.level1);
+                PickLevelProgress(constructor.level1);
                 return true;
             default:
                 Debug.Log("Error prepared progress");

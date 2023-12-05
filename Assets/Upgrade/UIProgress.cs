@@ -7,6 +7,7 @@ public class UIProgress : MonoBehaviour
     [Inject] private ProgressPlayer player;
 
     [SerializeField] private LoadData loadData;
+    [SerializeField] private CheckPoints checkPoints;
 
     [Header("Ships")]
     [SerializeField] private UIProgressButton[] ships = new UIProgressButton[0];
@@ -60,6 +61,7 @@ public class UIProgress : MonoBehaviour
             player.points -= value;
             origValue = value;
             player.SaveDataCampaign();
+            checkPoints.UpdateTextPoints();
 
             return true;
         }

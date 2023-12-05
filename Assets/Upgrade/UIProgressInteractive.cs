@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UIProgressInteractive : MonoBehaviour
 {
-    [SerializeField] LayerMask layer;
+    [SerializeField] private LayerMask layer;
 
     public UIProgressButton selectButton;
 
@@ -13,7 +13,7 @@ public class UIProgressInteractive : MonoBehaviour
             DisableButton();
 
             RaycastHit2D hit = RaycastHit();
-
+            
             TryUpgrade(hit);
 
             selectButton = hit.collider?.GetComponent<UIProgressButton>();
@@ -34,6 +34,7 @@ public class UIProgressInteractive : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, layer);
+        
         return hit;
     }
 
